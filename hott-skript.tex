@@ -74,7 +74,12 @@ Regeln einer (abhängigen) Typentheorie können etwa so aussehen:
 Dabei kann man zum Beispiel ``$\Gamma \yields t : A$'' lesen als ``Im Kontext $\Gamma$ gibt es einen Term $t$ des Typs $A$''.
 Wir werden nur anfangs mit Regeln arbeiten, um ein Verständnis für Typentheorie zu erlangen.
 Irgendwann werden wir Regeln wie die obige wieder, wie in der Mathematik üblich, sprachlich formulieren,
-etwa als ``Für $f : A\to B$ und $t : A$ gibt es ein $f(t) : B$''.
+etwa so
+\begin{center}
+  Für $f : A\to B$ und $t : A$ gibt es ein $f(t) : B$.
+\end{center}
+Wie wir später sehen werden, können diese Regeln zu Herleitungsbäumen kombiniert werden.
+Dieses Kombinieren ist der vollständig formale Weg Beweise in der Homotopietypentheorie zu führen.
 
 Ein Kontext wie ``$\Gamma$'' darf man sich als Liste von Variablen zusammen mit ihren Typen vorstellen. Also etwa so:
 \begin{mathpar}
@@ -194,7 +199,9 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
     \PiForm
   }
 \end{mathpar}
+
 Für diese etwas gewöhnlicheren Funktionen, können wir Vertrautes definieren:
+
 \begin{definition}
   \begin{enumerate}[label=(\alph*)]
   \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}.
