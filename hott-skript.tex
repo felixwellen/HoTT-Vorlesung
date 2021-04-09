@@ -118,12 +118,13 @@ Hier ist ein Beispiel, die sogenannte ``Weakening''-Regel oder \begriff{Abschwä
 \inferrule{\Gamma \yields \mathcal U \and \Gamma \yields A \text{ Typ}}{\Gamma, x : A \yields \mathcal U}{\Weak}
 \end{mathpar}
 Das gilt für alles was man durch andere Regeln an der Stelle von $\mathcal U$ bekommen könnte.
-Die folgende \begriff{Variabelnregel} erlaubt es Variablen aus dem Kontext zu benutzen:
+Die folgende \begriff{Variablenregel} erlaubt es Variablen aus dem Kontext zu benutzen:
 \begin{mathpar}
   \inferrule{\Gamma, x:A\text{ Kontext}}{\Gamma, x:A\yields x:A }{\mathrm{Var}}
 \end{mathpar}
 Die Regeln für die Urteilsgleichheit legen fest, dass diese eine Äquivalenzrelation auf Termen und Typen ist.
-Wir wollen diese Regeln hier nicht ausführen, eine gute Quelle, um die genauen Regeln im Bedarfsfall anzuschauen, ist das (noch nicht erschienene) Lehrbuch von Egbert Rijke oder Anhang A.2 des HoTT-Books.
+Wir wollen diese Regeln hier nicht ausführen, eine gute Quelle, um die genauen Regeln im Bedarfsfall anzuschauen,
+ist das (noch nicht erschienene) Lehrbuch von Egbert Rijke oder Anhang A.2 des HoTT-Books.
 
 Typentheorien sind typischerweise so aufgebaut, dass wenn es möglich ist $t:A$ herzuleiten, es auch immer möglich ist, $A\text{ Typ}$ herzuleiten,
 in welchem Fall es wieder möglich ist, herzuleiten, dass der Kontext in dem das gilt ein Kontext ist.
