@@ -1,0 +1,331 @@
+% latexmk -pvc -pdf hott-skript.tex
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[lmargin=2.5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[linkcolor=Black, colorlinks=true, citecolor=Black]{hyperref}
+\usepackage{cleveref}
+\usepackage{semantic}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{arrows}
+
+\usepackage{mathpartir}
+\newcommand{\yields}{\vdash}
+\newcommand{\cbar}{\, | \,}
+
+\usepackage{enumitem}
+\setitemize{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
+\setenumerate{topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex}
+
+\usepackage{ntheorem}
+\theorembodyfont{}
+\theoremstyle{break}
+    \newtheorem{theorem}{Theorem}[subsection]
+    \newtheorem{definition}[theorem]{Definition}
+    \newtheorem{axiom}[theorem]{Axiom}
+    \newtheorem{beispiel}[theorem]{Beispiel}
+\theoremstyle{nonumberbreak}
+\theoremstyle{nonumberplain}
+\theoremsymbol{\ensuremath{□}}
+    \newtheorem{beweis}{Beweis}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\begriff}[1]{\emph{#1}}
+
+% Namen für Regeln
+\newcommand{\Weak}{\mathrm{Weak}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\PiForm}{\Pi\mathrm{F}}
+\newcommand{\PiIntro}{\Pi\mathrm{I}}
+\newcommand{\PiElim}{\Pi\mathrm{E}}
+\newcommand{\PiBeta}{\Pi\beta}
+\newcommand{\PiEta}{\Pi\eta}
+
+\title{Vorlesungsskript zur Homotopietypentheorie}
+\author{Felix Cherubini}
+
+\begin{document}
+
+\maketitle
+
+Dieses Skript entsteht als Begleitmaterial zur Vorlesung ``Homotopietypentheorie'' (HoTT), die ich im Sommersemester 2021 an der Universität Augsburg halte.
+Zweck dieses Skripts ist es, den Zuhörern und mir selbst zur Erinnerung an die Vorlesungsinhalte zu dienen --
+bei der Beschäftigung mit dem Thema ist es hilfreich in Lehrbücher zu schauen.
+Das sogenannte \href{https://homotopytypetheory.org/book/}{``HoTT-Book''} ist sicher eine gute Quelle.
+
+Die Homotopietypentheorie ist eine eigenständige Art Mathematik zu betreiben und basiert auf einer abhängigen Typentheorie.
+Das bringt mit sich, dass wir zunächst Erlernen werden, wie man in Homotopietypentheorie Objekte konstruiert, Aussagen formuliert und Beweise führt.
+Nach den Grundlagen werden wir uns in Richtung Homotopietheorie orientieren, einem Teilgebiet der Mathematik, in dem einige Vorzüge der Ho\-mo\-to\-pie\-ty\-pen\-theo\-rie zur Geltung kommen.
+
+Im Folgenden werden wir nach und nach \begriff{Regeln} einführen (oder zumindest erwähnen), die schließlich zusammen eine Typentheorie ergeben.
+Diese werden wir noch um das sogenannte \begriff{Univalenzaxiom} erweitern.
+
+\section*{Regeln}
+Wir werden zunächst nur Regeln kennenlernen, die Teil einer abhängigen Typentheorie sind.
+Regeln einer (abhängigen) Typentheorie können etwa so aussehen:
+\begin{mathpar}
+\inferrule*{\Gamma \yields f : A\to B \and \Gamma \yields t : A}{\Gamma \yields f(t) : B}
+\end{mathpar}
+Über dem waagrechten Strich stehen die Voraussetzungen und darunter, was aus den Voraussetzungen geschlossen werden darf.
+Dabei kann man zum Beispiel ``$\Gamma \yields t : A$'' lesen als ``Im Kontext $\Gamma$ gibt es einen Term $t$ des Typs $A$''.
+Wir werden nur anfangs mit Regeln arbeiten, um ein Verständnis für Typentheorie zu erlangen.
+Irgendwann werden wir Regeln wie die obige wieder, wie in der Mathematik üblich, sprachlich formulieren,
+etwa als ``Für $f : A\to B$ und $t : A$ gibt es ein $f(t) : B$''.
+
+Ein Kontext wie ``$\Gamma$'' darf man sich als Liste von Variablen zusammen mit ihren Typen vorstellen. Also etwa so:
+\begin{mathpar}
+  x_1 : A_1, \cdots ,x_n : A_n
+\end{mathpar}
+Dabei dürfen die Variablen nach ihrer Einführung verwendet werden.
+So könnte etwa in der Konstruktion des Typs $A_2$ die Variable $x_1$ verwendet werden.
+Dass der Kontext eine solche Liste ist, wird üblicherweise durch die strukturellen Regeln einer abhängigen Typentheorie festgelegt.
+\begin{center}
+  \begin{table}
+    \label{tab:urteile}
+    \begin{tabular}{ll}
+      Urteil                        & Bedeutung (evtl. im Kontext $\Gamma$) \\
+      \hline
+      $\Gamma\yields t : A$         & $t$ ist ein Term vom Typ $A$ \\
+      $\Gamma\yields A$ Typ         & $A$ ist ein Typ \\
+      $\Gamma\yields A\equiv B$     & $A$ und $B$ sind (urteils-)gleiche Typen \\
+      $\Gamma\yields t\equiv s : A$ & $t$ und $s$ sind (urteils-)gleiche Terme des Typs $A$ \\
+      $\Gamma$ Kontext              & $\Gamma$ ist ein Kontext
+    \end{tabular}
+    \caption{Urteile}
+  \end{table}
+\end{center}
+
+Ein Block der Form ``$\Gamma \yields t : A$''  ist ein spezielles \begriff{Urteil}.
+Insgesamt gibt es die Urteile in Tabelle \cref{tab:urteile}.
+
+Eine Regel ist im Allgemeinen Fall nun von dieser Form:
+\begin{mathpar}
+\inferrule{\mathcal U_1 \and \dots \and \mathcal U_n}{\mathcal U_0}{\mathrm{Name}}
+\end{mathpar}
+Für $n\in\mathbb N=\{0,1,\dots\}$ und Urteile $\mathcal U_0,\dots,\mathcal U_n$.
+
+\subsection*{Strukturregeln}
+
+Neben den Regeln für einzelne Typen, die wir in den folgenden Abschnitten kennenlernen, gibt es sogenannte \begriff{strukturelle Regeln} oder \begriff{Strukturregeln}.
+Diese legen fest, wie Grundsätzliches funktioniert, etwa wie Kontexte geformt werden dürfen und wie was man mit Gleichheitsurteilen anfangen darf.
+Hier ist ein Beispiel, die sogenannte ``Weakening''-Regel oder \begriff{Abschwächungsregel}:
+\begin{mathpar}
+\inferrule{\Gamma \yields \mathcal U \and \Gamma \yields A \text{ Typ}}{\Gamma, x : A \yields \mathcal U}{\Weak}
+\end{mathpar}
+Das gilt für alles was man durch andere Regeln an der Stelle von $\mathcal U$ bekommen könnte.
+Die folgende \begriff{Variabelnregel} erlaubt es Variablen aus dem Kontext zu benutzen:
+\begin{mathpar}
+  \inferrule{\Gamma, x:A\text{ Kontext}}{\Gamma, x:A\yields x:A }{\mathrm{Var}}
+\end{mathpar}
+Die Regeln für die Urteilsgleichheit legen fest, dass diese eine Äquivalenzrelation auf Termen und Typen ist.
+Wir wollen diese Regeln hier nicht ausführen, eine gute Quelle, um die genauen Regeln im Bedarfsfall anzuschauen, ist das Lehrbuch von Rijke.
+
+Typentheorien sind typischerweise so aufgebaut, dass wenn es möglich ist $t:A$ herzuleiten, es auch immer möglich ist, $A\text{ Typ}$ herzuleiten,
+in welchem Fall es wieder möglich ist, herzuleiten, dass der Kontext in dem das gilt ein Kontext ist.
+Wir wollen diese Tatsachen frei verwenden und wie Regeln einsetzen, die wir zusammenfassend mit ``$\mathrm{Str}$'' bezeichnen.
+
+Jeder Typ wird typischerweise mit einer Reihe von Regeln eingeführt, darunter normalerweise auch sogenannte \begriff{Kongruenzregeln}.
+Diese stellen nur sicher, dass sich Urteilsgleichheit durch die neuen Konstruktionen durchziehen lässt.
+Kongruenzregeln werden wir auch nicht extra erwähnen.
+
+
+\section{Abhängige Typentheorie}
+\subsection{Abhängige Typen und Abhängige Produkte}
+
+Von einem \begriff{Abhängigen Typen} spricht man im Fall eine Urteils
+\begin{mathpar}
+  \Gamma, x : A\yields B(x)\text{ Typ}
+\end{mathpar}
+Der Kontext besteht also aus mindestens einer Variablen $x$, die im abhängigen Typen $B(x)$ vorkommen darf.
+Wir verwenden die Schreibweise ``$B(x)$'' um die Abhängigkeit klar zu machen --  in der Typentheorie ist es eher üblich hier nur ``$B$'' zu schreiben.
+Ein Beispiel, das wir später mit unserer Typentheorie konstruieren könnten, ist der Typ der Listen der Länge $n$, wobei $n$ eine Variable des Typs $\mathbb N$ ist.
+
+Eine wichtige Besonderheit der abhängigen Typentheorie ist es, dass der Typ der Werte einer Funktion variieren darf.
+Diese allgemeineren Funktionen sind in sogenannten \begriff{abhängigen Produkten} oder \begriff{abhängigen Funktionstypen} enthalten.
+Die folgende Regel erlaubt es uns, diesen Typ zu formen:
+\begin{mathpar}
+  \inferrule{\Gamma,x : A \yields B(x)\text{ Typ}}{\Gamma\yields\prod_{x:A}B(x)\text{ Typ}}{\PiForm}
+\end{mathpar}
+Abhängige Funktionen, die Elemente des abhängigen Produkts, können mit dieser Regel konstruiert werden:
+\begin{mathpar}
+  \inferrule{\Gamma,x : A \yields t(x) : B(x)}{\Gamma\yields \lambda x.t(x) : \prod_{x:A} B(x)}{\PiIntro}
+\end{mathpar}
+Die Notation ``$\lambda x.t(x)$'' stammt aus der Informatik und steht für die Funktion ``$x\mapsto t(x)$''.
+Wir nehmen uns die Freiheit beide Notationen zu verwenden und schreiben auch manchmal $(x:A)\mapsto t(x)$, wenn der Typ der Variablen nicht klar ist.
+Auch bei abhängigen Termen ist es in der Typentheorie eigentlich üblich nur ``$t:B$'' zu schreiben.
+Das zusätzliche ``$(x)$'' steht hier nur zum besseren Verständnis durch Ähnlichkeit zu mathematischen Konventionen.
+Die nächste Regel erlaubt es uns, abhängige Funktionen anzuwenden:
+\begin{mathpar}
+  \inferrule{\Gamma\yields f : \prod_{x:A}B(x) \and \Gamma\yields a : A}{\Gamma\yields f(a):B(a)}{\PiElim}
+\end{mathpar}
+Damit ist allerdings noch nicht gesagt, wie das Einsetzen eines Wertes in eine Funktion funktioniert.
+Dafür müssen alle Vorkommen einer Variablen in einem Funktionsterm durch den eingesetzten Term ersetzt werden.
+Diesen Vorgang nennt man Substitution und wir verwenden dafür die Notation $t(a)$ statt dem in der Informatik üblichen ``$t[a/x]$''.
+Die folgende Regel sagt uns, dass wir durch Einsetzen von $a:A$ den Wert der Funktion $(x:A)\mapsto t(x)$, berechnen dürfen:
+\begin{mathpar}
+  \inferrule{\Gamma,x:A\yields t(x):B(x) \and \Gamma\yields a:A}{\Gamma\yields (\lambda x.t(x))(a)\equiv t(a) : B(a)}{\PiBeta}
+\end{mathpar}
+Eine Besonderheit der abhängigen Produkte ist es, dass man folgende Urteilsgleichheit noch zusätzlich fordert:
+\begin{mathpar}
+  \inferrule{\Gamma\yields f :\prod_{x:A}B(x)}{\Gamma\yields f\equiv (x\mapsto f(x)) : \prod_{x:A}B(x)}{\PiEta}
+\end{mathpar}
+Für alle weitere Typen, die wir einführen werden, wird sich ein ähnliches Schema ergeben.
+Es gibt stets eine Regel, die es erlaubt den Typ zu formen, eine oder mehrere für die Konstruktion von Elementen und wieder eine oder mehrere, die festlegen, wie die Elemente des Typs verwendet werden dürfen.
+
+Wenn $B(x)$ eigentlich garnicht von $x:A$ abhängt, also $x$ nicht in $B$ vorkommt, schreiben wir auch einfach nur $B$ und $A\to B$ für das abhängige Produkt $\prod_{x:A}B$.
+Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der Funktionen von $A$ nach $B$:
+\begin{mathpar}
+  \inferrule{
+    \inferrule{
+      \Gamma\yields B\text{ Typ}\and \Gamma\yields A\text{ Typ}
+    }{
+      \Gamma,x:A\yields B\text{ Typ}
+    }{
+      \Weak
+    }
+  }{
+    \Gamma\yields A\to B\text{ Typ}
+  }{
+    \PiForm
+  }
+\end{mathpar}
+Für diese etwas gewöhnlicheren Funktionen, können wir Vertrautes definieren:
+\begin{definition}
+  \begin{enumerate}[label=(\alph*)]
+  \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}.
+    Ganz genau ist die Komposition gegeben durch die folgende Herleitung:
+    \begin{mathpar}
+      \inferrule{
+        \inferrule{
+          \inferrule{
+            \Gamma\yields f:A\to B
+          }{
+            \Gamma,x:A\yields x:A
+          }{
+            \mathrm{Str},\Var
+          } \and \Gamma\yields f:A\to B}{
+          \Gamma, x:A\yields f(x):B
+        }{
+          \PiIntro} \and
+        \inferrule{
+          \Gamma\yields g:B\to C\and \Gamma\yields A\text{ Typ}
+        }{
+          \Gamma, x:A\yields g:B\to C
+        }{
+          \Weak
+        }
+      }{
+        \inferrule{
+          \Gamma, x : A\yields g(f(x)) : C
+        }{
+          \Gamma\yields x\mapsto g(f(x)) : A\to C
+        }{
+          \PiIntro
+        }
+      }{
+        \PiElim
+      }
+    \end{mathpar}
+  \item Unter der \begriff{Identität} auf einem Typ $A$ verstehen wir die folgende Konstruktion:
+    \begin{mathpar}
+      \inferrule{
+        \inferrule{
+          \inferrule{
+            \inferrule{
+              \Gamma\yields A\text{ Typ}
+            }{
+              \Gamma,x:A\yields A\text{ Typ}
+            }{
+              \Weak
+            }
+          }{
+            \Gamma,x:A\text{ Kontext}
+          }{
+            \mathrm{Str}
+          }
+        }{
+          \Gamma,x:A\yields x:A
+        }{
+          \Var
+        }
+      }{
+        \Gamma\yields x\mapsto x : A\to A
+      }{
+        \PiIntro
+      }
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
+
+\subsection{Natürliche Zahlen und Induktion}
+Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen} nicht von anderen Typen abhängig.
+Dementsprechend ist die Formierungsregel etwas einfacher:
+\begin{mathpar}
+  \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N}{\N\mathrm{F}}
+\end{mathpar}
+Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Terme gibt:
+\begin{mathpar}
+  \inferrule{
+    \Gamma\text{ Kontext}
+  }{
+    \Gamma\yields 0:\N}{\N\mathrm{I0}
+  }
+  \quad
+  \inferrule{
+    \Gamma\yields x:\N
+  }{
+    \Gamma\yields\mathrm{succ}(x):\N
+  }{
+    \N\mathrm{Is}
+  }
+\end{mathpar}
+Soweit heißt das nur, dass man stets die Natürlichen Zahlen verwenden darf, es ein Element $0$ und zu jeder natürlichen Zahl einen Nachfolger gibt.
+Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natürlichen Zahlen zu zeigen, aber auch Funktionen auf den natürlichen Zahlen zu konstruieren:
+\begin{mathpar}
+  \inferrule{
+    \Gamma,x:\N \yields P(x)\text{ Typ}
+    \and \Gamma\yields \mathrm{IA} : P(0)
+    \and \Gamma,x:\N,\mathrm{IH}:P(x)\yields \mathrm{IS}(\mathrm{IH}):P(\mathrm{succ}(x))
+  }{
+    \Gamma\yields\mathrm{ind}_{\N} (\mathrm{IA},\mathrm{IH}) : \prod_{x:\N}P(x)
+  }{
+    \N\mathrm{E}
+  }
+\end{mathpar}
+Um die Regel mit bekannten Vorstellungen von Induktion zusammenzubringen, stellt man sich $P(x)$ als Aussage über die Zahl $x$ vor.
+Wenn man es nun schafft, einen Term $p:P(x)$ zu konstruieren, bedeutet das, dass man die Aussage $P(x)$ bewiesen hat.
+In dieser Lesart ist das abhängige Produkt $\prod_{x:\N}P(x)$ nichts anderes als ``$\forall x\in \N$ gilt $P(x)$''.
+Nun muss man, um per Induktion eine Aussage zu zeigen, den Induktionsanfang (\textbf{IA}) zeigen und den Induktionsschritt (\textbf{IS}) aus der Induktionshypothese (\textbf{IH}) folgern.
+Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend benannt.
+
+Bevor wir die Induktion einsetzen, wollen wir noch grundlegende Operationen auf den Natürlichen Zahlen definieren.
+Dazu werden wir einen Spezialfall der Regel $\N\mathrm{E}$ verwenden, die Rekursion:
+\begin{definition}
+  Durch \begriff{Rekursion} können Funktionen von den natürlichen Zahlen in einen anderen Typ definiert werden.
+  Um eine Funktion $r$ in einen Typen $A$ durch Rekursion zu definieren, muss ein Bild der $0$ in $A$ angegeben werden und für jedes $r(x) : A$ ein Bild des Nachfolgers $n(x):A$.
+\end{definition}
+
+\subsection{Eins und Zwei}
+\subsection{Universen}
+\subsection{Abhängige Summen}
+\subsection{Gleichheit}
+\subsection{Kontrahierbarkeit und Aussagen}
+
+\section{Univalenz}
+\subsection{Homotopie von Abbildungen, Function-Extensionality}
+\subsection{Äquivalenzen}
+\subsection{Univalenz}
+
+\section{Homotopietheorie}
+\subsection{n-Typen}
+\subsection{Höhere Induktive Typen}
+\subsection{Überlagerungen}
+\subsection{Homotopiegruppen}
+
+\end{document}
