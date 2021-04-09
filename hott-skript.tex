@@ -5,8 +5,10 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumerate}
-\usepackage[linkcolor=Black, colorlinks=true, citecolor=Black]{hyperref}
-\usepackage{cleveref}
+\usepackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
 
 \usepackage{tikz}
 \usetikzlibrary{cd}
@@ -31,6 +33,8 @@
 \theoremstyle{nonumberplain}
 \theoremsymbol{\ensuremath{□}}
     \newtheorem{beweis}{Beweis}
+
+\usepackage{cleveref}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -88,24 +92,23 @@ Ein Kontext wie ``$\Gamma$'' darf man sich als Liste von Variablen zusammen mit 
 Dabei dürfen die Variablen nach ihrer Einführung verwendet werden.
 So könnte etwa in der Konstruktion des Typs $A_2$ die Variable $x_1$ verwendet werden.
 Dass der Kontext eine solche Liste ist, wird üblicherweise durch die strukturellen Regeln einer abhängigen Typentheorie festgelegt.
-\begin{center}
-  \begin{table}
-    \label{tab:urteile}
-    \begin{tabular}{ll}
-      Urteil                        & Bedeutung (evtl. im Kontext $\Gamma$) \\
-      \hline
-      $\Gamma\yields t : A$         & $t$ ist ein Term vom Typ $A$ \\
-      $\Gamma\yields A$ Typ         & $A$ ist ein Typ \\
-      $\Gamma\yields A\equiv B$     & $A$ und $B$ sind (urteils-)gleiche Typen \\
-      $\Gamma\yields t\equiv s : A$ & $t$ und $s$ sind (urteils-)gleiche Terme des Typs $A$ \\
-      $\Gamma$ Kontext              & $\Gamma$ ist ein Kontext
-    \end{tabular}
-    \caption{Urteile}
-  \end{table}
-\end{center}
+\begin{table}
+  \centering
+  \begin{tabular}{ll}
+    Urteil                        & Bedeutung (evtl. im Kontext $\Gamma$) \\
+    \hline
+    $\Gamma\yields t : A$         & $t$ ist ein Term vom Typ $A$ \\
+    $\Gamma\yields A$ Typ         & $A$ ist ein Typ \\
+    $\Gamma\yields A\equiv B$     & $A$ und $B$ sind (urteils-)gleiche Typen \\
+    $\Gamma\yields t\equiv s : A$ & $t$ und $s$ sind (urteils-)gleiche Terme des Typs $A$ \\
+    $\Gamma$ Kontext              & $\Gamma$ ist ein Kontext
+  \end{tabular}
+  \caption{Urteile}
+  \label{tab:urteile}
+\end{table}
 
 Ein Block der Form ``$\Gamma \yields t : A$''  ist ein spezielles \begriff{Urteil}.
-Insgesamt gibt es die Urteile in Tabelle \cref{tab:urteile}.
+Insgesamt gibt es die Urteile in \cref{tab:urteile}.
 
 Eine Regel ist im Allgemeinen Fall nun von dieser Form:
 \begin{mathpar}
