@@ -182,7 +182,7 @@ Dafür müssen alle Vorkommen einer Variablen in einem Funktionsterm durch den e
 Diesen Vorgang nennt man Substitution und wir verwenden dafür die Notation $t(a)$ statt dem in der Informatik üblichen ``$t[a/x]$''.
 Die folgende Regel sagt uns, dass wir durch Einsetzen von $a:A$ den Wert der Funktion $(x:A)\mapsto t(x)$, berechnen dürfen:
 \begin{mathpar}
-  \inferrule{\Gamma,x:A\yields t(x):B(x) \and \Gamma\yields a:A}{\Gamma\yields (\lambda x.t(x))(a)\equiv t(a) : B(a)}{\PiBeta}
+  \inferrule{\Gamma,x:A\yields t(x):B(x) \and \Gamma\yields a:A}{\Gamma\yields (x\mapsto t(x))(a)\equiv t(a) : B(a)}{\PiBeta}
 \end{mathpar}
 Eine Besonderheit der abhängigen Produkte ist es, dass man folgende Urteilsgleichheit noch zusätzlich fordert:
 \begin{mathpar}
@@ -214,20 +214,26 @@ Für diese etwas gewöhnlicheren Funktionen, können wir Vertrautes definieren:
 \begin{definition}
   \begin{enumerate}[label=(\alph*)]
   \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}.
-    Ganz genau ist die Komposition gegeben durch die folgende Herleitung:
+    Ganz genau ist die Komposition der durch die folgende Herleitung gegebene Term:
     \begin{mathpar}
       \inferrule{
         \inferrule{
           \inferrule{
-            \Gamma\yields f:A\to B
+            \inferrule{
+              \Gamma\yields f:A\to B
+            }{
+              \Gamma\yields A\text{ Typ}
+            }{
+              \mathrm{Str}
+            }
           }{
             \Gamma,x:A\yields x:A
           }{
-            \mathrm{Str},\Var
+            \Weak,\Var
           } \and \Gamma\yields f:A\to B}{
           \Gamma, x:A\yields f(x):B
         }{
-          \PiIntro} \and
+          \PiElim} \and
         \inferrule{
           \Gamma\yields g:B\to C\and \Gamma\yields A\text{ Typ}
         }{
@@ -247,6 +253,7 @@ Für diese etwas gewöhnlicheren Funktionen, können wir Vertrautes definieren:
         \PiElim
       }
     \end{mathpar}
+    In Zukunft werden wir solche Sachverhalte auch einfach durch ``$f\circ g:\equiv x\mapsto f(g(x))$'' ausdrücken.
   \item Unter der \begriff{Identität} auf einem Typ $A$ verstehen wir die folgende Konstruktion:
     \begin{mathpar}
       \inferrule{
