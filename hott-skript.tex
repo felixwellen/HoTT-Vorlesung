@@ -65,7 +65,7 @@ Wer Fehler findet und diese korrigieren oder darauf aufmerksam machen will, kann
 \href{https://github.com/felixwellen/HoTT-Vorlesung}{https://github.com/felixwellen/HoTT-Vorlesung}.
 Dort gibt es auch die Möglichkeit, sogenannte ``Issues'' anzulegen.
 Hier könnten sie etwa darüber informieren, wenn sie eine Passage nicht verstehen oder einen Fehler gefunden haben.
-Sie haben über sogenannte ``Pull requests'' die Möglichkeit, Fehler auch selbst zu korriegieren. 
+Sie haben über sogenannte ``Pull requests'' die Möglichkeit, Fehler auch selbst zu korrigieren.
 
 Die Homotopietypentheorie ist eine eigenständige Art Mathematik zu betreiben und basiert auf einer abhängigen Typentheorie.
 Das bringt mit sich, dass wir zunächst Erlernen werden, wie man in Homotopietypentheorie Objekte konstruiert, Aussagen formuliert und Beweise führt.
@@ -167,10 +167,10 @@ Die folgende Regel erlaubt es uns, diesen Typ zu formen:
 \end{mathpar}
 Abhängige Funktionen, die Elemente des abhängigen Produkts, können mit dieser Regel konstruiert werden:
 \begin{mathpar}
-  \inferrule{\Gamma,x : A \yields t(x) : B(x)}{\Gamma\yields \lambda x.t(x) : \prod_{x:A} B(x)}{\PiIntro}
+  \inferrule{\Gamma,x : A \yields t(x) : B(x)}{\Gamma\yields x\mapsto t(x) : \prod_{x:A} B(x)}{\PiIntro}
 \end{mathpar}
-Die Notation ``$\lambda x.t(x)$'' stammt aus der Informatik und steht für die Funktion ``$x\mapsto t(x)$''.
-Wir nehmen uns die Freiheit beide Notationen zu verwenden und schreiben auch manchmal $(x:A)\mapsto t(x)$, wenn der Typ der Variablen nicht klar ist.
+Der Term ``$x\mapsto t(x)$'' wird in der Typentheorie und allgemeiner in der Informatik geschrieben als ``$\lambda x.t(x)$''.
+Wir schreiben auch manchmal $(x:A)\mapsto t(x)$, wenn der Typ der Variablen nicht klar ist.
 Auch bei abhängigen Termen ist es in der Typentheorie eigentlich üblich nur ``$t:B$'' zu schreiben.
 Das zusätzliche ``$(x)$'' steht hier nur zum besseren Verständnis durch Ähnlichkeit zu mathematischen Konventionen.
 Die nächste Regel erlaubt es uns, abhängige Funktionen anzuwenden:
