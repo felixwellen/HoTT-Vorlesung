@@ -136,17 +136,15 @@ Die folgende \begriff{Variablenregel} erlaubt es Variablen aus dem Kontext zu be
   \inferrule{\Gamma, x:A\text{ Kontext}}{\Gamma, x:A\yields x:A }{\mathrm{Var}}
 \end{mathpar}
 Die Regeln für die Urteilsgleichheit legen fest, dass diese eine Äquivalenzrelation auf Termen und Typen ist.
-Wir wollen diese Regeln hier nicht ausführen, eine gute Quelle, um die genauen Regeln im Bedarfsfall anzuschauen,
-ist das (noch nicht erschienene) Lehrbuch von Egbert Rijke oder Anhang A.2 des HoTT-Books.
+Außerdem gibt es Strukturregeln und sogenannte \begriff{Kongruenzregeln}, die es letztendlich erlauben, Terme und Typen durch Urteilsgleiches zu ersetzen.
+Wir erlauben es uns einfach zu Ersetzen und führen diese Regeln nicht aus.
 
-Typentheorien sind typischerweise so aufgebaut, dass wenn es möglich ist $t:A$ herzuleiten, es auch immer möglich ist, $A\text{ Typ}$ herzuleiten,
+Weiter sind Typentheorien typischerweise so aufgebaut, dass wenn es möglich ist $t:A$ herzuleiten, es auch immer möglich ist, $A\text{ Typ}$ herzuleiten,
 in welchem Fall es wieder möglich ist, herzuleiten, dass der Kontext in dem das gilt ein Kontext ist.
 Wir wollen diese Tatsachen frei verwenden und wie Regeln einsetzen, die wir zusammenfassend mit ``$\mathrm{Str}$'' bezeichnen.
 
-Jeder Typ wird typischerweise mit einer Reihe von Regeln eingeführt, darunter normalerweise auch sogenannte \begriff{Kongruenzregeln}.
-Diese stellen nur sicher, dass sich Urteilsgleichheit durch die neuen Konstruktionen durchziehen lässt.
-Kongruenzregeln werden wir auch nicht extra erwähnen.
-
+Diese Regeln führen wir hier nicht auf, eine gute Quelle, um die genauen Regeln im Bedarfsfall anzuschauen,
+ist das (noch nicht erschienene) Lehrbuch von Egbert Rijke oder Anhang A.2 des HoTT-Books.
 
 \section{Abhängige Typentheorie}
 \subsection{Abhängige Typen und Abhängige Produkte}
