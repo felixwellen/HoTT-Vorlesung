@@ -125,7 +125,7 @@ Für $n\in\mathbb N=\{0,1,\dots\}$ und Urteile $\mathcal U_0,\dots,\mathcal U_n$
 \subsection*{Strukturregeln}
 
 Neben den Regeln für einzelne Typen, die wir in den folgenden Abschnitten kennenlernen, gibt es sogenannte \begriff{strukturelle Regeln} oder \begriff{Strukturregeln}.
-Diese legen fest, wie Grundsätzliches funktioniert, etwa wie Kontexte geformt werden dürfen und wie was man mit Gleichheitsurteilen anfangen darf.
+Diese legen fest, wie Grundsätzliches funktioniert, etwa wie Kontexte geformt werden dürfen und was man mit Gleichheitsurteilen anfangen darf.
 Hier ist ein Beispiel, die sogenannte ``Weakening''-Regel oder \begriff{Abschwächungsregel}:
 \begin{mathpar}
 \inferrule{\Gamma \yields \mathcal U \and \Gamma \yields A \text{ Typ}}{\Gamma, x : A \yields \mathcal U}{\Weak}
@@ -141,6 +141,8 @@ Wir erlauben es uns einfach zu Ersetzen und führen diese Regeln nicht aus.
 
 Weiter sind Typentheorien typischerweise so aufgebaut, dass wenn es möglich ist $t:A$ herzuleiten, es auch immer möglich ist, $A\text{ Typ}$ herzuleiten,
 in welchem Fall es wieder möglich ist, herzuleiten, dass der Kontext in dem das gilt ein Kontext ist.
+Allgemeiner erlauben wir uns stets notwendige Voraussetzungen für vorliegende Urteile zu verwenden.
+Also etwa der Schluss von einem Urteil, in dem der Typ ``$A\to B$'' vorkommt, zum Urteil ``$A$ Typ''.
 Wir wollen diese Tatsachen frei verwenden und wie Regeln einsetzen, die wir zusammenfassend mit ``$\mathrm{Str}$'' bezeichnen.
 
 Diese Regeln führen wir hier nicht auf, eine gute Quelle, um die genauen Regeln im Bedarfsfall anzuschauen,
