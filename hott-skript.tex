@@ -14,6 +14,9 @@
 \usetikzlibrary{cd}
 \usetikzlibrary{arrows}
 
+% für tabellen
+\usepackage{booktabs}
+
 \usepackage{mathpartir}
 \newcommand{\yields}{\vdash}
 \newcommand{\cbar}{\, | \,}
@@ -36,9 +39,11 @@
 
 \usepackage{cleveref}
 
+\usepackage{makeidx}
+
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\begriff}[1]{\emph{#1}}
+\newcommand{\begriff}[1]{\emph{#1}\index{#1}}
 
 % Namen für Regeln
 \newcommand{\Weak}{\mathrm{Weak}}
@@ -56,6 +61,8 @@
 
 \title{Vorlesungsskript zur Homotopietypentheorie}
 \author{Felix Cherubini}
+
+\makeindex
 
 \begin{document}
 
@@ -356,5 +363,7 @@ Dazu werden wir einen Spezialfall der Regel $\N\mathrm{E}$ verwenden, die Rekurs
 \subsection{Höhere Induktive Typen}
 \subsection{Überlagerungen}
 \subsection{Homotopiegruppen}
+
+\printindex
 
 \end{document}
