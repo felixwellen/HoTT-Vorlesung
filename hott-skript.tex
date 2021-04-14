@@ -203,28 +203,59 @@ Eine Besonderheit der abhängigen Produkte ist es, dass man folgende Urteilsglei
 Für alle weitere Typen, die wir einführen werden, wird sich ein ähnliches Schema ergeben.
 Es gibt stets eine Regel, die es erlaubt den Typ zu formen, eine oder mehrere für die Konstruktion von Elementen und wieder eine oder mehrere, die festlegen, wie die Elemente des Typs verwendet werden dürfen.
 
-Wenn $B(x)$ eigentlich gar nicht von $x:A$ abhängt, also $x$ nicht in $B$ vorkommt, schreiben wir auch einfach nur $B$ und $A\to B$ für das abhängige Produkt $\prod_{x:A}B$.
-Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der Funktionen von $A$ nach $B$:
-\begin{mathpar}
-  \inferrule{
-    \inferrule{
-      \Gamma\yields B\text{ Typ}\and \Gamma\yields A\text{ Typ}
-    }{
-      \Gamma,x:A\yields B\text{ Typ}
-    }{
-      \Weak
-    }
-  }{
-    \Gamma\yields A\to B\text{ Typ}
-  }{
-    \PiForm
-  }
-\end{mathpar}
+Wenn $B(x)$ eigentlich gar nicht von $x:A$ abhängt, also $x$ nicht in $B$ vorkommt,
+kann der Typ der abhängigen Funktionen, $\prod_{x:A}B(x)$, spezialisiert werden zum üblichen Funktionstyp $A\to B$:
 
-Für diese etwas gewöhnlicheren Funktionen, können wir Vertrautes definieren:
+Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der Funktionen von $A$ nach $B$:
 
 \begin{definition}
   \begin{enumerate}[label=(\alph*)]
+  \item Für Typen $A$ und $B$ gibt es stets den \begriff{Typ der Funktionen} $A\to B$, der mit der folgenden Herleitung geformt werden kann:
+    \begin{mathpar}
+      \inferrule{
+        \inferrule{
+          \Gamma\yields B\text{ Typ}\and \Gamma\yields A\text{ Typ}
+        }{
+          \Gamma,x:A\yields B\text{ Typ}
+        }{
+          \Weak
+        }
+      }{
+        \Gamma\yields A\to B\text{ Typ}
+      }{
+        \PiForm
+      }
+    \end{mathpar}
+    Die Terme dieses Typs nennen wir \begriff{Funktionen}.
+  \item Unter der \begriff{Identität} $\id_A$ auf einem Typ $A$ verstehen wir die folgende Konstruktion:
+    \begin{mathpar}
+      \inferrule{
+        \inferrule{
+          \inferrule{
+            \inferrule{
+              \Gamma\yields A\text{ Typ}\and \Gamma\yields A\text{ Typ}
+            }{
+              \Gamma,x:A\yields A\text{ Typ}
+            }{
+              \Weak
+            }
+          }{
+            \Gamma,x:A\text{ Kontext}
+          }{
+            \mathrm{Str}
+          }
+        }{
+          \Gamma,x:A\yields x:A
+        }{
+          \Var
+        }
+      }{
+        \Gamma\yields x\mapsto x : A\to A
+      }{
+        \PiIntro
+      }
+    \end{mathpar}
+    Zusammengefasst: $\id_A:\equiv (x : A)\mapsto x$.
   \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}.
     Ganz genau ist die Komposition der durch die folgende Herleitung gegebene Term:
     \begin{mathpar}
@@ -266,40 +297,11 @@ Für diese etwas gewöhnlicheren Funktionen, können wir Vertrautes definieren:
       }
     \end{mathpar}
     In Zukunft werden wir solche Sachverhalte auch einfach durch ``$f\circ g:\equiv x\mapsto f(g(x))$'' ausdrücken.
-  \item Unter der \begriff{Identität} $\id_A$ auf einem Typ $A$ verstehen wir die folgende Konstruktion:
-    \begin{mathpar}
-      \inferrule{
-        \inferrule{
-          \inferrule{
-            \inferrule{
-              \Gamma\yields A\text{ Typ}
-            }{
-              \Gamma,x:A\yields A\text{ Typ}
-            }{
-              \Weak
-            }
-          }{
-            \Gamma,x:A\text{ Kontext}
-          }{
-            \mathrm{Str}
-          }
-        }{
-          \Gamma,x:A\yields x:A
-        }{
-          \Var
-        }
-      }{
-        \Gamma\yields x\mapsto x : A\to A
-      }{
-        \PiIntro
-      }
-    \end{mathpar}
-    Zusammengefasst: $\id_A:\equiv (x : A)\mapsto x$.
   \end{enumerate}
 \end{definition}
 
 
-\subsection{Natürliche Zahlen und Induktion}
+\subsection{Natürliche Zahlen}
 Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen} nicht von anderen Typen abhängig.
 Dementsprechend ist die Formierungsregel etwas einfacher:
 \begin{mathpar}
@@ -310,18 +312,19 @@ Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Terme gibt:
   \inferrule{
     \Gamma\text{ Kontext}
   }{
-    \Gamma\yields 0:\N}{\N\mathrm{I0}
+    \Gamma\yields 0_{\N}:\N}{\N\mathrm{I1}
   }
   \quad
   \inferrule{
     \Gamma\yields x:\N
   }{
-    \Gamma\yields\mathrm{succ}(x):\N
+    \Gamma\yields\mathrm{succ}_{\N}(x):\N
   }{
-    \N\mathrm{Is}
+    \N\mathrm{I2}
   }
 \end{mathpar}
-Soweit heißt das nur, dass man stets die Natürlichen Zahlen verwenden darf, es ein Element $0$ und zu jeder natürlichen Zahl einen Nachfolger gibt.
+Soweit heißt das nur, dass man stets die Natürlichen Zahlen verwenden darf, es ein Element $0_{\N}$ und zu jeder natürlichen Zahl einen Nachfolger gibt.
+Den Index ``$_{\N}$'' soll Verwechslungen verhindern und wird gelegentlich wegegelassen.
 Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natürlichen Zahlen zu zeigen, aber auch Funktionen auf den natürlichen Zahlen zu konstruieren:
 \begin{mathpar}
   \inferrule{
