@@ -31,6 +31,15 @@
   Gib eine Herleitung für $f\equiv g:\Pi_{x:A}B(x)$ an.
 \end{exercise}
 
+\begin{exercise}[Konstante Funktionen]
+  Sei $B$ ein Typ.
+  Definiere eine konstante Funktion $\mathrm{const}_y:B\to C$ im Kontext $y:C$ und zeige
+  \begin{enumerate}
+    \item $f:C\to D,z:D\vdash\mathrm{const}_z\circ f \equiv \mathrm{const}_z:B\to D$,
+    \item $g:A\to B, x:B\vdash g\circ\mathrm{const}_y \equiv \mathrm{const}_{g(x)}$.
+  \end{enumerate}
+\end{exercise}
+
 \begin{exercise}[Zwei Einführungsregeln für Nachfolger]
   Zeige, dass die folgenden beiden Einführungsregeln für den Nachfolger einer natürlichen Zahl äquivalent sind:
   \begin{mathpar}
