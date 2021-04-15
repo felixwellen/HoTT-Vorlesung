@@ -1,4 +1,4 @@
-% latex -xelatex uebung??.tex
+% latex -xelatex -pdf uebung??.tex
 \ProvidesClass{uebung}
 \LoadClass[a4paper]{article}
 \RequirePackage{amsmath}
