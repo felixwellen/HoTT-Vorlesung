@@ -26,4 +26,26 @@
   \end{enumerate}
 \end{exercise}
 
+\begin{exercise}[Zwei Einführungsregeln für Nachfolger]
+  Zeige, dass die folgenden beiden Einführungsregeln für den Nachfolger einer natürlichen Zahl äquivalent sind:
+  \begin{mathpar}
+    \inferrule{
+      \Gamma\vdash x:\mathbb{N}
+    }{
+      \Gamma\vdash\mathrm{succ}(x):\mathbb{N}
+    }{
+      \mathbb{N}\mathrm{I2}
+    }
+    \and
+    \inferrule{
+      \Gamma\text{ Kontext}
+    }{
+      \Gamma,x:\mathbb{N}\vdash\mathrm{succ}(x):\mathbb{N}
+    }{
+      \mathbb{N}\mathrm{I2'}
+    }
+  \end{mathpar}
+  {\tiny Die linke Regel ist aus dem Skript, die rechte aus der Vorlesung.}
+\end{exercise}
+
 \end{document}
