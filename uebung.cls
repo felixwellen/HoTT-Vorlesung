@@ -1,9 +1,9 @@
+% latex -xelatex uebung??.tex
 \ProvidesClass{uebung}
 \LoadClass[a4paper]{article}
-\RequirePackage[T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{geometry}
-\RequirePackage{amsmath,amssymb,mathtools}
 \RequirePackage{mathpartir}
 \RequirePackage{enumitem}
 
