@@ -12,11 +12,11 @@
   Die folgende Regel drückt aus, dass Urteilsgleichheit von Typen mit der Formationsregel $\Pi\mathrm{F}$ verträglich ist.
   $$
   \inferrule{
-    \Gamma\vdash A\equiv A'\text{ Typ} \\ \Gamma,x:A\vdash B(x)\equiv B'(x)\text{ Typ}
+    \Gamma\yields A\equiv A'\text{ Typ} \\ \Gamma,x:A\yields B(x)\equiv B'(x)\text{ Typ}
   }{
-    \Gamma\vdash \Pi_{x:A}B(x)\equiv\Pi_{x:A'}B'(x)\text{ Typ}
+    \Gamma\yields \Pi_{x:A}B(x)\equiv\Pi_{x:A'}B'(x)\text{ Typ}
   }{
-    \Pi\mathrm{F}\!\equiv
+    \PiForm\!\equiv
   }
   $$
   Formuliere auf analoge Weise Regeln, welche die folgenden Aussagen umsetzen:
