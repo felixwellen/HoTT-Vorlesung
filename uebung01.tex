@@ -27,27 +27,27 @@
 \end{exercise}
 
 \begin{exercise}[Extensionale Urteilsgleichheit abhängiger Funktionen]
-  Seien $f:\Pi_{x:A}B(x)$ und $g:\Pi_{x:A}B(x)$ abhängige Funktionen, sodass $f(x)\equiv g(x):B(x)$ im Kontext einer Variable $x:A$ gilt.
-  Gib eine Herleitung für $f\equiv g:\Pi_{x:A}B(x)$ an.
+  Seien $f:\Pi_{x:A}B(x)$ und $g:\Pi_{x:A}B(x)$ abhängige Funktionen, sodass $f(x)\equiv g(x):B(x)$ in einem Kontext $\Gamma,x:A$ gilt.
+  Gib eine Herleitung für $f\equiv g:\Pi_{x:A}B(x)$ im Kontext $\Gamma$ an.
 \end{exercise}
 
 \begin{exercise}[Assoziativität der Komposition]
-  Seien $f:A\to B$, $g:B\to C$ und $h:C\to D$ Funktionen.
+  Seien $f:A\to B$, $g:B\to C$ und $h:C\to D$ Funktionen in einem Kontext $\Gamma$.
   \begin{enumerate}
-    \item Stelle einen Herleitungsbaum für $((h\circ g)\circ f)(x)\equiv h(g(f(x))):D$ im Kontext $x:A$ auf.
-    \item Stelle einen Herleitungsbaum für $(h\circ (g\circ f))(x)\equiv h(g(f(x))):D$ im Kontext $x:A$ auf.
-    \item Kombiniere dies zu einer Herleitung von $h\circ(g\circ f)\equiv (h\circ g)\circ f:A\to D$.
+    \item Stelle einen Herleitungsbaum für $((h\circ g)\circ f)(x)\equiv h(g(f(x))):D$ im Kontext $\Gamma,x:A$ auf.
+    \item Stelle einen Herleitungsbaum für $(h\circ (g\circ f))(x)\equiv h(g(f(x))):D$ im Kontext $\Gamma,x:A$ auf.
+    \item Kombiniere dies zu einer Herleitung von $h\circ(g\circ f)\equiv (h\circ g)\circ f:A\to D$ im Kontext $\Gamma$.
   \end{enumerate}
 \end{exercise}
 
 \begin{exercise}[Konstante Funktionen]
-  Sei $B$ ein Typ.
+  Sei $B$ ein Typ in einem Kontext $\Gamma$.
   \begin{enumerate}
-    \item Definiere die konstante Funktion $\mathrm{const}_{B,C,z}:B\to C$ im Kontext $z:C$.
-    \item Sei $f:A\to B$.
-      Zeige $\mathrm{const}_{B,C,z}\circ f \equiv \mathrm{const}_{A,C,z}:A\to C$ im Kontext $z:C$.
-    \item Sei $g:C\to D$.
-      Zeige $g\circ\mathrm{const}_{B,C,z} \equiv \mathrm{const}_{B,D,g(z)}:B\to D$ im Kontext $z:C$.
+    \item Definiere die konstante Funktion $\mathrm{const}_{B,C,z}:B\to C$ im Kontext $\Gamma,z:C$.
+    \item Sei $f:A\to B$ eine Funktion im Kontext $\Gamma$.
+      Zeige $\mathrm{const}_{B,C,z}\circ f \equiv \mathrm{const}_{A,C,z}:A\to C$ im Kontext $\Gamma,z:C$.
+    \item Sei $g:C\to D$ eine Funktion im Kontext $\Gamma$.
+      Zeige $g\circ\mathrm{const}_{B,C,z} \equiv \mathrm{const}_{B,D,g(z)}:B\to D$ im Kontext $\Gamma,z:C$.
   \end{enumerate}
 \end{exercise}
 
