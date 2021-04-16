@@ -61,6 +61,7 @@
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\ind}[1]{\mathrm{ind}_{#1}}
 \newcommand{\rec}[1]{\mathrm{rec}_{#1}}
+\newcommand{\sucN}{\mathrm{succ}_{\N}}
 
 \title{Vorlesungsskript zur Homotopietypentheorie}
 \author{Felix Cherubini}
@@ -362,6 +363,7 @@ Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend b
 \end{bemerkung}
 Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funktionen, heißt Rekursion:
 \begin{definition}
+  \label{def:rekursion}
   Sei $A$ ein Typ. Dann ist für $f_0:A$ und $f_s:\prod_{n:\N}(A\to A)$ durch $\N\mathrm{E}$ eine Funktion
   \begin{mathpar}
     \ind{\N}(n:\N\yields A,f_0,f_s):\equiv\rec{\N}(A,f_0,f_s):\N\to A
@@ -371,20 +373,50 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
 \begin{beispiel}
   Sei $d:\N\to\N$ gegeben durch
   \begin{mathpar}
-    d:\equiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \mathrm{succ}(\mathrm{succ}(k))))
+    d:\equiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
   \end{mathpar}
   das entspricht einer Rekursiven Definition durch die Gleichungen
-  also einer Funktion, die ihr Argument verdoppelt.
   \begin{mathpar}
     d(0)= 0 \\
     d(n+1)=d(n)+2
   \end{mathpar}
+  -- also einer Funktion, die ihr Argument verdoppelt.
 \end{beispiel}
 
 Noch haben wir keine Möglichkeit, eine durch Rekursion oder Induktion definierte Funktion für ein Argument auszuwerten.
-Dazu brauchen wir die folgenden $\beta$-Regeln -- die nichts anderes sagen, als dass eine durch Induktion definierte Funktion die durch Induktionsanfang und Schritt gegebenen Werte auch annimmt:
-
-
+Dazu brauchen wir $\beta$-Regeln, die nichts anderes sagen, als dass eine durch Induktion definierte Funktion die durch Induktionsanfang und Schritt gegebenen Werte auch annimmt.
+Es sollen also für mit $\N\mathrm{E}$ definierte Funktionen gelten:
+\begin{mathpar}
+  \ind{\N}(P,\mathrm{IA},\mathrm{IS})(0_{\N})\equiv \mathrm{IA} \\
+  \text{(Für $n:\N$) } \ind{\N}(P,\mathrm{IA},\mathrm{IS})(\sucN(n))\equiv \mathrm{IS}(n,\ind{\N}(P,\mathrm{IA},\mathrm{IS})(n))
+\end{mathpar}
+und damit für die Rekursion mit den Variablennamen aus \cref{def:rekursion}:
+\begin{mathpar}
+  \rec{\N}(A,f_0,f_s)(0)\equiv f_0 \\
+  \rec{\N}(A,f_0,f_s)(\sucN(n))\equiv f_s(n, \rec{\N}(A,f_0,f_s)(n))
+\end{mathpar}
+Die vollständigen $\beta$-Regeln sind wie folgt:
+\begin{mathpar}
+  \inferrule{
+    \Gamma,n:\N \yields P(n)\text{ Typ}
+    \and \Gamma\yields \mathrm{IA} : P(0)
+    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
+  }{
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH})(0_{\N})\equiv\mathrm{IA} : P(0_{\N})
+  }{
+    \N\beta_1
+  } \\
+  \inferrule{
+    \Gamma,n:\N \yields P(n)\text{ Typ} 
+    \and \Gamma\yields \mathrm{IA} : P(0) \\
+    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n)) \\
+    \and \Gamma\yields k:\N
+  }{
+    \Gamma\yields\ind{\N} (P,\mathrm{IA},\mathrm{IH})(\sucN(k))\equiv\mathrm{IS}(k,\ind{\N} (P,\mathrm{IA},\mathrm{IH})(k)) : P(\sucN(k))
+  }{
+    \N\beta_2
+  } 
+\end{mathpar}
 
 \subsection{Null, Eins und Zwei}
 \subsection{Gleichheit}
