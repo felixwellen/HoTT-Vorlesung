@@ -1,11 +1,13 @@
 \ProvidesClass{uebung}
 \LoadClass[a4paper]{article}
-\RequirePackage[T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage{geometry}
-\RequirePackage{amsmath,amssymb,mathtools}
-\RequirePackage{mathpartir}
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{enumitem}
+\RequirePackage{geometry}
+\RequirePackage{hott}
+\RequirePackage{mathpartir}
+\RequirePackage{mathtools}
 
 \geometry{top=2.5cm}
 \setlength{\parindent}{0pt}
