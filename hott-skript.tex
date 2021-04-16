@@ -307,7 +307,7 @@ Dementsprechend ist die Formierungsregel etwas einfacher:
 \begin{mathpar}
   \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N}{\N\mathrm{F}}
 \end{mathpar}
-Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Terme gibt:
+Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Termen gibt:
 \begin{mathpar}
   \inferrule{
     \Gamma\text{ Kontext}
@@ -316,9 +316,9 @@ Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Terme gibt:
   }
   \quad
   \inferrule{
-    \Gamma\yields x:\N
+    \Gamma\yields n:\N
   }{
-    \Gamma\yields\mathrm{succ}_{\N}(x):\N
+    \Gamma\yields\mathrm{succ}_{\N}(n):\N
   }{
     \N\mathrm{I2}
   }
@@ -330,9 +330,9 @@ Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natür
   \inferrule{
     \Gamma,x:\N \yields P(x)\text{ Typ}
     \and \Gamma\yields \mathrm{IA} : P(0)
-    \and \Gamma,x:\N,\mathrm{IH}:P(x)\yields \mathrm{IS}(\mathrm{IH}):P(\mathrm{succ}(x))
+    \and \Gamma,x:\N,\mathrm{IH}:P(x)\yields \mathrm{IS}(x,\mathrm{IH}):P(\mathrm{succ}(x))
   }{
-    \Gamma\yields\mathrm{ind}_{\N} (\mathrm{IA},\mathrm{IH}) : \prod_{x:\N}P(x)
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH}) : \prod_{x:\N}P(x)
   }{
     \N\mathrm{E}
   }
