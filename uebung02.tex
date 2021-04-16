@@ -1,0 +1,28 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{2}
+
+\begin{exercise}[Zwei Einführungsregeln für Nachfolger]
+  Zeige, dass die folgenden beiden Einführungsregeln für den Nachfolger einer natürlichen Zahl äquivalent sind:
+  \begin{mathpar}
+    \inferrule{
+      \Gamma\vdash n:\N
+    }{
+      \Gamma\vdash\sucN(n):\N
+    }{
+      \N\mathrm{I2}
+    }
+    \and
+    \inferrule{
+      \Gamma\text{ Kontext}
+    }{
+      \Gamma,x:\N\vdash\sucN(x):\N
+    }{
+      \N\mathrm{I2'}
+    }
+  \end{mathpar}
+  {\tiny Die linke Regel ist aus dem Skript, die rechte aus der Vorlesung.}
+\end{exercise}
+
+\end{document}
