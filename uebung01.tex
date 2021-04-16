@@ -3,14 +3,17 @@
 \begin{document}
 \maketitle{1}
 
-\begin{exercise}[Urteilsgleichheit ist eine Äquivalenzrelation]
-  Formuliere Regeln, welche besagen, dass Urteilsgleichheit $s\equiv t:A$ eine
+\begin{exercise}[Urteilsgleichheit ist eine Kongruenzrelation]
+  Formuliere Regeln, welche die folgenden Aussagen kodieren:
   \begin{enumerate}
-    \item reflexive,
-    \item symmetrische,
-    \item transitive
+    \item Urteilsgleichheit von Typen ist eine Äquivalenzrelation zwischen Typen, welche mit der Formationsregel $\Pi\mathrm{F}$ verträglich ist.
+    \item Urteilsgleichheit von Termen ist eine Äquivalenzrelation zwischen Termen desselben Typs, welche mit der Einführungsregel $\Pi\mathrm{I}$ und Eliminationsregel $\Pi\mathrm{E}$ verträglich ist.
   \end{enumerate}
-  Relation zwischen Termen desselben Typs ist.
+\end{exercise}
+
+\begin{exercise}[Extensionale Urteilsgleichheit abhängiger Funktionen]
+  Seien $f:\Pi_{x:A}B(x)$ und $g:\Pi_{x:A}B(x)$ abhängige Funktionen, sodass $f(x)\equiv g(x):B(x)$ im Kontext einer Variable $x:A$ gilt.
+  Gib eine Herleitung für $f\equiv g:\Pi_{x:A}B(x)$ an.
 \end{exercise}
 
 \begin{exercise}[Assoziativität der Komposition]
@@ -24,11 +27,6 @@
       \end{enumerate}
     \item Kombiniere dies zu einer Herleitung von $h\circ(g\circ f)\equiv (h\circ g)\circ f:A\to D$.
   \end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Urteilsmäßige Funktionsxtensionalität]
-  Seien $f:\Pi_{x:A}B(x)$ und $g:\Pi_{x:A}B(x)$ abhängige Funktionen, sodass $f(x)\equiv g(x):B(x)$ im Kontext einer Variable $x:A$ gilt.
-  Gib eine Herleitung für $f\equiv g:\Pi_{x:A}B(x)$ an.
 \end{exercise}
 
 \begin{exercise}[Konstante Funktionen]
