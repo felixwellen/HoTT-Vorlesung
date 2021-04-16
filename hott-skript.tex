@@ -350,6 +350,7 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
   gegeben. Diese Art Funktionen (auf $\N$) zu definieren nennt man ($\N$-)\begriff{Rekursion}.
 \end{definition}
 \begin{beispiel}
+  \label{bsp:verdopplung}
   Sei $d:\N\to\N$ gegeben durch
   \begin{mathpar}
     d:\equiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
@@ -396,7 +397,18 @@ Die vollständigen $\beta$-Regeln sind wie folgt:
     \N\beta_2
   } 
 \end{mathpar}
-
+Damit können wir Werte der Funktion aus \cref{bsp:verdopplung} berechnen:
+\begin{beispiel}
+  Für die Funktion $d:\N\to\N$ aus \cref{bsp:verdopplung} ergibt sich mit den $\beta$-Regeln nun etwa:
+  \begin{align*}
+    d(3)&\equiv d(\sucN(2))    & \\
+        &\equiv (k \mapsto \sucN(\sucN(k)))(d(2)) & (\N\beta_2) \\
+        &\equiv \sucN(\sucN(d(2)))                & (\Pi\beta) \\
+        &\equiv \sucN(\sucN(\sucN(\sucN(d(1))))) & (\N\beta_2, \Pi\beta) \\
+        &\equiv \sucN(\sucN(\sucN(\sucN(\sucN(\sucN(d(0)) & (\N\beta_2, \Pi\beta) \\
+        &\equiv 6 & (\N\beta_1)
+  \end{align*}
+\end{beispiel}
 \subsection{Null, Eins und Zwei}
 \subsection{Gleichheit}
 \subsection{Universen}
