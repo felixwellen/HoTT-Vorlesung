@@ -1,3 +1,4 @@
+% latex -xelatex -pdf uebung??.tex
 \ProvidesClass{uebung}
 \LoadClass[a4paper]{article}
 
@@ -13,11 +14,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{\medskipamount}
 \setenumerate[1]{label=(\alph*),topsep=0pt}
-
-\newcounter{exc}
-\newenvironment{exercise}[1][]{
-  \addtocounter{exc}{1}\textbf{Aufgabe \theexc.} \emph{#1}\par
-}{}
+\setenumerate[2]{label=(\roman*),topsep=0pt}
 
 \renewcommand{\maketitle}[1]{
   \pagestyle{empty}
@@ -32,3 +29,9 @@
   \end{center}
   \vspace{1.5em}
 }
+
+\newcounter{exc}
+\newenvironment{exercise}[1][]{
+  \addtocounter{exc}{1}\textbf{Aufgabe \theexc.} \emph{#1}\par
+}{\vspace{1.5em}}
+
