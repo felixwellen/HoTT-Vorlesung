@@ -27,10 +27,12 @@
 
 \begin{exercise}[Konstante Funktionen]
   Sei $B$ ein Typ.
-  Definiere eine konstante Funktion $\mathrm{const}_y:B\to C$ im Kontext $y:C$ und zeige
   \begin{enumerate}
-    \item $f:C\to D,z:D\vdash\mathrm{const}_z\circ f \equiv \mathrm{const}_z:B\to D$,
-    \item $g:A\to B, x:B\vdash g\circ\mathrm{const}_y \equiv \mathrm{const}_{g(x)}$.
+    \item Definiere die konstante Funktion $\mathrm{const}_{B,C,z}:B\to C$ im Kontext $z:C$.
+    \item Sei $f:A\to B$.
+      Zeige $\mathrm{const}_{B,C,z}\circ f \equiv \mathrm{const}_{A,C,z}:A\to C$ im Kontext $z:C$.
+    \item Sei $g:C\to D$.
+      Zeige $g\circ\mathrm{const}_{B,C,z} \equiv \mathrm{const}_{B,D,g(z)}:B\to D$ im Kontext $z:C$.
   \end{enumerate}
 \end{exercise}
 
