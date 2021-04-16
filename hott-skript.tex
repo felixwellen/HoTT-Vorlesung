@@ -29,6 +29,8 @@
     \newtheorem{theorem}{Theorem}[subsection]
     \newtheorem{definition}[theorem]{Definition}
     \newtheorem{bemerkung}[theorem]{Bemerkung}
+    \newtheorem{konvention}[theorem]{Konvention}
+    \newtheorem{regeln}[theorem]{Regeln}
     \newtheorem{axiom}[theorem]{Axiom}
     \newtheorem{beispiel}[theorem]{Beispiel}
 \theoremstyle{nonumberbreak}
@@ -356,10 +358,10 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
     d:\equiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
   \end{mathpar}
   das entspricht einer Rekursiven Definition durch die Gleichungen
-  \begin{mathpar}
-    d(0)= 0 \\
-    d(n+1)=d(n)+2
-  \end{mathpar}
+  \begin{align*}
+    d(0)   &:\equiv 0 \\
+    d(n+1) &:\equiv d(n)+2
+  \end{align*}
   -- also einer Funktion, die ihr Argument verdoppelt.
 \end{beispiel}
 
@@ -409,14 +411,85 @@ Damit können wir Werte der Funktion aus \cref{bsp:verdopplung} berechnen:
         &\equiv 6 & (\N\beta_1)
   \end{align*}
 \end{beispiel}
-\subsection{Null, Eins und Zwei}
+Folgende Konvention werden wir ab jetzt verwenden:
+\begin{konvention}
+  \begin{enumerate}[label=(\alph*)]
+  \item Wir verwenden die folgenden Klammerungen:
+    \begin{mathpar}
+      \prod_{x:A}B\to C :\equiv \prod_{x:A}(B\to C)
+    \end{mathpar}
+    und auch im Allgemeinen, dass $\prod$ als letzter Typ-Former ausgeführt wird.
+  \item Weiter Klammern wir iterierte Funktionen von rechts:
+    \begin{mathpar}
+      A_1\to A_2 \to \dots \to A_n :\equiv A_1 \to (A_2 \to (\dots (A_{n-1} \to A_n)\dots)
+    \end{mathpar}
+  \item Wir erlauben uns etwas Freiheit beim schreiben von Funktionsanwendungen, also etwa für $f:A\to B\to C$ auch mal $f(a,b)$ statt $f(a)(b)$ zu schreiben oder auch $a f b$, wenn $f$ ein Operator ist.
+  \end{enumerate}
+\end{konvention}
+Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun die arithmetischen Operationen definieren:
+\begin{definition}
+  \begin{enumerate}[label=(\alph*)]
+  \item Die Abbildung $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
+    \begin{align*}
+      0 + k &:\equiv k \\
+      \sucN(n) + k &:\equiv \sucN(n + k)
+    \end{align*}
+    \begin{mathpar}
+      +:\equiv\rec{\N}(\N\to\N, \id_{\N}, f \mapsto (k \mapsto \sucN(f(k))))
+    \end{mathpar}
+  \item Die Multiplikation ist gegeben durch:
+    \begin{align*}
+      0 \cdot k :\equiv 0  \\
+      \sucN(n) \cdot k :\equiv (n \cdot k) + k
+    \end{align*}
+  \end{enumerate}
+\end{definition}
+
+\subsection{Induktive Typen}
+Der Typ der natürlichen Zahlen ist ein Beispiel für einen sogenannten \begriff{induktiven Typ}.
+Wir werden in diesem Abschnitt ein paar weitere Typen dieser Bauart kennenlernen.
+Das sich dabei wiederholende Muster ist, dass der Typ jeweils im wesentlichen durch seine Einführungsregeln gegeben ist.
+Eine Einführungsregel besteht im Wesentlichen aus einer Funktion in den Induktiven Typ, oder genauer ihrer Signatur.
+Diese Funktionen werden wir von nun an \begriff{Konstruktoren} nennen.
+Im Fall der natürlichen Zahlen gab es die beiden Konstruktoren $0_{\N}:\N$ und $\sucN:\N\to\N$.
+
+Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term hat.
+\begin{regeln}
+  Der \begriff{Einheitstyp} $\einheit$ ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
+  Dadurch ergibt sich der folgende Satz von Regeln:
+  \begin{mathpar}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit}{\einheit\mathrm{F}}
+    \quad\quad
+    \inferrule{
+      \Gamma\text{ Kontext}
+    }{
+      \Gamma\yields \ast:\einheit}{\einheit\mathrm{I}
+    }
+    \quad\quad
+    \inferrule{
+      \Gamma,x:\einheit\yields P(x)\text{ Typ}\and \Gamma\yields p:P(\ast)
+    }{
+      \Gamma\yields\ind{\einheit}(P,p) : \prod_{x:\einheit}P(x)
+    }{
+      \einheit\mathrm{E}
+    } \\
+    \inferrule{
+      \Gamma,x:\einheit\yields P(x)\text{ Typ}\and \Gamma\yields p:P(\ast)
+    }{
+      \Gamma\yields\ind{\einheit}(P,p)(\ast)\equiv p : P(\ast)
+    }{
+      \einheit\beta
+    }
+  \end{mathpar}  
+\end{regeln}
+
 \subsection{Gleichheit}
 \subsection{Universen}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
 
 \section{Univalenz}
-\subsection{Homotopie von Abbildungen, Function-Extensionality}
+\subsection{Homotopie von Abbildungen, Funktionsextensionalität}
 \subsection{Äquivalenzen}
 \subsection{Univalenz}
 
