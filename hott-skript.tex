@@ -30,6 +30,7 @@
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[subsection]
     \newtheorem{definition}[theorem]{Definition}
+    \newtheorem{bemerkung}[theorem]{Bemerkung}
     \newtheorem{axiom}[theorem]{Axiom}
     \newtheorem{beispiel}[theorem]{Beispiel}
 \theoremstyle{nonumberbreak}
@@ -325,35 +326,68 @@ Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Termen gibt:
 \end{mathpar}
 Soweit heißt das nur, dass man stets die Natürlichen Zahlen verwenden darf, es ein Element $0_{\N}$ und zu jeder natürlichen Zahl einen Nachfolger gibt.
 Den Index ``$_{\N}$'' soll Verwechslungen verhindern und wird gelegentlich wegegelassen.
+\begin{definition}
+  Wir verwenden die übliche Schreibweise für natürliche Zahlen:
+  \begin{mathpar}
+    0:\equiv 0_{\N}, 1:\equiv \mathrm{succ}_{\N}(0), 2:\equiv \mathrm{succ}_{\N}(1),\dots
+  \end{mathpar}
+\end{definition}
 Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natürlichen Zahlen zu zeigen, aber auch Funktionen auf den natürlichen Zahlen zu konstruieren:
 \begin{mathpar}
   \inferrule{
-    \Gamma,x:\N \yields P(x)\text{ Typ}
+    \Gamma,n:\N \yields P(n)\text{ Typ}
     \and \Gamma\yields \mathrm{IA} : P(0)
-    \and \Gamma,x:\N,\mathrm{IH}:P(x)\yields \mathrm{IS}(x,\mathrm{IH}):P(\mathrm{succ}(x))
+    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
   }{
-    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH}) : \prod_{x:\N}P(x)
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH}) : \prod_{n:\N}P(n)
   }{
     \N\mathrm{E}
   }
 \end{mathpar}
-Um die Regel mit bekannten Vorstellungen von Induktion zusammenzubringen, stellt man sich $P(x)$ als Aussage über die Zahl $x$ vor.
-Wenn man es nun schafft, einen Term $p:P(x)$ zu konstruieren, bedeutet das, dass man die Aussage $P(x)$ bewiesen hat.
-In dieser Lesart ist das abhängige Produkt $\prod_{x:\N}P(x)$ nichts anderes als ``$\forall x\in \N$ gilt $P(x)$''.
+Um die Regel mit bekannten Vorstellungen von Induktion zusammenzubringen, stellt man sich $P(n)$ als Aussage über die Zahl $n$ vor.
+Wenn man es nun schafft, einen Term $p:P(n)$ zu konstruieren, bedeutet das, dass man die Aussage $P(n)$ bewiesen hat.
+In dieser Lesart ist das abhängige Produkt $\prod_{n:\N}P(n)$ nichts anderes als ``$\forall n\in \N$ gilt $P(n)$''.
 Nun muss man, um per Induktion eine Aussage zu zeigen, den Induktionsanfang (\textbf{IA}) zeigen und den Induktionsschritt (\textbf{IS}) aus der Induktionshypothese (\textbf{IH}) folgern.
 Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend benannt.
 
-Bevor wir die Induktion einsetzen, wollen wir noch grundlegende Operationen auf den Natürlichen Zahlen definieren.
-Dazu werden wir einen Spezialfall der Regel $\N\mathrm{E}$ verwenden, die Rekursion:
+\begin{bemerkung}
+  Wir werden später die Möglichkeit haben, mittels abhängigen Typen Aussagen über natürliche Zahlen zu konstruieren, wie z.B.
+  \begin{mathpar}
+    P(n):\equiv\text{ $n$ hat eine Primfaktorzerlegung}
+  \end{mathpar}
+  Dazu fehlen uns momentan allerdings noch Typen für die zweite Art von Gleichheit ``$=$''.
+  Bis wir diese einführen können, müssen wir uns noch mit konstanter Abhängigkeit begnügen.
+\end{bemerkung}
+Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funktionen, heißt Rekursion:
 \begin{definition}
-  Durch \begriff{Rekursion} können Funktionen von den natürlichen Zahlen in einen anderen Typ definiert werden.
-  Um eine Funktion $r$ in einen Typen $A$ durch Rekursion zu definieren, muss ein Bild der $0$ in $A$ angegeben werden und für jedes $r(x) : A$ ein Bild des Nachfolgers $n(x):A$.
+  Sei $A$ ein Typ. Dann ist für $f_0:A$ und $f_s:\prod_{n:\N}(A\to A)$ durch $\N\mathrm{E}$ eine Funktion
+  \begin{mathpar}
+    \mathrm{ind}_{\N}(n:\N\yields A,f_0,f_s):\equiv\mathrm{rec}_{\N}(A,f_0,f_s):\N\to A
+  \end{mathpar}
+  gegeben. Diese Art Funktionen (auf $\N$) zu definieren nennt man ($\N$-)\begriff{Rekursion}.
 \end{definition}
+\begin{beispiel}
+  Sei $d:\N\to\N$ gegeben durch
+  \begin{mathpar}
+    d:\equiv \mathrm{rec}_{\N}(\N, 0, n \mapsto (k \mapsto \mathrm{succ}(\mathrm{succ}(k))))
+  \end{mathpar}
+  das entspricht einer Rekursiven Definition durch die Gleichungen
+  also einer Funktion, die ihr Argument verdoppelt.
+  \begin{mathpar}
+    d(0)= 0 \\
+    d(n+1)=d(n)+2
+  \end{mathpar}
+\end{beispiel}
+
+Noch haben wir keine Möglichkeit, eine durch Rekursion oder Induktion definierte Funktion für ein Argument auszuwerten.
+Dazu brauchen wir die folgenden $\beta$-Regeln -- die nichts anderes sagen, als dass eine durch Induktion definierte Funktion die durch Induktionsanfang und Schritt gegebenen Werte auch annimmt:
+
+
 
 \subsection{Null, Eins und Zwei}
+\subsection{Gleichheit}
 \subsection{Universen}
 \subsection{Abhängige Summen}
-\subsection{Gleichheit}
 \subsection{Kontrahierbarkeit und Aussagen}
 
 \section{Univalenz}
