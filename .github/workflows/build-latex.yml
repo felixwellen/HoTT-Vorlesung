@@ -1,0 +1,19 @@
+name: Build LaTeX
+on: [push]
+jobs:
+  build-hott-skript:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@v2
+      - name: Compile skript
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: hott-skript.tex
+          args: "-pdflatex='xelatex %O %S' -pdf"
+      - name: Upload skript
+        uses: actions/upload-artifact@v2
+        with:
+          name: Skript
+          path: hott-skript.pdf
+  
