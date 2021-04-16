@@ -1,11 +1,14 @@
 % latex -xelatex -pdf uebung??.tex
 \ProvidesClass{uebung}
 \LoadClass[a4paper]{article}
+
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
-\RequirePackage{geometry}
-\RequirePackage{mathpartir}
 \RequirePackage{enumitem}
+\RequirePackage{geometry}
+\RequirePackage{hott}
+\RequirePackage{mathpartir}
+\RequirePackage{mathtools}
 
 \geometry{top=2.5cm}
 \setlength{\parindent}{0pt}
