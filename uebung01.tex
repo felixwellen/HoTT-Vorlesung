@@ -4,10 +4,25 @@
 \maketitle{1}
 
 \begin{exercise}[Urteilsgleichheit ist eine Kongruenzrelation]
-  Formuliere Regeln, welche die folgenden Aussagen kodieren:
+  Formuliere Regeln, welche die folgenden Aussagen umsetzen:
   \begin{enumerate}
-    \item Urteilsgleichheit von Typen ist eine Äquivalenzrelation zwischen Typen, welche mit der Formationsregel $\Pi\mathrm{F}$ verträglich ist.
-    \item Urteilsgleichheit von Termen ist eine Äquivalenzrelation zwischen Termen desselben Typs, welche mit der Einführungsregel $\Pi\mathrm{I}$ und Eliminationsregel $\Pi\mathrm{E}$ verträglich ist.
+    \item Urteilsgleichheit von Typen ist eine Äquivalenzrelation zwischen Typen.
+    \item Urteilsgleichheit von Termen ist eine Äquivalenzrelation zwischen Termen desselben Typs.
+  \end{enumerate}
+  Die folgende Regel drückt aus, dass Urteilsgleichheit von Typen mit der Formationsregel $\Pi\mathrm{F}$ verträglich ist.
+  $$
+  \inferrule{
+    \Gamma\vdash A\equiv A'\text{ Typ} \\ \Gamma,x:A\vdash B(x)\equiv B'(x)\text{ Typ}
+  }{
+    \Gamma\vdash \Pi_{x:A}B(x)\equiv\Pi_{x:A'}B'(x)\text{ Typ}
+  }{
+    \Pi\mathrm{F}\equiv
+  }
+  $$
+  Formuliere auf analoge Weise Regeln, welche die folgenden Aussagen umsetzen:
+  \begin{enumerate}[start=3]
+    \item Urteilsgleichheit von Termen ist verträglich mit der Einführungsregel $\Pi\mathrm{I}$.
+    \item Urteilsgleichheit von Termen ist verträglich mit der Eliminationsregel $\Pi\mathrm{E}$.
   \end{enumerate}
 \end{exercise}
 
