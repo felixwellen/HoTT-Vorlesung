@@ -43,6 +43,8 @@
 \usepackage{makeidx}
 
 \usepackage{hott}
+\setenumerate[1]{label=(\alph*),topsep=0pt}
+\setenumerate[2]{label=(\roman*),topsep=0pt}
 
 \title{Vorlesungsskript zur Homotopietypentheorie}
 \author{Felix Cherubini}
@@ -194,7 +196,7 @@ kann der Typ der abhängigen Funktionen, $\prod_{x:A}B(x)$, spezialisiert werden
 Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der Funktionen von $A$ nach $B$:
 
 \begin{definition}
-  \begin{enumerate}[label=(\alph*)]
+  \begin{enumerate}
   \item Für Typen $A$ und $B$ gibt es stets den \begriff{Typ der Funktionen} $A\to B$, der mit der folgenden Herleitung geformt werden kann:
     \begin{mathpar}
       \inferrule{
@@ -428,7 +430,7 @@ Folgende Konvention werden wir ab jetzt verwenden:
 \end{konvention}
 Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun die arithmetischen Operationen definieren:
 \begin{definition}
-  \begin{enumerate}[label=(\alph*)]
+  \begin{enumerate}
   \item Die Abbildung $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
     \begin{align*}
       0 + k &:\equiv k \\
