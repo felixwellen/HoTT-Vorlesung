@@ -28,6 +28,9 @@
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[subsection]
     \newtheorem{definition}[theorem]{Definition}
+    \newtheorem{bemerkung}[theorem]{Bemerkung}
+    \newtheorem{konvention}[theorem]{Konvention}
+    \newtheorem{regeln}[theorem]{Regeln}
     \newtheorem{axiom}[theorem]{Axiom}
     \newtheorem{beispiel}[theorem]{Beispiel}
 \theoremstyle{nonumberbreak}
@@ -40,6 +43,8 @@
 \usepackage{makeidx}
 
 \usepackage{hott}
+\setenumerate[1]{label=(\alph*),topsep=0pt}
+\setenumerate[2]{label=(\roman*),topsep=0pt}
 
 \title{Vorlesungsskript zur Homotopietypentheorie}
 \author{Felix Cherubini}
@@ -191,7 +196,7 @@ kann der Typ der abhängigen Funktionen, $\prod_{x:A}B(x)$, spezialisiert werden
 Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der Funktionen von $A$ nach $B$:
 
 \begin{definition}
-  \begin{enumerate}[label=(\alph*)]
+  \begin{enumerate}
   \item Für Typen $A$ und $B$ gibt es stets den \begriff{Typ der Funktionen} $A\to B$, der mit der folgenden Herleitung geformt werden kann:
     \begin{mathpar}
       \inferrule{
@@ -307,39 +312,186 @@ Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Termen gibt:
 \end{mathpar}
 Soweit heißt das nur, dass man stets die Natürlichen Zahlen verwenden darf, es ein Element $0_{\N}$ und zu jeder natürlichen Zahl einen Nachfolger gibt.
 Den Index ``$_{\N}$'' soll Verwechslungen verhindern und wird gelegentlich wegegelassen.
+\begin{definition}
+  Wir verwenden die übliche Schreibweise für natürliche Zahlen:
+  \begin{mathpar}
+    0:\equiv 0_{\N}, 1:\equiv \mathrm{succ}_{\N}(0), 2:\equiv \mathrm{succ}_{\N}(1),\dots
+  \end{mathpar}
+\end{definition}
 Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natürlichen Zahlen zu zeigen, aber auch Funktionen auf den natürlichen Zahlen zu konstruieren:
 \begin{mathpar}
   \inferrule{
-    \Gamma,x:\N \yields P(x)\text{ Typ}
+    \Gamma,n:\N \yields P(n)\text{ Typ}
     \and \Gamma\yields \mathrm{IA} : P(0)
-    \and \Gamma,x:\N,\mathrm{IH}:P(x)\yields \mathrm{IS}(x,\mathrm{IH}):P(\mathrm{succ}(x))
+    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
   }{
-    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH}) : \prod_{x:\N}P(x)
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH}) : \prod_{n:\N}P(n)
   }{
     \N\mathrm{E}
   }
 \end{mathpar}
-Um die Regel mit bekannten Vorstellungen von Induktion zusammenzubringen, stellt man sich $P(x)$ als Aussage über die Zahl $x$ vor.
-Wenn man es nun schafft, einen Term $p:P(x)$ zu konstruieren, bedeutet das, dass man die Aussage $P(x)$ bewiesen hat.
-In dieser Lesart ist das abhängige Produkt $\prod_{x:\N}P(x)$ nichts anderes als ``$\forall x\in \N$ gilt $P(x)$''.
+Um die Regel mit bekannten Vorstellungen von Induktion zusammenzubringen, stellt man sich $P(n)$ als Aussage über die Zahl $n$ vor.
+Wenn man es nun schafft, einen Term $p:P(n)$ zu konstruieren, bedeutet das, dass man die Aussage $P(n)$ bewiesen hat.
+In dieser Lesart ist das abhängige Produkt $\prod_{n:\N}P(n)$ nichts anderes als ``$\forall n\in \N$ gilt $P(n)$''.
 Nun muss man, um per Induktion eine Aussage zu zeigen, den Induktionsanfang (\textbf{IA}) zeigen und den Induktionsschritt (\textbf{IS}) aus der Induktionshypothese (\textbf{IH}) folgern.
 Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend benannt.
 
-Bevor wir die Induktion einsetzen, wollen wir noch grundlegende Operationen auf den Natürlichen Zahlen definieren.
-Dazu werden wir einen Spezialfall der Regel $\N\mathrm{E}$ verwenden, die Rekursion:
+\begin{bemerkung}
+  Wir werden später die Möglichkeit haben, mittels abhängigen Typen Aussagen über natürliche Zahlen zu konstruieren, wie z.B.
+  \begin{mathpar}
+    P(n):\equiv\text{ $n$ hat eine Primfaktorzerlegung}
+  \end{mathpar}
+  Dazu fehlen uns momentan allerdings noch Typen für die zweite Art von Gleichheit ``$=$''.
+  Bis wir diese einführen können, müssen wir uns noch mit konstanter Abhängigkeit begnügen.
+\end{bemerkung}
+Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funktionen, heißt Rekursion:
 \begin{definition}
-  Durch \begriff{Rekursion} können Funktionen von den natürlichen Zahlen in einen anderen Typ definiert werden.
-  Um eine Funktion $r$ in einen Typen $A$ durch Rekursion zu definieren, muss ein Bild der $0$ in $A$ angegeben werden und für jedes $r(x) : A$ ein Bild des Nachfolgers $n(x):A$.
+  \label{def:rekursion}
+  Sei $A$ ein Typ. Dann ist für $f_0:A$ und $f_s:\prod_{n:\N}(A\to A)$ durch $\N\mathrm{E}$ eine Funktion
+  \begin{mathpar}
+    \ind{\N}(n:\N\yields A,f_0,f_s):\equiv\rec{\N}(A,f_0,f_s):\N\to A
+  \end{mathpar}
+  gegeben. Diese Art Funktionen (auf $\N$) zu definieren nennt man ($\N$-)\begriff{Rekursion}.
+\end{definition}
+\begin{beispiel}
+  \label{bsp:verdopplung}
+  Sei $d:\N\to\N$ gegeben durch
+  \begin{mathpar}
+    d:\equiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
+  \end{mathpar}
+  das entspricht einer Rekursiven Definition durch die Gleichungen
+  \begin{align*}
+    d(0)   &:\equiv 0 \\
+    d(n+1) &:\equiv d(n)+2
+  \end{align*}
+  -- also einer Funktion, die ihr Argument verdoppelt.
+\end{beispiel}
+
+Noch haben wir keine Möglichkeit, eine durch Rekursion oder Induktion definierte Funktion für ein Argument auszuwerten.
+Dazu brauchen wir $\beta$-Regeln, die nichts anderes sagen, als dass eine durch Induktion definierte Funktion die durch Induktionsanfang und Schritt gegebenen Werte auch annimmt.
+Es sollen also für mit $\N\mathrm{E}$ definierte Funktionen gelten:
+\begin{mathpar}
+  \ind{\N}(P,\mathrm{IA},\mathrm{IS})(0_{\N})\equiv \mathrm{IA} \\
+  \text{(Für $n:\N$) } \ind{\N}(P,\mathrm{IA},\mathrm{IS})(\sucN(n))\equiv \mathrm{IS}(n,\ind{\N}(P,\mathrm{IA},\mathrm{IS})(n))
+\end{mathpar}
+und damit für die Rekursion mit den Bezeichnern aus \cref{def:rekursion}:
+\begin{mathpar}
+  \rec{\N}(A,f_0,f_s)(0)\equiv f_0 \\
+  \rec{\N}(A,f_0,f_s)(\sucN(n))\equiv f_s(n, \rec{\N}(A,f_0,f_s)(n))
+\end{mathpar}
+Die vollständigen $\beta$-Regeln sind wie folgt:
+\begin{mathpar}
+  \inferrule{
+    \Gamma,n:\N \yields P(n)\text{ Typ}
+    \and \Gamma\yields \mathrm{IA} : P(0)
+    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
+  }{
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH})(0_{\N})\equiv\mathrm{IA} : P(0_{\N})
+  }{
+    \N\beta_1
+  } \\
+  \inferrule{
+    \Gamma,n:\N \yields P(n)\text{ Typ} 
+    \and \Gamma\yields \mathrm{IA} : P(0) \\
+    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n)) \\
+    \and \Gamma\yields k:\N
+  }{
+    \Gamma\yields\ind{\N} (P,\mathrm{IA},\mathrm{IH})(\sucN(k))\equiv\mathrm{IS}(k,\ind{\N} (P,\mathrm{IA},\mathrm{IH})(k)) : P(\sucN(k))
+  }{
+    \N\beta_2
+  } 
+\end{mathpar}
+Damit können wir Werte der Funktion aus \cref{bsp:verdopplung} berechnen:
+\begin{beispiel}
+  Für die Funktion $d:\N\to\N$ aus \cref{bsp:verdopplung} ergibt sich mit den $\beta$-Regeln nun etwa:
+  \begin{align*}
+    d(3)&\equiv d(\sucN(2))    & \\
+        &\equiv (k \mapsto \sucN(\sucN(k)))(d(2)) & (\N\beta_2) \\
+        &\equiv \sucN(\sucN(d(2)))                & (\Pi\beta) \\
+        &\equiv \sucN(\sucN(\sucN(\sucN(d(1))))) & (\N\beta_2, \Pi\beta) \\
+        &\equiv \sucN(\sucN(\sucN(\sucN(\sucN(\sucN(d(0)) & (\N\beta_2, \Pi\beta) \\
+        &\equiv 6 & (\N\beta_1)
+  \end{align*}
+\end{beispiel}
+Folgende Konvention werden wir ab jetzt verwenden:
+\begin{konvention}
+  \begin{enumerate}[label=(\alph*)]
+  \item Wir verwenden die folgenden Klammerungen:
+    \begin{mathpar}
+      \prod_{x:A}B\to C :\equiv \prod_{x:A}(B\to C)
+    \end{mathpar}
+    und auch im Allgemeinen, dass $\prod$ als letzter Typ-Former ausgeführt wird.
+  \item Weiter Klammern wir iterierte Funktionen von rechts:
+    \begin{mathpar}
+      A_1\to A_2 \to \dots \to A_n :\equiv A_1 \to (A_2 \to (\dots (A_{n-1} \to A_n)\dots)
+    \end{mathpar}
+  \item Wir erlauben uns etwas Freiheit beim schreiben von Funktionsanwendungen, also etwa für $f:A\to B\to C$ auch mal $f(a,b)$ statt $f(a)(b)$ zu schreiben oder auch $a f b$, wenn $f$ ein Operator ist.
+  \end{enumerate}
+\end{konvention}
+Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun die arithmetischen Operationen definieren:
+\begin{definition}
+  \begin{enumerate}
+  \item Die Abbildung $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
+    \begin{align*}
+      0 + k &:\equiv k \\
+      \sucN(n) + k &:\equiv \sucN(n + k)
+    \end{align*}
+    \begin{mathpar}
+      +:\equiv\rec{\N}(\N\to\N, \id_{\N}, f \mapsto (k \mapsto \sucN(f(k))))
+    \end{mathpar}
+  \item Die Multiplikation ist gegeben durch:
+    \begin{align*}
+      0 \cdot k :\equiv 0  \\
+      \sucN(n) \cdot k :\equiv (n \cdot k) + k
+    \end{align*}
+  \end{enumerate}
 \end{definition}
 
-\subsection{Null, Eins und Zwei}
+\subsection{Induktive Typen}
+Der Typ der natürlichen Zahlen ist ein Beispiel für einen sogenannten \begriff{induktiven Typ}.
+Wir werden in diesem Abschnitt ein paar weitere Typen dieser Bauart kennenlernen.
+Das sich dabei wiederholende Muster ist, dass der Typ jeweils im wesentlichen durch seine Einführungsregeln gegeben ist.
+Eine Einführungsregel besteht im Wesentlichen aus einer Funktion in den Induktiven Typ, oder genauer ihrer Signatur.
+Diese Funktionen werden wir von nun an \begriff{Konstruktoren} nennen.
+Im Fall der natürlichen Zahlen gab es die beiden Konstruktoren $0_{\N}:\N$ und $\sucN:\N\to\N$.
+
+Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term hat.
+\begin{regeln}
+  Der \begriff{Einheitstyp} $\einheit$ ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
+  Dadurch ergibt sich der folgende Satz von Regeln:
+  \begin{mathpar}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit}{\einheit\mathrm{F}}
+    \quad\quad
+    \inferrule{
+      \Gamma\text{ Kontext}
+    }{
+      \Gamma\yields \ast:\einheit}{\einheit\mathrm{I}
+    }
+    \quad\quad
+    \inferrule{
+      \Gamma,x:\einheit\yields P(x)\text{ Typ}\and \Gamma\yields p:P(\ast)
+    }{
+      \Gamma\yields\ind{\einheit}(P,p) : \prod_{x:\einheit}P(x)
+    }{
+      \einheit\mathrm{E}
+    } \\
+    \inferrule{
+      \Gamma,x:\einheit\yields P(x)\text{ Typ}\and \Gamma\yields p:P(\ast)
+    }{
+      \Gamma\yields\ind{\einheit}(P,p)(\ast)\equiv p : P(\ast)
+    }{
+      \einheit\beta
+    }
+  \end{mathpar}  
+\end{regeln}
+
+\subsection{Gleichheit}
 \subsection{Universen}
 \subsection{Abhängige Summen}
-\subsection{Gleichheit}
 \subsection{Kontrahierbarkeit und Aussagen}
 
 \section{Univalenz}
-\subsection{Homotopie von Abbildungen, Function-Extensionality}
+\subsection{Homotopie von Abbildungen, Funktionsextensionalität}
 \subsection{Äquivalenzen}
 \subsection{Univalenz}
 
