@@ -7,7 +7,7 @@ jobs:
       - name: Set up repository
         uses: actions/checkout@v2
       - name: Compile skript
-        uses: xu-cheng/latex-action@v2
+        uses: dante-ev/latex-action@latest
         with:
           root_file: hott-skript.tex
           args: "-pdflatex='xelatex %O %S' -pdf"
