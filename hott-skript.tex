@@ -531,6 +531,14 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
   Wir verzichten diesmal auf Angabe der Regeln.
 \end{regeln}
 
+Es ist auch möglich, einen Induktiven Typen zu definieren, der von einem oder mehreren \begriff{Parametertypen} abhängt.
+Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typentheoretische Version der disjunkten Vereinigung:
+\begin{regeln}
+  Das \begriff{Koprodukt} zweier Typen $A$ und $B$ ist der induktive Typ $A\amalg B$ mit den Konstruktoren
+  \begin{mathpar}
+    \iota_1 : A \to A\amalg B\quad\quad \iota_2 : B\to A\amalg B
+  \end{mathpar}
+\end{regeln}
 \subsection{Gleichheit}
 \subsection{Universen}
 \subsection{Abhängige Summen}
