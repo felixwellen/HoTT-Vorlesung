@@ -31,7 +31,7 @@
 \end{exercise}
 
 \begin{exercise}[$\N$-rekursive Funktionen]
-  Definiere folgende Funktionen auf $\N$ durch Pattern Matching und durch Rekursion.
+  Konstruiere folgende Funktionen auf $\N$ durch Pattern Matching und durch Rekursion.
   \begin{enumerate}
     \item Die Dreieckszahlen $n\mapsto n+\dots+1$ vom Typ $\N\to\N$.
     \item Die Fakultätsfunktion $n\mapsto n!$ vom Typ $\N\to\N$.
@@ -41,6 +41,16 @@
     \item Den Binomialkoeffizienten $m,n\mapsto\binom{m}{n}$ vom Typ $\N\to\N\to\N$.
     \item Die Fibonaccifolge vom Typ $\N\to\N$.
   \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Die Ackermannfunktion]
+  Die \emph{Ackermannfunktion} $\mathrm{ack}:\N\to\N\to\N$ ist durch folgende Rekursionsgleichungen gegeben:
+  \begin{align*}
+    \mathrm{ack}(0,n)&\equiv\sucN(n)\\
+    \mathrm{ack}(\sucN(m),0)&\equiv\mathrm{ack}(m,1)\\
+    \mathrm{ack}(\sucN(m),\sucN(n))&\equiv\mathrm{ack}(m,\mathrm{ack}(\sucN(m),n))
+  \end{align*}
+  Konstruiere $\mathrm{ack}$ unter Verwendung von $\rec \N$.
 \end{exercise}
 
 \end{document}
