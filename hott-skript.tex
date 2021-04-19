@@ -499,7 +499,28 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
     }{
       \einheit\beta
     }
-  \end{mathpar}  
+  \end{mathpar}
+\end{regeln}
+\begin{regeln}
+  Der \begriff{leere Typ} $\leer$ ist der Induktive Typ ohne Konstruktur.
+  Dadurch ergibt sich der folgende Satz von Regeln:
+  \begin{mathpar}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer}{\leer\mathrm{F}}
+    \quad\quad
+    \inferrule{
+      \Gamma\text{ Kontext}
+    }{
+      \Gamma\yields \ast:\leer}{\leer\mathrm{I}
+    }
+    \quad\quad
+    \inferrule{
+      \Gamma,x:\leer\yields P(x)\text{ Typ}
+    }{
+      \Gamma\yields\ind{\leer}(P) : \prod_{x:\leer}P(x)
+    }{
+      \leer\mathrm{E}
+    } 
+  \end{mathpar}
 \end{regeln}
 
 \subsection{Gleichheit}
