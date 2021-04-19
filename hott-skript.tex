@@ -436,9 +436,9 @@ Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun 
       0 + k &:\equiv k \\
       \sucN(n) + k &:\equiv \sucN(n + k)
     \end{align*}
-    Formal ist ``$+$'' gegeben durch:
+    Formal ist $+$ gegeben durch:
     \begin{mathpar}
-      +:\equiv\rec{\N}(\N\to\N, k\mapsto k, f \mapsto (k \mapsto \sucN(f(k))))
+      +:\equiv\rec{\N}(\N\to\N, k\mapsto k, n \mapsto f \mapsto (k \mapsto \sucN(f(k))))
     \end{mathpar}
   \item Die Multiplikation $\cdot:\N\to\N\to\N$ ist gegeben durch:
     \begin{align*}
@@ -447,10 +447,22 @@ Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun 
     \end{align*}
     Bzw.:
     \begin{mathpar}
-      \cdot :\equiv \rec{\N}(\N\to\N, k\mapsto 0, f\mapsto (k\mapsto f(k) + k))
+      \cdot :\equiv \rec{\N}(\N\to\N, k\mapsto 0, n \mapsto f\mapsto (k\mapsto f(k) + k))
     \end{mathpar}
   \end{enumerate}
 \end{definition}
+\begin{beispiel}
+  Wir können nun wie folgt mit natürlichen Zahlen rechnen:
+  \begin{align*}
+    1+1 & \equiv \sucN(0)+1 \\
+        & \equiv +(\sucN(0))(1) \\
+        & \equiv (n \mapsto f \mapsto (k \mapsto \sucN(f(k))))(0)(+(0))(1) \\
+        & \equiv (f \mapsto (k \mapsto \sucN(f(k))))(l \mapsto l)(1) \\
+        & \equiv (k \mapsto \sucN((l \mapsto l)(k)))(1) \\
+        & \equiv (k \mapsto \sucN(k))(1) \\
+        & \equiv 2 \\
+  \end{align*}
+\end{beispiel}
 
 \subsection{Induktive Typen}
 Der Typ der natürlichen Zahlen ist ein Beispiel für einen sogenannten \begriff{induktiven Typ}.
