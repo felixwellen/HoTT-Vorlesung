@@ -431,19 +431,24 @@ Folgende Konvention werden wir ab jetzt verwenden:
 Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun die arithmetischen Operationen definieren:
 \begin{definition}
   \begin{enumerate}
-  \item Die Abbildung $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
+  \item Die Addition $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
     \begin{align*}
       0 + k &:\equiv k \\
       \sucN(n) + k &:\equiv \sucN(n + k)
     \end{align*}
+    Formal ist ``$+$'' gegeben durch:
     \begin{mathpar}
-      +:\equiv\rec{\N}(\N\to\N, \id_{\N}, f \mapsto (k \mapsto \sucN(f(k))))
+      +:\equiv\rec{\N}(\N\to\N, k\mapsto k, f \mapsto (k \mapsto \sucN(f(k))))
     \end{mathpar}
-  \item Die Multiplikation ist gegeben durch:
+  \item Die Multiplikation $\cdot:\N\to\N\to\N$ ist gegeben durch:
     \begin{align*}
-      0 \cdot k :\equiv 0  \\
-      \sucN(n) \cdot k :\equiv (n \cdot k) + k
+      0 \cdot k &:\equiv 0  \\
+      \sucN(n) \cdot k &:\equiv (n \cdot k) + k
     \end{align*}
+    Bzw.:
+    \begin{mathpar}
+      \cdot :\equiv \rec{\N}(\N\to\N, k\mapsto 0, f\mapsto (k\mapsto f(k) + k))
+    \end{mathpar}
   \end{enumerate}
 \end{definition}
 
