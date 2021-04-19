@@ -39,7 +39,6 @@
     \item Die Minimumsfunktion $m,n\mapsto\min(m,n)$ vom Typ $\N\to\N\to\N$.
     \item Die Maximumsfunktion $m,n\mapsto\max(m,n)$ vom Typ $\N\to\N\to\N$.
     \item Den Binomialkoeffizienten $m,n\mapsto\binom{m}{n}$ vom Typ $\N\to\N\to\N$.
-    \item Die Fibonaccifolge vom Typ $\N\to\N$.
   \end{enumerate}
 \end{exercise}
 
@@ -51,6 +50,21 @@
     \mathrm{ack}(\sucN(m),\sucN(n))&\equiv\mathrm{ack}(m,\mathrm{ack}(\sucN(m),n))
   \end{align*}
   Konstruiere $\mathrm{ack}$ unter Verwendung von $\rec \N$.
+\end{exercise}
+
+\begin{exercise}[Kartesische Produkte]
+  Seien $A$, $B$ Typen.
+  Konstruiere einen Typ $A\times B$, welcher folgende Voraussetzungen erfüllt:
+  \begin{enumerate}
+    \item Für je zwei Terme $a:A$ und $b:B$ lässt sich ein Term $t_{a,b}:A\times B$ konstruieren.
+    \item Es lassen sich Funktionen $\mathrm{pr}_1:A \times B\to A$ und $\mathrm{pr}_2:A\times B\to B$ konstruieren.
+    \item Es ist $\mathrm{pr}_1(t_{a,b})\equiv a:A$ und $\mathrm{pr}_2(t_{a,b})\equiv b:B$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Fibonacci]
+  Konstruiere die Fibonaccifolge $\N\to\N$.
+  {\tiny Tipp: Verwende das kartesische Produkt $\N\times\N$.}
 \end{exercise}
 
 \end{document}
