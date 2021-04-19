@@ -516,12 +516,6 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
     \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer}{\leer\mathrm{F}}
     \quad\quad
     \inferrule{
-      \Gamma\text{ Kontext}
-    }{
-      \Gamma\yields \ast:\leer}{\leer\mathrm{I}
-    }
-    \quad\quad
-    \inferrule{
       \Gamma,x:\leer\yields P(x)\text{ Typ}
     }{
       \Gamma\yields\ind{\leer}(P) : \prod_{x:\leer}P(x)
