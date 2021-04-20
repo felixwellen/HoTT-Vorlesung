@@ -556,7 +556,31 @@ Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typent
     \end{mathpar}
   \end{enumerate}
 \end{beispiel}
+
 \subsection{Gleichheit}
+Da wir uns im Folgenden der Situation nähern die Typentheorie einsetzen zu können, um über mathematische Objekte zu reden,
+wollen wir auch weniger syntaktische Sprechweisen bevorzugen und etwa eher von \begriff{Elementen eines Typs} statt Termen sprechen.
+
+In diesem Abschnitt werden wir die \begriff{Gleichheit von Objekten} $x=y$ einführen.
+Diese wollen wir im folgenden auch einfach nur \begriff{Gleichheit} nennen.
+Im Gegensatz zur klassischen Mathematik ist die Gleichheit zwischen zwei Elementen $x,y:A$ eines Typs
+selbst wieder ein vollwertiger Typ $x=_A y$.
+Wir werden auch tatsächlich Beispiele von Tyen sehen, deren Gleichheitstypen mehrere verschiedene Elemente enthalten.
+Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten gleich sein können.
+\begin{regeln}
+  Für zwei Elemente $x,y$ eines Typs $A$ können wir den Typ $x=_A y$ der \begriff{Gleichheiten} zwischen $x$ und $y$ formen.
+  Dieser wird auch \begriff{Identitätstyp} genannt und ist als induktiver Typ durch den Konstruktor
+  \begin{mathpar}
+    \mathrm{refl}:\prod_{x:A}x=_A x
+  \end{mathpar}
+  festgelegt. Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im folgenden diskutieren werden.
+\end{regeln}
+Als Formierungs und Einführungsregeln ergeben sich:
+\begin{mathpar}
+  \inferrule{\Gamma\yields x:A\and \Gamma\yields y:A}{\Gamma\yields x=_A y\text{ Typ}}{=\mathrm{F}}\quad\quad
+  \inferrule{\Gamma\yields x:A}{\Gamma\yields \mathrm{refl}_x: x=_A x}{=\mathrm{I}}
+\end{mathpar}
+
 \subsection{Universen}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
