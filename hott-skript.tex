@@ -571,16 +571,22 @@ Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten glei
   Für zwei Elemente $x,y$ eines Typs $A$ können wir den Typ $x=_A y$ der \begriff{Gleichheiten} zwischen $x$ und $y$ formen.
   Dieser wird auch \begriff{Identitätstyp} genannt und ist als induktiver Typ durch den Konstruktor
   \begin{mathpar}
-    \mathrm{refl}:\prod_{x:A}x=_A x
+    \refl:\prod_{x:A}x=_A x
   \end{mathpar}
   festgelegt. Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im folgenden diskutieren werden.
 \end{regeln}
 Als Formierungs und Einführungsregeln ergeben sich:
 \begin{mathpar}
   \inferrule{\Gamma\yields x:A\and \Gamma\yields y:A}{\Gamma\yields x=_A y\text{ Typ}}{=\mathrm{F}}\quad\quad
-  \inferrule{\Gamma\yields x:A}{\Gamma\yields \mathrm{refl}_x: x=_A x}{=\mathrm{I}}
+  \inferrule{\Gamma\yields x:A}{\Gamma\yields \refl_x: x=_A x}{=\mathrm{I}}
 \end{mathpar}
-
+Die Eliminationsregel, bzw die \begriff{Induktion für Gleichheit}, die auch \begriff{Pfadinduktion} genannt wird,
+stellt sich als erstaunlich vielseitig heraus.
+Sie besagt, dass für einen abhängigen Typen über dem Gleichheitstyp,
+also etwa $p:x=_A y\yields B(x)$ und eine Vorgabe für $\refl_x$ also ein Element $b_r : \prod_{x:A} B(\refl_x)$ bereits eine abhängige Funktion wie folgt gegeben ist:
+\begin{mathpar}
+  \ind{=}(B,b_r) : \prod_{x:A}\prod_{y:A}\prod_{p:x=_A y}B(p)
+\end{mathpar}
 \subsection{Universen}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
