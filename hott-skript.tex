@@ -542,6 +542,14 @@ Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typent
   \end{mathpar}
   Eine Funktion $f:A\amalg B\to C$ in einen Typen $C$, kann also definiert werden durch Angabe zweier Funktionen $f_1:A\to C$ und $f_2:B\to C$.
 \end{regeln}
+\begin{beispiel}
+  Das Koprodukt erlaubt eine Alternative Konstruktion des Typs $\zwei$ als $\einheit\amalg\einheit$.
+  Wir können zwar noch nicht ausdrücken, dass zwei Typen gleich sind (abgesehen von der Urteilsgleichheit, die uns hier nicht helfen würde), wollen aber trotzdem schonmal die beiden Abbildungen definieren, die uns das später erlauben werden:
+  \begin{align*}
+    f(0_{\zwei})&:\equiv\iota_1(\ast) &g(\iota_1(\ast)):\equiv 0_{\zwei}\\
+    f(1_{\zwei})&:\equiv\iota_2(\ast)&g(\iota_2(\ast)):\equiv 1_{\zwei}
+  \end{align*}
+\end{beispiel}
 \subsection{Gleichheit}
 \subsection{Universen}
 \subsection{Abhängige Summen}
