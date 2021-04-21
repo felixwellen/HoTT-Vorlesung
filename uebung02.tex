@@ -4,33 +4,11 @@
 \maketitle{2}
 
 \begin{exercise}
-  Zeige $1\cdot 1\equiv 1:\N$.
-\end{exercise}
-
-\begin{exercise}[Zwei Einführungsregeln für Nachfolger]
-  Zeige, dass die folgenden beiden Einführungsregeln für den Nachfolger einer natürlichen Zahl äquivalent sind:
-  \begin{mathpar}
-    \inferrule{
-      \Gamma\vdash n:\N
-    }{
-      \Gamma\vdash\sucN(n):\N
-    }{
-      \N\mathrm{I2}
-    }
-    \and
-    \inferrule{
-      \Gamma\text{ Kontext}
-    }{
-      \Gamma,x:\N\vdash\sucN(x):\N
-    }{
-      \N\mathrm{I2'}
-    }
-  \end{mathpar}
-  {\tiny Die linke Regel ist aus dem Skript, die rechte aus der Vorlesung.}
+  Zeige $1\cdot 1\equiv 1:\N$. Orientiere Dich dabei am Beispiel $1 + 1\equiv 2$ aus der Vorlesung.
 \end{exercise}
 
 \begin{exercise}[$\N$-rekursive Funktionen]
-  Konstruiere folgende Funktionen auf $\N$ durch Pattern Matching und durch Rekursion.
+  Konstruiere folgende Funktionen auf $\N$ durch ihre definierenden Gleichhungen und durch Rekursion.
   \begin{enumerate}
     \item Die Dreieckszahlen $n\mapsto n+\dots+1$ vom Typ $\N\to\N$.
     \item Die Fakultätsfunktion $n\mapsto n!$ vom Typ $\N\to\N$.
@@ -51,29 +29,6 @@
   Konstruiere $\mathrm{ack}$ unter Verwendung von $\rec \N$.
 \end{exercise}
 
-\begin{exercise}[Kartesische Produkte]
-  Seien $A$, $B$ Typen.
-  Konstruiere einen Typ $A\times B$, welcher folgende Voraussetzungen erfüllt:
-  \begin{enumerate}
-    \item Für je zwei Terme $a:A$ und $b:B$ lässt sich ein Term $t_{a,b}:A\times B$ konstruieren.
-    \item Es lassen sich Funktionen $\mathrm{pr}_1:A \times B\to A$ und $\mathrm{pr}_2:A\times B\to B$ konstruieren.
-    \item Es ist $\mathrm{pr}_1(t_{a,b})\equiv a:A$ und $\mathrm{pr}_2(t_{a,b})\equiv b:B$.
-  \end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Fibonacci]
-  Konstruiere die Fibonaccifolge $\N\to\N$.
-  {\tiny Tipp: Verwende das kartesische Produkt $\N\times\N$.}
-\end{exercise}
-
-\begin{exercise}
-  Warum lässt sich mittels Pfadinduktion kein Term vom Typ $f:\prod_{x:A}\prod_{p:x=x}p=\refl_x$ konstruieren, welcher die Gleichung $f(x,\refl_x)\equiv \refl_{\refl_x}$ erfüllt?
-\end{exercise} 
-
-\begin{exercise}
-  Sei $C$ eine Typfamilie über einem Typen $A$, also ein Typ $C$ im Kontext $x:A$.
-  Verwende Pfadinduktion um eine abhängige Funktion $f:\prod_{x,y:A}\prod_{x=y:A} C(x)\to C(y)$ zu konstruieren, welche $f(x,x,\refl_x)=\id_{C(x)}$ erfüllt.
-\end{exercise}
 
 \begin{exercise}
   Zeige, dass für die in der Vorlesung definierten Funktionen $f:1\amalg 1\to \zwei$ und $g:\zwei\to 1\amalg 1$ in zueinander invers sind, indem Du Terme der folgenden Typen konstruierst:
