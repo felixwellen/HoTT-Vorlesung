@@ -542,9 +542,110 @@ Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typent
   \end{mathpar}
   Eine Funktion $f:A\amalg B\to C$ in einen Typen $C$, kann also definiert werden durch Angabe zweier Funktionen $f_1:A\to C$ und $f_2:B\to C$.
 \end{regeln}
+\begin{beispiel}
+  \begin{enumerate}
+  \item Das Koprodukt erlaubt eine Alternative Konstruktion des Typs $\zwei$ als $\einheit\amalg\einheit$.
+    Wir können zwar noch nicht ausdrücken, dass zwei Typen gleich sind (abgesehen von der Urteilsgleichheit, die uns hier nicht helfen würde), wollen aber trotzdem schonmal die beiden Abbildungen definieren, die uns das später erlauben werden:
+    \begin{align*}
+      f(0_{\zwei})&:\equiv\iota_1(\ast) &g(\iota_1(\ast)):\equiv 0_{\zwei}\\
+      f(1_{\zwei})&:\equiv\iota_2(\ast)&g(\iota_2(\ast)):\equiv 1_{\zwei}
+    \end{align*}
+  \item Für Typen $A$, $B$ gibt es stets die Abbildung
+    \begin{mathpar}
+      \ind{\amalg}(\zwei,(a:A)\mapsto 0_{\zwei},(b:B)\mapsto 1_{\zwei}) : A\amalg B\to \zwei.
+    \end{mathpar}
+  \end{enumerate}
+\end{beispiel}
+
 \subsection{Gleichheit}
-\subsection{Universen}
+Da wir uns im Folgenden der Situation nähern die Typentheorie einsetzen zu können, um über mathematische Objekte zu reden,
+wollen wir auch weniger syntaktische Sprechweisen bevorzugen und etwa eher von \begriff{Elementen eines Typs} statt Termen sprechen.
+Außerdem wollen wir es uns nun erlauben, Verschachtelte $\prod$-Ausdrücke über den gleichen Typen wie folgt abzukürzen:
+\begin{mathpar}
+  \prod_{x:A}\prod_{y:A}\dots :\equiv\prod_{x,y:A}\dots
+\end{mathpar}
+
+In diesem Abschnitt werden wir die \begriff{Gleichheit von Objekten} $x=y$ einführen.
+Diese wollen wir im folgenden auch einfach nur \begriff{Gleichheit} nennen.
+Im Gegensatz zur klassischen Mathematik ist die Gleichheit zwischen zwei Elementen $x,y:A$ eines Typs
+selbst wieder ein vollwertiger Typ $x=_A y$.
+Wir werden auch tatsächlich Beispiele von Typen sehen, deren Gleichheitstypen mehrere verschiedene Elemente enthalten.
+Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten gleich sein können.
+\begin{regeln}
+  Für zwei Elemente $x,y$ eines Typs $A$ können wir den Typ $x=_A y$ der \begriff{Gleichheiten} zwischen $x$ und $y$ formen.
+  Dieser wird auch \begriff{Identitätstyp} genannt und ist als induktiver Typ durch den Konstruktor
+  \begin{mathpar}
+    \refl:\prod_{x:A}x=_A x
+  \end{mathpar}
+  festgelegt. 
+  Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im folgenden diskutieren werden.
+\end{regeln}
+Als Formierungs und Einführungsregeln ergeben sich:
+\begin{mathpar}
+  \inferrule{\Gamma\yields x:A\and \Gamma\yields y:A}{\Gamma\yields x=_A y\text{ Typ}}{=\mathrm{F}}\quad\quad
+  \inferrule{\Gamma\yields x:A}{\Gamma\yields \refl_x: x=_A x}{=\mathrm{I}}
+\end{mathpar}
+Bevor wir weitere Regeln diskutieren, machen wir zunächst Beispiele:
+
+\begin{beispiel}
+  \begin{enumerate}
+  \item Für $x,y:\einheit$ können wir nun den Typ $x=_{\einheit} y$ formen.
+    Weiter können wir mit $\ind{\einheit}$ auch recht deutlich beschreiben, wie dieser Typ aussieht:
+    \begin{mathpar}
+      \ind{\einheit}(x:\einheit\yields x=_{\einheit} \ast, \refl_{\ast}) : \prod_{x:\einheit}x=\ast
+    \end{mathpar}
+  \item Für den leeren Typ können wir zeigen, dass je zwei $x,y:\leer$ gleich sind:
+    \begin{mathpar}
+      \ind{\leer}(x:\leer\yields \prod_{y:\leer}x=y) : \prod_{x,y:\leer}x=y
+    \end{mathpar}
+  \item Wenig überraschend, ist jedes $x:\zwei$ entweder gleich $0_{\zwei}$ oder $1_{\zwei}$,
+    was wir mit dem Koprodukt ausdrücken können:
+    \begin{mathpar}
+      \ind{\zwei}(x:\zwei\yields(x=0_{\zwei})\amalg(x=1_{\zwei}), \refl_{0_{\zwei}}, \refl_{1_{\zwei}} ) : \prod_{x:\zwei}(x=0_{\zwei})\amalg(x=1_{\zwei})
+    \end{mathpar}
+  \end{enumerate}
+\end{beispiel}
+
+Die Eliminationsregel, \subsection{Abhängige Summen}
+bzw die \begriff{Induktion für Gleichheit}, die auch \begriff{Pfadinduktion} genannt wird,
+stellt sich als erstaunlich vielseitig heraus.
+Sie besagt, dass für einen abhängigen Typen über dem Gleichheitstyp,
+also etwa $x:A,y:A,p:x=_A y\yields B(p)$ und eine Vorgabe für $\refl_x$ also ein Element $b_r : \prod_{x:A} B(\refl_x)$ bereits eine abhängige Funktion wie folgt gegeben ist:
+\begin{mathpar}
+  \ind{=}(B,b_r) : \prod_{x,y:A}\prod_{p:x=_A y}B(p)
+\end{mathpar}
+Eine wünschenswerte Eigenschaft für Gleichheitsbegriffe ist, dass es sich um Äquivalenzrelationen handelt.
+Da es sich bei unserem Gleichheitstyp im Allgemeinen um mehr als eine Relation handelt,
+haben statt den Eigenschaften Reflexivität, Symmetrie und Transitivität eine sogenannte \begriff{Gruppoidstruktur}.
+Das bedeutet, dass diese drei Eigenschaften zu Operationen verallgemeinert werden.
+Die Reflexivität ist bereits durch den Konstruktor gegeben und erlaubt es uns für jedes $x:X$ eine Gleichheit $x=_X x$ zu \emph{konstruieren}.
+Statt der Symmetrie haben wir eine Umkehroperation oder Inversionsoperation von $x=y$ nach $y=x$ und die
+Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichheiten:
+\begin{definition}
+  \begin{enumerate}
+  \item Für $p:x=_A y$ bezeichnen wir mit $p^{-1}:y=_A x$ die \begriff{inverse Gleichheit}, also eine Funktion $\_^{-1}:x=_A y\to y=_A x$,
+    welche wir durch Vorgabe für ``$\refl_x$'' definieren können:
+    \begin{mathpar}
+      (\refl_x)^{-1}:\equiv \refl_x
+    \end{mathpar}
+    bzw durch die folgende Induktion:
+    \begin{mathpar}
+      \ind{=}(x,y:A,p:x=_A y\yields y=_A x; \refl_{x}) : \prod_{x,y:A}\prod_{p:x=_A y}y=_A x
+    \end{mathpar}
+  \item Seien $x,y,z:A$. Für zwei Gleichheiten $p:x=_A y$ und $q:y=_A z$ ist die \begriff{Konkatenation} $p\kon q$ gegeben durch:
+    \begin{mathpar}
+      \refl_x\kon q :\equiv q
+    \end{mathpar}
+    Der Induktionsterm sieht wie folgt aus:
+    \begin{align*}
+      &\ind{=}(z,x,y:A,p:x=_A y\yields y=_A z\to x=_A z; \id_{x=_A z}) \\
+      &: \prod_{x,y,z:A}(x=_A y)\to (y=_A z)\to (x=_A z)
+    \end{align*}
+  \end{enumerate}
+\end{definition}
+
 \subsection{Abhängige Summen}
+\subsection{Universen}
 \subsection{Kontrahierbarkeit und Aussagen}
 
 \section{Univalenz}
