@@ -623,19 +623,24 @@ Statt der Symmetrie haben wir eine Umkehroperation oder Inversionsoperation von 
 Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichheiten:
 \begin{definition}
   \begin{enumerate}
-  \item Für $p:x=_A y$ bezeichnen wir mit $p^{-1}:y=_A x$ die \begriff{inverse Gleichheit}, also eine Funktion $\_^{-1}:x=_A y\to y=_A x$, welche wir durch Vorgabe für ``$\refl_x$'' definieren können:
+  \item Für $p:x=_A y$ bezeichnen wir mit $p^{-1}:y=_A x$ die \begriff{inverse Gleichheit}, also eine Funktion $\_^{-1}:x=_A y\to y=_A x$,
+    welche wir durch Vorgabe für ``$\refl_x$'' definieren können:
     \begin{mathpar}
       (\refl_x)^{-1}:\equiv \refl_x
     \end{mathpar}
     bzw durch die folgende Induktion:
     \begin{mathpar}
-      \ind{=}(p:x=_A y\yields y=_A x, \refl_{x}) : \prod_{x,y:A}\prod_{p:x=_A y}y=_A x
+      \ind{=}(x,y:A,p:x=_A y\yields y=_A x; \refl_{x}) : \prod_{x,y:A}\prod_{p:x=_A y}y=_A x
     \end{mathpar}
-  \item Für zwei Gleichheiten $p:x=_A y$ und $q:y=_A z$ ist die \begriff{Konkatenation} $p\kon q$ gegeben durch:
+  \item Seien $x,y,z:A$. Für zwei Gleichheiten $p:x=_A y$ und $q:y=_A z$ ist die \begriff{Konkatenation} $p\kon q$ gegeben durch:
     \begin{mathpar}
       \refl_x\kon q :\equiv q
     \end{mathpar}
-    
+    Der Induktionsterm sieht wie folgt aus:
+    \begin{align*}
+      &\ind{=}(z,x,y:A,p:x=_A y\yields y=_A z\to x=_A z; \id_{x=_A z}) \\
+      &: \prod_{x,y,z:A}(x=_A y)\to (y=_A z)\to (x=_A z)
+    \end{align*}
   \end{enumerate}
 \end{definition}
 
