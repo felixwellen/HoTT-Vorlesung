@@ -577,7 +577,8 @@ Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten glei
   \begin{mathpar}
     \refl:\prod_{x:A}x=_A x
   \end{mathpar}
-  festgelegt. Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im folgenden diskutieren werden.
+  festgelegt. 
+  Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im folgenden diskutieren werden.
 \end{regeln}
 Als Formierungs und Einführungsregeln ergeben sich:
 \begin{mathpar}
@@ -605,16 +606,36 @@ Bevor wir weitere Regeln diskutieren, machen wir zunächst Beispiele:
   \end{enumerate}
 \end{beispiel}
 
-Die Eliminationsregel, bzw die \begriff{Induktion für Gleichheit}, die auch \begriff{Pfadinduktion} genannt wird,
+Die Eliminationsregel, \subsection{Abhängige Summen}
+bzw die \begriff{Induktion für Gleichheit}, die auch \begriff{Pfadinduktion} genannt wird,
 stellt sich als erstaunlich vielseitig heraus.
 Sie besagt, dass für einen abhängigen Typen über dem Gleichheitstyp,
-also etwa $p:x=_A y\yields B(x)$ und eine Vorgabe für $\refl_x$ also ein Element $b_r : \prod_{x:A} B(\refl_x)$ bereits eine abhängige Funktion wie folgt gegeben ist:
+also etwa $x:A,y:A,p:x=_A y\yields B(p)$ und eine Vorgabe für $\refl_x$ also ein Element $b_r : \prod_{x:A} B(\refl_x)$ bereits eine abhängige Funktion wie folgt gegeben ist:
 \begin{mathpar}
-  \ind{=}(B,b_r) : \prod_{x:A}\prod_{y:A}\prod_{p:x=_A y}B(p)
+  \ind{=}(B,b_r) : \prod_{x,y:A}\prod_{p:x=_A y}B(p)
 \end{mathpar}
+Eine wünschenswerte Eigenschaft für Gleichheitsbegriffe ist, dass es sich um Äquivalenzrelationen handelt.
+Da es sich bei unserem Gleichheitstyp im Allgemeinen um mehr als eine Relation handelt,
+haben statt den Eigenschaften Reflexivität, Symmetrie und Transitivität eine sogenannte \begriff{Gruppoidstruktur}.
+Das bedeutet, dass diese drei Eigenschaften zu Operationen verallgemeinert werden.
+Die Reflexivität ist bereits durch den Konstruktor gegeben und erlaubt es uns für jedes $x:X$ eine Gleichheit $x=_X x$ zu \emph{konstruieren}.
+Statt der Symmetrie haben wir eine Umkehroperation oder Inversionsoperation von $x=y$ nach $y=x$ und die
+Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichheiten:
+\begin{definition}
+  \begin{enumerate}
+  \item Für $p:x=_A y$ bezeichnen wir mit $p^{-1}:y=_A x$ die \begriff{inverse Gleichheit}, welche wir durch Vorgabe für ``$\refl_x$'' definieren können:
+    \begin{mathpar}
+      (\refl_x)^{-1}:\equiv \refl_x
+    \end{mathpar}
+    bzw durch die folgende Induktion:
+    \begin{mathpar}
+      \ind{=}(p:x=_A y\yields y=_A x, \refl_{x}) : \prod_{x,y:A}\prod_{p:x=_A y}y=_A x
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
 
-\subsection{Universen}
 \subsection{Abhängige Summen}
+\subsection{Universen}
 \subsection{Kontrahierbarkeit und Aussagen}
 
 \section{Univalenz}
