@@ -32,10 +32,16 @@
 
 
 \begin{exercise}
-  Zeige, dass für die in der Vorlesung definierten Funktionen $f:1\amalg 1\to \zwei$ und $g:\zwei\to 1\amalg 1$ in zueinander invers sind, indem Du Terme der folgenden Typen konstruierst:
-  \begin{mathpar}
-    \prod_{x:1\amalg 1} g(f(x))=x\quad\quad \prod_{y:\zwei} f(g(y))=y.
-  \end{mathpar}
+  Seien $f:\zwei\to 1\amalg 1$ und $g:1\amalg 1\to\zwei$ die Funktionen aus der Vorlesung mit definierenden Gleichungen
+  \begin{align*}
+    f(0_{\zwei})&:\equiv\iota_1(\ast) &g(\iota_1(\ast)):\equiv 0_{\zwei}\\
+    f(1_{\zwei})&:\equiv\iota_2(\ast)&g(\iota_2(\ast)):\equiv 1_{\zwei}.
+  \end{align*}
+  Zeige, dass $f$ und $g$ zueinander invers sind, indem du Terme für die folgenden Typen konstruierst:
+  \begin{enumerate}
+    \item $\prod_{y:\zwei} g(f(y))=_\zwei y$
+    \item $\prod_{x:1\amalg 1} f(g(x))=_{1\amalg 1} x$
+  \end{enumerate}
 \end{exercise}
 
 \end{document}
