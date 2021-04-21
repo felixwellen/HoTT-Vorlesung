@@ -7,7 +7,6 @@
   Zeige $1\cdot 1\equiv 1:\N$.
 \end{exercise}
 
-
 \begin{exercise}[Zwei Einführungsregeln für Nachfolger]
   Zeige, dass die folgenden beiden Einführungsregeln für den Nachfolger einer natürlichen Zahl äquivalent sind:
   \begin{mathpar}
@@ -65,6 +64,15 @@
 \begin{exercise}[Fibonacci]
   Konstruiere die Fibonaccifolge $\N\to\N$.
   {\tiny Tipp: Verwende das kartesische Produkt $\N\times\N$.}
+\end{exercise}
+
+\begin{exercise}
+  Warum lässt sich mittels Pfadinduktion kein Term vom Typ $f:\prod_{x:A}\prod_{p:x=x}p=\refl_x$ konstruieren, welcher die Gleichung $f(x,\refl_x)\equiv \refl_{\refl_x}$ erfüllt?
+\end{exercise} 
+
+\begin{exercise}
+  Sei $C$ eine Typfamilie über einem Typen $A$, also ein Typ $C$ im Kontext $x:A$.
+  Verwende Pfadinduktion um eine abhängige Funktion $f:\prod_{x,y:A}\prod_{x=y:A} C(x)\to C(y)$ zu konstruieren, welche $f(x,x,\refl_x)=\id_{C(x)}$ erfüllt.
 \end{exercise}
 
 \end{document}
