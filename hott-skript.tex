@@ -325,7 +325,7 @@ Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natür
     \and \Gamma\yields \mathrm{IA} : P(0)
     \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
   }{
-    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH}) : \prod_{n:\N}P(n)
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IS}) : \prod_{n:\N}P(n)
   }{
     \N\mathrm{E}
   }
@@ -386,7 +386,7 @@ Die vollständigen $\beta$-Regeln sind wie folgt:
     \and \Gamma\yields \mathrm{IA} : P(0)
     \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
   }{
-    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IH})(0_{\N})\equiv\mathrm{IA} : P(0_{\N})
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IS})(0_{\N})\equiv\mathrm{IA} : P(0_{\N})
   }{
     \N\beta_1
   } \\
@@ -396,7 +396,7 @@ Die vollständigen $\beta$-Regeln sind wie folgt:
     \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n)) \\
     \and \Gamma\yields k:\N
   }{
-    \Gamma\yields\ind{\N} (P,\mathrm{IA},\mathrm{IH})(\sucN(k))\equiv\mathrm{IS}(k,\ind{\N} (P,\mathrm{IA},\mathrm{IH})(k)) : P(\sucN(k))
+    \Gamma\yields\ind{\N} (P,\mathrm{IA},\mathrm{IS})(\sucN(k))\equiv\mathrm{IS}(k,\ind{\N} (P,\mathrm{IA},\mathrm{IS})(k)) : P(\sucN(k))
   }{
     \N\beta_2
   } 
