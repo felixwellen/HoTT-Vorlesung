@@ -339,7 +339,7 @@ Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend b
 \begin{bemerkung}
   Wir werden später die Möglichkeit haben, mittels abhängigen Typen Aussagen über natürliche Zahlen zu konstruieren, wie z.B.
   \begin{mathpar}
-    P(n):\equiv\text{ $n$ hat eine Primfaktorzerlegung}
+    P(n):\equiv\text{ ``$n(n+1)=2\cdot (n + (n-1) + \dots + 1)$'' }
   \end{mathpar}
   Dazu fehlen uns momentan allerdings noch Typen für die zweite Art von Gleichheit ``$=$''.
   Bis wir diese einführen können, müssen wir uns noch mit konstanter Abhängigkeit begnügen.
@@ -359,7 +359,7 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
   \begin{mathpar}
     d:\equiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
   \end{mathpar}
-  das entspricht einer Rekursiven Definition durch die Gleichungen
+  das entspricht einer rekursiven Definition durch die Gleichungen
   \begin{align*}
     d(0)   &:\equiv 0 \\
     d(n+1) &:\equiv d(n)+2
@@ -401,9 +401,9 @@ Die vollständigen $\beta$-Regeln sind wie folgt:
     \N\beta_2
   } 
 \end{mathpar}
-Damit können wir Werte der Funktion aus \cref{bsp:verdopplung} berechnen:
+Damit können wir Werte der Funktion aus Beispiel \labelcref{bsp:verdopplung} berechnen:
 \begin{beispiel}
-  Für die Funktion $d:\N\to\N$ aus \cref{bsp:verdopplung} ergibt sich mit den $\beta$-Regeln nun etwa:
+  Für die Funktion $d:\N\to\N$ aus Beispiel \labelcref{bsp:verdopplung} ergibt sich mit den $\beta$-Regeln nun etwa:
   \begin{align*}
     d(3)&\equiv d(\sucN(2))    & \\
         &\equiv (k \mapsto \sucN(\sucN(k)))(d(2)) & (\N\beta_2) \\
@@ -421,31 +421,48 @@ Folgende Konvention werden wir ab jetzt verwenden:
       \prod_{x:A}B\to C :\equiv \prod_{x:A}(B\to C)
     \end{mathpar}
     und auch im Allgemeinen, dass $\prod$ als letzter Typ-Former ausgeführt wird.
-  \item Weiter Klammern wir iterierte Funktionen von rechts:
+  \item Weiter klammern wir iterierte Funktionen von rechts:
     \begin{mathpar}
       A_1\to A_2 \to \dots \to A_n :\equiv A_1 \to (A_2 \to (\dots (A_{n-1} \to A_n)\dots)
     \end{mathpar}
-  \item Wir erlauben uns etwas Freiheit beim schreiben von Funktionsanwendungen, also etwa für $f:A\to B\to C$ auch mal $f(a,b)$ statt $f(a)(b)$ zu schreiben oder auch $a f b$, wenn $f$ ein Operator ist.
+  \item Wir erlauben uns etwas Freiheit beim Schreiben von Funktionsanwendungen, also etwa für $f:A\to B\to C$ auch mal $f(a,b)$ statt $f(a)(b)$ zu schreiben oder auch $a f b$, wenn $f$ ein Operator ist.
   \end{enumerate}
 \end{konvention}
 Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun die arithmetischen Operationen definieren:
 \begin{definition}
   \begin{enumerate}
-  \item Die Abbildung $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
+  \item Die Addition $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
     \begin{align*}
       0 + k &:\equiv k \\
       \sucN(n) + k &:\equiv \sucN(n + k)
     \end{align*}
+    Formal ist $+$ gegeben durch:
     \begin{mathpar}
-      +:\equiv\rec{\N}(\N\to\N, \id_{\N}, f \mapsto (k \mapsto \sucN(f(k))))
+      +:\equiv\rec{\N}(\N\to\N, k\mapsto k, n \mapsto f \mapsto (k \mapsto \sucN(f(k))))
     \end{mathpar}
-  \item Die Multiplikation ist gegeben durch:
+  \item Die Multiplikation $\cdot:\N\to\N\to\N$ ist gegeben durch:
     \begin{align*}
-      0 \cdot k :\equiv 0  \\
-      \sucN(n) \cdot k :\equiv (n \cdot k) + k
+      0 \cdot k &:\equiv 0  \\
+      \sucN(n) \cdot k &:\equiv (n \cdot k) + k
     \end{align*}
+    Bzw.:
+    \begin{mathpar}
+      \cdot :\equiv \rec{\N}(\N\to\N, k\mapsto 0, n \mapsto f\mapsto (k\mapsto f(k) + k))
+    \end{mathpar}
   \end{enumerate}
 \end{definition}
+\begin{beispiel}
+  Wir können nun wie folgt mit natürlichen Zahlen rechnen:
+  \begin{align*}
+    1+1 & \equiv \sucN(0)+1 \\
+        & \equiv +(\sucN(0))(1) \\
+        & \equiv (n \mapsto f \mapsto (k \mapsto \sucN(f(k))))(0)(+(0))(1) \\
+        & \equiv (f \mapsto (k \mapsto \sucN(f(k))))(l \mapsto l)(1) \\
+        & \equiv (k \mapsto \sucN((l \mapsto l)(k)))(1) \\
+        & \equiv (k \mapsto \sucN(k))(1) \\
+        & \equiv 2 \\
+  \end{align*}
+\end{beispiel}
 
 \subsection{Induktive Typen}
 Der Typ der natürlichen Zahlen ist ein Beispiel für einen sogenannten \begriff{induktiven Typ}.
@@ -482,10 +499,102 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
     }{
       \einheit\beta
     }
-  \end{mathpar}  
+  \end{mathpar}
+\end{regeln}
+\begin{beispiel}
+  Wir können die beiden Funktionen
+  \begin{mathpar}
+    (x\mapsto 0) : \einheit\to \N\text{ und } \rec{\einheit}(\N, 0) : \einheit\to \N
+  \end{mathpar}
+  definieren. Es ist allerdings nicht möglich zu zeigen, dass $(x\mapsto 0)\equiv \rec{\einheit}(\N, 0)$ gilt.
+  Später werden wir in der Lage sein (mittels Induktion) zu zeigen, dass  Objektgleichheit ``$=$'' zwischen diesen Funktionen gilt.
+\end{beispiel}
+\begin{regeln}
+  Der \begriff{leere Typ} $\leer$ ist der Induktive Typ ohne Konstruktur.
+  Dadurch ergibt sich der folgende Satz von Regeln:
+  \begin{mathpar}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer}{\leer\mathrm{F}}
+    \quad\quad
+    \inferrule{
+      \Gamma,x:\leer\yields P(x)\text{ Typ}
+    }{
+      \Gamma\yields\ind{\leer}(P) : \prod_{x:\leer}P(x)
+    }{
+      \leer\mathrm{E}
+    }
+  \end{mathpar}
 \end{regeln}
 
+\begin{regeln}
+  Der \begriff{zweielementige Typ} oder \begriff{Bool} $\zwei$ ist ein Induktiver Typ mit den zwei Konstruktoren
+  \begin{mathpar}
+    0_{\zwei}:\zwei\quad\quad 1_{\zwei}:\zwei
+  \end{mathpar}
+  Wir verzichten diesmal auf Angabe der Regeln.
+\end{regeln}
+
+Es ist auch möglich, einen Induktiven Typen zu definieren, der von einem oder mehreren \begriff{Parametertypen} abhängt.
+Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typentheoretische Version der disjunkten Vereinigung:
+\begin{regeln}
+  Das \begriff{Koprodukt} zweier Typen $A$ und $B$ ist der induktive Typ $A\amalg B$ mit den Konstruktoren
+  \begin{mathpar}
+    \iota_1 : A \to A\amalg B\quad\quad \iota_2 : B\to A\amalg B
+  \end{mathpar}
+  Eine Funktion $f:A\amalg B\to C$ in einen Typen $C$, kann also definiert werden durch Angabe zweier Funktionen $f_1:A\to C$ und $f_2:B\to C$.
+\end{regeln}
+\begin{beispiel}
+  \begin{enumerate}
+  \item Das Koprodukt erlaubt eine Alternative Konstruktion des Typs $\zwei$ als $\einheit\amalg\einheit$.
+    Wir können zwar noch nicht ausdrücken, dass zwei Typen gleich sind (abgesehen von der Urteilsgleichheit, die uns hier nicht helfen würde), wollen aber trotzdem schonmal die beiden Abbildungen definieren, die uns das später erlauben werden:
+    \begin{align*}
+      f(0_{\zwei})&:\equiv\iota_1(\ast) &g(\iota_1(\ast)):\equiv 0_{\zwei}\\
+      f(1_{\zwei})&:\equiv\iota_2(\ast)&g(\iota_2(\ast)):\equiv 1_{\zwei}
+    \end{align*}
+  \item Für Typen $A$, $B$ gibt es stets die Abbildung
+    \begin{mathpar}
+      \ind{\amalg}(\zwei,(a:A)\mapsto 0_{\zwei},(b:B)\mapsto 1_{\zwei}) : A\amalg B\to \zwei.
+    \end{mathpar}
+  \end{enumerate}
+\end{beispiel}
+
 \subsection{Gleichheit}
+Da wir uns im Folgenden der Situation nähern die Typentheorie einsetzen zu können, um über mathematische Objekte zu reden,
+wollen wir auch weniger syntaktische Sprechweisen bevorzugen und etwa eher von \begriff{Elementen eines Typs} statt Termen sprechen.
+
+In diesem Abschnitt werden wir die \begriff{Gleichheit von Objekten} $x=y$ einführen.
+Diese wollen wir im folgenden auch einfach nur \begriff{Gleichheit} nennen.
+Im Gegensatz zur klassischen Mathematik ist die Gleichheit zwischen zwei Elementen $x,y:A$ eines Typs
+selbst wieder ein vollwertiger Typ $x=_A y$.
+Wir werden auch tatsächlich Beispiele von Tyen sehen, deren Gleichheitstypen mehrere verschiedene Elemente enthalten.
+Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten gleich sein können.
+\begin{regeln}
+  Für zwei Elemente $x,y$ eines Typs $A$ können wir den Typ $x=_A y$ der \begriff{Gleichheiten} zwischen $x$ und $y$ formen.
+  Dieser wird auch \begriff{Identitätstyp} genannt und ist als induktiver Typ durch den Konstruktor
+  \begin{mathpar}
+    \refl:\prod_{x:A}x=_A x
+  \end{mathpar}
+  festgelegt. Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im folgenden diskutieren werden.
+\end{regeln}
+Als Formierungs und Einführungsregeln ergeben sich:
+\begin{mathpar}
+  \inferrule{\Gamma\yields x:A\and \Gamma\yields y:A}{\Gamma\yields x=_A y\text{ Typ}}{=\mathrm{F}}\quad\quad
+  \inferrule{\Gamma\yields x:A}{\Gamma\yields \refl_x: x=_A x}{=\mathrm{I}}
+\end{mathpar}
+Bevor wir weitere Regeln diskutieren, machen wir zunächst ein Beispiel:
+\begin{beispiel}
+  Für $x,y:\einheit$ können wir nun den Typ $x=_{\einheit} y$ formen.
+  Weiter können wir mit $\ind{\einheit}$ auch recht deutlich beschreiben, wie dieser Typ aussieht:
+  \begin{mathpar}
+    \ind{\einheit}(x:\einheit\yields x=_{\einheit} \ast, \refl_{\ast}) : \prod_{x:\einheit}x=\ast
+  \end{mathpar}
+\end{beispiel}
+Die Eliminationsregel, bzw die \begriff{Induktion für Gleichheit}, die auch \begriff{Pfadinduktion} genannt wird,
+stellt sich als erstaunlich vielseitig heraus.
+Sie besagt, dass für einen abhängigen Typen über dem Gleichheitstyp,
+also etwa $p:x=_A y\yields B(x)$ und eine Vorgabe für $\refl_x$ also ein Element $b_r : \prod_{x:A} B(\refl_x)$ bereits eine abhängige Funktion wie folgt gegeben ist:
+\begin{mathpar}
+  \ind{=}(B,b_r) : \prod_{x:A}\prod_{y:A}\prod_{p:x=_A y}B(p)
+\end{mathpar}
 \subsection{Universen}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
