@@ -781,8 +781,20 @@ Auch hierfür wollen wir zumindest die grundlegenden Gleichungen erwähnen:
   \item Für $x,y,z:A$ und $p:x=_A y, q:y=_A z$ gilt $f(p\kon q)=f(p)\kon f(q)$.
   \end{enumerate}
 \end{bemerkung}
-Die Beweise folgenen alle dem bekannten Schema.
+Die Beweise folgen alle dem bekannten Schema.
 
+Eine weitere entscheidende Eigenschaft, die bei Gleichheit erwarten würde, ist, dass sich gleiche Dinge auch in allen Eigenschaften gleichen.
+In leichter Abwandlung, könnte man auch sagen, wenn man eine Aussage $P(x)$ hat und zwei gleiche Objekte $x=y$, dann sollten $P(x)$ und $P(y)$ äquivalent sein.
+Dabei würde es wegen der Symmetrie auch schon reichen, zu verlangen, dass im Fall der Gleichheit $P(y)$ aus $P(x)$ folgt.
+
+Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine Abbildung $B(x)\to B(y)$ statt einer Implikation:
+\begin{definition}
+  Seien $A$ ein Typ und $x:A\yields B(x)$ ein abhängiger Typ über $A$. Dann sei die Abbildung
+  \begin{mathpar}
+    \mathrm{tr}(p):B(x)\to B(y)
+  \end{mathpar}
+  der \begriff{Transport} in $B$ gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
+\end{definition}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
