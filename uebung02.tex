@@ -1,0 +1,45 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{2}
+
+\begin{exercise}[Das sehr kleine Einmaleins]
+  Zeige $1\cdot 1\equiv 1:\N$.
+  Gehe dabei ähnlich detailliert wie beim Beispiel $1+1\equiv 2:\N$ im Skript vor.
+\end{exercise}
+
+\begin{exercise}[$\N$-rekursive Funktionen]
+  Konstruiere folgende Funktionen auf $\N$ durch ihre definierenden Gleichhungen und durch Rekursion.
+  \begin{enumerate}
+    \item Die Fakultätsfunktion $n\mapsto n!$ vom Typ $\N\to\N$.
+    \item Die Potenzfunktion $m,n\mapsto n^m$ vom Typ $\N\to\N\to\N$.
+    \item Die Maximumsfunktion $m,n\mapsto\max(m,n)$ vom Typ $\N\to\N\to\N$.
+    \item Den Binomialkoeffizienten $m,n\mapsto\binom{m}{n}$ vom Typ $\N\to\N\to\N$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Die Ackermannfunktion]
+  Die \emph{Ackermannfunktion} $\mathrm{ack}:\N\to\N\to\N$ ist durch folgende Rekursionsgleichungen gegeben:
+  \begin{align*}
+    \mathrm{ack}(0,n)&\equiv\sucN(n)\\
+    \mathrm{ack}(\sucN(m),0)&\equiv\mathrm{ack}(m,1)\\
+    \mathrm{ack}(\sucN(m),\sucN(n))&\equiv\mathrm{ack}(m,\mathrm{ack}(\sucN(m),n))
+  \end{align*}
+  Konstruiere $\mathrm{ack}$ unter Verwendung von $\rec \N$.
+\end{exercise}
+
+
+\begin{exercise}[Zwei Boolesche Typen]
+  Seien $f:\zwei\to 1\amalg 1$ und $g:1\amalg 1\to\zwei$ die Funktionen aus der Vorlesung mit definierenden Gleichungen
+  \begin{align*}
+    f(0_{\zwei})&:\equiv\iota_1(\ast) &g(\iota_1(\ast)):\equiv 0_{\zwei}\\
+    f(1_{\zwei})&:\equiv\iota_2(\ast)&g(\iota_2(\ast)):\equiv 1_{\zwei}.
+  \end{align*}
+  Zeige, dass $f$ und $g$ zueinander invers sind, indem du Terme für die folgenden Typen konstruierst:
+  \begin{enumerate}
+    \item $\prod_{y:\zwei} g(f(y))=_\zwei y$
+    \item $\prod_{x:1\amalg 1} f(g(x))=_{1\amalg 1} x$
+  \end{enumerate}
+\end{exercise}
+
+\end{document}
