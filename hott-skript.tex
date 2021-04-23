@@ -649,7 +649,7 @@ Tatsächlich wenden wir die nötige Arbeit um zu Beweisen zu kommen etwas verste
 auf die wir die Induktionsregel anwenden.
 Dass es dabei etwas zu beachten gibt, sieht man an den Grenzen der Induktionsregel:
 \begin{bemerkung}
-  Das folgende kann nicht mit Induktion gezeigt werden\footnote{So etwas lässt sich nicht so einfach formal zeigen. }:
+  Das folgende kann nicht mit Induktion (und auch sonst mit keiner Regel der Vorlesung) gezeigt werden\footnote{So etwas lässt sich nicht so einfach formal zeigen. }:
   \begin{mathpar}
     \prod_{x:A} \prod_{p:x=_A x} p=_{x=x}\refl_x
   \end{mathpar}
@@ -658,6 +658,32 @@ Das Problem dabei ist, dass wir keine Möglichkeit haben zu fordern, dass die En
 Der abhängige Typ $x:A,p:x=_A x\yields p=\refl_x$ kann also nicht in die Form gebracht werden, die wir für die Induktionsregel brauchen.
 In der Anschauung bedeutet das, dass es wichtig ist, dass wir Wege mit frei-beweglichen Endpunkten haben.
 
+Die Notation der oben definierten Operationen erinnert stark an die einer Gruppe.
+Tatsächlich können wir zeigen, dass auch ähnliche Gesetze für die Gleichheit gelten.
+Zunächst verhält sich $\refl_x$ ähnlich wie ein Neutralelement:
+\begin{bemerkung}
+  \label{bem:refl-neutral}
+  Seien $A$ ein Typ, $x,y:A$ und $p:x=_A y$. Dann gelten:
+  \begin{enumerate}
+  \item $\refl_x\kon p= p$
+  \item $p\kon\refl_y=p$
+  \end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+  \begin{enumerate}
+  \item Diese Gleichung gilt bereits urteilsmäßig.
+  \item Unser Ziel ist:
+    \begin{mathpar}
+      \prod_{x,y:A}\prod_{p:x=_A y} p\kon\refl_y=p
+    \end{mathpar}
+    Mit Induktion reicht es also zu zeigen
+    \begin{mathpar}
+      \prod_{x:A} \refl_x\kon\refl_x=\refl_x
+    \end{mathpar}
+    Der Term $\refl_x\kon\refl_x$ ist aber bereits nach Definition urteilsmäßig gleich $\refl_x$.
+    Also ist $x\mapsto \refl_{\refl_x}$ ein passender Term.
+  \end{enumerate}
+\end{beweis}
 
 Wir wollen nun damit fortfahren, den Namen \emph{Inversion} zu rechtfertigen.
 Anschaulich, ist für eine Gleichheit $p:x=y$ ihr Inverses $p^{-1}:y=x$ einfach diejenige Gleichheit, die $p$ rückwärts durchläuft.
@@ -690,9 +716,44 @@ Formal können wir diese Tatsache mit einer Gleichheitsinduktion fassen:
   den gesuchten Term konstruiert.
 \end{beweis}
 
-\subsection{Universen}
+Bei Beweisen dieser Art ist es wichtig, dass es sich eigentlich um Konstruktionen handelt.
+D.h. wir konstruieren Terme, die wir später auch verwenden werden und es kann passieren, dass die spezielle Konstruktion eine Rolle spielt.
+In einem Typ $A$ ist kann es auch durchaus mehrere verschiedene Gleichheiten in $\refl_x\kon p=p$ geben.
+
+Als letzte elementare Gleichung für das Rechnen mit Gleichheiten, zeigen wir die Assoziativität von $\_\kon\_$.
+
+\begin{bemerkung}
+  Für einen Typ $A$ und $x,y,z,w:A$ gilt:
+  \begin{mathpar}
+    \prod_{p:x=y}\prod_{q:y=z}\prod_{r:z=w} (p\kon q)\kon r = p \kon (q\kon r)
+  \end{mathpar}
+\end{bemerkung}
+\begin{beweis}
+  Durch umsortieren der Abhängigkeiten, was wir nach den Strukturregeln dürfen, können wir Induktion auf den folgenden abhänigen Typen anwenden:
+  \begin{mathpar}
+    x:A,y:A,p:x=_A y\yields \prod_{z,w:A}\prod_{q:y=z}\prod_{r:z=w}(p\kon q)\kon r = p \kon (q\kon r)
+  \end{mathpar}
+  Also müssen wir nur noch folgendes zeigen:
+  \begin{mathpar}
+    \prod_{x:A}\prod_{z,w:A}\prod_{q:x=z}\prod_{r:z=w}(\refl_x\kon q)\kon r = \refl_x \kon (q\kon r)
+  \end{mathpar}
+  Aber die Gleichung lässt sich nun mit per Definition gegebenen Urteilsgleichheiten reduzieren zu: $q\kon r=q\kon r$,
+  was durch $\refl_{q\kon r}$ gegeben ist.
+\end{beweis}
+
+Auch die Assoziativität ist eine \emph{spezielle} Gleichheit in $(p\kon q)\kon r = p \kon (q\kon r)$.
+In mathematischen Bereich in dem so etwas der Fall ist, wird daher auch manchmal von einem \emph{Assoziator} gesprochen,
+weil es sich statt einer Aussage die gilt, eben um eine Operation handel, die Dinge produziert.
+Diese neue Vielfalt kann Probleme mit sich bringen und es ist daher üblich, sogenannte \begriff{Kohärenz} zu fordern.
+Dabei handelt es sich um natürlichen Gleichungen, die etwa zwischen verschiedenen Assoziatoren gelten sollten. Oder Gleichungen,
+die zischen diesen Gleichheiten wieder gelten sollten. Falls Kohärenz gegeben ist, spricht man von \emph{höheren Strukturen}, z.B. von höheren Monoiden, höheren Gruppen oder Ringen.
+
+In der Homotopietypentheorie, die wir in der Vorlesung lernen, gibt es zwar keine bekannte Möglichkeit solche Kohärenz allgemein zu definieren, aber man kann zum Beispiel im Fall der Gleichheitstypen $x=_A y$
+und den vorgestellten Operationen erfahrungsgemäß immer alle Kohärenzen konstruieren, die man gerade braucht.
+
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
+\subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
 
 \section{Univalenz}
