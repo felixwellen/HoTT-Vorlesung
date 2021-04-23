@@ -644,9 +644,56 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
   \end{enumerate}
 \end{definition}
 
-\subsection{Abhängige Summen}
+Nach diesen Konstruktionen wirkt die Induktionsregel für Gleichheit vielleicht etwas zu stark.
+Tatsächlich wenden wir die nötige Arbeit um zu Beweisen zu kommen etwas versteckt beim definieren der abhängigen Typen auf,
+auf die wir die Induktionsregel anwenden.
+Dass es dabei etwas zu beachten gibt, sieht man an den Grenzen der Induktionsregel:
+\begin{bemerkung}
+  Das folgende kann nicht mit Induktion gezeigt werden\footnote{So etwas lässt sich nicht so einfach formal zeigen. }:
+  \begin{mathpar}
+    \prod_{x:A} \prod_{p:x=_A x} p=_{x=x}\refl_x
+  \end{mathpar}
+\end{bemerkung}
+Das Problem dabei ist, dass wir keine Möglichkeit haben zu fordern, dass die Endpunkte $x$ und $y$ die gleiche Variable sind.
+Der abhängige Typ $x:A,p:x=_A x\yields p=\refl_x$ kann also nicht in die Form gebracht werden, die wir für die Induktionsregel brauchen.
+In der Anschauung bedeutet das, dass es wichtig ist, dass wir Wege mit frei-beweglichen Endpunkten haben.
+
+
+Wir wollen nun damit fortfahren, den Namen \emph{Inversion} zu rechtfertigen.
+Anschaulich, ist für eine Gleichheit $p:x=y$ ihr Inverses $p^{-1}:y=x$ einfach diejenige Gleichheit, die $p$ rückwärts durchläuft.
+Der Weg $p\kon p^{-1}$ verläuft also von $x$ nach $y$ und dann auf dem gleichen Weg wieder zurück.
+Insgesamt lässt sich der Weg $p\kon p^{-1}$ in Richtung $x$ zusammenziehen zum konstanten Weg $\refl_x:x=x$.
+
+Formal können wir diese Tatsache mit einer Gleichheitsinduktion fassen:
+\begin{bemerkung}
+  Für einen Typ $A$ und Elemente $x,y:A$ gilt für jedes $p:x=_A y$:
+  \begin{mathpar}
+    p\kon p^{-1} =_{x=_A x} \refl_x
+  \end{mathpar}
+\end{bemerkung}
+\begin{beweis}
+  Wir wollen also etwas in folgendem Typ konstruieren:
+  \begin{mathpar}
+    \prod_{x,y:A}\prod_{p:x=y}p\kon p^{-1}=\refl_x.
+  \end{mathpar}
+  Um das mit Induktion zu erledigen, müssen wir das für $p\equiv\refl_x$ zeigen, also einen Term von
+  \begin{mathpar}
+    \prod_{x:A} \refl_x \kon\refl_x^{-1}=\refl_x
+  \end{mathpar}
+  angeben. Nach Definition von $\_^{-1}$ gilt $\refl_x^{-1}\equiv \refl_x$,
+  also müssen wir für $x:A$ eigentlich nur etwas in $\refl_x\kon\refl_x =\refl_x$ konstruieren.
+  Nach Definition von $\_\kon\_$ ist das aber nur $\refl_x=\refl_x$.
+  D.h. wir haben mit
+  \begin{mathpar}
+    (x:A)\mapsto \refl_{\refl_x}
+  \end{mathpar}
+  den gesuchten Term konstruiert.
+\end{beweis}
+
 \subsection{Universen}
+\subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
+\subsection{Gleichungen in den natürlichen Zahlen}
 
 \section{Univalenz}
 \subsection{Homotopie von Abbildungen, Funktionsextensionalität}
