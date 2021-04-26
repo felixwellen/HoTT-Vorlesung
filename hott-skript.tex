@@ -588,6 +588,7 @@ Als Formierungs und Einführungsregeln ergeben sich:
 Bevor wir weitere Regeln diskutieren, machen wir zunächst Beispiele:
 
 \begin{beispiel}
+  \label{bsp:einheit-kontrahierbar} 
   \begin{enumerate}
   \item Für $x,y:\einheit$ können wir nun den Typ $x=_{\einheit} y$ formen.
     Weiter können wir mit $\ind{\einheit}$ auch recht deutlich beschreiben, wie dieser Typ aussieht:
@@ -636,13 +637,24 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
     \begin{mathpar}
       \refl_x\kon q :\equiv q
     \end{mathpar}
-    Der Induktionsterm sieht wie folgt aus:
+    Der Induktionsterm sieht für $z:A$ wie folgt aus:
     \begin{align*}
-      &\ind{=}(z,x,y:A,p:x=_A y\yields y=_A z\to x=_A z; \id_{x=_A z}) \\
-      &: \prod_{x,y,z:A}(x=_A y)\to (y=_A z)\to (x=_A z)
+      &\ind{=}(x,y:A,p:x=_A y\yields y=_A z\to x=_A z; \id_{x=_A z}) \\
+      &: \prod_{x,y:A}(x=_A y)\to (y=_A z)\to (x=_A z)
     \end{align*}
   \end{enumerate}
 \end{definition}
+
+\begin{beispiel}
+  Nach Beispiel \labelcref{bsp:einheit-kontrahierbar} gibt es einen Term
+  \begin{mathpar}
+    \prod_{x:\einheit} x=\ast
+  \end{mathpar}
+  Damit können wir nun auch zeigen, dass alles in $\einheit$ paarweise gleich ist:
+  \begin{mathpar}
+    (x,y:\einheit)\mapsto k(x)\kon k(y)^{-1}:\prod_{x,y:\einheit}x=y
+  \end{mathpar}
+\end{beispiel}
 
 Nach diesen Konstruktionen wirkt die Induktionsregel für Gleichheit vielleicht etwas zu stark.
 Tatsächlich wenden wir die nötige Arbeit um zu Beweisen zu kommen etwas versteckt beim definieren der abhängigen Typen auf,
@@ -744,7 +756,7 @@ Als letzte elementare Gleichung für das Rechnen mit Gleichheiten, zeigen wir di
 
 \begin{bemerkung}
   Für einen beliebigen Typen $A$ und ein Element $x:A$ erfüllt der Typ $x=_A x$ die naheliegenden Übersetzungen der Axiome einer Gruppe.
-  Allerdings werden wir später noch mehr fordern, damit wir einen Typ eine Gruppe nennen.
+  Allerdings werden wir später noch mehr fordern, damit wir einen Typ eine Gruppe\index{Gruppe} nennen.
 \end{bemerkung}
 
 Auch die Assoziativität ist eine \emph{spezielle} Gleichheit in $(p\kon q)\kon r = p \kon (q\kon r)$.
