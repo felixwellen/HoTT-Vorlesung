@@ -644,9 +644,161 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
   \end{enumerate}
 \end{definition}
 
+Nach diesen Konstruktionen wirkt die Induktionsregel für Gleichheit vielleicht etwas zu stark.
+Tatsächlich wenden wir die nötige Arbeit um zu Beweisen zu kommen etwas versteckt beim definieren der abhängigen Typen auf,
+auf die wir die Induktionsregel anwenden.
+Dass es dabei etwas zu beachten gibt, sieht man an den Grenzen der Induktionsregel:
+\begin{bemerkung}
+  Das folgende kann nicht mit Induktion (und auch sonst mit keiner Regel der Vorlesung) gezeigt werden\footnote{So etwas lässt sich nicht so einfach formal zeigen. }:
+  \begin{mathpar}
+    \prod_{x:A} \prod_{p:x=_A x} p=_{x=x}\refl_x
+  \end{mathpar}
+\end{bemerkung}
+Das Problem dabei ist, dass wir keine Möglichkeit haben zu fordern, dass die Endpunkte $x$ und $y$ die gleiche Variable sind.
+Der abhängige Typ $x:A,p:x=_A x\yields p=\refl_x$ kann also nicht in die Form gebracht werden, die wir für die Induktionsregel brauchen.
+In der Anschauung bedeutet das, dass es wichtig ist, dass wir Wege mit frei-beweglichen Endpunkten haben.
+
+Die Notation der oben definierten Operationen erinnert stark an die einer Gruppe.
+Tatsächlich können wir zeigen, dass auch ähnliche Gesetze für die Gleichheit gelten.
+Zunächst verhält sich $\refl_x$ ähnlich wie ein Neutralelement:
+\begin{bemerkung}
+  \label{bem:refl-neutral}
+  Seien $A$ ein Typ, $x,y:A$ und $p:x=_A y$. Dann gelten:
+  \begin{enumerate}
+  \item $\refl_x\kon p= p$
+  \item $p\kon\refl_y=p$
+  \end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+  \begin{enumerate}
+  \item Diese Gleichung gilt bereits urteilsmäßig.
+  \item Unser Ziel ist:
+    \begin{mathpar}
+      \prod_{x,y:A}\prod_{p:x=_A y} p\kon\refl_y=p
+    \end{mathpar}
+    Mit Induktion reicht es also zu zeigen
+    \begin{mathpar}
+      \prod_{x:A} \refl_x\kon\refl_x=\refl_x
+    \end{mathpar}
+    Der Term $\refl_x\kon\refl_x$ ist aber bereits nach Definition urteilsmäßig gleich $\refl_x$.
+    Also ist $x\mapsto \refl_{\refl_x}$ ein passender Term.
+  \end{enumerate}
+\end{beweis}
+
+Wir wollen nun damit fortfahren, den Namen \emph{Inversion} zu rechtfertigen.
+Anschaulich, ist für eine Gleichheit $p:x=y$ ihr Inverses $p^{-1}:y=x$ einfach diejenige Gleichheit, die $p$ rückwärts durchläuft.
+Der Weg $p\kon p^{-1}$ verläuft also von $x$ nach $y$ und dann auf dem gleichen Weg wieder zurück.
+Insgesamt lässt sich der Weg $p\kon p^{-1}$ in Richtung $x$ zusammenziehen zum konstanten Weg $\refl_x:x=x$.
+
+Formal können wir diese Tatsache mit einer Gleichheitsinduktion fassen:
+\begin{bemerkung}
+  Für einen Typ $A$ und Elemente $x,y:A$ gilt für jedes $p:x=_A y$:
+  \begin{mathpar}
+    p\kon p^{-1} =_{x=_A x} \refl_x
+  \end{mathpar}
+\end{bemerkung}
+\begin{beweis}
+  Wir wollen also etwas in folgendem Typ konstruieren:
+  \begin{mathpar}
+    \prod_{x,y:A}\prod_{p:x=y}p\kon p^{-1}=\refl_x.
+  \end{mathpar}
+  Um das mit Induktion zu erledigen, müssen wir das für $p\equiv\refl_x$ zeigen, also einen Term von
+  \begin{mathpar}
+    \prod_{x:A} \refl_x \kon\refl_x^{-1}=\refl_x
+  \end{mathpar}
+  angeben. Nach Definition von $\_^{-1}$ gilt $\refl_x^{-1}\equiv \refl_x$,
+  also müssen wir für $x:A$ eigentlich nur etwas in $\refl_x\kon\refl_x =\refl_x$ konstruieren.
+  Nach Definition von $\_\kon\_$ ist das aber nur $\refl_x=\refl_x$.
+  D.h. wir haben mit
+  \begin{mathpar}
+    (x:A)\mapsto \refl_{\refl_x}
+  \end{mathpar}
+  den gesuchten Term konstruiert.
+\end{beweis}
+
+Bei Beweisen dieser Art ist es wichtig, dass es sich eigentlich um Konstruktionen handelt.
+D.h. wir konstruieren Terme, die wir später auch verwenden werden und es kann passieren, dass die spezielle Konstruktion eine Rolle spielt.
+In einem Typ $A$ ist kann es auch durchaus mehrere verschiedene Gleichheiten in $\refl_x\kon p=p$ geben.
+
+Als letzte elementare Gleichung für das Rechnen mit Gleichheiten, zeigen wir die Assoziativität von $\_\kon\_$.
+
+\begin{bemerkung}
+  \label{bem:assoc}
+  Für einen Typ $A$ und $x,y,z,w:A$ gilt:
+  \begin{mathpar}
+    \prod_{p:x=y}\prod_{q:y=z}\prod_{r:z=w} (p\kon q)\kon r = p \kon (q\kon r)
+  \end{mathpar}
+\end{bemerkung}
+\begin{beweis}
+  Durch umsortieren der Abhängigkeiten, was wir nach den Strukturregeln dürfen, können wir Induktion auf den folgenden abhänigen Typen anwenden:
+  \begin{mathpar}
+    x:A,y:A,p:x=_A y\yields \prod_{z,w:A}\prod_{q:y=z}\prod_{r:z=w}(p\kon q)\kon r = p \kon (q\kon r)
+  \end{mathpar}
+  Also müssen wir nur noch folgendes zeigen:
+  \begin{mathpar}
+    \prod_{x:A}\prod_{z,w:A}\prod_{q:x=z}\prod_{r:z=w}(\refl_x\kon q)\kon r = \refl_x \kon (q\kon r)
+  \end{mathpar}
+  Aber die Gleichung lässt sich nun mit per Definition gegebenen Urteilsgleichheiten reduzieren zu: $q\kon r=q\kon r$,
+  was durch $\refl_{q\kon r}$ gegeben ist.
+\end{beweis}
+
+Auch die Assoziativität ist eine \emph{spezielle} Gleichheit in $(p\kon q)\kon r = p \kon (q\kon r)$.
+In mathematischen Bereich in dem so etwas der Fall ist, wird daher auch manchmal von einem \emph{Assoziator} gesprochen,
+weil es sich statt einer Aussage die gilt, eben um eine Operation handel, die Dinge produziert.
+Diese neue Vielfalt kann Probleme mit sich bringen und es ist daher üblich, sogenannte \begriff{Kohärenz} zu fordern.
+Dabei handelt es sich um natürlichen Gleichungen, die etwa zwischen verschiedenen Assoziatoren gelten sollten. Oder Gleichungen,
+die zischen diesen Gleichheiten wieder gelten sollten. Falls Kohärenz gegeben ist, spricht man von \emph{höheren Strukturen}, z.B. von höheren Monoiden, höheren Gruppen oder Ringen.
+
+In der Homotopietypentheorie, die wir in der Vorlesung lernen, gibt es zwar keine bekannte Möglichkeit solche Kohärenz allgemein zu definieren, aber man kann zum Beispiel im Fall der Gleichheitstypen $x=_A y$
+und den vorgestellten Operationen erfahrungsgemäß immer alle Kohärenzen konstruieren, die man gerade braucht.
+Ein Beispiel für eine Kohärenz, ein Level über der Assoziativität, ist das \begriff{MacLane Pentagon}:
+\begin{bemerkung}
+  Seien $A$ ein Typ, $x,y,z,w,u:A$.
+  Dann gibt es für $p:x=y,q:y=z,r:z=w,s:w=u$ in $((p\kon q)\kon r)\kon s = p \kon (q\kon (r\kon s))$ zwei verschiedene natürliche Terme,
+  zwischen denen sich eine Gleichheit konstruieren lässt.
+\end{bemerkung}
+Wir werden die Mittel erst noch einführen, mit denen diese Terme konstruiert werden können.
+
+Wir wenden uns nun dem Verhalten von Gleichheit unter Abbildung mit Funktionen zu.
+Für jeden sinnvollen Begriff von Gleichheit, will man sicher, dass er von Funktionen respektiert wird,
+für eine Funktion $f:A\to B$ und $p:x=_A y$ sollte auch $f(x)=f(y)$ gelten bzw. eine Gleichheit in $f(x)=_B f(y)$ kontruierbar sein.
+Das ist mit der bekannten Vorgehensweise schnell erledigt:
+\begin{definition}
+  \label{def:ap}
+  Seien $A,B$ Typen, $f:A\to B$ eine Funktion, $x,y:A$ und $p:x=_A y$.
+  Es sei $f(p):f(x)=_B f(y)$ das \begriff{Bild der Gleichheit} $p$, das wir auch mit $ap(f,p):f(x)=_B f(y)$ bezeichnen,
+  gegeben durch
+  \begin{mathpar}
+    f(\refl_x):\equiv \refl_x
+  \end{mathpar}
+\end{definition}
+Auch hierfür wollen wir zumindest die grundlegenden Gleichungen erwähnen:
+\begin{bemerkung}
+  Seien $A,B$ Typen und $f:A\to B$ eine Funktion. 
+  \begin{enumerate}
+  \item Für $x:A$ gilt $f(\refl_x)=\refl_{f(x)}$.
+  \item Für $x,y:A$ und $p:x=_A y$ gilt $f(p^{-1})=f(p)^{-1}$.
+  \item Für $x,y,z:A$ und $p:x=_A y, q:y=_A z$ gilt $f(p\kon q)=f(p)\kon f(q)$.
+  \end{enumerate}
+\end{bemerkung}
+Die Beweise folgen alle dem bekannten Schema.
+
+Eine weitere entscheidende Eigenschaft, die bei Gleichheit erwarten würde, ist, dass sich gleiche Dinge auch in allen Eigenschaften gleichen.
+In leichter Abwandlung, könnte man auch sagen, wenn man eine Aussage $P(x)$ hat und zwei gleiche Objekte $x=y$, dann sollten $P(x)$ und $P(y)$ äquivalent sein.
+Dabei würde es wegen der Symmetrie auch schon reichen, zu verlangen, dass im Fall der Gleichheit $P(y)$ aus $P(x)$ folgt.
+
+Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine Abbildung $B(x)\to B(y)$ statt einer Implikation:
+\begin{definition}
+  Seien $A$ ein Typ und $x:A\yields B(x)$ ein abhängiger Typ über $A$. Dann sei die Abbildung
+  \begin{mathpar}
+    \mathrm{tr}(p):B(x)\to B(y)
+  \end{mathpar}
+  der \begriff{Transport} in $B$ gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
+\end{definition}
 \subsection{Abhängige Summen}
-\subsection{Universen}
 \subsection{Kontrahierbarkeit und Aussagen}
+\subsection{Universen}
+\subsection{Gleichungen in den natürlichen Zahlen}
 
 \section{Univalenz}
 \subsection{Homotopie von Abbildungen, Funktionsextensionalität}
