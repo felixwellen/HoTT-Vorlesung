@@ -1,0 +1,25 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{3}
+
+\begin{exercise}[Pfadinduktion mit Basispunkt]
+  Sei $A$ ein Typ.
+  Es seien gegeben
+  \begin{itemize}
+    \item ein Term $a:A$,
+    \item ein abhängiger Typ $z:A,q:a=_A z\yields B(z,p)$,
+    \item ein Term $b:B(a,\refl_a)$.
+  \end{itemize}
+  Konstruiere eine Funktion $\ind{=_Aa}(B,b_r):\prod_{z:A}\prod_{q:a=_A z}B(z,p)$.
+\end{exercise}
+
+\begin{exercise}[Alternative Konstruktion von Konkatenation]
+    Konstruiere eine Funktion 
+    $$
+    f:\prod_{x,y:A}(x=_A y)\to\prod_{z:A}(y=_A z)\to(x=_A z),
+    $$
+    sodass für $x,y,z:A$ sowie Gleichheiten $p:x=y$ und $q:y=z$ die Gleichheit $f(x,y,p,z,q) =_{x=z} p\kon q$ gilt.
+\end{exercise}
+
+\end{document}
