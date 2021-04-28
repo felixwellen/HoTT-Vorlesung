@@ -41,6 +41,28 @@
 \end{exercise}
 
 \begin{exercise}[Das MacLane-Pentagon]
+  Sei $\alpha:\prod_{p:x=y}\prod_{q:y=z}\prod_{r:z=w} (p\kon q)\kon r = p \kon (q\kon r)$ der Assoziator.
+  Seien $a,b,c,d,e:A$ Terme und $p:a=b$, $q:b=c$, $r:c=d$, $s:d=e$ Gleichheiten.
+  Verwende den Assoziator $\ass:\prod_{p:x=y}\prod_{q:y=z}\prod_{r:z=w} (p\kon q)\kon r = p \kon (q\kon r)$ um die 5 Gleichheiten $\alpha_1,\dots,\alpha_5$ im MacLane-Pentagon zu konstruieren:
+  \begin{equation*}
+    \begin{tikzcd}[column sep={between origins,1.4cm},row sep={between origins,1.5cm}]
+      & (p \kon (q \kon r)) \kon s
+      \arrow[rr,equal,"\alpha_2"]
+      && p \kon ((q \kon r) \kon s)
+      \arrow[dr,equal,"\alpha_3"]
+      &
+      \\
+      ((p \kon q) \kon r) \kon s
+      \arrow[ur,equal,"\alpha_1"]
+      \arrow[drr,equal,"\alpha_4"']
+      &&&& p \kon (q \kon (r \kon s))
+      \\
+      && (p \kon q) \kon (r \kon s)
+      \arrow[urr,equal,"\alpha_5"']
+      &&
+    \end{tikzcd}
+  \end{equation*}
+  Zeige anschließend, dass $\alpha_1\kon\alpha_2\kon\alpha_3 = \alpha_4\kon\alpha_5$ ist.
 \end{exercise}
 
 \end{document}

@@ -9,6 +9,7 @@
 \RequirePackage{hott}
 \RequirePackage{mathpartir}
 \RequirePackage{mathtools}
+\RequirePackage{tikz-cd}
 
 \geometry{top=2.5cm}
 \setlength{\parindent}{0pt}
