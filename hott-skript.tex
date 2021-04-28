@@ -27,6 +27,7 @@
 \theorembodyfont{}
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[subsection]
+    \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem{definition}[theorem]{Definition}
     \newtheorem{bemerkung}[theorem]{Bemerkung}
     \newtheorem{konvention}[theorem]{Konvention}
@@ -813,6 +814,30 @@ Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine 
   gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
   Die Abbildung $\mathrm{tr}_B(p)$ heißt \begriff{Transport} in $B$ entlang von $p$.
 \end{definition}
+Transport kann man für spezielle Typen konkretisieren.
+\begin{lemma}
+  Seien $A$ ein Typ und $a:A$. Für den von $x:A$ abhängigen Typ $B(x):\equiv (x=a)$ kann der Transport für $x,x':A$ und $p:x=x'$ berechnet werden:
+  \begin{mathpar}
+    ((q:x=a)\mapsto p^{-1}\kon q) = \mathrm{tr}_B(p) : B(x) \to B(x')
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Die Behauptung folgt aus:
+  \begin{mathpar}
+    (q:x=a)\mapsto \refl_x^{-1}\kon q = \id_{x=a} 
+  \end{mathpar}
+\end{beweis}
+
+Außerdem verträgt sich der Transport mit der Konkatenation:
+\begin{lemma}
+  Seien $A$ ein Typ und $x:A\yields B(x)$. Für $x,y,z:A$ gilt:
+  \begin{mathpar}
+     \prod_{p:x=y}\prod_{y=z} \mathrm{tr}_B(q)\circ\mathrm{tr}_B(p)=\mathrm{tr}_B(p\kon q)
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Induktion über $p$.
+\end{beweis}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
