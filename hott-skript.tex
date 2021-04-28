@@ -806,11 +806,12 @@ Dabei würde es wegen der Symmetrie auch schon reichen, zu verlangen, dass im Fa
 
 Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine Abbildung $B(x)\to B(y)$ statt einer Implikation:
 \begin{definition}
-  Seien $A$ ein Typ und $x:A\yields B(x)$ ein abhängiger Typ über $A$. Dann sei die Abbildung
+  Seien $A$ ein Typ und $x:A\yields B(x)$ ein abhängiger Typ über $A$. Dann sei für $x,y:A$ und $p:x=_A y$ die Abbildung
   \begin{mathpar}
-    \mathrm{tr}(p):B(x)\to B(y)
+    \mathrm{tr}_B(p):B(x)\to B(y)
   \end{mathpar}
-  der \begriff{Transport} in $B$ gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
+  gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
+  Die Abbildung $\mathrm{tr}_B(p)$ heißt \begriff{Transport} in $B$ entlang von $p$.
 \end{definition}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
