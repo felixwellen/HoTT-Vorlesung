@@ -27,6 +27,7 @@
 \theorembodyfont{}
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[subsection]
+    \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem{definition}[theorem]{Definition}
     \newtheorem{bemerkung}[theorem]{Bemerkung}
     \newtheorem{konvention}[theorem]{Konvention}
@@ -730,7 +731,7 @@ Formal können wir diese Tatsache mit einer Gleichheitsinduktion fassen:
 
 Bei Beweisen dieser Art ist es wichtig, dass es sich eigentlich um Konstruktionen handelt.
 D.h. wir konstruieren Terme, die wir später auch verwenden werden und es kann passieren, dass die spezielle Konstruktion eine Rolle spielt.
-In einem Typ $A$ ist kann es auch durchaus mehrere verschiedene Gleichheiten in $\refl_x\kon p=p$ geben.
+In einem Typ $A$ kann es auch durchaus mehrere verschiedene Gleichheiten in $\refl_x\kon p=p$ geben.
 
 Als letzte elementare Gleichung für das Rechnen mit Gleichheiten, zeigen wir die Assoziativität von $\_\kon\_$.
 
@@ -760,8 +761,8 @@ Als letzte elementare Gleichung für das Rechnen mit Gleichheiten, zeigen wir di
 \end{bemerkung}
 
 Auch die Assoziativität ist eine \emph{spezielle} Gleichheit in $(p\kon q)\kon r = p \kon (q\kon r)$.
-In mathematischen Bereich in dem so etwas der Fall ist, wird daher auch manchmal von einem \emph{Assoziator} gesprochen,
-weil es sich statt einer Aussage die gilt, eben um eine Operation handelt, die Dinge produziert.
+In mathematischen Bereichen, in denen so etwas der Fall ist, wird daher auch manchmal von einem \emph{Assoziator} gesprochen,
+weil es sich statt einer Aussage die gilt, eben um eine Operation handelt, die ein Datum produziert.
 Diese neue Vielfalt kann Probleme mit sich bringen und es ist daher üblich, sogenannte \begriff{Kohärenz} zu fordern.
 Dabei handelt es sich um natürlichen Gleichungen, die etwa zwischen verschiedenen Assoziatoren gelten sollten. Oder Gleichungen,
 die zwischen diesen Gleichheiten wieder gelten sollten. Falls Kohärenz gegeben ist, spricht man von \emph{höheren Strukturen}, z.B. von höheren Monoiden, höheren Gruppen oder Ringen.
@@ -773,12 +774,33 @@ Ein Beispiel für eine Kohärenz, ein Level über der Assoziativität, ist das \
   Seien $A$ ein Typ, $x,y,z,w,u:A$.
   Dann gibt es für $p:x=y,q:y=z,r:z=w,s:w=u$ in $((p\kon q)\kon r)\kon s = p \kon (q\kon (r\kon s))$ zwei verschiedene natürliche Terme,
   zwischen denen sich eine Gleichheit konstruieren lässt.
+  \begin{figure}
+    \begin{equation}
+      \begin{tikzcd}[column sep={between origins,1.5cm},row sep={between origins,2.2cm}]
+        & (p \kon (q \kon r)) \kon s
+          \arrow[rr,equal]
+        && p \kon ((q \kon r) \kon s)
+          \arrow[dr,equal]
+        &
+        \\
+        ((p \kon q) \kon r) \kon s
+          \arrow[ur,equal]
+          \arrow[drr,equal]
+        &&&& p \kon (q \kon (r \kon s))
+        \\
+        && (p \kon q) \kon (r \kon s)
+          \arrow[urr,equal]
+        &&
+      \end{tikzcd}
+    \end{equation}
+    \caption{MacLane-Pentagon}
+  \end{figure}
 \end{bemerkung}
 Wir werden die Mittel erst noch einführen, mit denen diese Terme konstruiert werden können.
 
 Wir wenden uns nun dem Verhalten von Gleichheit unter Abbildung mit Funktionen zu.
-Für jeden sinnvollen Begriff von Gleichheit, will man sicher, dass er von Funktionen respektiert wird,
-für eine Funktion $f:A\to B$ und $p:x=_A y$ sollte auch $f(x)=f(y)$ gelten bzw. eine Gleichheit in $f(x)=_B f(y)$ kontruierbar sein.
+Für jeden sinnvollen Begriff von Gleichheit, will man sicher, dass er von Funktionen respektiert wird.
+Für eine Funktion $f:A\to B$ und $p:x=_A y$ sollte auch $f(x)=f(y)$ gelten bzw. eine Gleichheit in $f(x)=_B f(y)$ kontruierbar sein.
 Das ist mit der bekannten Vorgehensweise schnell erledigt:
 \begin{definition}
   \label{def:ap}
@@ -786,7 +808,7 @@ Das ist mit der bekannten Vorgehensweise schnell erledigt:
   Es sei $f(p):f(x)=_B f(y)$ das \begriff{Bild der Gleichheit} $p$, das wir auch mit $ap(f,p):f(x)=_B f(y)$ bezeichnen,
   gegeben durch
   \begin{mathpar}
-    f(\refl_x):\equiv \refl_x
+    f(\refl_x):\equiv \refl_{f(x)}
   \end{mathpar}
 \end{definition}
 Auch hierfür wollen wir zumindest die grundlegenden Gleichungen erwähnen:
@@ -806,12 +828,37 @@ Dabei würde es wegen der Symmetrie auch schon reichen, zu verlangen, dass im Fa
 
 Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine Abbildung $B(x)\to B(y)$ statt einer Implikation:
 \begin{definition}
-  Seien $A$ ein Typ und $x:A\yields B(x)$ ein abhängiger Typ über $A$. Dann sei die Abbildung
+  Seien $A$ ein Typ und $x:A\yields B(x)$ ein abhängiger Typ über $A$. Dann sei für $x,y:A$ und $p:x=_A y$ die Abbildung
   \begin{mathpar}
-    \mathrm{tr}(p):B(x)\to B(y)
+    \mathrm{tr}_B(p):B(x)\to B(y)
   \end{mathpar}
-  der \begriff{Transport} in $B$ gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
+  gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
+  Die Abbildung $\mathrm{tr}_B(p)$ heißt \begriff{Transport} in $B$ entlang von $p$.
 \end{definition}
+Transport kann man für spezielle Typen konkretisieren.
+\begin{lemma}
+  Seien $A$ ein Typ und $a:A$. Für den von $x:A$ abhängigen Typ $B(x):\equiv (x=a)$ kann der Transport für $x,x':A$ und $p:x=x'$ berechnet werden:
+  \begin{mathpar}
+    ((q:x=a)\mapsto p^{-1}\kon q) = \mathrm{tr}_B(p) : B(x) \to B(x')
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Die Behauptung folgt aus:
+  \begin{mathpar}
+    (q:x=a)\mapsto \refl_x^{-1}\kon q = \id_{x=a} 
+  \end{mathpar}
+\end{beweis}
+
+Außerdem verträgt sich der Transport mit der Konkatenation:
+\begin{lemma}
+  Seien $A$ ein Typ und $x:A\yields B(x)$. Für $x,y,z:A$ gilt:
+  \begin{mathpar}
+     \prod_{p:x=y}\prod_{y=z} \mathrm{tr}_B(q)\circ\mathrm{tr}_B(p)=\mathrm{tr}_B(p\kon q)
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Induktion über $p$.
+\end{beweis}
 \subsection{Abhängige Summen}
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
