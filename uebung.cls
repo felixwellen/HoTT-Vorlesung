@@ -35,4 +35,6 @@
 \newenvironment{exercise}[1][]{
   \addtocounter{exc}{1}\textbf{Aufgabe \theexc.} \emph{#1}\par
 }{\vspace{1.5em}}
-
+\newenvironment{bonus}[1][]{
+  \textbf{Bonusaufgabe.} \emph{#1}\par
+}{\vspace{1.5em}}
