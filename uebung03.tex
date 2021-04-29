@@ -5,6 +5,7 @@
 
 \begin{exercise}[Funktionen sind Gruppoidhomomorphismen]
   Seien $A,B$ Typen und $f:A\to B$ eine Funktion.
+  Zeige:
   \begin{enumerate}
     \item Für $x:A$ gilt $f(\refl_x)=\refl_{f(x)}$.
     \item Für $x,y:A$ und $p:x=_A y$ gilt $f(p^{-1})=f(p)^{-1}$.
@@ -12,17 +13,17 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[$\N$ ist ein kommutativer Monoid, $0$ ist absorbierend]
+\begin{exercise}[$\N$ ist ein kommutatives Monoid, $0$ ist absorbierend]
   \begin{enumerate}
-    \item Zeige, dass $0$ absorbierend ist, also $0 \cdot n = 0$ und $n \cdot 0 = 0$ für $n:\N$ gilt.
+    \item Zeige, dass $0$ absorbierend in $\N$ ist, also $0 \cdot n = 0$ und $n \cdot 0 = 0$ für $n:\N$ gilt.
     \item Zeige, dass $(\N,+,0)$ ein kommutatives Monoid ist:
       \begin{enumerate}
         \item Für $n:\N$ ist $0 + n = n$ und $n + 0 = n$.
         \item Für $n,m,k:\N$ ist $(m + n) + k = m + (n + k)$.
         \item Für $n,m:\N$ ist $m + n = n + m$.
       \end{enumerate}
+    {\tiny Tatsächlich ist auch $(\N,\cdot,1)$ ein Monoid und $\cdot$ distributiert über $+$.}
     \end{enumerate}
-    \emph{Bemerkung: Tatsächlich ist auch $(\N,\cdot)$ ein Monoid und $\cdot$ distributiert über $+$.}
 \end{exercise}
 
 \begin{exercise}[$(-2)$-Typen sind $(-1)$-Typen]
