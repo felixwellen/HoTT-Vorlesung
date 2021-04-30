@@ -859,7 +859,41 @@ Außerdem verträgt sich der Transport mit der Konkatenation:
 \begin{beweis}
   Induktion über $p$.
 \end{beweis}
+
 \subsection{Abhängige Summen}
+Die abhängige Summe ist ein Typ, der die folgenden Konstruktionen und Aussagen in sich vereint:
+\begin{align*}
+  \exists x\in M: P(x) & & A\times B & & \coprod_{i\in I} A_i
+\end{align*}
+In der topologischen Anschauung entspricht die abhängige Summe dem Totalraum einer Faserung.
+Ähnlich wie $\prod_{x:A}B(x)$ den Funktionstyp $A\to B$ verallgemeinert,
+verallgemeinert die abhängige Summe das kartesische Produkt $A\times B$, dadurch, dass der rechte Faktor abhängig von $x:A$ variieren darf.
+
+
+\begin{regeln}
+  \begin{itemize}
+  \item Für einen Typ $A$ und $x:A\yields B(x)$, kann die \begriff{abhängige Summe} $\Sigma_{x:A}B(x)$ gebildet werden.
+    Die abhängige Summe wird auch \begriff{abhängiger Paartyp} oder \begriff{Sigmatyp} genannt und alternativ mit $(x:A)\times B(x)$ bezeichnet.
+  \item Für $x:A$ und $b(x):B(x)$ gibt es ein \begriff{Paar}, also ein Element $(x,b(x)) : \Sigma_{x:A}B(x)$.
+  \item Für einen abhängigen Typ $y:\Sigma_{x:A}B(x)\yields C(y)$ und einen abhängigen Term $x:A,b(x):B\yields c((x,b(x))) : C((x,b(x)))$ gibt es eine abhängige Funktion
+    \begin{mathpar}
+      \ind{\Sigma}(C, c):\prod_{y:\Sigma_{x:A}B(x)}C(y)
+    \end{mathpar}
+  \item Für auf diese Art definierte Funktionen gilt für $a:A, b:B(a)$ die Urteilsgleichheit
+    \begin{mathpar}
+      \ind{\Sigma}(C, c)((a,b))\equiv c((a,b)) : C((a,b))
+    \end{mathpar}
+  \end{itemize}
+\end{regeln}
+
+Wenn keine Verwechslungsgefahr besteht, wollen wir etwa für ``$c((a,b))$'' auch einfach ``$c(a,b)$'' schreiben.
+Die Induktionsregel, also den dritten Punkt oben, hätten wir auch wie folgt formulieren können:
+Für $c:\prod_{x:A}\prod_{b:B(x)}C(a,b)$ gibt es $\ind{\Sigma}(C,c):\prod_{y:\Sigma_{x:A}B(x)}C(y)$.
+Und wir wollen auch hier wieder Funktionen durch ihre definierende Gleichung in folgender Form angeben:
+\begin{mathpar}
+  g(a,b):\equiv c(a,b)
+\end{mathpar}
+
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
