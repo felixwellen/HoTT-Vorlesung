@@ -853,7 +853,7 @@ Außerdem verträgt sich der Transport mit der Konkatenation:
 \begin{lemma}
   Seien $A$ ein Typ und $x:A\yields B(x)$. Für $x,y,z:A$ gilt:
   \begin{mathpar}
-     \prod_{p:x=y}\prod_{y=z} \mathrm{tr}_B(q)\circ\mathrm{tr}_B(p)=\mathrm{tr}_B(p\kon q)
+     \prod_{p:x=y}\prod_{q:y=z} \mathrm{tr}_B(q)\circ\mathrm{tr}_B(p)=\mathrm{tr}_B(p\kon q)
   \end{mathpar}
 \end{lemma}
 \begin{beweis}
