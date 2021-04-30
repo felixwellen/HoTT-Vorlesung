@@ -893,7 +893,22 @@ Und wir wollen auch hier wieder Funktionen durch ihre definierende Gleichung in 
 \begin{mathpar}
   g(a,b):\equiv c(a,b)
 \end{mathpar}
-
+Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
+\begin{definition}
+  Seien $A$ ein Typ und $x:A\yields B(x)$ abhängiger Typ über $A$.
+  \begin{enumerate}
+  \item Die Funktion $\pi_1:\left(\Sigma_{x:A}B(x)\right)\to A$ gegeben durch
+      \begin{mathpar}
+        \pi_1(a,b):\equiv a
+      \end{mathpar}
+      heißt \begriff{projektion} auf die Basis oder projektion auf den ersten Faktor.
+    \item Die abhängige Funktion $\pi_2:\left(x:\Sigma_{x:A}B(x)\right)\to B(\pi_1(x))$ gegeben durch
+      \begin{mathpar}
+                \pi_2(a,b):\equiv b
+      \end{mathpar}
+      heißt zweite \begriff{projektion} oder projektion auf den zweiten Faktor.
+  \end{enumerate}
+\end{definition}
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
