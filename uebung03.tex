@@ -1,0 +1,58 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{3}
+
+\begin{exercise}[Funktionen sind Gruppoidhomomorphismen]
+  Seien $A,B$ Typen und $f:A\to B$ eine Funktion.
+  Zeige:
+  \begin{enumerate}
+    \item Für $x:A$ gilt $f(\refl_x)=\refl_{f(x)}$.
+    \item Für $x,y:A$ und $p:x=_A y$ gilt $f(p^{-1})=f(p)^{-1}$.
+    \item Für $x,y,z:A$ und $p:x=_A y, q:y=_A z$ gilt $f(p\kon q)=f(p)\kon f(q)$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[$\N$ ist ein kommutatives Monoid, $0$ ist absorbierend]
+  \begin{enumerate}
+    \item Zeige, dass $0$ absorbierend in $\N$ ist, also $0 \cdot n = 0$ und $n \cdot 0 = 0$ für $n:\N$ gilt.
+    \item Zeige, dass $(\N,+,0)$ ein kommutatives Monoid ist:
+      \begin{enumerate}
+        \item Für $n:\N$ ist $0 + n = n$ und $n + 0 = n$.
+        \item Für $n,m,k:\N$ ist $(m + n) + k = m + (n + k)$.
+        \item Für $n,m:\N$ ist $m + n = n + m$.
+      \end{enumerate}
+    {\tiny Tatsächlich ist auch $(\N,\cdot,1)$ ein Monoid und $\cdot$ distributiert über $+$.}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Kontrahierbare Typen haben kontrahierbare Gleichheitenstypen]
+  Sei $A$ ein Typ, $\ast:A$ ein Term und gelte $\prod_{x:A}x=\ast$.
+  Finde ein $c:x=y$ für alle $x,y:A$, sodass $\prod_{p:x=y}p=c$.
+\end{exercise}
+
+\begin{bonus}[Das MacLane-Pentagon]
+  Seien $a,b,c,d,e:A$ Terme und $p:a=b$, $q:b=c$, $r:c=d$, $s:d=e$ Gleichheiten.
+  Verwende den Assoziator $\ass:\prod_{p:x=y}\prod_{q:y=z}\prod_{r:z=w} (p\kon q)\kon r = p \kon (q\kon r)$ um die 5 Gleichheiten $\alpha_1,\dots,\alpha_5$ im MacLane-Pentagon zu konstruieren:
+  \begin{equation*}
+    \begin{tikzcd}[column sep={between origins,1.4cm},row sep={between origins,1.5cm}]
+      & (p \kon (q \kon r)) \kon s
+      \arrow[rr,equal,"\alpha_2"]
+      && p \kon ((q \kon r) \kon s)
+      \arrow[dr,equal,"\alpha_3"]
+      &
+      \\
+      ((p \kon q) \kon r) \kon s
+      \arrow[ur,equal,"\alpha_1"]
+      \arrow[drr,equal,"\alpha_4"']
+      &&&& p \kon (q \kon (r \kon s))
+      \\
+      && (p \kon q) \kon (r \kon s)
+      \arrow[urr,equal,"\alpha_5"']
+      &&
+    \end{tikzcd}
+  \end{equation*}
+  Zeige anschließend, dass $(\alpha_1\kon\alpha_2)\kon\alpha_3 = \alpha_4\kon\alpha_5$ ist.
+\end{bonus}
+
+\end{document}
