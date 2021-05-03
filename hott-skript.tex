@@ -941,9 +941,14 @@ Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
   Analog lässt sich auch \begriff{Uncurrying} definieren:
   \begin{align*}
     &\mathrm{uncurry}: (A\to (B\to C)) \to ((A\times B) \to C) \\
-    &\mathrm{uncurry}(f)(a,b):\equiv f(a,b)
+    &\mathrm{uncurry}(f):\equiv x\mapsto f(\pi_1(x),\pi_2(x))
   \end{align*}
 \end{definition}
+
+\begin{bemerkung}
+  Die Funktionen $\mathrm{curry}$ und $\mathrm{uncurry}$ sind zueinander invers.
+  Allerdings können wir das und viele andere Aussagen dieser Form über Funktionen noch nicht mit der soweit eingeführten Typentheorie beweisen.
+\end{bemerkung}
 
 Mit abhängigen Summen haben wir die Möglichkeit, Existenzaussagen zu formulieren:
 \begin{definition}
