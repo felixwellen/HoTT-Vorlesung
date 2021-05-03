@@ -918,6 +918,17 @@ Wie bereits bei den Funktionen verwenden wir auch hier die übliche Notation, we
   sprechen vom \begriff{Produkt}\footnote{Die übliche Terminologie ist hier leider etwas verwirrend...} von $A$ und $B$.
 \end{definition}
 
+Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
+\begin{definition}
+  Seien $A,B,C$ Typen. Die Abbildung
+  \begin{mathpar}
+    \mathrm{curry}: ((A\times B) \to C) \to (A\times (B\to C))
+  \end{mathpar}
+  ist gegeben durch:
+  \begin{mathpar}
+    \mathrm{curry}(f):\equiv (x\mapsto (y\mapsto f(x,y)))
+  \end{mathpar}
+\end{definition}
 
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
