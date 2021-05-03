@@ -918,6 +918,16 @@ Wie bereits bei den Funktionen verwenden wir auch hier die übliche Notation, we
   sprechen vom \begriff{Produkt}\footnote{Die übliche Terminologie ist hier leider etwas verwirrend...} von $A$ und $B$.
 \end{definition}
 
+Mit Produkten lassen sich Konjuntionen ausdrücken.
+Ein Beispiel dafür ist die folgende wichtige Definition, die uns von nun an begleiten wird:
+\begin{definition}
+  Seien $A,B$ Typen. Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
+  wenn
+  \begin{mathpar}
+    \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
+  \end{mathpar}
+\end{definition}
+
 Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
 \begin{definition}
   Seien $A,B,C$ Typen. Die Abbildung
@@ -944,14 +954,6 @@ Mit abhängigen Summen haben wir die Möglichkeit, Existenzaussagen zu formulier
 \end{definition}
 Gleichungen in den natürlichen Zahlen werden wir uns später noch zuwenden.
 Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen oder speziell Produkte der Gleichheitstyp verhält.
-Dem voran, schieben wir eine wichtige definition, die uns von nun an begleiten wird:
-\begin{definition}
-  Seien $A,B$ Typen. Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
-  wenn
-  \begin{mathpar}
-    \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
-  \end{mathpar}
-\end{definition}
 \begin{lemma}
   Seien $A,B$ Typen.
   \begin{enumerate}
