@@ -928,6 +928,11 @@ Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
   \begin{mathpar}
     \mathrm{curry}(f):\equiv (x\mapsto (y\mapsto f(x,y)))
   \end{mathpar}
+  Analog lässt sich auch \begriff{Uncurrying} definieren:
+  \begin{align*}
+    &\mathrm{uncurry}: (A\to (B\to C)) \to ((A\times B) \to C) \\
+    &\mathrm{uncurry}(f)(a,b):\equiv f(a,b)
+  \end{align*}
 \end{definition}
 
 \subsection{Kontrahierbarkeit und Aussagen}
