@@ -935,6 +935,81 @@ Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
   \end{align*}
 \end{definition}
 
+Mit abhängigen Summen haben wir die Möglichkeit, Existenzaussagen zu formulieren:
+\begin{definition}
+  Seien $a,d:\N$. Die Phrase $d$ \begriff{teilt} $a$ steht für den folgenden Typen:
+  \begin{mathpar}
+    \Sigma_{c:\N} c\cdot d = a
+  \end{mathpar}
+\end{definition}
+Gleichungen in den natürlichen Zahlen werden wir uns später noch zuwenden.
+Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen oder speziell Produkte der Gleichheitstyp verhält.
+Dem voran, schieben wir eine wichtige definition, die uns von nun an begleiten wird:
+\begin{definition}
+  Seien $A,B$ Typen. Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
+  wenn
+  \begin{mathpar}
+    \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
+  \end{mathpar}
+\end{definition}
+\begin{lemma}
+  Seien $A,B$ Typen.
+  \begin{enumerate}
+  \item Für $x:A\times B$ gilt $x=(\pi_1(x),\pi_2(x))$.
+  \item Seien $(a,b),(a',b'):A\times B$, dann gibt es zueinander inverse Funktionen:
+    \begin{mathpar}
+      \pair_{=}: ((a=_A a')\times (b=_B b')) \to (a,b)=_{A\times B} (a',b')
+    \end{mathpar}
+    und 
+    \begin{mathpar}
+      \pair_{=}^{-1}: (a,a')=_{A\times B} (b,b') \to ((a=_A a')\times (b=_B b'))
+    \end{mathpar}
+  \end{enumerate}
+\end{lemma}
+\begin{beweis}
+  \begin{enumerate}
+  \item Ziel ist es, einen Term in
+    \begin{mathpar}
+      \prod_{x:A\times B} x=(\pi_1(x),\pi_2(x))
+    \end{mathpar}
+    zu konstruieren. Mit $\Sigma$-Induktion folgt dieser aus:
+    \begin{mathpar}
+      a\mapsto b \mapsto \refl_{(a,b)}:\prod_{a : A}\prod_{b : B} (a,b)=(\pi_1(a,b),\pi_2(a,b))
+    \end{mathpar}
+    Zur Verwendung in Teil (b), geben wir den damit konstruierten Term den Namen $u$.
+  \item Wir definieren $\mathrm{pair}_=$ durch doppelte Gleichheitsinduktion:
+    \begin{mathpar}
+      \pair_=(\refl_a,\refl_b):\equiv \refl_{(a,b)}
+    \end{mathpar}
+    und $\mathrm{pair}_=^{-1}$ definieren wir zunächst etwas zu allgemein durch Bilder einer Gleichheit $p:x=y$ unter den Projektionen:
+    \begin{mathpar}
+      \pair_=^{-1'}(p):\equiv (\pi_1(p),\pi_2(p))
+    \end{mathpar}
+    und setzen $\pair_=^{-1}(p:(a,a')=(b,b')):\equiv\pair_=^{-1'}(p)$.
+    Damit können wir mit Gleichheitsinduktion zeigen, dass $\pair_=$ und $\pair_=^{-1}$ zueinander invers sind.
+    Ein Teil ist sofort erledigt:
+    \begin{mathpar}
+      \refl_{(\refl_a,\refl_b)}:\pair_=^{-1}(\pair_=(\refl_a,\refl_b))=(\refl_a,\refl_b)
+    \end{mathpar}
+    Für den anderen bekommen konstruieren wir erstmal einen Term
+    \begin{mathpar}
+      t:\prod_{x,y:A\times B}\prod_{p:x=y}\pair_=(\pair_=^{-1'})(p)=u(\pi_1(x),\pi_2(x))^{-1}\kon p\kon u(\pi_1(y),\pi_2(y))
+    \end{mathpar}
+    durch Gleichheits- und $\Sigma$-Induktion -- wir dürfen also $\refl_{(a,b)}$ für $p$ einsetzen:
+    \begin{mathpar}
+      \pair_=(\pair_=^{-1'})(\refl_{(a,b)})=\refl_{(a,b)}^{-1}\kon \refl_{(a,b)}\kon \refl_{(a,b)}
+    \end{mathpar}
+    Linke und rechte Seite sind per Definition gleich $\refl_{(a,b)}$, also müssen wir nur noch den somit konstruierten Term $t$ entsprechend anpassen.
+    Für $p:(a,b)=(a'b')$ lassen sich dazu folgenden Gleichheiten konstruieren:
+    \begin{align*}
+      \pair_=(\pair_=^{-1})(p)&\equiv \pair_=(\pair_=^{-1'})(p)& & t_{(a,b),(a',b'),p} \\
+                              & =u(a,b)^{-1}\kon p\kon u(a',b') & & \text{Def.} \\
+                              & \equiv \refl_{(a,b)}^{-1}\kon p\kon \refl_{(a',b')} & & \text{Def.} \\
+                              & \equiv p\kon\refl_{(a',b')}& & \text{Bemerkung \labelcref{bem:refl-neutral}}\\
+                              & = p & &
+    \end{align*}
+  \end{enumerate}
+\end{beweis}
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
