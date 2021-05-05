@@ -939,6 +939,7 @@ Ein Beispiel dafür ist die folgenden wichtigen Definitionen, die uns von nun an
 
 Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
 \begin{definition}
+  \label{def:currying}
   Seien $A,B,C$ Typen. Die Abbildung
   \begin{mathpar}
     \mathrm{curry}: ((A\times B) \to C) \to (A\to (B\to C))
@@ -1063,9 +1064,33 @@ Letztere Aussage hat einen eigenen Namen und wird von uns im Folgenden als Axiom
 \begin{axiom}[Funktionsextensionalität]
   Unter \begriff{Funktionsextensionalität} versteht man einen Term, der für Typen $A,B$ und Funktionen $f,g:A\to B$ wie folgt gegeben ist:
   \begin{mathpar}
-    \mathrm{funExt}_{f,g}:\equiv \left(\prod_{x:A}f(x)=g(x)\right)\to f=g
+    \mathrm{FunExt}_{f,g}:\equiv \left(\prod_{x:A}f(x)=g(x)\right)\to f=g
   \end{mathpar}
 \end{axiom}
+Wir werden uns jeweils merken, für welche Aussagen wir dieses Axiom brauchen.
+
+\begin{bemerkung}
+  Mit $\mathrm{FunExt}$ sind die Funktionen $\mathrm{curry}$ und $\mathrm{uncurry}$ aus \cref{def:currying} zueinander invers.
+\end{bemerkung}
+
+Was wir bereits über Gleichheit wissen und mit Gleichheiten machen können, lässt sich leicht auf Homotopien jeweils punktweise übertragen:
+\begin{bemerkung}
+  Seien $A,B$ Typen und $f,g:A\to B$ Funktionen.
+  \begin{enumerate}
+  \item Es gibt stets den folgenden Term:
+    \begin{mathpar}
+      (x:A)\mapsto \refl_{f(x)}: f\sim f
+    \end{mathpar}
+  \item Es gibt eine Operation
+    \begin{mathpar}
+      H\mapsto (x\mapsto H(x))^{-1}): f\sim g\to g\sim f
+    \end{mathpar}
+  \item Für eine weitere Funktion $h:A\to B$ gibt es eine Operation
+    \begin{mathpar}
+      H H'\mapsto (x \mapsto H(x)\kon H'(x)) : f\sim g \to g\sim h \to f\sim h 
+    \end{mathpar}
+  \end{enumerate}
+\end{bemerkung}
 
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
