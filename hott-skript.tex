@@ -839,6 +839,7 @@ Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine 
 \end{definition}
 Transport kann man für spezielle Typen konkretisieren.
 \begin{lemma}
+  \label{lem:transp-lpath}
   Seien $A$ ein Typ und $a:A$. Für den von $x:A$ abhängigen Typ $B(x):\equiv (x=a)$ kann der Transport für $x,x':A$ und $p:x=x'$ berechnet werden:
   \begin{mathpar}
     ((q:x=a)\mapsto p^{-1}\kon q) = \mathrm{tr}_B(p) : B(x) \to B(x')
@@ -919,17 +920,27 @@ Wie bereits bei den Funktionen verwenden wir auch hier die übliche Notation, we
 \end{definition}
 
 Mit Produkten lassen sich Konjuntionen ausdrücken.
-Ein Beispiel dafür ist die folgende wichtige Definition, die uns von nun an begleiten wird:
+Ein Beispiel dafür ist die folgenden wichtigen Definitionen, die uns von nun an begleiten werden:
 \begin{definition}
-  Seien $A,B$ Typen. Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
-  wenn
-  \begin{mathpar}
-    \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
-  \end{mathpar}
+  Seien $A,B$ Typen.
+  \begin{enumerate}
+  \item Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
+    wenn
+    \begin{mathpar}
+      \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
+    \end{mathpar}
+  \item Sei $f:A\to B$ eine Funktion. Wir sagen, dass $f$ eine \begriff{Quasi-Inverse} oder \begriff{Inverse} hat,
+    wenn der Typ
+    \begin{mathpar}
+      \mathrm{qinv(f)}:\equiv\Sigma_{f:B\to A}\left(\left(\prod_{x:A}g(f(x))=x\right) \times \left(\prod_{y:B}f(g(y))=y\right)\right)
+      \end{mathpar}
+      einen Term hat.
+  \end{enumerate}
 \end{definition}
 
 Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
 \begin{definition}
+  \label{def:currying}
   Seien $A,B,C$ Typen. Die Abbildung
   \begin{mathpar}
     \mathrm{curry}: ((A\times B) \to C) \to (A\to (B\to C))
@@ -960,6 +971,7 @@ Mit abhängigen Summen haben wir die Möglichkeit, Existenzaussagen zu formulier
 Gleichungen in den natürlichen Zahlen werden wir uns später noch zuwenden.
 Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen oder speziell Produkte der Gleichheitstyp verhält.
 \begin{lemma}
+  \label{lem:produkt-gleich}
   Seien $A,B$ Typen.
   \begin{enumerate}
   \item Für $x:A\times B$ gilt $x=(\pi_1(x),\pi_2(x))$.
@@ -967,7 +979,7 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
     \begin{mathpar}
       \pair_{=}: ((a=_A a')\times (b=_B b')) \to (a,b)=_{A\times B} (a',b')
     \end{mathpar}
-    und 
+    und
     \begin{mathpar}
       \pair_{=}^{-1}: (a,b)=_{A\times B} (a',b') \to ((a=_A a')\times (b=_B b'))
     \end{mathpar}
@@ -1017,12 +1029,239 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
     \end{align*}
   \end{enumerate}
 \end{beweis}
+
+Für allgemeine abhängige Summen gibt es eine ähnliche Möglichkeit, Gleichheiten zu erzeugen.
+Hier ist allerdings eine Schwierigkeit, dass zwei Elemente im zweiten Faktor, also etwa $b_x:B(x)$ und $b_y:B(y)$ im Allgemeinen nicht vom selben Typ sind.
+Also ergibt es keinen Sinn, nach einer Gleichheit $q:b_x=b_y$ zu fragen.
+Um $b_x$ mit $b_y$ zu vergleichen, können wir es entlang einer Gleichheit $p:x=y$ transportieren, also nach $\mathrm{tr}_B(p)(b_x)=b_y$ fragen.
+\begin{lemma}
+  Seien $A$ ein Typ und $x:A\yields B(x)$ abhängig über $A$.
+  Für $x,y:A$ und $b_x:B(x)$, $b'_y:B(y)$ gibt es eine Funktion
+  \begin{mathpar}
+    \Sigma_=:\prod_{p:x=y} \mathrm{tr}_B(p)(b_x)=b'_y \to (x,b_x)=(y,b'_y)
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Mit Induktion über $p$ reicht es, eine Funktion folgenden Typs anzugeben:
+  \begin{mathpar}
+    b_x=b'_x \to (x,b_x)=(x,b'_x)
+  \end{mathpar}
+  Nun sind $b_x,b'_x:B(x)$ noch frei wählbar, also kann wieder Gleichheitsinduktion angewandt und der gesuchte Term auf $\refl_{(x,b_x)}$ festgelegt werden.
+\end{beweis}
+Für die Gleichheit in abhängigen Summen gibt es auch eine Aussage wie \cref{lem:produkt-gleich}, der wir uns jetzt aber erstmal nicht zuwenden.
+
 \subsection{Kontrahierbarkeit und Aussagen}
+Wir beschäftigen uns zunächst mit Gleichheit von Funktionen.
+In verschiedenen Zusammenhängen ist bereits die punkweise Gleichheit von Funktionen aufgetreten, der wir nun einen Namen geben wollen:
+\begin{definition}
+  Seien $A,B$ Typen und $f,g:A\to B$ Funktionen. Wir nennen $f$ und $g$ \begriff{homotop} oder \begriff{punktweise gleich}, wenn der folgenden Typ einen Term hat
+  \begin{mathpar}
+    f \sim g :\equiv \prod_{x:A} f(x)=g(x)
+  \end{mathpar}
+  Die Elemente von $f\sim g$ heißen \begriff{Homotopien} oder \begriff{punktweise Gleichheiten}.
+\end{definition}
+Wir werden später das sogenannte \begriff{Univalenzaxiom} und ein \begriff{Intervall} als höheren induktiven Typen einführen.
+Aus beidem kann jeweils gefolgert werden, dass punktweise Gleichheiten bereits die Gleichheit von Funktionen zur Folge hat.
+Letztere Aussage hat einen eigenen Namen und wird von uns im Folgenden als Axiom verwendet:
+\begin{axiom}[Funktionsextensionalität]
+  Unter \begriff{Funktionsextensionalität} versteht man einen Term, der für Typen $A,B$ und Funktionen $f,g:A\to B$ wie folgt gegeben ist:
+  \begin{mathpar}
+    \mathrm{FunExt}_{f,g}:\equiv \left(\prod_{x:A}f(x)=g(x)\right)\to f=g
+  \end{mathpar}
+\end{axiom}
+Wir werden uns jeweils merken, für welche Aussagen wir dieses Axiom brauchen.
+
+\begin{bemerkung}
+  Mit $\mathrm{FunExt}$ sind die Funktionen $\mathrm{curry}$ und $\mathrm{uncurry}$ aus \cref{def:currying} zueinander invers.
+\end{bemerkung}
+
+Was wir bereits über Gleichheit wissen und mit Gleichheiten machen können, lässt sich leicht auf Homotopien jeweils punktweise übertragen:
+\begin{bemerkung}
+  Seien $A,B$ Typen und $f,g:A\to B$ Funktionen.
+  \begin{enumerate}
+  \item Es gibt stets den folgenden Term:
+    \begin{mathpar}
+      (x:A)\mapsto \refl_{f(x)}: f\sim f
+    \end{mathpar}
+  \item Es gibt eine Operation
+    \begin{mathpar}
+      H\mapsto (x\mapsto H(x))^{-1}): f\sim g\to g\sim f
+    \end{mathpar}
+  \item Für eine weitere Funktion $h:A\to B$ gibt es eine Operation
+    \begin{mathpar}
+      H H'\mapsto (x \mapsto H(x)\kon H'(x)) : f\sim g \to g\sim h \to f\sim h 
+    \end{mathpar}
+  \end{enumerate}
+\end{bemerkung}
+
+Ziel dieses Abschnitts ist es, die ersten beiden Stufen einer Hierarchie auf allen Typen einzuführen und zu untersuchen.
+Diese Hierarchie, die sogenannten \begriff{n-Typen} ist nicht total und bezieht sich auf die komplexität der Gleichheiten in Typen.
+In der niedrigsten Stufe sind alle Elemente eines Typs gleich einem fest gewählten, wir werden sehen, dass eine Konsequenz davon ist, dass auch Gleichheiten zwischen Gleichheiten keine neue komplexität aufweisen.
+Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten beiden Stufen benennen:
+
+\begin{definition}
+  Sei $A$ ein Typ.
+  \begin{enumerate}
+  \item $A$ heißt \begriff{kontrahierbar} oder \begriff{-2-Typ}, wenn
+    \begin{mathpar}
+      \isContr(A):\equiv \Sigma_{c:A}\prod_{x:A} x=c
+    \end{mathpar}
+    (einen Term hat). 
+  \item $A$ heißt \begriff{Aussage} oder \begriff{-1-Typ}, wenn
+    \begin{mathpar}
+      \isProp(A):\equiv \prod_{x,y:A}x=y
+    \end{mathpar}
+  \item $A$ heißt \begriff{0-Typ} oder \begriff{Menge}, wenn
+    \begin{mathpar}
+      \isSet(A):\equiv \prod_{x,y:A}\prod_{p,q:x=y}p=q
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
+\begin{beispiel}
+  \begin{enumerate}
+  \item $\einheit$ ist kontrahierbar.
+  \item $\leer$ ist eine Aussage.
+  \end{enumerate}
+\end{beispiel}
+
+Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits gesagt heraus, dass jeder kontrahierbare Typ bereits mehr oder weniger der Einheitstyp ist:
+\begin{bemerkung}
+  Sei $A$ ein kontrahierbarer Typ. Es gilt:
+  \begin{enumerate}
+  \item Für $x,y:A$ ist $x=_Ay$ kontrahierbar.
+  \item Es gibt Funktionen $f:A\to \einheit$ und $g:\einheit  \to A$, die zueinander invers sind.
+  \item $A$ ist eine Aussage.
+  \end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+(a), (b) In den Übungen. \\
+(c) Wir haben
+\begin{mathpar}
+  k:\isContr(A)\equiv \Sigma_{c:A}\prod_{x:A}x=c
+\end{mathpar}
+und damit:
+\begin{mathpar}
+  x \mapsto y \mapsto k_x\kon k_y^{-1}:\prod_{x,y:A}x=y
+\end{mathpar}
+\end{beweis}
+
+Mit der folgenden Bemerkung scheinen auch Aussagen wenig Vielfalt zuzulassen:
+\begin{bemerkung}
+  Sei $P$ eine Aussage und $t:P$. Dann ist $P$ kontrahierbar.
+\end{bemerkung}
+\begin{beweis}
+  Es gibt
+  \begin{mathpar}
+    a:\prod_{x,y:P}x=y
+  \end{mathpar}
+  und damit
+  \begin{mathpar}
+    (t,x\mapsto a_{x,t}):\isContr(P)\equiv\Sigma_{c:P}\prod_{x:P}x=c
+  \end{mathpar}
+\end{beweis}
+
+Es gibt einen überraschenderweise kontrahierbaren Typen, der uns noch begleiten wird.
+\begin{lemma}
+  Seien $A$ ein Typ und $x:A\yields B(x)$. Dann ist für $y:A$ der Typ
+  \begin{mathpar}
+    \Sigma_{x:A}x=y
+  \end{mathpar}
+  kontrahierbar.
+\end{lemma}
+\begin{beweis}
+  Wegen $(y,\refl_y):\Sigma_{x:A}x=y$ reicht es zu zeigen, dass der Typ eine Aussage ist, also je zwei Elemente gleich sind.
+  Durch $\Sigma$-Induktion, reicht es zu zeigen, dass je zwei paare
+  \begin{mathpar}
+    (x,q),(x',q'):\Sigma_{x:A}x=y
+  \end{mathpar}
+  gleich sind. Es ist $q\kon q'^{-1}:x=x'$ und damit können wir $\Sigma_=$ verwenden:
+  \begin{mathpar}
+    \Sigma_=:\prod_{p:x=x'}\mathrm{tr}_{x:A\yields x=y}(p)(q)=q' \to (x,q)=(x',q')
+  \end{mathpar}
+  Den Transport haben wir in \cref{lem:transp-lpath} berechnet und können einsetzen:
+  \begin{mathpar}
+    (q\kon q'^{-1})^{-1} \kon q=q' \to (x,q)=(x',q')
+  \end{mathpar}
+  Mit Induktion kann berechnet werden: $(q\kon q'^{-1})^{-1}=q'\kon q^{-1}$ und damit mit den Rechengesetzen für Gleichheiten der Beweis beendet werden.
+\end{beweis}
+
+Es gibt einige Konstruktionen, die die Eigenschaften ``Aussage''  erhalten (allgemeiner auch für ``n-Typ'').
+\begin{lemma}
+  Seien $P,Q$ Aussagen und $A$ ein beliebiger Typ.
+  \begin{enumerate}
+  \item Mit $\FunExt$ gilt: Der Typ $A\to P$ ist eine Aussage.
+  \item $P\times Q$ ist eine Aussage.
+  \end{enumerate}
+\end{lemma}
+
+\begin{beweis}
+  \begin{enumerate}
+  \item Sei $t:\isProp(P)$, dann ist
+    \begin{mathpar}
+      \FunExt_{f,g}((x:A)\mapsto t_{(f(x),g(x))}):\isProp(A\to P)\equiv\prod_{f,g:A\to P}f=g
+    \end{mathpar}
+  \item Seien $t:\isProp(P)$ und $s:\isProp(Q)$. Per doppelter $\Sigma$-Induktion reicht es für $p,p':P$ und $q,q':Q$ zu zeigen:
+    \begin{mathpar}
+      (p,q)=(p',q')
+    \end{mathpar}
+    was durch $\pair_=(t_{p,p'},s_{q,q'})$ gegeben ist.
+  \end{enumerate}
+\end{beweis}
+
+Es ist möglich, Typen universell in eine Aussage zu verwandeln. Dafür werden wir zunächst nur eine Formierungs- und Einführungsregel kennenlernen:
+\begin{regeln}[-1-Truncation, teilweise]
+  Für jeden Typ $A$ gibt es eine Aussage $\|A\|$. Weiter gibt es für jedes $a:A$ ein $|a|:\|A\|$.
+  Der Typ $\|A\|$ heißt \begriff{-1-Abstumpfung} oder \begriff{-1-Truncation}.
+  Mit den weiteren Regeln wird sich rausstellen, dass $|\_|:A\to \|A\|$ genau dann eine Inverse hat,
+  wenn $A$ bereits eine Aussage war.
+\end{regeln}
+
+Damit können wir alle üblichen Logikkonstrukte für Aussagen definieren:
+\begin{definition}
+  Seien $P$ und $Q$ Aussagen.
+  \begin{enumerate}
+  \item $P\Rightarrow Q:\equiv P\to Q$
+  \item $P\wedge Q:\equiv P\times Q$
+  \item $P\vee Q:\equiv \|P\amalg Q\|$
+  \item $\neg P:\equiv P\to \leer$
+  \end{enumerate}
+  Sei nun $A$ ein Typ und $P(x)$ eine Aussage für $x:A$.
+  \begin{enumerate}
+  \item $\forall x:A \text{ gilt } P(x) :\equiv \prod_{x:A}P(x)$
+  \item $\exists x:A \text{ mit } P(x):\equiv \|\Sigma_{x:A}P(x)\|$
+  \end{enumerate}
+\end{definition}
+Bei dieser Gelegenheit sollte festgehalten werden, dass es mögllich ist, nicht konstruktive Axiome anzunehmen, um unsere Typentheorie bei Bedarf zu spezialisieren.
+Um diese zu formulieren brauchen wir aber noch die folgenden, sowieso wichtigen, Begriffe:
+\begin{definition}
+  Seien $A,B$ Typen und $f:A\to B$ eine Funktion.
+  \begin{enumerate}
+  \item Für $b:B$ ist die \begriff{Faser} von $f$ über $b$ gegeben durch:
+    \begin{mathpar}
+      \mathrm{fib}^{-1}(b):\equiv f^{-1}(b):\equiv \Sigma_{x:A}f(x)=b
+    \end{mathpar}
+  \item $f$ heißt \begriff{injektiv}, wenn
+    \begin{mathpar}
+      \prod_{y:B}(f^{-1}(y)\text{ is Aussage})
+    \end{mathpar}
+  \item $f$ heißt \begriff{surjektiv}, wenn
+    \begin{mathpar}
+      \prod_{y:B}\|f^{-1}(y)\|
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+\begin{bemerkung}
+  Es ist möglich, bei Bedarf anzunehmen, dass die folgenden klassischen Axiome gelten
+  \begin{enumerate}
+  \item Das Gesetzt vom \begriff{ausgeschlossenen Dritten}: Für jede Aussage gilt $P\vee \neg P$
+  \item Das Auswahlaxiom: Für jede surjektive Funktion $f:A\to B$ zwischen Mengen $A$ und $B$ gibt es $s:B\to A$ mit $f\circ s\sim \id_B$.
+  \end{enumerate}
+\end{bemerkung}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
 
 \section{Univalenz}
-\subsection{Homotopie von Abbildungen, Funktionsextensionalität}
 \subsection{Äquivalenzen}
 \subsection{Univalenz}
 
