@@ -1159,6 +1159,29 @@ Mit der folgenden Bemerkung scheinen auch Aussagen wenig Vielfalt zuzulassen:
     (t,x\mapsto a_{x,t}):\isContr(P)\equiv\Sigma_{c:P}\prod_{x:P}x=c
   \end{mathpar}
 \end{beweis}
+
+Es gibt einige Konstruktionen, die die Eigenschaften ``Aussage''  erhalten (allgemeiner auch für ``n-Typ'').
+\begin{lemma}
+  Seien $P,Q$ Aussagen und $A$ ein beliebiger Typ.
+  \begin{enumerate}
+  \item Mit $\FunExt$ gilt: Der Typ $A\to P$ ist eine Aussage.
+  \item $P\times Q$ ist eine Aussage.
+  \end{enumerate}
+\end{lemma}
+
+\begin{beweis}
+  \begin{enumerate}
+  \item Sei $t:\isProp(P)$, dann ist
+    \begin{mathpar}
+      \FunExt_{f,g}((x:A)\mapsto t_{(f(x),g(x))}):\isProp(A\to P)\equiv\prod_{f,g:A\to P}f=g
+    \end{mathpar}
+  \item Seien $t:\isProp(P)$ und $s:\isProp(Q)$. Per doppelter $\Sigma$-Induktion reicht es für $p,p':P$ und $q,q':Q$ zu zeigen:
+    \begin{mathpar}
+      (p,q)=(p',q')
+    \end{mathpar}
+    was durch $\pair_=(t_{p,p'},s_{q,q'})$ gegeben ist.
+  \end{enumerate}
+\end{beweis}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
 
