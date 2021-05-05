@@ -1037,9 +1037,27 @@ Um $b_x$ mit $b_y$ zu vergleichen, können wir es entlang einer Gleichheit $p:x=
   \end{mathpar}
   Nun sind $b_x,b'_x:B(x)$ noch frei wählbar, also kann wieder Gleichheitsinduktion angewandt und der gesuchte Term auf $\refl_{(x,b_x)}$ festgelegt werden.
 \end{beweis}
-Für die Gleichheit in abhängigen Summen gibt es auch eine Aussage wie \cref{lem:produkt-gleich}.
+Für die Gleichheit in abhängigen Summen gibt es auch eine Aussage wie \cref{lem:produkt-gleich}, der wir uns jetzt aber erstmal nicht zuwenden.
 
 \subsection{Kontrahierbarkeit und Aussagen}
+Wir beschäftigen uns zunächst mit Gleichheit von Funktionen.
+In verschiedenen Zusammenhängen ist bereits die punkweise Gleichheit von Funktionen aufgetreten, der wir nun einen Namen geben wollen:
+\begin{definition}
+  Seien $A,B$ Typen und $f,g:A\to B$ Funktionen. Wir nennen $f$ und $g$ \begriff{homotop} oder \begriff{punktweise gleich}, wenn der folgenden Typ einen Term hat
+  \begin{mathpar}
+    f \sim g :\equiv \prod_{x:A} f(x)=g(x)
+  \end{mathpar}
+  Die Elemente von $f\sim g$ heißen \begriff{Homotopien} oder \begriff{punktweise Gleichheiten}.
+\end{definition}
+Wir werden später das sogenannte \begriff{Univalenzaxiom} einführen, aus dem gefolgert werden kann, dass punktweise Gleichheiten bereits die Gleichheit von Funktionen zur Folge hat.
+Letztere Aussage hat einen eigenen Namen und wird von uns im Folgenden als Axiom verwendet:
+\begin{axiom}[Funktionsextensionalität]
+  Unter \begriff{Funktionsextensionalität} versteht man einen Term, der für Typen $A,B$ und Funktionen $f,g:A\to B$ wie folgt gegeben ist:
+  \begin{mathpar}
+    \mathrm{funExt}_{f,g}:\equiv \left(\prod_{x:A}f(x)=g(x)\right)\to f=g
+  \end{mathpar}
+\end{axiom}
+
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
 
