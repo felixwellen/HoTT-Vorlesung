@@ -960,6 +960,7 @@ Mit abhängigen Summen haben wir die Möglichkeit, Existenzaussagen zu formulier
 Gleichungen in den natürlichen Zahlen werden wir uns später noch zuwenden.
 Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen oder speziell Produkte der Gleichheitstyp verhält.
 \begin{lemma}
+  \label{lem:produkt-gleich}
   Seien $A,B$ Typen.
   \begin{enumerate}
   \item Für $x:A\times B$ gilt $x=(\pi_1(x),\pi_2(x))$.
@@ -967,7 +968,7 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
     \begin{mathpar}
       \pair_{=}: ((a=_A a')\times (b=_B b')) \to (a,b)=_{A\times B} (a',b')
     \end{mathpar}
-    und 
+    und
     \begin{mathpar}
       \pair_{=}^{-1}: (a,b)=_{A\times B} (a',b') \to ((a=_A a')\times (b=_B b'))
     \end{mathpar}
@@ -1036,7 +1037,7 @@ Um $b_x$ mit $b_y$ zu vergleichen, können wir es entlang einer Gleichheit $p:x=
   \end{mathpar}
   Nun sind $b_x,b'_x:B(x)$ noch frei wählbar, also kann wieder Gleichheitsinduktion angewandt und der gesuchte Term auf $\refl_{(x,b_x)}$ festgelegt werden.
 \end{beweis}
-
+Für die Gleichheit in abhängigen Summen gibt es auch eine Aussage wie \cref{lem:produkt-gleich}.
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
