@@ -875,23 +875,23 @@ verallgemeinert die abhängige Summe das kartesische Produkt $A\times B$, dadurc
 
 \begin{regeln}
   \begin{itemize}
-  \item Für einen Typ $A$ und $x:A\yields B(x)$, kann die \begriff{abhängige Summe} $\Sigma_{x:A}B(x)$ gebildet werden.
+  \item Für einen Typ $A$ und $x:A\yields B(x)$, kann die \begriff{abhängige Summe} $\sum_{x:A}B(x)$ gebildet werden.
     Die abhängige Summe wird auch \begriff{abhängiger Paartyp} oder \begriff{Sigmatyp} genannt und alternativ mit $(x:A)\times B(x)$ bezeichnet.
-  \item Für $x:A$ und $b(x):B(x)$ gibt es ein \begriff{Paar}, also ein Element $(x,b(x)) : \Sigma_{x:A}B(x)$.
-  \item Für einen abhängigen Typ $y:\Sigma_{x:A}B(x)\yields C(y)$ und einen abhängigen Term $x:A,b(x):B\yields c((x,b(x))) : C((x,b(x)))$ gibt es eine abhängige Funktion
+  \item Für $x:A$ und $b(x):B(x)$ gibt es ein \begriff{Paar}, also ein Element $(x,b(x)) : \sum_{x:A}B(x)$.
+  \item Für einen abhängigen Typ $y:\sum_{x:A}B(x)\yields C(y)$ und einen abhängigen Term $x:A,b(x):B\yields c((x,b(x))) : C((x,b(x)))$ gibt es eine abhängige Funktion
     \begin{mathpar}
-      \ind{\Sigma}(C, c):\prod_{y:\Sigma_{x:A}B(x)}C(y)
+      \ind{\sum}(C, c):\prod_{y:\sum_{x:A}B(x)}C(y)
     \end{mathpar}
   \item Für auf diese Art definierte Funktionen gilt für $a:A, b:B(a)$ die Urteilsgleichheit
     \begin{mathpar}
-      \ind{\Sigma}(C, c)((a,b))\equiv c((a,b)) : C((a,b))
+      \ind{\sum}(C, c)((a,b))\equiv c((a,b)) : C((a,b))
     \end{mathpar}
   \end{itemize}
 \end{regeln}
 
 Wenn keine Verwechslungsgefahr besteht, wollen wir etwa für ``$c((a,b))$'' auch einfach ``$c(a,b)$'' schreiben.
 Die Induktionsregel, also den dritten Punkt oben, hätten wir auch wie folgt formulieren können:
-Für $c:\prod_{x:A}\prod_{b:B(x)}C(a,b)$ gibt es $\ind{\Sigma}(C,c):\prod_{y:\Sigma_{x:A}B(x)}C(y)$.
+Für $c:\prod_{x:A}\prod_{b:B(x)}C(a,b)$ gibt es $\ind{\sum}(C,c):\prod_{y:\sum_{x:A}B(x)}C(y)$.
 Und wir wollen auch hier wieder Funktionen durch ihre definierende Gleichung in folgender Form angeben:
 \begin{mathpar}
   g(a,b):\equiv c(a,b)
@@ -900,12 +900,12 @@ Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
 \begin{definition}
   Seien $A$ ein Typ und $x:A\yields B(x)$ abhängiger Typ über $A$.
   \begin{enumerate}
-  \item Die Funktion $\pi_1:\left(\Sigma_{x:A}B(x)\right)\to A$ gegeben durch
+  \item Die Funktion $\pi_1:\left(\sum_{x:A}B(x)\right)\to A$ gegeben durch
       \begin{mathpar}
         \pi_1(a,b):\equiv a
       \end{mathpar}
       heißt \begriff{Projektion} auf die Basis oder Projektion auf den ersten Faktor.
-    \item Die abhängige Funktion $\pi_2:\left(y:\Sigma_{x:A}B(x)\right)\to B(\pi_1(y))$ gegeben durch
+    \item Die abhängige Funktion $\pi_2:\left(y:\sum_{x:A}B(x)\right)\to B(\pi_1(y))$ gegeben durch
       \begin{mathpar}
                 \pi_2(a,b):\equiv b
       \end{mathpar}
@@ -915,7 +915,7 @@ Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
 
 Wie bereits bei den Funktionen verwenden wir auch hier die übliche Notation, wenn keine echte Abhängigkeit vorliegt:
 \begin{definition}
-  Für zwei Typen $A$ und $B$ schreiben wir auch $A\times B$ statt $\Sigma_{x:A}B(x)$ und
+  Für zwei Typen $A$ und $B$ schreiben wir auch $A\times B$ statt $\sum_{x:A}B(x)$ und
   sprechen vom \begriff{Produkt}\footnote{Die übliche Terminologie ist hier leider etwas verwirrend...} von $A$ und $B$.
 \end{definition}
 
@@ -932,7 +932,7 @@ Ein Beispiel dafür ist die folgenden wichtigen Definitionen, die uns von nun an
   \item Sei $f:A\to B$ eine Funktion. Wir sagen, dass $f$ eine \begriff{Quasi-Inverse} oder \begriff{Inverse} hat,
     wenn der Typ
     \begin{mathpar}
-      \mathrm{qinv(f)}:\equiv\Sigma_{f:B\to A}\left(\left(\prod_{x:A}g(f(x))=x\right) \times \left(\prod_{y:B}f(g(y))=y\right)\right)
+      \mathrm{qinv(f)}:\equiv\sum_{f:B\to A}\left(\left(\prod_{x:A}g(f(x))=x\right) \times \left(\prod_{y:B}f(g(y))=y\right)\right)
       \end{mathpar}
       einen Term hat.
   \end{enumerate}
@@ -965,7 +965,7 @@ Mit abhängigen Summen haben wir die Möglichkeit, Existenzaussagen zu formulier
 \begin{definition}
   Seien $a,d:\N$. Die Phrase $d$ \begriff{teilt} $a$ steht für den folgenden Typen:
   \begin{mathpar}
-    \Sigma_{c:\N} c\cdot d = a
+    \sum_{c:\N} c\cdot d = a
   \end{mathpar}
 \end{definition}
 Gleichungen in den natürlichen Zahlen werden wir uns später noch zuwenden.
@@ -991,7 +991,7 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
     \begin{mathpar}
       \prod_{x:A\times B} x=(\pi_1(x),\pi_2(x))
     \end{mathpar}
-    zu konstruieren. Mit $\Sigma$-Induktion folgt dieser aus:
+    zu konstruieren. Mit $\sum$-Induktion folgt dieser aus:
     \begin{mathpar}
       a\mapsto b \mapsto \refl_{(a,b)}:\prod_{a : A}\prod_{b : B} (a,b)=(\pi_1(a,b),\pi_2(a,b))
     \end{mathpar}
@@ -1014,7 +1014,7 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
     \begin{mathpar}
       t:\prod_{x,y:A\times B}\prod_{p:x=y}\pair_=(\pair_=^{-1'})(p)=u(\pi_1(x),\pi_2(x))^{-1}\kon p\kon u(\pi_1(y),\pi_2(y))
     \end{mathpar}
-    durch Gleichheits- und $\Sigma$-Induktion -- wir dürfen also $\refl_{(a,b)}$ für $p$ einsetzen:
+    durch Gleichheits- und $\sum$-Induktion -- wir dürfen also $\refl_{(a,b)}$ für $p$ einsetzen:
     \begin{mathpar}
       \pair_=(\pair_=^{-1'})(\refl_{(a,b)})=\refl_{(a,b)}^{-1}\kon \refl_{(a,b)}\kon \refl_{(a,b)}
     \end{mathpar}
@@ -1038,7 +1038,7 @@ Um $b_x$ mit $b_y$ zu vergleichen, können wir es entlang einer Gleichheit $p:x=
   Seien $A$ ein Typ und $x:A\yields B(x)$ abhängig über $A$.
   Für $x,y:A$ und $b_x:B(x)$, $b'_y:B(y)$ gibt es eine Funktion
   \begin{mathpar}
-    \Sigma_=:\prod_{p:x=y} \mathrm{tr}_B(p)(b_x)=b'_y \to (x,b_x)=(y,b'_y)
+    \sum_=:\prod_{p:x=y} \mathrm{tr}_B(p)(b_x)=b'_y \to (x,b_x)=(y,b'_y)
   \end{mathpar}
 \end{lemma}
 \begin{beweis}
@@ -1095,25 +1095,25 @@ Was wir bereits über Gleichheit wissen und mit Gleichheiten machen können, lä
 \end{bemerkung}
 
 Ziel dieses Abschnitts ist es, die ersten beiden Stufen einer Hierarchie auf allen Typen einzuführen und zu untersuchen.
-Diese Hierarchie, die sogenannten \begriff{n-Typen} ist nicht total und bezieht sich auf die komplexität der Gleichheiten in Typen.
+Diese Hierarchie der sogenannten \begriff{n-Typen} ist nicht total und bezieht sich auf die Komplexität der Gleichheiten in Typen.
 In der niedrigsten Stufe sind alle Elemente eines Typs gleich einem fest gewählten, wir werden sehen, dass eine Konsequenz davon ist, dass auch Gleichheiten zwischen Gleichheiten keine neue komplexität aufweisen.
 Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten beiden Stufen benennen:
 
 \begin{definition}
   Sei $A$ ein Typ.
   \begin{enumerate}
-  \item $A$ heißt \begriff{kontrahierbar} oder \begriff{-2-Typ}, wenn
+  \item $A$ heißt \begriff{kontrahierbar} oder \begriff{$-2$-Typ}, wenn
     \begin{mathpar}
-      \isContr(A):\equiv \Sigma_{c:A}\prod_{x:A} x=c
+      \isContr(A):\equiv \sum_{c : A} \prod_{x : A} x=c
     \end{mathpar}
     (einen Term hat). 
-  \item $A$ heißt \begriff{Aussage} oder \begriff{-1-Typ}, wenn
+  \item $A$ heißt \begriff{Aussage} oder \begriff{$-1$-Typ}, wenn
     \begin{mathpar}
-      \isProp(A):\equiv \prod_{x,y:A}x=y
+      \isProp(A):\equiv \prod_{x,y : A}x=y
     \end{mathpar}
-  \item $A$ heißt \begriff{0-Typ} oder \begriff{Menge}, wenn
+  \item $A$ heißt \begriff{$0$-Typ} oder \begriff{Menge}, wenn
     \begin{mathpar}
-      \isSet(A):\equiv \prod_{x,y:A}\prod_{p,q:x=y}p=q
+      \isSet(A):\equiv \prod_{x,y : A}\prod_{p,q : x=y}p=q
     \end{mathpar}
   \end{enumerate}
 \end{definition}
@@ -1125,7 +1125,7 @@ Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten
   \end{enumerate}
 \end{beispiel}
 
-Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits gesagt heraus, dass jeder kontrahierbare Typ bereits mehr oder weniger der Einheitstyp ist:
+Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits Gesagten heraus, dass jeder kontrahierbare Typ bereits mehr oder weniger der Einheitstyp ist:
 \begin{bemerkung}
   Sei $A$ ein kontrahierbarer Typ. Es gilt:
   \begin{enumerate}
@@ -1138,7 +1138,7 @@ Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits gesagt heraus
 (a), (b) In den Übungen. \\
 (c) Wir haben
 \begin{mathpar}
-  k:\isContr(A)\equiv \Sigma_{c:A}\prod_{x:A}x=c
+  k:\isContr(A)\equiv \sum_{c:A}\prod_{x:A}x=c
 \end{mathpar}
 und damit:
 \begin{mathpar}
@@ -1157,7 +1157,7 @@ Mit der folgenden Bemerkung scheinen auch Aussagen wenig Vielfalt zuzulassen:
   \end{mathpar}
   und damit
   \begin{mathpar}
-    (t,x\mapsto a_{x,t}):\isContr(P)\equiv\Sigma_{c:P}\prod_{x:P}x=c
+    (t,x\mapsto a_{x,t}):\isContr(P)\equiv\sum_{c:P}\prod_{x:P}x=c
   \end{mathpar}
 \end{beweis}
 
@@ -1165,17 +1165,17 @@ Es gibt einen überraschenderweise kontrahierbaren Typen, der uns noch begleiten
 \begin{lemma}
   Seien $A$ ein Typ und $x:A\yields B(x)$. Dann ist für $y:A$ der Typ
   \begin{mathpar}
-    \Sigma_{x:A}x=y
+    \sum_{x:A}x=y
   \end{mathpar}
   kontrahierbar.
 \end{lemma}
 \begin{beweis}
-  Wegen $(y,\refl_y):\Sigma_{x:A}x=y$ reicht es zu zeigen, dass der Typ eine Aussage ist, also je zwei Elemente gleich sind.
-  Durch $\Sigma$-Induktion, reicht es zu zeigen, dass je zwei paare
+  Wegen $(y,\refl_y):\sum_{x:A}x=y$ reicht es zu zeigen, dass der Typ eine Aussage ist, also je zwei Elemente gleich sind.
+  Durch $\sum$-Induktion, reicht es zu zeigen, dass je zwei paare
   \begin{mathpar}
-    (x,q),(x',q'):\Sigma_{x:A}x=y
+    (x,q),(x',q'):\sum_{x:A}x=y
   \end{mathpar}
-  gleich sind. Es ist $q\kon q'^{-1}:x=x'$ und damit können wir $\Sigma_=$ verwenden:
+  gleich sind. Es ist $q\kon q'^{-1}:x=x'$ und damit können wir $\sum_=$ verwenden:
   \begin{mathpar}
     \Sigma_=:\prod_{p:x=x'}\mathrm{tr}_{x:A\yields x=y}(p)(q)=q' \to (x,q)=(x',q')
   \end{mathpar}
@@ -1201,7 +1201,7 @@ Es gibt einige Konstruktionen, die die Eigenschaften ``Aussage''  erhalten (allg
     \begin{mathpar}
       \FunExt_{f,g}((x:A)\mapsto t_{(f(x),g(x))}):\isProp(A\to P)\equiv\prod_{f,g:A\to P}f=g
     \end{mathpar}
-  \item Seien $t:\isProp(P)$ und $s:\isProp(Q)$. Per doppelter $\Sigma$-Induktion reicht es für $p,p':P$ und $q,q':Q$ zu zeigen:
+  \item Seien $t:\isProp(P)$ und $s:\isProp(Q)$. Per doppelter $\sum$-Induktion reicht es für $p,p':P$ und $q,q':Q$ zu zeigen:
     \begin{mathpar}
       (p,q)=(p',q')
     \end{mathpar}
@@ -1212,7 +1212,7 @@ Es gibt einige Konstruktionen, die die Eigenschaften ``Aussage''  erhalten (allg
 Es ist möglich, Typen universell in eine Aussage zu verwandeln. Dafür werden wir zunächst nur eine Formierungs- und Einführungsregel kennenlernen:
 \begin{regeln}[-1-Truncation, teilweise]
   Für jeden Typ $A$ gibt es eine Aussage $\|A\|$. Weiter gibt es für jedes $a:A$ ein $|a|:\|A\|$.
-  Der Typ $\|A\|$ heißt \begriff{-1-Abstumpfung} oder \begriff{-1-Truncation}.
+  Der Typ $\|A\|$ heißt \begriff{-1-Abschneidung} oder \begriff{-1-Truncation}.
   Mit den weiteren Regeln wird sich rausstellen, dass $|\_|:A\to \|A\|$ genau dann eine Inverse hat,
   wenn $A$ bereits eine Aussage war.
 \end{regeln}
@@ -1229,21 +1229,21 @@ Damit können wir alle üblichen Logikkonstrukte für Aussagen definieren:
   Sei nun $A$ ein Typ und $P(x)$ eine Aussage für $x:A$.
   \begin{enumerate}
   \item $\forall x:A \text{ gilt } P(x) :\equiv \prod_{x:A}P(x)$
-  \item $\exists x:A \text{ mit } P(x):\equiv \|\Sigma_{x:A}P(x)\|$
+  \item $\exists x:A \text{ mit } P(x):\equiv \|\sum_{x:A}P(x)\|$
   \end{enumerate}
 \end{definition}
-Bei dieser Gelegenheit sollte festgehalten werden, dass es mögllich ist, nicht konstruktive Axiome anzunehmen, um unsere Typentheorie bei Bedarf zu spezialisieren.
+Bei dieser Gelegenheit sollte festgehalten werden, dass es möglich ist, nicht konstruktive Axiome anzunehmen, um unsere Typentheorie bei Bedarf zu spezialisieren.
 Um diese zu formulieren brauchen wir aber noch die folgenden, sowieso wichtigen, Begriffe:
 \begin{definition}
   Seien $A,B$ Typen und $f:A\to B$ eine Funktion.
   \begin{enumerate}
   \item Für $b:B$ ist die \begriff{Faser} von $f$ über $b$ gegeben durch:
     \begin{mathpar}
-      \mathrm{fib}^{-1}(b):\equiv f^{-1}(b):\equiv \Sigma_{x:A}f(x)=b
+      \mathrm{fib}^{-1}(b):\equiv f^{-1}(b):\equiv \sum_{x:A}f(x)=b
     \end{mathpar}
   \item $f$ heißt \begriff{injektiv}, wenn
     \begin{mathpar}
-      \prod_{y:B}(f^{-1}(y)\text{ is Aussage})
+      \prod_{y:B}(f^{-1}(y)\text{ ist Aussage})
     \end{mathpar}
   \item $f$ heißt \begriff{surjektiv}, wenn
     \begin{mathpar}
@@ -1254,7 +1254,7 @@ Um diese zu formulieren brauchen wir aber noch die folgenden, sowieso wichtigen,
 \begin{bemerkung}
   Es ist möglich, bei Bedarf anzunehmen, dass die folgenden klassischen Axiome gelten
   \begin{enumerate}
-  \item Das Gesetzt vom \begriff{ausgeschlossenen Dritten}: Für jede Aussage gilt $P\vee \neg P$
+  \item Das Gesetz vom \begriff{ausgeschlossenen Dritten}: Für jede Aussage gilt $P\vee \neg P$
   \item Das Auswahlaxiom: Für jede surjektive Funktion $f:A\to B$ zwischen Mengen $A$ und $B$ gibt es $s:B\to A$ mit $f\circ s\sim \id_B$.
   \end{enumerate}
 \end{bemerkung}
