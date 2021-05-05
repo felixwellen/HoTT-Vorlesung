@@ -1017,6 +1017,26 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
     \end{align*}
   \end{enumerate}
 \end{beweis}
+
+Für allgemeine abhängige Summen gibt es eine ähnliche Möglichkeit, Gleichheiten zu erzeugen.
+Hier ist allerdings eine Schwierigkeit, dass zwei Elemente im zweiten Faktor, also etwa $b_x:B(x)$ und $b_y:B(y)$ im Allgemeinen nicht vom selben Typ sind.
+Also ergibt es keinen Sinn, nach einer Gleichheit $q:b_x=b_y$ zu fragen.
+Um $b_x$ mit $b_y$ zu vergleichen, können wir es entlang einer Gleichheit $p:x=y$ transportieren, also nach $\mathrm{tr}_B(p)(b_x)=b_y$ fragen.
+\begin{lemma}
+  Seien $A$ ein Typ und $x:A\yields B(x)$ abhängig über $A$.
+  Für $x,y:A$ und $b_x:B(x)$, $b'_y:B(y)$ gibt es eine Funktion
+  \begin{mathpar}
+    \Sigma_=:\prod_{p:x=y} \mathrm{tr}_B(p)(b_x)=b'_y \to (x,b_x)=(y,b'_y)
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Mit Induktion über $p$ reicht es, eine Funktion folgenden Typs anzugeben:
+  \begin{mathpar}
+    b_x=b'_x \to (x,b_x)=(x,b'_x)
+  \end{mathpar}
+  Nun sind $b_x,b'_x:B(x)$ noch frei wählbar, also kann wieder Gleichheitsinduktion angewandt und der gesuchte Term auf $\refl_{(x,b_x)}$ festgelegt werden.
+\end{beweis}
+
 \subsection{Kontrahierbarkeit und Aussagen}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
