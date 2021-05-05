@@ -1059,7 +1059,8 @@ In verschiedenen Zusammenhängen ist bereits die punkweise Gleichheit von Funkti
   \end{mathpar}
   Die Elemente von $f\sim g$ heißen \begriff{Homotopien} oder \begriff{punktweise Gleichheiten}.
 \end{definition}
-Wir werden später das sogenannte \begriff{Univalenzaxiom} einführen, aus dem gefolgert werden kann, dass punktweise Gleichheiten bereits die Gleichheit von Funktionen zur Folge hat.
+Wir werden später das sogenannte \begriff{Univalenzaxiom} und ein \begriff{Intervall} als höheren induktiven Typen einführen.
+Aus beidem kann jeweils gefolgert werden, dass punktweise Gleichheiten bereits die Gleichheit von Funktionen zur Folge hat.
 Letztere Aussage hat einen eigenen Namen und wird von uns im Folgenden als Axiom verwendet:
 \begin{axiom}[Funktionsextensionalität]
   Unter \begriff{Funktionsextensionalität} versteht man einen Term, der für Typen $A,B$ und Funktionen $f,g:A\to B$ wie folgt gegeben ist:
@@ -1092,6 +1093,72 @@ Was wir bereits über Gleichheit wissen und mit Gleichheiten machen können, lä
   \end{enumerate}
 \end{bemerkung}
 
+Ziel dieses Abschnitts ist es, die ersten beiden Stufen einer Hierarchie auf allen Typen einzuführen und zu untersuchen.
+Diese Hierarchie, die sogenannten \begriff{n-Typen} ist nicht total und bezieht sich auf die komplexität der Gleichheiten in Typen.
+In der niedrigsten Stufe sind alle Elemente eines Typs gleich einem fest gewählten, wir werden sehen, dass eine Konsequenz davon ist, dass auch Gleichheiten zwischen Gleichheiten keine neue komplexität aufweisen.
+Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten beiden Stufen benennen:
+
+\begin{definition}
+  Sei $A$ ein Typ.
+  \begin{enumerate}
+  \item $A$ heißt \begriff{kontrahierbar} oder \begriff{-2-Typ}, wenn
+    \begin{mathpar}
+      \isContr(A):\equiv \Sigma_{c:A}\prod_{x:A} x=c
+    \end{mathpar}
+    (einen Term hat). 
+  \item $A$ heißt \begriff{Aussage} oder \begriff{-1-Typ}, wenn
+    \begin{mathpar}
+      \isProp(A):\equiv \prod_{x,y:A}x=y
+    \end{mathpar}
+  \item $A$ heißt \begriff{0-Typ} oder \begriff{Menge}, wenn
+    \begin{mathpar}
+      \isSet(A):\equiv \prod_{x,y:A}\prod_{p,q:x=y}p=q
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
+\begin{beispiel}
+  \begin{enumerate}
+  \item $\einheit$ ist kontrahierbar.
+  \item $\leer$ ist eine Aussage.
+  \end{enumerate}
+\end{beispiel}
+
+Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits gesagt heraus, dass jeder kontrahierbare Typ bereits mehr oder weniger der Einheitstyp ist:
+\begin{bemerkung}
+  Sei $A$ ein kontrahierbarer Typ. Es gilt:
+  \begin{enumerate}
+  \item Für $x,y:A$ ist $x=_Ay$ kontrahierbar.
+  \item Es gibt Funktionen $f:A\to \einheit$ und $g:\einheit  \to A$, die zueinander invers sind.
+  \item $A$ ist eine Aussage.
+  \end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+(a), (b) In den Übungen. \\
+(c) Wir haben
+\begin{mathpar}
+  k:\isContr(A)\equiv \Sigma_{c:A}\prod_{x:A}x=c
+\end{mathpar}
+und damit:
+\begin{mathpar}
+  x \mapsto y \mapsto k_x\kon k_y^{-1}:\prod_{x,y:A}x=y
+\end{mathpar}
+\end{beweis}
+
+Mit der folgenden Bemerkung scheinen auch Aussagen wenig Vielfalt zuzulassen:
+\begin{bemerkung}
+  Sei $P$ eine Aussage und $t:P$. Dann ist $P$ kontrahierbar.
+\end{bemerkung}
+\begin{beweis}
+  Es gibt
+  \begin{mathpar}
+    a:\prod_{x,y:P}x=y
+  \end{mathpar}
+  und damit
+  \begin{mathpar}
+    (t,x\mapsto a_{x,t}):\isContr(P)\equiv\Sigma_{c:P}\prod_{x:P}x=c
+  \end{mathpar}
+\end{beweis}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
 
