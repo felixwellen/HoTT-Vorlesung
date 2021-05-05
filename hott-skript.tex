@@ -1182,6 +1182,28 @@ Es gibt einige Konstruktionen, die die Eigenschaften ``Aussage''  erhalten (allg
     was durch $\pair_=(t_{p,p'},s_{q,q'})$ gegeben ist.
   \end{enumerate}
 \end{beweis}
+
+Es ist möglich, Typen universell in eine Aussage zu verwandeln. Dafür werden wir zunächst nur eine Formierungs- und Einführungsregel kennenlernen:
+\begin{regeln}[-1-Truncation, teilweise]
+  Für jeden Typ $A$ gibt es eine Aussage $\|A\|$. Weiter gibt es für jedes $a:A$ ein $|a|:\|A\|$.
+  Der Typ $\|A\|$ heißt \begriff{-1-Abstumpfung} oder \begriff{-1-Truncation}.
+\end{regeln}
+
+Damit können wir alle üblichen Logikkonstrukte für Aussagen definieren:
+\begin{definition}
+  Seien $P$ und $Q$ Aussagen.
+  \begin{enumerate}
+  \item $P\Rightarrow Q:\equiv P\to Q$
+  \item $P\wedge Q:\equiv P\times Q$
+  \item $P\vee Q:\equiv \|P\amalg Q\|$
+  \item $\neg P:\equiv P\to \leer$
+  \end{enumerate}
+  Sei nun $A$ ein Typ und $P(x)$ eine Aussage für $x:A$.
+  \begin{enumerate}
+  \item $\forall x:A \text{ gilt } P(x) :\equiv \prod_{x:A}P(x)$
+  \item $\exists x:A \text{ mit } P(x):\equiv \|\Sigma_{x:A}P(x)\|$
+  \end{enumerate}
+\end{definition}
 \subsection{Universen}
 \subsection{Gleichungen in den natürlichen Zahlen}
 
