@@ -1095,25 +1095,25 @@ Was wir bereits über Gleichheit wissen und mit Gleichheiten machen können, lä
 \end{bemerkung}
 
 Ziel dieses Abschnitts ist es, die ersten beiden Stufen einer Hierarchie auf allen Typen einzuführen und zu untersuchen.
-Diese Hierarchie, die sogenannten \begriff{n-Typen} ist nicht total und bezieht sich auf die komplexität der Gleichheiten in Typen.
+Diese Hierarchie der sogenannten \begriff{n-Typen} ist nicht total und bezieht sich auf die Komplexität der Gleichheiten in Typen.
 In der niedrigsten Stufe sind alle Elemente eines Typs gleich einem fest gewählten, wir werden sehen, dass eine Konsequenz davon ist, dass auch Gleichheiten zwischen Gleichheiten keine neue komplexität aufweisen.
 Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten beiden Stufen benennen:
 
 \begin{definition}
   Sei $A$ ein Typ.
   \begin{enumerate}
-  \item $A$ heißt \begriff{kontrahierbar} oder \begriff{-2-Typ}, wenn
+  \item $A$ heißt \begriff{kontrahierbar} oder \begriff{$-2$-Typ}, wenn
     \begin{mathpar}
-      \isContr(A):\equiv \Sigma_{c:A}\prod_{x:A} x=c
+      \isContr(A):\equiv \sum_{c : A} \prod_{x : A} x=c
     \end{mathpar}
     (einen Term hat). 
-  \item $A$ heißt \begriff{Aussage} oder \begriff{-1-Typ}, wenn
+  \item $A$ heißt \begriff{Aussage} oder \begriff{$-1$-Typ}, wenn
     \begin{mathpar}
-      \isProp(A):\equiv \prod_{x,y:A}x=y
+      \isProp(A):\equiv \prod_{x,y : A}x=y
     \end{mathpar}
-  \item $A$ heißt \begriff{0-Typ} oder \begriff{Menge}, wenn
+  \item $A$ heißt \begriff{$0$-Typ} oder \begriff{Menge}, wenn
     \begin{mathpar}
-      \isSet(A):\equiv \prod_{x,y:A}\prod_{p,q:x=y}p=q
+      \isSet(A):\equiv \prod_{x,y : A}\prod_{p,q : x=y}p=q
     \end{mathpar}
   \end{enumerate}
 \end{definition}
@@ -1125,7 +1125,7 @@ Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten
   \end{enumerate}
 \end{beispiel}
 
-Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits gesagt heraus, dass jeder kontrahierbare Typ bereits mehr oder weniger der Einheitstyp ist:
+Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits Gesagten heraus, dass jeder kontrahierbare Typ bereits mehr oder weniger der Einheitstyp ist:
 \begin{bemerkung}
   Sei $A$ ein kontrahierbarer Typ. Es gilt:
   \begin{enumerate}
