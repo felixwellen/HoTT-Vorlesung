@@ -919,13 +919,22 @@ Wie bereits bei den Funktionen verwenden wir auch hier die übliche Notation, we
 \end{definition}
 
 Mit Produkten lassen sich Konjuntionen ausdrücken.
-Ein Beispiel dafür ist die folgende wichtige Definition, die uns von nun an begleiten wird:
+Ein Beispiel dafür ist die folgenden wichtigen Definitionen, die uns von nun an begleiten werden:
 \begin{definition}
-  Seien $A,B$ Typen. Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
-  wenn
-  \begin{mathpar}
-    \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
-  \end{mathpar}
+  Seien $A,B$ Typen.
+  \begin{enumerate}
+  \item Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
+    wenn
+    \begin{mathpar}
+      \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
+    \end{mathpar}
+  \item Sei $f:A\to B$ eine Funktion. Wir sagen, dass $f$ eine \begriff{Quasi-Inverse} oder \begriff{Inverse} hat,
+    wenn der Typ
+    \begin{mathpar}
+      \mathrm{qinv(f)}:\equiv\Sigma_{f:B\to A}\left(\left(\prod_{x:A}g(f(x))=x\right) \times \left(\prod_{y:B}f(g(y))=y\right)\right)
+      \end{mathpar}
+      einen Term hat.
+  \end{enumerate}
 \end{definition}
 
 Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
