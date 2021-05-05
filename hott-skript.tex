@@ -839,6 +839,7 @@ Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine 
 \end{definition}
 Transport kann man für spezielle Typen konkretisieren.
 \begin{lemma}
+  \label{lem:transp-lpath}
   Seien $A$ ein Typ und $a:A$. Für den von $x:A$ abhängigen Typ $B(x):\equiv (x=a)$ kann der Transport für $x,x':A$ und $p:x=x'$ berechnet werden:
   \begin{mathpar}
     ((q:x=a)\mapsto p^{-1}\kon q) = \mathrm{tr}_B(p) : B(x) \to B(x')
@@ -1158,6 +1159,31 @@ Mit der folgenden Bemerkung scheinen auch Aussagen wenig Vielfalt zuzulassen:
   \begin{mathpar}
     (t,x\mapsto a_{x,t}):\isContr(P)\equiv\Sigma_{c:P}\prod_{x:P}x=c
   \end{mathpar}
+\end{beweis}
+
+Es gibt einen überraschenderweise kontrahierbaren Typen, der uns noch begleiten wird.
+\begin{lemma}
+  Seien $A$ ein Typ und $x:A\yields B(x)$. Dann ist für $y:A$ der Typ
+  \begin{mathpar}
+    \Sigma_{x:A}x=y
+  \end{mathpar}
+  kontrahierbar.
+\end{lemma}
+\begin{beweis}
+  Wegen $(y,\refl_y):\Sigma_{x:A}x=y$ reicht es zu zeigen, dass der Typ eine Aussage ist, also je zwei Elemente gleich sind.
+  Durch $\Sigma$-Induktion, reicht es zu zeigen, dass je zwei paare
+  \begin{mathpar}
+    (x,q),(x',q'):\Sigma_{x:A}x=y
+  \end{mathpar}
+  gleich sind. Es ist $q\kon q'^{-1}:x=x'$ und damit können wir $\Sigma_=$ verwenden:
+  \begin{mathpar}
+    \Sigma_=:\prod_{p:x=x'}\mathrm{tr}_{x:A\yields x=y}(p)(q)=q' \to (x,q)=(x',q')
+  \end{mathpar}
+  Den Transport haben wir in \cref{lem:transp-lpath} berechnet und können einsetzen:
+  \begin{mathpar}
+    (q\kon q'^{-1})^{-1} \kon q=q' \to (x,q)=(x',q')
+  \end{mathpar}
+  Mit Induktion kann berechnet werden: $(q\kon q'^{-1})^{-1}=q'\kon q^{-1}$ und damit mit den Rechengesetzen für Gleichheiten der Beweis beendet werden.
 \end{beweis}
 
 Es gibt einige Konstruktionen, die die Eigenschaften ``Aussage''  erhalten (allgemeiner auch für ``n-Typ'').
