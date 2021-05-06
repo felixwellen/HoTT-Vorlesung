@@ -99,7 +99,9 @@ data _⊔_ (A B : Set) : Set where
   Gleichheit.
   Die beiden Parameter "x,y : A" können wir in Agda realisieren, indem wir einen
   induktiven Typ vom Typ "A → A → Set" definieren.
+  mit der 'infixl' zeile legen wir fest, dass _≡_ eine niedrigere Priorität als default (=20) hat
 -}
+infixl 10 _≡_
 
 data _≡_ {A : Set} : A → A → Set where
   refl : (x : A) → x ≡ x
@@ -133,3 +135,35 @@ _∙_ : {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 
 bsp1-4-4 : (x y : Eins) → x ≡ y
 bsp1-4-4 x y = bsp1-4-2 x ∙ (bsp1-4-2 y) ⁻¹
+
+{-
+  1.4.6, 1.4.7, 1.4.8
+  Mit 'module _ {A : Set} where' öffnen wir einen durch Einrückung abgegrenzten Bereich,
+  in dem alle Definitionen den Parameter '{A : Set}' ohne diesen jedesmal erwähnen zu müssen.
+-}
+
+module _ {A : Set} where
+  reflLNeutral : {x y : A}
+                 → (p : x ≡ y)
+                 → (refl x) ∙ p ≡ p
+  reflLNeutral (refl x) = refl (refl x)
+
+  reflRNeutral : {x y : A}
+                 → (p : x ≡ y)
+                 → p ∙ (refl y) ≡ p
+  reflRNeutral (refl x) = refl (refl x)
+
+  ⁻¹RInv : {x y : A}
+           → (p : x ≡ y)
+           → p ∙ p ⁻¹ ≡ (refl x)
+  ⁻¹RInv (refl x) = refl (refl x)
+
+  ⁻¹LInv : {x y : A}
+           → (p : x ≡ y)
+           → p ⁻¹ ∙ p ≡ (refl y)
+  ⁻¹LInv (refl x) = refl (refl x)
+
+  ∙Assoziativ : {x y z w : A}
+                → (p : x ≡ y) → (q : y ≡ z) → (r : z ≡ w)
+                → (p ∙ q) ∙ r ≡ p ∙ (q ∙ r)
+  ∙Assoziativ (refl x) q r = refl (q ∙ r)
