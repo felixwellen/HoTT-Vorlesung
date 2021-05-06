@@ -167,3 +167,42 @@ module _ {A : Set} where
                 → (p : x ≡ y) → (q : y ≡ z) → (r : z ≡ w)
                 → (p ∙ q) ∙ r ≡ p ∙ (q ∙ r)
   ∙Assoziativ (refl x) q r = refl (q ∙ r)
+
+{-
+  1.4.11
+-}
+
+ap : {A B : Set} {x y : A}
+     → (f : A → B)
+     → (p : x ≡ y)
+     → f x ≡ f y
+ap f (refl x) = refl (f x)
+
+{-
+  1.4.10
+-}
+
+module macLane {A : Set} {x y z w u : A}
+               (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u) where
+
+       α₁ : ((p ∙ q) ∙ r) ∙ s ≡ (p ∙ (q ∙ r)) ∙ s
+       α₁ = ap (λ t → t ∙ s) (∙Assoziativ p q r)
+
+       α₂ : (p ∙ (q ∙ r)) ∙ s ≡ p ∙ ((q ∙ r) ∙ s)
+       α₂ = ∙Assoziativ p (q ∙ r) s
+
+       α₃ : p ∙ ((q ∙ r) ∙ s) ≡ p ∙ (q ∙ (r ∙ s))
+       α₃ = ap (λ t → p ∙ t) (∙Assoziativ q r s)
+
+       α₄ : ((p ∙ q) ∙ r) ∙ s ≡ (p ∙ q) ∙ (r ∙ s)
+       α₄ = ∙Assoziativ (p ∙ q) r s
+
+       α₅ : (p ∙ q) ∙ (r ∙ s) ≡ p ∙ (q ∙ (r ∙ s))
+       α₅ = ∙Assoziativ p q (r ∙ s)
+
+open macLane
+
+bem1-4-10 : {A : Set} {x y z w u : A}
+            (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u)
+            → ((α₁ p q r s) ∙ (α₂ p q r s)) ∙ (α₃ p q r s) ≡ (α₄ p q r s) ∙ (α₅ p q r s)
+bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
