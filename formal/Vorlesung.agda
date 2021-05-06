@@ -31,6 +31,14 @@ g ∘ f = λ x → g(f(x))
 data ℕ : Set where
   0ℕ : ℕ
   succℕ : ℕ → ℕ
+{-
+  Die Induktionsregel dafür gibt es bei Agda automatisch in der Gestalt von Pattern-Matching.
+  Das können wir nutzen, um den Induktionsterm aus der Vorlesung zu definieren.
+-}
+
+ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → Π ℕ P
+ind= p₀ pₛ 0ℕ = p₀
+ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
 
 d : ℕ → ℕ
 d 0ℕ = 0ℕ
@@ -49,14 +57,45 @@ succℕ n · k = (n · k) + k
   (mit noch nicht so tollen Namen)
 -}
 
+{-
+  1.3.3
+
+  ∅ \0
+-}
+
+data ∅ : Set where
+
+{-
+  1.3.1
+  ∗ \ast
+-}
+
 data Eins : Set where
   ∗ : Eins
+
+{-
+  1.3.4
+-}
 
 data Zwei : Set where
   0₂ : Zwei
   1₂ : Zwei
 
 {-
+  ⊔ \sqcup
+
+  Koprodukt, 1.3.5
+-}
+
+data _⊔_ (A B : Set) : Set where
+  ι₁ : A → A ⊔ B
+  ι₂ : B → A ⊔ B
+
+{-
+  1.4.1
+  Als Symbol für die Gleichheit verwenden wir:
+  ≡           (\equiv \==)
+  (damit sind die Symbole gegenüber der Vorlesung vertauscht)
   Gleichheit.
   Die beiden Parameter "x,y : A" können wir in Agda realisieren, indem wir einen
   induktiven Typ vom Typ "A → A → Set" definieren.
@@ -66,10 +105,22 @@ data _≡_ {A : Set} : A → A → Set where
   refl : (x : A) → x ≡ x
 
 {-
-  Die Induktionsregel dafür gibt es bei Agda automatisch in der Gestalt von Pattern-Matching.
-  Das können wir nutzen, um den Induktionsterm aus der Vorlesung zu definieren.
+  Beispiel 1.4.2
 -}
 
-ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → Π ℕ P
-ind= p₀ pₛ 0ℕ = p₀
-ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
+bsp1-4-2 : (x : Eins) → x ≡ ∗
+bsp1-4-2 ∗ = refl ∗
+
+{-
+  1.4.3
+-}
+
+sym : {A : Set} {x y : A} → (x ≡ y) → (y ≡ x)
+sym (refl x) = refl x
+
+{-
+  ∙ \.
+-}
+
+_∙_ : {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
+(refl x) ∙ p = p
