@@ -26,6 +26,16 @@ g ∘ f = λ x → g(f(x))
 Π A B = (x : A) → B x
 
 {-
+  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B' 
+-}
+infix 2 Π-syntax
+
+Π-syntax : (A : Set) (B : A → Set) → Set
+Π-syntax = Π
+
+syntax Π-syntax A (λ x → B) = Π[ x ∈ A ] B
+
+{-
   Natürliche Zahlen...
 -}
 data ℕ : Set where
@@ -36,7 +46,7 @@ data ℕ : Set where
   Das können wir nutzen, um den Induktionsterm aus der Vorlesung zu definieren.
 -}
 
-ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → Π ℕ P
+ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → Π[ n ∈ ℕ ] (P n)
 ind= p₀ pₛ 0ℕ = p₀
 ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
 
@@ -206,3 +216,73 @@ bem1-4-10 : {A : Set} {x y z w u : A}
             (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u)
             → ((α₁ p q r s) ∙ (α₂ p q r s)) ∙ (α₃ p q r s) ≡ (α₄ p q r s) ∙ (α₅ p q r s)
 bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
+
+
+{-
+  1.5.1, 1.5.2
+  Σ \Sigma
+  'open Σ' lässt und die projektionen verwenden
+  π₁ \pi\_1
+-}
+
+record Σ (A : Set) (B : A → Set) : Set where
+  constructor _,_
+  field
+    π₁ : A
+    π₂ : B π₁
+open Σ
+{-
+  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B' 
+-}
+infix 2 Σ-syntax
+
+Σ-syntax : (A : Set) (B : A → Set) → Set
+Σ-syntax = Σ
+
+syntax Σ-syntax A (λ x → B) = Σ[ x ∈ A ] B
+
+{-
+  1.5.3
+  × \times
+-}
+
+_×_ : (A B : Set) → Set
+A × B = Σ[ x ∈ A ] B
+
+{-
+  1.5.5
+-}
+
+curry : {A B C : Set}
+        → ((A × B) → C) → (A → (B → C))
+curry f = λ a b → f (a , b)
+
+uncurry : {A B C : Set}
+          → (A → (B → C)) → ((A × B) → C)
+uncurry f = λ x → f (π₁ x) (π₂ x)
+
+{-
+  1.5.7
+-}
+
+_teilt_ : (a b : ℕ) → Set
+a teilt b = Σ[ d ∈ ℕ ]  d · a ≡ b
+
+{-
+  1.5.8
+-}
+
+×Unique : {A B : Set} → (x : A × B) → x ≡ (π₁ x , π₂ x)
+×Unique (x , y) = refl (x , y)
+
+module _  {A B : Set} {a a' : A} {b b' : B} where
+  pair= : ((a ≡ a') × (b ≡ b')) → (a , b) ≡ (a' , b')
+  pair= ((refl a) , (refl b)) = refl (a , b)
+
+  pair=⁻¹ : (a , b) ≡ (a' , b') → ((a ≡ a') × (b ≡ b'))
+  pair=⁻¹ (refl (a , b)) = (refl a , refl b)
+
+pair=⁻¹' : {A B : Set} {x y : A × B}
+           → (p : x ≡ y) → ((π₁ x ≡ π₁ y) × (π₂ x ≡ π₂ y))
+pair=⁻¹' p = ap π₁ p , ap π₂ p
+
