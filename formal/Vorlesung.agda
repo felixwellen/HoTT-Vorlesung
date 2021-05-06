@@ -113,10 +113,12 @@ bsp1-4-2 ∗ = refl ∗
 
 {-
   1.4.3
+  ⁻¹ \^-\^1
+  mit der 'infixl' zeile legen wir fest, dass ⁻¹ ein höhere Priorität als default (=20) hat
 -}
-
-sym : {A : Set} {x y : A} → (x ≡ y) → (y ≡ x)
-sym (refl x) = refl x
+infixl 21 _⁻¹
+_⁻¹ : {A : Set} {x y : A} → (x ≡ y) → (y ≡ x)
+(refl x) ⁻¹ = refl x
 
 {-
   ∙ \.
@@ -124,3 +126,10 @@ sym (refl x) = refl x
 
 _∙_ : {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 (refl x) ∙ p = p
+
+{-
+  Beispiel 1.4.4
+-}
+
+bsp1-4-4 : (x y : Eins) → x ≡ y
+bsp1-4-4 x y = bsp1-4-2 x ∙ (bsp1-4-2 y) ⁻¹
