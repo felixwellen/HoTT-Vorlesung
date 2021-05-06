@@ -14,7 +14,16 @@
 \end{exercise}
 
 \begin{exercise}[Inverse sind eindeutig]
-  Sei $f:A\to B$ eine Funktion mit Inversen $g,g':B\to A$.
+  Seien $A,B,C$ Typen.
+  \begin{enumerate}
+  \item Seien $f,f':A\to B$ Funktionen und $f\sim f'$, also $f$ homotop zu $f'$.
+    Dann ist für $h:B\to C$, auch $h\circ f$ homotop zu $h\circ f'$.
+    Analog ist auch für $i:Z\to A$ die Funktion $f\circ i$ homotop zu $f'\circ i$.
+  \item Seien $f:A\to B$ und $g:B\to A$, $g':B\to A$ jeweils eine Invers von $f$.
+    Dann sind $g$ und $g'$ homotop.
+  \item Seien $f:A\to B$ und $g:B\to A$ invers zueinander und $f':B\to C$, $g':C\to B$ invers zueinander.
+    Dann sind auch $f'\circ f$ und $g\circ g'$ invers zueinander.
+  \end{enumerate}
   Zeige, dass $\prod_{y:B}g(b)=g'(b)$.
 \end{exercise}
 
