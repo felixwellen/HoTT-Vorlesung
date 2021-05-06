@@ -51,6 +51,20 @@
   \end{enumerate}
 \end{exercise}
 
+\begin{exercise}[Alternative Charakterisierung von Aussagen]
+  Sei $A$ ein Typ.
+  Zeige, dass $A$ genau dann eine Aussage ist, wenn alle Gleichheitstypen von $A$ kontrahierbar sind, das heißt, konstruiere Funktionen
+  \begin{enumerate}
+    \item $\prod_{x,y:A}\isContr(x=_Ay)\to\isProp(A)$,
+    \item \textbf{Bonus.} $\isProp(A)\to\prod_{x,y:A}\isContr(x=_Ay)$.
+  \end{enumerate}
+  Verwende dies, um zu zeigen, dass
+  \begin{enumerate}[start=3]
+    \item $\isContr(A)\to\isProp(A)$, {\tiny Tipp:Blatt 3}
+    \item $\isProp(A)\to\isSet(A)$.
+  \end{enumerate}
+\end{exercise}
+
 \begin{bonus}[Kontrahierbarkeit ist eine Aussage]
   Zeige, dass für jeden Typ $A$ der Typ
   \begin{mathpar}
