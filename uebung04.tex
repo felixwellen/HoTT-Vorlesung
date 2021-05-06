@@ -16,16 +16,19 @@
   Finde Funktionen $f:A\to\einheit$ und $g:\einheit\to A$ welche invers zueinander sind.
 \end{exercise}
 
-\begin{exercise}[Inverse sind eindeutig]
-  Seien $A,B,C$ Typen.
+\begin{exercise}[Rechnen mit Homotopien und Inversen]
+  Seien $A,B,C,D$ Typen und $g:B\to C$ eine Funktion.
   \begin{enumerate}
-  \item Seien $f,f':A\to B$ Funktionen und $f\sim f'$, also $f$ homotop zu $f'$.
-    Dann ist für $h:B\to C$, auch $h\circ f$ homotop zu $h\circ f'$.
-    Analog ist auch für $i:Z\to A$ die Funktion $f\circ i$ homotop zu $f'\circ i$.
-  \item Seien $f:A\to B$ und $g:B\to A$, $g':B\to A$ jeweils eine Invers von $f$.
-    Dann sind $g$ und $g'$ homotop.
-  \item Seien $f:A\to B$ und $g:B\to A$ invers zueinander und $f':B\to C$, $g':C\to B$ invers zueinander.
-    Dann sind auch $f'\circ f$ und $g\circ g'$ invers zueinander.
+    \item Sei $g':B\to C$ eine Funktion mit $g\sim g'$, also $g$ homotop zu $g'$.
+    Zeige:
+    \begin{enumerate}
+      \item Für $h:C\to D$ ist $h\circ g$ homotop zu $h\circ g'$.
+      \item Für $f:A\to B$ ist $g\circ f$ homotop zu $g'\circ f$.
+    \end{enumerate}
+  \item Seien $i,i':C\to B$ jeweils invers zu $g$.
+    Dann sind $i$ und $i'$ homotop zueinander.
+  \item Sei $i:C\to B$ invers zu $g$ und seien $h:C\to D$ und $j:D\to C$ zueinander inverse Funktionen.
+    Dann sind $h\circ g$ und $i\circ j$ invers zueinander.
   \end{enumerate}
 \end{exercise}
 
