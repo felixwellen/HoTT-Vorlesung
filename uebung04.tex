@@ -42,16 +42,19 @@
 \end{exercise}
 
 \begin{exercise}[Spaß mit Negationen]
-  Sei $A$ ein Typ.
-  Wir schreiben $\neg A:\equiv A\to\leer$.
+  Seien $A,B$ Typen.
+  Wir setzen $\neg A:\equiv A\to\leer$.
   Zeige:
-  \begin{enumerate}
-    \item $A\to\neg\neg A$
-    \item $\neg\neg\neg A\to\neg A$
-    \item $\neg\neg(A+\neg A)$
-    \item $\neg\neg(\neg\neg A\to A)$
-    \item $(A+\neg A)\leftrightarrow (\neg\neg A\to A)$
-  \end{enumerate}
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item $A\to\neg\neg A$
+      \item $(A\to B)\to(\neg B\to\neg A)$
+      \item $\neg\neg\neg A\to\neg A$
+      \item $\neg(A\times \neg A)$
+      \item $\neg\neg(A+\neg A)$
+    \item $(A+\neg A)\to (\neg\neg A\to A)$.
+    \end{enumerate}
+  \end{multicols}
 \end{exercise}
 
 \begin{exercise}[Alternative Charakterisierung von Aussagen]
