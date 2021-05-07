@@ -1259,8 +1259,65 @@ Um diese zu formulieren brauchen wir aber noch die folgenden, sowieso wichtigen,
   \end{enumerate}
 \end{bemerkung}
 Wir werden noch sehen, dass es eine gute Idee ist, das Auswahlaxiom auf Abbildungen zwischen Mengen zu beschränken.
-\subsection{Universen}
 
+\subsection{Universen}
+Ein \begriff{Universum} kann man sich erstmal als Typ aller Typen vorstellen.
+Problematisch ist dabei, wie in der Mengenlehre, dass das zu Widersprüchen führt.
+Eine einfach Lösung, die wir hier verwenden werden ist die leichte Abwandlung zu sagen, dass jeder Typ in \emph{einem} Universum liegt und Universen unter möglichst vielen Konstruktionen abgeschlossen sind.
+Genauer fordern wir eine abzählbare Hierarchie von Universen:
+\begin{mathpar}
+  \mU_0, \mU_1, \dots
+\end{mathpar}
+Dabei sind die Indizes allerdings nicht unsere natürlichen Zahlen, sondern sogenannte \emph{Universenlevel}.
+Dabei handelt es sich um eine Variante der natürlichen Zahlen, die implizit durch Regeln gegeben ist.
+Das verhindert zum Beispiel die Konstruktion von aufsteigenden Folgen von Universen.
+
+Da es mit Universen möglich ist auszudrücken dass etwas ein Typ ist, können wir von nun auf dieses Urteil verzichten.
+Wir verwenden also in Zukunft ``$A:\mU_i$'' synonym mit ``$A$ ist ein Typ''.
+
+\begin{regeln}
+  Wir können nun in allen Regeln Urteile der ``$A$ Typ'' ersetzen durch ``$A:\mU_i$''.
+  Bei der Regel $\Pi\mathrm{F}$ bedeutet das etwa:
+  \begin{mathpar}
+    \inferrule{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):\mU_i}{\Gamma\yields \prod_{x:A}B(x):\mU_i}{\Pi\mathrm{F}}
+  \end{mathpar}
+  Dabei haben wir die Regel etwas ausgebaut, um fordern zu können, dass $A$ und die $B(x)$ im gleichen Universum liegen.
+  Der Index $i$ ist dabei $0$ oder $j+1$ für einen erlaubten Index $j$.
+  Die Universen gibt es jetzt auch einfach so als Typen:
+  \begin{mathpar}
+    \inferrule{\Gamma\text{ Kontext}}{\Gamma\yields\mU_i:\mU_{i+1}}{\mU\mathrm{F}}
+  \end{mathpar}
+  Insbesondere können wir nun abhängige Typen auch immer äquivalent als Funktionen in ein Universum ausdrücken:
+  \begin{mathpar}
+    \inferrule*{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):U_i}{\Gamma\yields x\mapsto B(x):A\to \mU_i}
+  \end{mathpar}
+  Grundsätzlich kann es vorkommen, dass wir auch mal Typen aus Bestandteilen konstruieren wollen, die in unterschiedlichen Universen liegen.
+  Dazu können wir mit der folgenden Regel alles in ein passendes Universum schieben:
+  \begin{mathpar}
+    \inferrule*{\Gamma\yields A:\mU_i}{\Gamma\yields A:\mU_{i+1}}
+  \end{mathpar}
+\end{regeln}
+Den Rest dieses Abschnitts verbringen wir damit, Neuerungen zu erwähnen, die sich durch die Verwendung von Universen ergeben.
+Interessanterweise haben wir erst durch Universen die Möglichkeit, manche Gleichheitstypen zu charakterisieren,
+was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
+\begin{bemerkung}
+  Mit Universen können wir Induktion als abhängige Funktion umschreiben, etwa für $\N$:
+  \begin{mathpar}
+    \ind{\N}:\prod_{P:\N\to \mU_i}P(0_{\N})\to \left(\prod_{n:\N}P(n)\to P(\sucN(n))\right)\to \left(\prod_{n:\N}P(n)\right)
+  \end{mathpar}
+\end{bemerkung}
+\begin{konvention}
+  Meistens werden wir den Index der Universen weglassen, also etwa nur $A:\mU$ schreiben.
+  Situationen in denen die Universenlevel wichtig sind, werden eher selten sein, kommen aber vor.
+\end{konvention}
+\begin{beispiel}
+  Dank Universen können wir nun abhängige Typen über Rekursion definieren:
+  \begin{align*}
+    B&:\zwei\to\mU \\
+    B(0_{\zwei})&:\equiv \leer \\
+    B(1_{\zwei})&:\equiv \einheit
+  \end{align*}
+\end{beispiel}
 \subsection{Gleichungen in den natürlichen Zahlen}
 
 \section{Univalenz}
