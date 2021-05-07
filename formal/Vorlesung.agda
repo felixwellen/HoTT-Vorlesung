@@ -26,6 +26,16 @@ g ∘ f = λ x → g(f(x))
 Π A B = (x : A) → B x
 
 {-
+  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B' 
+-}
+infix 2 Π-syntax
+
+Π-syntax : (A : Set) (B : A → Set) → Set
+Π-syntax = Π
+
+syntax Π-syntax A (λ x → B) = Π[ x ∈ A ] B
+
+{-
   Natürliche Zahlen...
 -}
 data ℕ : Set where
@@ -36,7 +46,7 @@ data ℕ : Set where
   Das können wir nutzen, um den Induktionsterm aus der Vorlesung zu definieren.
 -}
 
-ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → Π ℕ P
+ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → Π[ n ∈ ℕ ] (P n)
 ind= p₀ pₛ 0ℕ = p₀
 ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
 
@@ -99,7 +109,9 @@ data _⊔_ (A B : Set) : Set where
   Gleichheit.
   Die beiden Parameter "x,y : A" können wir in Agda realisieren, indem wir einen
   induktiven Typ vom Typ "A → A → Set" definieren.
+  mit der 'infixl' zeile legen wir fest, dass _≡_ eine niedrigere Priorität als default (=20) hat
 -}
+infixl 10 _≡_
 
 data _≡_ {A : Set} : A → A → Set where
   refl : (x : A) → x ≡ x
@@ -133,3 +145,165 @@ _∙_ : {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 
 bsp1-4-4 : (x y : Eins) → x ≡ y
 bsp1-4-4 x y = bsp1-4-2 x ∙ (bsp1-4-2 y) ⁻¹
+
+{-
+  1.4.6, 1.4.7, 1.4.8
+  Mit 'module _ {A : Set} where' öffnen wir einen durch Einrückung abgegrenzten Bereich,
+  in dem alle Definitionen den Parameter '{A : Set}' ohne diesen jedesmal erwähnen zu müssen.
+-}
+
+module _ {A : Set} where
+  reflLNeutral : {x y : A}
+                 → (p : x ≡ y)
+                 → (refl x) ∙ p ≡ p
+  reflLNeutral (refl x) = refl (refl x)
+
+  reflRNeutral : {x y : A}
+                 → (p : x ≡ y)
+                 → p ∙ (refl y) ≡ p
+  reflRNeutral (refl x) = refl (refl x)
+
+  ⁻¹RInv : {x y : A}
+           → (p : x ≡ y)
+           → p ∙ p ⁻¹ ≡ (refl x)
+  ⁻¹RInv (refl x) = refl (refl x)
+
+  ⁻¹LInv : {x y : A}
+           → (p : x ≡ y)
+           → p ⁻¹ ∙ p ≡ (refl y)
+  ⁻¹LInv (refl x) = refl (refl x)
+
+  ∙Assoziativ : {x y z w : A}
+                → (p : x ≡ y) → (q : y ≡ z) → (r : z ≡ w)
+                → (p ∙ q) ∙ r ≡ p ∙ (q ∙ r)
+  ∙Assoziativ (refl x) q r = refl (q ∙ r)
+
+{-
+  1.4.11
+-}
+
+ap : {A B : Set} {x y : A}
+     → (f : A → B)
+     → (p : x ≡ y)
+     → f x ≡ f y
+ap f (refl x) = refl (f x)
+
+{-
+  1.4.10
+-}
+
+module macLane {A : Set} {x y z w u : A}
+               (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u) where
+
+       α₁ : ((p ∙ q) ∙ r) ∙ s ≡ (p ∙ (q ∙ r)) ∙ s
+       α₁ = ap (λ t → t ∙ s) (∙Assoziativ p q r)
+
+       α₂ : (p ∙ (q ∙ r)) ∙ s ≡ p ∙ ((q ∙ r) ∙ s)
+       α₂ = ∙Assoziativ p (q ∙ r) s
+
+       α₃ : p ∙ ((q ∙ r) ∙ s) ≡ p ∙ (q ∙ (r ∙ s))
+       α₃ = ap (λ t → p ∙ t) (∙Assoziativ q r s)
+
+       α₄ : ((p ∙ q) ∙ r) ∙ s ≡ (p ∙ q) ∙ (r ∙ s)
+       α₄ = ∙Assoziativ (p ∙ q) r s
+
+       α₅ : (p ∙ q) ∙ (r ∙ s) ≡ p ∙ (q ∙ (r ∙ s))
+       α₅ = ∙Assoziativ p q (r ∙ s)
+
+open macLane
+
+bem1-4-10 : {A : Set} {x y z w u : A}
+            (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u)
+            → ((α₁ p q r s) ∙ (α₂ p q r s)) ∙ (α₃ p q r s) ≡ (α₄ p q r s) ∙ (α₅ p q r s)
+bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
+
+
+{-
+  1.5.1, 1.5.2
+  Σ \Sigma
+  'open Σ' lässt und die projektionen verwenden
+  π₁ \pi\_1
+-}
+
+record Σ (A : Set) (B : A → Set) : Set where
+  constructor _,_
+  field
+    π₁ : A
+    π₂ : B π₁
+open Σ
+{-
+  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B'
+-}
+infix 2 Σ-syntax
+
+Σ-syntax : (A : Set) (B : A → Set) → Set
+Σ-syntax = Σ
+
+syntax Σ-syntax A (λ x → B) = Σ[ x ∈ A ] B
+
+{-
+  1.5.3
+  × \times
+-}
+
+_×_ : (A B : Set) → Set
+A × B = Σ[ x ∈ A ] B
+
+{-
+  1.5.4
+-}
+_inversZu_ : {A B : Set} (f : A → B) (g : B → A) → Set
+f inversZu g = (Π[ x ∈ _ ] g(f x) ≡ x) × (Π[ y ∈ _ ] f(g y) ≡ y)
+
+_hatInverse : {A B : Set} (f : A → B) → Set
+f hatInverse = Σ[ g ∈ (_ → _) ] g inversZu f
+
+{-
+  1.5.5
+-}
+
+curry : {A B C : Set}
+        → ((A × B) → C) → (A → (B → C))
+curry f = λ a b → f (a , b)
+
+uncurry : {A B C : Set}
+          → (A → (B → C)) → ((A × B) → C)
+uncurry f = λ x → f (π₁ x) (π₂ x)
+
+{-
+  1.5.7
+-}
+
+_teilt_ : (a b : ℕ) → Set
+a teilt b = Σ[ d ∈ ℕ ]  d · a ≡ b
+
+{-
+  1.5.8
+-}
+
+module lemma1-5-8 {A B : Set} where
+  u : {A B : Set} → (x : A × B) → x ≡ (π₁ x , π₂ x)
+  u (x , y) = refl (x , y)
+
+  pair=⁻¹' : {x y : A × B}
+             → (p : x ≡ y) → ((π₁ x ≡ π₁ y) × (π₂ x ≡ π₂ y))
+  pair=⁻¹' p = ap π₁ p , ap π₂ p
+
+  module _  {a a' : A} {b b' : B} where
+    pair= : ((a ≡ a') × (b ≡ b')) → (a , b) ≡ (a' , b')
+    pair= ((refl a) , (refl b)) = refl (a , b)
+
+    pair=⁻¹ : (a , b) ≡ (a' , b') → ((a ≡ a') × (b ≡ b'))
+    pair=⁻¹ p = pair=⁻¹' p
+
+  lemma1-5-8-b :  {a a' : A} {b b' : B}
+                  → pair= inversZu pair=⁻¹
+  lemma1-5-8-b {a} {a'} {b} {b'} = teil1 , teil2
+               where teil1 : Π[ q ∈ _ ] pair=⁻¹ (pair= q) ≡ q
+                     teil1 (refl _ , refl _) = refl _
+
+                     teil2' : Π[ p ∈ _ ] pair= (pair=⁻¹' p) ≡ (u _ ⁻¹ ∙ p) ∙ u _
+                     teil2' (refl _) = refl _
+
+                     teil2 : (p : (a , b) ≡ (a' , b')) → pair= (pair=⁻¹ p) ≡ p
+                     teil2 p = (teil2' p) ∙ (reflRNeutral p)
