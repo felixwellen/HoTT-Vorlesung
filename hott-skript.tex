@@ -1233,7 +1233,7 @@ Damit können wir alle üblichen Logikkonstrukte für Aussagen definieren:
   \end{enumerate}
 \end{definition}
 Bei dieser Gelegenheit sollte festgehalten werden, dass es möglich ist, nicht konstruktive Axiome anzunehmen, um unsere Typentheorie bei Bedarf zu spezialisieren.
-Um diese zu formulieren brauchen wir aber noch die folgenden, sowieso wichtigen, Begriffe:
+Um diese zu formulieren brauchen wir aber noch manche der folgenden, sowieso wichtigen, Begriffe:
 \begin{definition}
   Seien $A,B$ Typen und $f:A\to B$ eine Funktion.
   \begin{enumerate}
@@ -1243,11 +1243,15 @@ Um diese zu formulieren brauchen wir aber noch die folgenden, sowieso wichtigen,
     \end{mathpar}
   \item $f$ heißt \begriff{injektiv}, wenn
     \begin{mathpar}
-      \prod_{y:B}(f^{-1}(y)\text{ ist Aussage})
+      \prod_{y:B}\isProp(f^{-1}(y))
     \end{mathpar}
   \item $f$ heißt \begriff{surjektiv}, wenn
     \begin{mathpar}
       \prod_{y:B}\|f^{-1}(y)\|
+    \end{mathpar}
+  \item $f$ heißt \begriff{Äquivalenz}, wenn
+    \begin{mathpar}
+      \isEquiv(f):\equiv\prod_{y:B}\isContr(f^{-1}(y))
     \end{mathpar}
   \end{enumerate}
 \end{definition}
@@ -1259,6 +1263,17 @@ Um diese zu formulieren brauchen wir aber noch die folgenden, sowieso wichtigen,
   \end{enumerate}
 \end{bemerkung}
 Wir werden noch sehen, dass es eine gute Idee ist, das Auswahlaxiom auf Abbildungen zwischen Mengen zu beschränken.
+Jetzt wollen wir noch den Abschnitt mit zwei Bemerkungen zur Äquivalenz beenden:
+\begin{bemerkung}
+  Seien $A,B$ Typen und $f:A\to B$.
+  \begin{enumerate}
+  \item Wenn $f$ eine beidseitige Inverse hat, dann ist $f$ eine Äquivalenz. Das heißt es gibt eine Funktion:
+    \begin{mathpar}
+      \qinv(f)\to \isEquiv(f)
+    \end{mathpar}
+  \item Wenn $f$ surjektiv und injektiv ist, dann ist $f$ eine Äquivalenz.
+  \end{enumerate}
+\end{bemerkung}
 
 \subsection{Universen}
 Ein \begriff{Universum} kann man sich erstmal als Typ aller Typen vorstellen.
@@ -1272,7 +1287,7 @@ Dabei sind die Indizes allerdings nicht unsere natürlichen Zahlen, sondern soge
 Dabei handelt es sich um eine Variante der natürlichen Zahlen, die implizit durch Regeln gegeben ist.
 Das verhindert zum Beispiel die Konstruktion von aufsteigenden Folgen von Universen.
 
-Da es mit Universen möglich ist auszudrücken dass etwas ein Typ ist, können wir von nun auf dieses Urteil verzichten.
+Da es mit Universen möglich ist, auszudrücken, dass etwas ein Typ ist, können wir von nun auf dieses Urteil verzichten.
 Wir verwenden also in Zukunft ``$A:\mU_i$'' synonym mit ``$A$ ist ein Typ''.
 
 \begin{regeln}
