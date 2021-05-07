@@ -232,7 +232,7 @@ record Σ (A : Set) (B : A → Set) : Set where
     π₂ : B π₁
 open Σ
 {-
-  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B' 
+  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B'
 -}
 infix 2 Σ-syntax
 
@@ -248,6 +248,15 @@ syntax Σ-syntax A (λ x → B) = Σ[ x ∈ A ] B
 
 _×_ : (A B : Set) → Set
 A × B = Σ[ x ∈ A ] B
+
+{-
+  1.5.4
+-}
+_inversZu_ : {A B : Set} (f : A → B) (g : B → A) → Set
+f inversZu g = (Π[ x ∈ _ ] g(f x) ≡ x) × (Π[ y ∈ _ ] f(g y) ≡ y)
+
+_hatInverse : {A B : Set} (f : A → B) → Set
+f hatInverse = Σ[ g ∈ (_ → _) ] g inversZu f
 
 {-
   1.5.5
@@ -272,17 +281,29 @@ a teilt b = Σ[ d ∈ ℕ ]  d · a ≡ b
   1.5.8
 -}
 
-×Unique : {A B : Set} → (x : A × B) → x ≡ (π₁ x , π₂ x)
-×Unique (x , y) = refl (x , y)
+module lemma1-5-8 {A B : Set} where
+  u : {A B : Set} → (x : A × B) → x ≡ (π₁ x , π₂ x)
+  u (x , y) = refl (x , y)
 
-module _  {A B : Set} {a a' : A} {b b' : B} where
-  pair= : ((a ≡ a') × (b ≡ b')) → (a , b) ≡ (a' , b')
-  pair= ((refl a) , (refl b)) = refl (a , b)
+  pair=⁻¹' : {x y : A × B}
+             → (p : x ≡ y) → ((π₁ x ≡ π₁ y) × (π₂ x ≡ π₂ y))
+  pair=⁻¹' p = ap π₁ p , ap π₂ p
 
-  pair=⁻¹ : (a , b) ≡ (a' , b') → ((a ≡ a') × (b ≡ b'))
-  pair=⁻¹ (refl (a , b)) = (refl a , refl b)
+  module _  {a a' : A} {b b' : B} where
+    pair= : ((a ≡ a') × (b ≡ b')) → (a , b) ≡ (a' , b')
+    pair= ((refl a) , (refl b)) = refl (a , b)
 
-pair=⁻¹' : {A B : Set} {x y : A × B}
-           → (p : x ≡ y) → ((π₁ x ≡ π₁ y) × (π₂ x ≡ π₂ y))
-pair=⁻¹' p = ap π₁ p , ap π₂ p
+    pair=⁻¹ : (a , b) ≡ (a' , b') → ((a ≡ a') × (b ≡ b'))
+    pair=⁻¹ p = pair=⁻¹' p
 
+  lemma1-5-8-b :  {a a' : A} {b b' : B}
+                  → pair= inversZu pair=⁻¹
+  lemma1-5-8-b {a} {a'} {b} {b'} = teil1 , teil2
+               where teil1 : Π[ q ∈ _ ] pair=⁻¹ (pair= q) ≡ q
+                     teil1 (refl _ , refl _) = refl _
+
+                     teil2' : Π[ p ∈ _ ] pair= (pair=⁻¹' p) ≡ (u _ ⁻¹ ∙ p) ∙ u _
+                     teil2' (refl _) = refl _
+
+                     teil2 : (p : (a , b) ≡ (a' , b')) → pair= (pair=⁻¹ p) ≡ p
+                     teil2 p = (teil2' p) ∙ (reflRNeutral p)
