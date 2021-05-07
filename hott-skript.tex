@@ -1318,7 +1318,17 @@ was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
     B(1_{\zwei})&:\equiv \einheit
   \end{align*}
 \end{beispiel}
+
 \subsection{Gleichungen in den natürlichen Zahlen}
+\begin{definition}
+  $\Eq{\N}:\N\to\N\to\mU$ definieren wir durch doppelte Rekursion wie folgt:
+  \begin{align*}
+    &\Eq{\N}(0_\N,    &0_\N)    &:\equiv\einheit \\
+    &\Eq{\N}(0_\N,    &\sucN(k))&:\equiv\leer \\
+    &\Eq{\N}(\sucN(n),&0_\N)    &:\equiv\leer \\
+    &\Eq{\N}(\sucN(n),&\sucN(k))&:\equiv\Eq{\N}(n,k) 
+  \end{align*}
+\end{definition}
 
 \section{Univalenz}
 \subsection{Äquivalenzen}
