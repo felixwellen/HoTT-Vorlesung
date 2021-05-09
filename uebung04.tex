@@ -1,0 +1,67 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{4}
+
+\begin{exercise}[Kontrahierbare Typen sind äquivalent zu $\einheit$]
+  Sei $A$ ein kontrahierbarer Typ.
+  Finde Funktionen $f:A\to\einheit$ und $g:\einheit\to A$ welche invers zueinander sind.
+\end{exercise}
+
+\begin{exercise}[Rechnen mit Homotopien und Inversen]
+  Seien $A,B,C,D$ Typen und $g:B\to C$ eine Funktion.
+  \begin{enumerate}
+    \item Sei $g':B\to C$ eine Funktion mit $g\sim g'$, also $g$ homotop zu $g'$.
+    Zeige:
+    \begin{enumerate}
+      \item Für $h:C\to D$ ist $h\circ g$ homotop zu $h\circ g'$.
+      \item Für $f:A\to B$ ist $g\circ f$ homotop zu $g'\circ f$.
+    \end{enumerate}
+  \item Seien $i,i':C\to B$ jeweils invers zu $g$.
+    Dann sind $i$ und $i'$ homotop zueinander.
+  \item Sei $i:C\to B$ invers zu $g$ und seien $h:C\to D$ und $j:D\to C$ zueinander inverse Funktionen.
+    Dann sind $h\circ g$ und $i\circ j$ invers zueinander.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Intuitionistische Logik unter der Curry-Howard Korrespondenz]
+  Seien $A,B$ Typen.
+  Wir setzen $\neg A:\equiv A\to\leer$ und $A\leftrightarrow B:\equiv (A\to B)\times (B\to A)$.
+  Zeige:
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item $A\to\neg\neg A$
+      \item $(A\to B)\to(\neg B\to\neg A)$
+      \item $\neg\neg\neg A\to\neg A$
+      \item\label{deMorgan} $\neg(A+B) \leftrightarrow (\neg A\times \neg B)$
+      \item $\neg(A\times \neg A)$
+      \item $\neg\neg(A+\neg A)$
+    \item $(A+\neg A)\to (\neg\neg A\to A)$.
+    \end{enumerate}
+  \end{multicols}
+  Sei $\mathrm{deMorgan}$ der Term aus Teilaufgabe \ref{deMorgan}. Ist $\pi_1(\mathrm{deMorgan})$ invers zu $\pi_2(\mathrm{deMorgan})$?
+\end{exercise}
+
+\begin{exercise}[Alternative Charakterisierung von Aussagen]
+  Sei $A$ ein Typ.
+  Zeige, dass $A$ genau dann eine Aussage ist, wenn alle Gleichheitstypen von $A$ kontrahierbar sind, das heißt, konstruiere Funktionen
+  \begin{enumerate}
+    \item $\prod_{x,y:A}\isContr(x=_Ay)\to\isProp(A)$,
+    \item \textbf{Bonus.} $\isProp(A)\to\prod_{x,y:A}\isContr(x=_Ay)$.
+  \end{enumerate}
+  Verwende dies, um zu zeigen, dass
+  \begin{enumerate}[start=3]
+    \item $\isContr(A)\to\isProp(A)$, {\tiny Tipp:Blatt 3}
+    \item $\isProp(A)\to\isSet(A)$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{bonus}[Kontrahierbarkeit ist eine Aussage]
+  Zeige, dass für jeden Typ $A$ der Typ
+  \begin{mathpar}
+    \isContr'(A)\equiv\sum_{c:A}\prod_{x:A}c=x
+  \end{mathpar}
+  ein Aussage ist. Folgere daraus, dass auch $\isContr(A)$ eine Aussage ist.
+\end{bonus}
+
+\end{document}
