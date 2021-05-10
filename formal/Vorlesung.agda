@@ -28,18 +28,18 @@ g ∘ f = λ x → g(f(x))
   Abhängige Typen "x:A ⊢ B(x)" schreibt man "B : A → Set".
 -}
 
-Π : (A : Set) (B : A → Set) → Set
-Π A B = (x : A) → B x
+∏ : (A : Set) (B : A → Set) → Set
+∏ A B = (x : A) → B x
 
 {-
-  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B' 
+  das folgende erlaubt die Schreibweise '∏[ x ∈ A ] B'
 -}
-infix 2 Π-syntax
+infix 2 ∏-syntax
 
-Π-syntax : (A : Set) (B : A → Set) → Set
-Π-syntax = Π
+∏-syntax : (A : Set) (B : A → Set) → Set
+∏-syntax = ∏
 
-syntax Π-syntax A (λ x → B) = Π[ x ∈ A ] B
+syntax ∏-syntax A (λ x → B) = ∏[ x ∈ A ] B
 
 {-
   Natürliche Zahlen...
@@ -52,7 +52,7 @@ data ℕ : Set where
   Das können wir nutzen, um den Induktionsterm aus der Vorlesung zu definieren.
 -}
 
-ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → Π[ n ∈ ℕ ] (P n)
+ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → ∏[ n ∈ ℕ ] (P n)
 ind= p₀ pₛ 0ℕ = p₀
 ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
 
@@ -86,26 +86,26 @@ data ∅ : Set where
   ∗ \ast
 -}
 
-data Eins : Set where
-  ∗ : Eins
+data 𝟙 : Set where
+  ∗ : 𝟙
 
 {-
   1.3.4
 -}
 
-data Zwei : Set where
-  0₂ : Zwei
-  1₂ : Zwei
+data 𝟚 : Set where
+  0₂ : 𝟚
+  1₂ : 𝟚
 
 {-
-  ⊔ \sqcup
+  ∐ \coprod
 
   Koprodukt, 1.3.5
 -}
 
-data _⊔_ (A B : Set) : Set where
-  ι₁ : A → A ⊔ B
-  ι₂ : B → A ⊔ B
+data _∐_ (A B : Set) : Set where
+  ι₁ : A → A ∐ B
+  ι₂ : B → A ∐ B
 
 {-
   1.4.1
@@ -126,13 +126,13 @@ data _≡_ {A : Set} : A → A → Set where
   Beispiel 1.4.2
 -}
 
-bsp1-4-2 : (x : Eins) → x ≡ ∗
+bsp1-4-2 : (x : 𝟙) → x ≡ ∗
 bsp1-4-2 ∗ = refl ∗
 
 {-
   1.4.3
   ⁻¹ \^-\^1
-  mit der 'infixl' zeile legen wir fest, dass ⁻¹ ein höhere Priorität als default (=20) hat
+  mit der 'infixl' zeile legen wir fest, dass ⁻¹ links assoziativ ist und eine höhere Priorität als default (=20) hat
 -}
 infixl 21 _⁻¹
 _⁻¹ : {A : Set} {x y : A} → (x ≡ y) → (y ≡ x)
@@ -149,7 +149,7 @@ _∙_ : {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
   Beispiel 1.4.4
 -}
 
-bsp1-4-4 : (x y : Eins) → x ≡ y
+bsp1-4-4 : (x y : 𝟙) → x ≡ y
 bsp1-4-4 x y = bsp1-4-2 x ∙ (bsp1-4-2 y) ⁻¹
 
 {-
@@ -226,26 +226,26 @@ bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
 
 {-
   1.5.1, 1.5.2
-  Σ \Sigma
-  'open Σ' lässt und die projektionen verwenden
+  ∑ \sum
+  'open ∑' lässt ∑ und die Projektionen verwenden
   π₁ \pi\_1
 -}
 
-record Σ (A : Set) (B : A → Set) : Set where
+record ∑ (A : Set) (B : A → Set) : Set where
   constructor _,_
   field
     π₁ : A
     π₂ : B π₁
-open Σ
+open ∑
 {-
   das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B'
 -}
-infix 2 Σ-syntax
+infix 2 ∑-syntax
 
-Σ-syntax : (A : Set) (B : A → Set) → Set
-Σ-syntax = Σ
+∑-syntax : (A : Set) (B : A → Set) → Set
+∑-syntax = ∑
 
-syntax Σ-syntax A (λ x → B) = Σ[ x ∈ A ] B
+syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
 
 {-
   1.5.3
@@ -253,16 +253,16 @@ syntax Σ-syntax A (λ x → B) = Σ[ x ∈ A ] B
 -}
 
 _×_ : (A B : Set) → Set
-A × B = Σ[ x ∈ A ] B
+A × B = ∑[ x ∈ A ] B
 
 {-
   1.5.4
 -}
 _inversZu_ : {A B : Set} (f : A → B) (g : B → A) → Set
-f inversZu g = (Π[ x ∈ _ ] g(f x) ≡ x) × (Π[ y ∈ _ ] f(g y) ≡ y)
+f inversZu g = (∏[ x ∈ _ ] g(f x) ≡ x) × (∏[ y ∈ _ ] f(g y) ≡ y)
 
 _hatInverse : {A B : Set} (f : A → B) → Set
-f hatInverse = Σ[ g ∈ (_ → _) ] g inversZu f
+f hatInverse = ∑[ g ∈ (_ → _) ] g inversZu f
 
 {-
   1.5.5
@@ -281,7 +281,7 @@ uncurry f = λ x → f (π₁ x) (π₂ x)
 -}
 
 _teilt_ : (a b : ℕ) → Set
-a teilt b = Σ[ d ∈ ℕ ]  d · a ≡ b
+a teilt b = ∑[ d ∈ ℕ ]  d · a ≡ b
 
 {-
   1.5.8
@@ -305,10 +305,10 @@ module lemma1-5-8 {A B : Set} where
   lemma1-5-8-b :  {a a' : A} {b b' : B}
                   → pair= inversZu pair=⁻¹
   lemma1-5-8-b {a} {a'} {b} {b'} = teil1 , teil2
-               where teil1 : Π[ q ∈ _ ] pair=⁻¹ (pair= q) ≡ q
+               where teil1 : ∏[ q ∈ _ ] pair=⁻¹ (pair= q) ≡ q
                      teil1 (refl _ , refl _) = refl _
 
-                     teil2' : Π[ p ∈ _ ] pair= (pair=⁻¹' p) ≡ (u _ ⁻¹ ∙ p) ∙ u _
+                     teil2' : ∏[ p ∈ _ ] pair= (pair=⁻¹' p) ≡ (u _ ⁻¹ ∙ p) ∙ u _
                      teil2' (refl _) = refl _
 
                      teil2 : (p : (a , b) ≡ (a' , b')) → pair= (pair=⁻¹ p) ≡ p
