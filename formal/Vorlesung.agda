@@ -313,3 +313,50 @@ module lemma1-5-8 {A B : Set} where
 
                      teil2 : (p : (a , b) ≡ (a' , b')) → pair= (pair=⁻¹ p) ≡ p
                      teil2 p = (teil2' p) ∙ (reflRNeutral p)
+
+{-
+  1.6.1 Funktionsgleichheit
+-}
+
+_∼_ : {A B : Set} (f : A → B) → (g : A → B) → Set
+_∼_ {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
+
+{-
+  1.6.2 Funktionsextensionalität
+-}
+
+postulate
+  FunExt : {A B : Set} (f g : A → B) → (∏[ x ∈ A ] f(x) ≡ g(x)) → f ≡ g
+
+{-
+  1.6.5
+-}
+-- A ist kontrahierbar / ein -2-Typ
+isContr : (A : Set) → Set
+isContr A = ∑[ c ∈ A ] ∏[ x ∈ A ] x ≡ c
+
+-- A ist eine Aussage / ein -1-Typ
+isProp : (A : Set) → Set
+isProp A = ∏[ x ∈ A ] ∏[ y ∈ A ] x ≡ y
+
+-- A ist eine Menge / ein 0-Typ
+isSet : (A : Set) → Set
+isSet A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] p ≡ q
+
+
+{-
+  1.6.6
+-}
+-- 𝟙 ist kontrahierbar
+𝟙isContr : isContr 𝟙
+𝟙isContr = ∗ , helper
+  where -- Mit Helper-Funktion, weil Patternmatching in Lamda-Ausdruck doof ist
+    helper : (x : 𝟙) → x ≡ ∗
+    helper ∗ = refl ∗
+
+-- ∅ ist eine Aussage
+∅isProp : isProp ∅
+∅isProp = helper
+  where
+    helper : (a : ∅) → (b : ∅) → a ≡ b
+    helper () ()
