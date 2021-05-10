@@ -1266,14 +1266,9 @@ Wir werden noch sehen, dass es eine gute Idee ist, das Auswahlaxiom auf Abbildun
 Jetzt wollen wir noch den Abschnitt mit zwei Bemerkungen zur Äquivalenz beenden:
 \begin{bemerkung}
   Seien $A,B$ Typen und $f:A\to B$.
-  \begin{enumerate}
-  \item Wenn $f$ eine beidseitige Inverse hat, dann ist $f$ eine Äquivalenz. Das heißt es gibt eine Funktion:
-    \begin{mathpar}
-      \qinv(f)\to \isEquiv(f)
-    \end{mathpar}
-  \item Wenn $f$ surjektiv und injektiv ist, dann ist $f$ eine Äquivalenz.
-  \end{enumerate}
+  Wenn $f$ surjektiv und injektiv ist, dann ist $f$ eine Äquivalenz.
 \end{bemerkung}
+In \cref{sub:aequivalenzen} werden wir beweisen, dass jede Funktion mit einer beidseitigen Inversen auch eine Äquivalenz ist.
 
 \subsection{Universen}
 Ein \begriff{Universum} kann man sich erstmal als Typ aller Typen vorstellen.
@@ -1334,6 +1329,44 @@ was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
   \end{align*}
 \end{beispiel}
 
+
+\section{Univalenz}
+\subsection{Äquivalenzen}
+\label{sub:aequivalenzen}
+\begin{bemerkung}
+  \label{bem:qinv-equiv}
+  Seien $A,B$ Typen und $f:A\to B$.
+  Wenn $f$ eine beidseitige Inverse hat, dann ist $f$ eine Äquivalenz. Das heißt es gibt eine Funktion:
+    \begin{mathpar}
+      \qinv(f)\to \isEquiv(f)
+    \end{mathpar}
+\end{bemerkung}
+\begin{lemma}
+  \label{lem:gleichheit-in-faser}
+  Seien $A,B$ Typen, $f:A\to B$ und $y:B$. Für $(x,q),(x',q'):f^{-1}(y)$ gibt es eine Funktion:
+  \begin{mathpar}
+    \prod_{p:x=_A x'}f(p)^{-1}\kon q=q'\to (x,q)=(x',q')
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}[von \cref{lem:gleichheit-in-faser}]
+  Induktion über $p$.
+\end{beweis}
+\begin{beweis}[von \labelcref{bem:qinv-equiv}]
+  \begin{enumerate}
+  \item Wir haben also $g:B\to A$, sodass $H:f\circ g\sim\id$ und $K:g\circ f\sim \id$ und müssen für jede Faser von $f$ eine Kontraktion angeben.
+    Als Kontraktionszentrum für die Faser über $y:B$ wählen wir
+    \begin{mathpar}
+      k_y:\equiv (g(y), H(g(y))) : f^{-1}(y)
+    \end{mathpar}
+    Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Also haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
+    \begin{mathpar}
+      K(x)^{-1}\kon g(q\kon q'^{-1}) \kon K(x'):x=x'
+    \end{mathpar}
+  \end{enumerate}
+\end{beweis}
+
+\subsection{Univalenz}
+
 \subsection{Gleichungen in den natürlichen Zahlen}
 \begin{definition}
   $\Eq{\N}:\N\to\N\to\mU$ definieren wir durch doppelte Rekursion wie folgt:
@@ -1344,10 +1377,6 @@ was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
     &\Eq{\N}(\sucN(n),&\sucN(k))&:\equiv\Eq{\N}(n,k) 
   \end{align*}
 \end{definition}
-
-\section{Univalenz}
-\subsection{Äquivalenzen}
-\subsection{Univalenz}
 
 \section{Homotopietheorie}
 \subsection{n-Typen}
