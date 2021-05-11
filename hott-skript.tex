@@ -1345,14 +1345,14 @@ Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inve
   \item $f$ hat eine \begriff{Linksinverse}, wenn es ein $h:B\to A$ gibt und $h\circ f\sim\id_A$.
   \item $f$ ist eine \begriff{Äquivalenz} oder eine Funktion mit \begriff{Links- und Rechtsinversen}, wenn
     \begin{mathpar}
-      \mathrm{lrInv}(f):\equiv \left(\sum_{g:B\to A}\sum_{y:B}f(g(y))=y\right)\times \left(\sum_{h:B\to A}\sum_{x:A}h(f(x))=x\right)
+      \mathrm{LRInv}(f):\equiv \left(\sum_{g:B\to A}\sum_{y:B}f(g(y))=y\right)\times \left(\sum_{h:B\to A}\sum_{x:A}h(f(x))=x\right)
     \end{mathpar}
   \end{enumerate}
 \end{definition}
 
-Es wird sich herausstellen, dass $\mathrm{lrInv}(f)$ und $\mathrm{qinv}(f)$ für manche Funktionen keine äquivalenten Typen sind.
-Insbesondere werden wir noch sehen, dass $\qinv(f)$ immer eine Aussage ist, $\mathrm{lrInv}(f)$ aber keine Aussage mehr sein muss, wenn $A$ und $B$ komplizierte Gleichheitstypen haben.
-Die beiden Begriffe sind aber \begriff{logisch äquivalent}, d.h. es gibt für jedes $f:A\to B$ Abbildungen $\mathrm{lrInv}(f)\to \qinv(f)$ und $\qinv(f)\mathrm{lrInv}(f)$.
+Es wird sich herausstellen, dass $\mathrm{LRInv}(f)$ und $\mathrm{qinv}(f)$ für manche Funktionen keine äquivalenten Typen sind.
+Insbesondere werden wir noch sehen, dass $\qinv(f)$ immer eine Aussage ist, $\mathrm{LRInv}(f)$ aber keine Aussage mehr sein muss, wenn $A$ und $B$ komplizierte Gleichheitstypen haben.
+Die beiden Begriffe sind aber \begriff{logisch äquivalent}, d.h. es gibt für jedes $f:A\to B$ Abbildungen $\mathrm{LRInv}(f)\to \qinv(f)$ und $\qinv(f)\to\mathrm{LRInv}(f)$.
 
 \begin{bemerkung}
   \label{bem:qinv-equiv}
