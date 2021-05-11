@@ -1341,11 +1341,11 @@ Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inve
 \begin{definition}
   Seien $A,B:\mU$ und $f:A\to B$.
   \begin{enumerate}
-  \item $f$ hat eine \begriff{Rechtsinverse} oder einen \begriff{Schnitt}, wenn es ein $g:B\to A$ gibt und $f\circ g\sim \id_B$.
-  \item $f$ hat eine \begriff{Linksinverse}, wenn es ein $h:B\to A$ gibt und $h\circ f\sim\id_A$.
+  \item $f$ hat eine \begriff{Linksinverse}, wenn es ein $g:B\to A$ gibt und $g\circ f\sim\id_A$.
+  \item $f$ hat eine \begriff{Rechtsinverse} oder einen \begriff{Schnitt}, wenn es ein $h:B\to A$ gibt und $f\circ h\sim \id_B$.
   \item $f$ ist eine \begriff{Äquivalenz} oder eine Funktion mit \begriff{Links- und Rechtsinversen}, wenn
     \begin{mathpar}
-      \isEquiv(f):\equiv\mathrm{LRInv}(f):\equiv \left(\sum_{g:B\to A}f\circ g\sim\id_B\right)\times \left(\sum_{h:B\to A}h\circ f\sim\id_A\right)
+      \isEquiv(f):\equiv\mathrm{LRInv}(f):\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
     \end{mathpar}
   \item Wenn es eine Äquivanz zwischen $A$ und $B$ gibt, dann sagen wir $A$ ist \begriff{äquivalent} zu $B$.
   \item Für den Typ der Äquivalenzen zwischen $A$ und $B$ schreiben wir:
@@ -1372,11 +1372,22 @@ wenn wir logische Äquivalenz gezeigt haben und dass es sich jeweils um Aussagen
   Seien $A,B:\mU$ und $f:A\to B$. Die Typen $\mathrm{LRInv}(f)$ und $\qinv(f)$ sind logisch äquivalent.
 \end{bemerkung}
 \begin{beweis}
-  Nehmen wir zünachst an, es gibt eine Quasi-Inverse $g:B\to A$ mit $H:f\circ g\sim\id_B$ und $K:g\circ f\sim\id_A$. Dann ist
+  Nehmen wir zünachst an, es gibt eine Quasi-Inverse $g:B\to A$ mit $H:g\circ f\sim\id_A$ und $K:f\circ g\sim\id_B$. Dann ist
   \begin{mathpar}
     ((g,H),(g,K)):\mathrm{LRInv}(f)
   \end{mathpar}
+  Seien nun andererseits $g,h:B\to A$ links- und rechtsinvers zu $f$. Wir zeigen, dass $g$ und $h$ homotop sind. Damit können wir dann zeigen, dass $g$ auch rechtsinvers ist.
+  Durch whiskering erhalten wir:
+  \begin{mathpar}
+    g\sim g\circ (f\circ h) \sim (g\circ f)\circ h  \sim h
+  \end{mathpar}
+  Also ist $g$ rechtsinvers:
+  \begin{mathpar}
+    f\circ g\sim f\circ h\sim \id
+  \end{mathpar}
 \end{beweis}
+
+Wenn wir also zu einer Funktion $f:A\to B$ eine beidseitige Inverse konstruieren, dann ist $f$ eine Äquivalenz.
 
 \begin{bemerkung}
   \label{bem:qinv-equiv}
