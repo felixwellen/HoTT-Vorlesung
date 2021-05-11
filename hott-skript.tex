@@ -1336,7 +1336,7 @@ was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
 
 In diesem Abschnitt werden wir drei verschiedene Definitionen von Äquivalenzen einführen und zeigen,
 dass es sich um den selben Begriff handelt. Einen haben wir bereits eingeführt - Funktionen mit kontrahierbaren Fasern heißen Äquivalenz.
-Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inverse:
+Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inverse und legen dabei mehr Notation für Äquivalenzen fest:
 
 \begin{definition}
   Seien $A,B:\mU$ und $f:A\to B$.
@@ -1345,14 +1345,38 @@ Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inve
   \item $f$ hat eine \begriff{Linksinverse}, wenn es ein $h:B\to A$ gibt und $h\circ f\sim\id_A$.
   \item $f$ ist eine \begriff{Äquivalenz} oder eine Funktion mit \begriff{Links- und Rechtsinversen}, wenn
     \begin{mathpar}
-      \mathrm{LRInv}(f):\equiv \left(\sum_{g:B\to A}\sum_{y:B}f(g(y))=y\right)\times \left(\sum_{h:B\to A}\sum_{x:A}h(f(x))=x\right)
+      \isEquiv(f):\equiv\mathrm{LRInv}(f):\equiv \left(\sum_{g:B\to A}f\circ g\sim\id_B\right)\times \left(\sum_{h:B\to A}h\circ f\sim\id_A\right)
+    \end{mathpar}
+  \item Wenn es eine Äquivanz zwischen $A$ und $B$ gibt, dann sagen wir $A$ ist \begriff{äquivalent} zu $B$.
+  \item Für den Typ der Äquivalenzen zwischen $A$ und $B$ schreiben wir:
+    \begin{mathpar}
+      A\simeq B:\equiv\sum_{f:A\to B}\isEquiv(f)
     \end{mathpar}
   \end{enumerate}
 \end{definition}
 
 Es wird sich herausstellen, dass $\mathrm{LRInv}(f)$ und $\mathrm{qinv}(f)$ für manche Funktionen keine äquivalenten Typen sind.
 Insbesondere werden wir noch sehen, dass $\qinv(f)$ immer eine Aussage ist, $\mathrm{LRInv}(f)$ aber keine Aussage mehr sein muss, wenn $A$ und $B$ komplizierte Gleichheitstypen haben.
-Die beiden Begriffe sind aber \begriff{logisch äquivalent}, d.h. es gibt für jedes $f:A\to B$ Abbildungen $\mathrm{LRInv}(f)\to \qinv(f)$ und $\qinv(f)\to\mathrm{LRInv}(f)$.
+Die beiden Begriffe sind aber logisch äquivalent, d.h. es gibt für jedes $f:A\to B$ Abbildungen $\mathrm{LRInv}(f)\to \qinv(f)$ und $\qinv(f)\to\mathrm{LRInv}(f)$.
+Zunächst halten wir die Vokabel ``logisch äquivalent'' fest:
+
+\begin{definition}
+  Zwei Typen $A$ und $B$ heißen \begriff{logisch äquivalent}, wenn es Funktionen $f:A\to B$ und $g:B\to A$ gibt.
+\end{definition}
+
+Bei Aussagen reicht die logische Äquivalenz bereits, damit die Typen äquivalent sind.
+Damit werden die verschiedenen Varianten des Typs ``$\isEquiv(f)$'', die wir in diesem Abschnitt kennenlernen, äquivalente Typen sein,
+wenn wir logische Äquivalenz gezeigt haben und dass es sich jeweils um Aussagen handelt. Letzteres werden wir allerdings noch Aufschieben.
+
+\begin{bemerkung}
+  Seien $A,B:\mU$ und $f:A\to B$. Die Typen $\mathrm{LRInv}(f)$ und $\qinv(f)$ sind logisch äquivalent.
+\end{bemerkung}
+\begin{beweis}
+  Nehmen wir zünachst an, es gibt eine Quasi-Inverse $g:B\to A$ mit $H:f\circ g\sim\id_B$ und $K:g\circ f\sim\id_A$. Dann ist
+  \begin{mathpar}
+    ((g,H),(g,K)):\mathrm{LRInv}(f)
+  \end{mathpar}
+\end{beweis}
 
 \begin{bemerkung}
   \label{bem:qinv-equiv}
