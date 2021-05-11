@@ -1333,6 +1333,27 @@ was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
 \section{Univalenz}
 \subsection{Äquivalenzen}
 \label{sub:aequivalenzen}
+
+In diesem Abschnitt werden wir drei verschiedene Definitionen von Äquivalenzen einführen und zeigen,
+dass es sich um den selben Begriff handelt. Einen haben wir bereits eingeführt - Funktionen mit kontrahierbaren Fasern heißen Äquivalenz.
+Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inverse:
+
+\begin{definition}
+  Seien $A,B:\mU$ und $f:A\to B$.
+  \begin{enumerate}
+  \item $f$ hat eine \begriff{Rechtsinverse} oder einen \begriff{Schnitt}, wenn es ein $g:B\to A$ gibt und $f\circ g\sim \id_B$.
+  \item $f$ hat eine \begriff{Linksinverse}, wenn es ein $h:B\to A$ gibt und $h\circ f\sim\id_A$.
+  \item $f$ ist eine \begriff{Äquivalenz} oder eine Funktion mit \begriff{Links- und Rechtsinversen}, wenn
+    \begin{mathpar}
+      \mathrm{lrInv}(f):\equiv \left(\sum_{g:B\to A}\sum_{y:B}f(g(y))=y\right)\times \left(\sum_{h:B\to A}\sum_{x:A}h(f(x))=x\right)
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
+Es wird sich herausstellen, dass $\mathrm{lrInv}(f)$ und $\mathrm{qinv}(f)$ für manche Funktionen keine äquivalenten Typen sind.
+Insbesondere werden wir noch sehen, dass $\qinv(f)$ immer eine Aussage ist, $\mathrm{lrInv}(f)$ aber keine Aussage mehr sein muss, wenn $A$ und $B$ komplizierte Gleichheitstypen haben.
+Die beiden Begriffe sind aber \begriff{logisch äquivalent}, d.h. es gibt für jedes $f:A\to B$ Abbildungen $\mathrm{lrInv}(f)\to \qinv(f)$ und $\qinv(f)\mathrm{lrInv}(f)$.
+
 \begin{bemerkung}
   \label{bem:qinv-equiv}
   Seien $A,B$ Typen und $f:A\to B$.
