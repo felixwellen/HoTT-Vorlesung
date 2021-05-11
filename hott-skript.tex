@@ -1344,6 +1344,19 @@ Damit ist dann auch der Typ der Äquivalenzen zwischen $A$ und $B$ eine Untertyp
 \end{mathpar}
 ist injektiv.
 
+Zur Vorbereitung beschäftigen wir uns noch etwas mit Homotopien.
+\begin{bemerkung}
+  Seien $A,B:\mU$ und $f,g:A\to B$.
+  \begin{enumerate}
+  \item Sei $H:f\sim g$. Homotopien sind natürlich in folgendem Sinn: Für $p:x=_A y$ gilt:
+    \begin{mathpar}
+      H_x\kon g(p) = f(p)\kon H_{y}
+    \end{mathpar}
+  \item Für eine Homotopie $H:f\sim\id$ gilt $f(H_x)=H_{f(x)}$.
+  \end{enumerate}
+\end{bemerkung}
+
+
 Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inverse und legen dabei mehr Notation für Äquivalenzen fest:
 
 \begin{definition}
@@ -1449,18 +1462,17 @@ Für eine Funktion $f:A\to B$ mit Inverser $g:B\to A$ besagt diese Kohärenz, da
   Seien $A,B:\mU$ und $f:A\to B$.
   Eine Funktion $g:B\to A$ heißt \begriff{kohärente Inverse} von $f$, wenn $f$ und $g$ es Homotopien $H:g\circ f\sim \id$ und $K:f\circ g \sim \id$ gibt und
   \begin{mathpar}
-    koh : \prod_{x:A}f(H_x)=K_{f(x)}
+    \mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}
   \end{mathpar}
 \end{definition}
 
+Wir wollen direkt einsehen, dass wir von dieser Sorte Äquivalenz die Kontrahierbarkeit der Fasern beweisen können:
+
 \begin{bemerkung}
   \label{bem:qinv-equiv}
-  Seien $A,B$ Typen und $f:A\to B$.
-  Wenn $f$ eine beidseitige Inverse hat, dann ist $f$ eine Äquivalenz. Das heißt es gibt eine Funktion:
-    \begin{mathpar}
-      \qinv(f)\to \isEquiv(f)
-    \end{mathpar}
+  Seien $A,B:\mU$ und $f:A\to B$. Wenn $f$ eine kohärente Inverse hat, dann sind die Fasern von $f$ kontrahierbar.
 \end{bemerkung}
+Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden können:
 \begin{lemma}
   \label{lem:gleichheit-in-faser}
   Seien $A,B$ Typen, $f:A\to B$ und $y:B$. Für $(x,q),(x',q'):f^{-1}(y)$ gibt es eine Funktion:
@@ -1471,18 +1483,29 @@ Für eine Funktion $f:A\to B$ mit Inverser $g:B\to A$ besagt diese Kohärenz, da
 \begin{beweis}[von \cref{lem:gleichheit-in-faser}]
   Induktion über $p$.
 \end{beweis}
+
 \begin{beweis}[von \labelcref{bem:qinv-equiv}]
-  \begin{enumerate}
-  \item Wir haben also $g:B\to A$, sodass $H:f\circ g\sim\id$ und $K:g\circ f\sim \id$ und müssen für jede Faser von $f$ eine Kontraktion angeben.
+  Habe also $f:A\to B$ eine kohärente Inverse, gebe es also $g:B\to A$, $H:g\circ f\sim \id$, $K:f\circ g \sim \id$ und $\mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}$.
+  Wir müssen nun für jede Faser von $f$ eine Kontraktion angeben.
     Als Kontraktionszentrum für die Faser über $y:B$ wählen wir
     \begin{mathpar}
-      k_y:\equiv (g(y), H(g(y))) : f^{-1}(y)
+      k_y:\equiv (g(y), K_y) : f^{-1}(y)
     \end{mathpar}
-    Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Also haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
+    Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Damit haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
     \begin{mathpar}
-      K(x)^{-1}\kon g(q\kon q'^{-1}) \kon K(x'):x=x'
+      H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x':x=x'
     \end{mathpar}
-  \end{enumerate}
+    Darauf wenden wir jetzt $f$ an:
+    \begin{mathpar}
+      f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x'):f(x)=f(x')
+    \end{mathpar}
+    und berechnen mit natürlichkeit von Homotopien, der Kohärenz und Gruppoidgesetzen:
+    \begin{align*}
+      f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x')&=f(H_x^{-1})\kon f(g(q\kon q'^{-1})) \kon f(H_x') \\
+      &=f(H_x^{-1})\kon K_{f(x)}\kon q\kon q'^{-1}\kon K_{f(x')}^{-1} \kon f(H_x') \\
+      &=q\kon q'^{-1}
+    \end{align*}
+    Mit dem Lemma haben wir also die gewünschte Gleichheit.
 \end{beweis}
 
 \subsection{Univalenz}
