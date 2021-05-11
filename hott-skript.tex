@@ -1336,6 +1336,14 @@ was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
 
 In diesem Abschnitt werden wir drei verschiedene Definitionen von Äquivalenzen einführen und zeigen,
 dass es sich um den selben Begriff handelt. Einen haben wir bereits eingeführt - Funktionen mit kontrahierbaren Fasern heißen Äquivalenz.
+Von einem Äquivalenzbegriff erwarten wir, dass es sich beim entsprechenden Typ $\isEquiv(f)$ um eine Aussage handelt.
+Das hat zur Folge, dass wir es als eine Eigenschaft von Funktionen anssehen können eine Äquivalenz zu sein.
+Damit ist dann auch der Typ der Äquivalenzen zwischen $A$ und $B$ eine Untertyp von $A\to B$, d.h. die Vergiß-Abbildung
+\begin{mathpar}
+  \pi_1:\left(\sum_{f:A\to B}\isEquiv(f)\right)\to (A\to B)
+\end{mathpar}
+ist injektiv.
+
 Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inverse und legen dabei mehr Notation für Äquivalenzen fest:
 
 \begin{definition}
@@ -1369,6 +1377,7 @@ Damit werden die verschiedenen Varianten des Typs ``$\isEquiv(f)$'', die wir in 
 wenn wir logische Äquivalenz gezeigt haben und dass es sich jeweils um Aussagen handelt. Letzteres werden wir allerdings noch Aufschieben.
 
 \begin{bemerkung}
+  \label{bem:lrinv-qinv}
   Seien $A,B:\mU$ und $f:A\to B$. Die Typen $\mathrm{LRInv}(f)$ und $\qinv(f)$ sind logisch äquivalent.
 \end{bemerkung}
 \begin{beweis}
@@ -1387,7 +1396,53 @@ wenn wir logische Äquivalenz gezeigt haben und dass es sich jeweils um Aussagen
   \end{mathpar}
 \end{beweis}
 
-Wenn wir also zu einer Funktion $f:A\to B$ eine beidseitige Inverse konstruieren, dann ist $f$ eine Äquivalenz.
+Wenn wir also zu einer Funktion $f:A\to B$ eine beidseitige Inverse konstruieren, dann ist $f$ eine Äquivalenz (im Sinn einer Funktion mit Links- und Rechtsinversen).
+Äquivalenzen haben die Operationen, die wir bereits von Gleichheiten kennen:
+
+\begin{bemerkung}
+  \begin{enumerate}
+  \item Die Identität ist eine Äquivalenz.
+  \item Eine Inverse einer Äquivalenz ist eine Äquivalenz.
+  \item Seien $A,B,C:\mU$. Wenn $f:A\to B$ und $g:B\to C$ Äquivalenzen sind, dann ist $g\circ f:A\to C$ eine Äquivalenz.
+  \end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+  Wir zeigen die Aussagen für den Äquivalenzbegriff der Funktion mit Links- und Rechtsinversen.
+  Mit \cref{satz:aequivalenzen} gilt damit das gleiche für die anderen Äquivalenzbegriffe.
+  \begin{enumerate}
+  \item Die Identität ist ihre eigene Links- und Rechtsinverse. Die nötigen Homotopien gelten schon als urteilsmäßige von Funktionen.
+  \item Wenn $f:A\to B$ eine Linksinverse $g:B\to A$ und eine Rechtsinverse $h:B\to A$ hat, dann ist bekommen wir mit Bemerkung \labelcref{lrinv-qinv} eine Quasi-Inverse $f^{-1}:B\to A$.
+    Und $f^{-1}$ ist eine Äquivalenz mit Linksinverser $f$ und Rechtsinverser $f$.
+  \item Auf Übungsblatt 4 wird das für Quasi-Inversen gezeigt. Zusammen mit Bemerkung \labelcref{lrinv-qinv} gilt das also auch für Äquivalenzen.
+  \end{enumerate}
+\end{beweis}
+
+Wir wollen nun den Äquivalenzbegriff der Links- und Rechtsinvertierbarkeit mit dem der kontrahierbaren Fasern in Zusammenhang bringen.
+Wir werden allerdings erstmal eine Implikation klären und für die zweite einen dritten Äquivalenzbegriff einführen.
+
+\begin{bemerkung}
+  \label{bem:isContr-lrinv}
+  Seien $A,B:\mU$ und $f:A\to B$. Wenn alle Fasern von $f$ kontrahierbar sind, dann hat $f$ Links- und Rechtsinverse, es gibt also eine Funktion:
+  \begin{mathpar}
+    \left(\prod_{y:B}\isContr(f^{-1}(y))\right) \to \mathrm{LRInv}(f)
+  \end{mathpar}
+\end{bemerkung}
+
+\begin{beweis}
+  Sei $k:\prod_{y:B}\isContr(f^{-1}(y))$.
+  Wir konstruieren eine beidseitige Inverse $g:B\to A$ indem wir $y:B$ auf das Kontraktionszentrum der Faser $f^{-1}(y)$ abbilden:
+  Für $\pi_1(k_y)$ ist ein Element von $f^{-1}(y)$, besteht also aus $x:A$ und $p:f(x)=y$, also können wir festlegen
+  \begin{mathpar}
+    g(y):\equiv x
+  \end{mathpar}
+  Dann ist $f(g(y))=f(x)=y$, also $g$ Rechtsinverse von $f$. Für $x:A$ sei $x':\equiv g(f(x))$.
+  Es müssen $x:A$ und $x':A$ beide in $f^{-1}(f(x))$ liegen und da diese Faser kontrahierbar ist, gibt es eine Gleichheit $q:x=x'=g(f(x))$.
+  Genauer haben wir durch die Kontrahierbarkeit eine Gleichheit $q':(x,\refl_{f(x)})=(x',p')$ in der Faser $f^{-1}(f(x))$.
+  Diese Gleichheit können wir mit $\pi_1:f^{-1}(f(x))\to A$ abbilden, also $q:\equiv \pi_1(q')$ setzen.
+\end{beweis}
+
+Die Umkehrung dieser Aussage ist komplizierter zu zeigen und wir werden zunächst zeigen, dass sich Links- Rechtsinverse in eine sogenannte kohärente Inverse überstzen lassen.
+Kohärente Inverse $g:B\to A$ einer Funktion $f:A\to B$ haben eine Kompatiblität zwischen den beiden Homotopien $f\circ g\sim \id$ und $g\circ f\sim \id$.
 
 \begin{bemerkung}
   \label{bem:qinv-equiv}
