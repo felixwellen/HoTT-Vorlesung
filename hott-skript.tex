@@ -1443,6 +1443,15 @@ Wir werden allerdings erstmal eine Implikation klären und für die zweite einen
 
 Die Umkehrung dieser Aussage ist komplizierter zu zeigen und wir werden zunächst zeigen, dass sich Links- Rechtsinverse in eine sogenannte kohärente Inverse überstzen lassen.
 Kohärente Inverse $g:B\to A$ einer Funktion $f:A\to B$ haben eine Kompatiblität zwischen den beiden Homotopien $f\circ g\sim \id$ und $g\circ f\sim \id$.
+Für eine Funktion $f:A\to B$ mit Inverser $g:B\to A$ besagt diese Kohärenz, dass die beiden Möglichkeiten eine Homotopie $f\circ g\circ f\sim f$ zu konstruieren punktweise gleich sind.
+
+\begin{definition}
+  Seien $A,B:\mU$ und $f:A\to B$.
+  Eine Funktion $g:B\to A$ heißt \begriff{kohärente Inverse} von $f$, wenn $f$ und $g$ es Homotopien $H:g\circ f\sim \id$ und $K:f\circ g \sim \id$ gibt und
+  \begin{mathpar}
+    koh : \prod_{x:A}f(H_x)=K_{f(x)}
+  \end{mathpar}
+\end{definition}
 
 \begin{bemerkung}
   \label{bem:qinv-equiv}
