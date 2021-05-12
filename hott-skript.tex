@@ -1506,6 +1506,26 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
       &=q\kon q'^{-1}
     \end{align*}
     Mit dem Lemma haben wir also die gewünschte Gleichheit.
+  \end{beweis}
+  
+\begin{theorem}
+  \label{thm:aequivalenzen}
+  Seien $A,B:\mU$ und $f:A\to B$, dann sind die folgenden Äquivalenzbegriffe logisch äquivalent:
+  \begin{enumerate}
+  \item Alle Fasern von $f$ sind kontrahierbar:
+    \begin{mathpar}
+      \prod_{y:B}\isContr(f^{-1}(y))
+    \end{mathpar}
+  \item $f$ hat eine Linksinverse und eine Rechtsinverse:
+    \begin{mathpar}
+      \mathrm{LRInv}\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
+    \end{mathpar}
+  \item 
+  \end{enumerate}
+  Wir schreiben für alle drei Begriffe $\isEquiv(f)$, weil sich noch rausstellen wird, dass alle diese Typen Aussagen sind und damit alle drei Typen äquivalent sind.
+\end{theorem}
+\begin{beweis}
+  Die Bemerkungen dieses Abschnitts beweisen per Ringschluss die logische Äquivalenz.
 \end{beweis}
 
 \subsection{Univalenz}
