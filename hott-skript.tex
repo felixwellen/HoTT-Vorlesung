@@ -1421,14 +1421,18 @@ Wenn wir also zu einer Funktion $f:A\to B$ eine beidseitige Inverse konstruieren
 \end{bemerkung}
 \begin{beweis}
   Wir zeigen die Aussagen für den Äquivalenzbegriff der Funktion mit Links- und Rechtsinversen.
-  Mit \cref{satz:aequivalenzen} gilt damit das gleiche für die anderen Äquivalenzbegriffe.
+  Mit \cref{thm:aequivalenzen} gilt damit das gleiche für die anderen Äquivalenzbegriffe.
   \begin{enumerate}
   \item Die Identität ist ihre eigene Links- und Rechtsinverse. Die nötigen Homotopien gelten schon als urteilsmäßige von Funktionen.
   \item Wenn $f:A\to B$ eine Linksinverse $g:B\to A$ und eine Rechtsinverse $h:B\to A$ hat, dann ist bekommen wir mit Bemerkung \labelcref{lrinv-qinv} eine Quasi-Inverse $f^{-1}:B\to A$.
     Und $f^{-1}$ ist eine Äquivalenz mit Linksinverser $f$ und Rechtsinverser $f$.
-  \item Auf Übungsblatt 4 wird das für Quasi-Inversen gezeigt. Zusammen mit Bemerkung \labelcref{lrinv-qinv} gilt das also auch für Äquivalenzen.
+  \item Auf Übungsblatt 4 wird das für Quasi-Inversen gezeigt. Zusammen mit Bemerkung \labelcref{bem:lrinv-qinv} gilt das also auch für Äquivalenzen.
   \end{enumerate}
 \end{beweis}
+
+\begin{beispiel}[Transport ist Äquivalenz]
+  Für $A:\mU$, $B:A\to\mU$, $x,y:A$ und jedes $p:x=y$ ist $\transp_B(p):B(x)\to B(y)$ eine Äquivalenz mit Inverser $\transp_B(p^{-1}):B(y)\to B(x)$.
+\end{beispiel}
 
 Wir wollen nun den Äquivalenzbegriff der Links- und Rechtsinvertierbarkeit mit dem der kontrahierbaren Fasern in Zusammenhang bringen.
 Wir werden allerdings erstmal eine Implikation klären und für die zweite einen dritten Äquivalenzbegriff einführen.
@@ -1464,6 +1468,7 @@ Für eine Funktion $f:A\to B$ mit Inverser $g:B\to A$ besagt diese Kohärenz, da
   \begin{mathpar}
     \mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}
   \end{mathpar}
+  Wir schreiben $\mathrm{CohInv}(f)$ für den Typ der \begriff{kohärenten Inversen} von $f$.
 \end{definition}
 
 Wir wollen direkt einsehen, dass wir von dieser Sorte Äquivalenz die Kontrahierbarkeit der Fasern beweisen können:
@@ -1481,46 +1486,61 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
   \end{mathpar}
 \end{lemma}
 \begin{beweis}[von \cref{lem:gleichheit-in-faser}]
-  Induktion über $p$.
+  Induktion über $p$ und $\sum_=$.
 \end{beweis}
 
 \begin{beweis}[von \labelcref{bem:qinv-equiv}]
   Habe also $f:A\to B$ eine kohärente Inverse, gebe es also $g:B\to A$, $H:g\circ f\sim \id$, $K:f\circ g \sim \id$ und $\mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}$.
   Wir müssen nun für jede Faser von $f$ eine Kontraktion angeben.
-    Als Kontraktionszentrum für die Faser über $y:B$ wählen wir
-    \begin{mathpar}
-      k_y:\equiv (g(y), K_y) : f^{-1}(y)
-    \end{mathpar}
-    Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Damit haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
-    \begin{mathpar}
-      H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x':x=x'
-    \end{mathpar}
-    Darauf wenden wir jetzt $f$ an:
-    \begin{mathpar}
-      f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x'):f(x)=f(x')
-    \end{mathpar}
-    und berechnen mit natürlichkeit von Homotopien, der Kohärenz und Gruppoidgesetzen:
-    \begin{align*}
-      f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x')&=f(H_x^{-1})\kon f(g(q\kon q'^{-1})) \kon f(H_x') \\
-      &=f(H_x^{-1})\kon K_{f(x)}\kon q\kon q'^{-1}\kon K_{f(x')}^{-1} \kon f(H_x') \\
-      &=q\kon q'^{-1}
-    \end{align*}
-    Mit dem Lemma haben wir also die gewünschte Gleichheit.
-  \end{beweis}
-  
+  Als Kontraktionszentrum für die Faser über $y:B$ wählen wir
+  \begin{mathpar}
+    k_y:\equiv (g(y), K_y) : f^{-1}(y)
+  \end{mathpar}
+  Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Damit haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
+  \begin{mathpar}
+    H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x':x=x'
+  \end{mathpar}
+  Darauf wenden wir jetzt $f$ an:
+  \begin{mathpar}
+    f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x'):f(x)=f(x')
+  \end{mathpar}
+  und berechnen mit natürlichkeit von Homotopien, der Kohärenz und Gruppoidgesetzen:
+  \begin{align*}
+    f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x')&=f(H_x^{-1})\kon f(g(q\kon q'^{-1})) \kon f(H_x') \\
+                                              &=f(H_x^{-1})\kon K_{f(x)}\kon q\kon q'^{-1}\kon K_{f(x')}^{-1} \kon f(H_x') \\
+                                              &=q\kon q'^{-1}
+  \end{align*}
+  Mit dem Lemma haben wir also die gewünschte Gleichheit.
+\end{beweis}
+
+\begin{bemerkung}
+  Seien $A,B:\mU$ und $f:A\to B$ habe eine beidseitige Inverse $g:B\to A$.
+  Dann ist $g$ auch eine kohärente Inverse von $f$.
+\end{bemerkung}
+\begin{beweis}
+  Seien $g,h:B\to A$ und $H:g\circ f\sim\id$, $K:f\circ g\sim \id$. Setzte für $y:B$:
+  \begin{mathpar}
+    K':\equiv K_{f(g(y))}^{-1}\kon f(H_{g(y)})\kon K_{y}
+  \end{mathpar}
+  und rechne nach dass für $x:A$ gilt: $f(H_x)=K'_{f(x)}$.
+\end{beweis}
+
 \begin{theorem}
   \label{thm:aequivalenzen}
   Seien $A,B:\mU$ und $f:A\to B$, dann sind die folgenden Äquivalenzbegriffe logisch äquivalent:
   \begin{enumerate}
   \item Alle Fasern von $f$ sind kontrahierbar:
     \begin{mathpar}
-      \prod_{y:B}\isContr(f^{-1}(y))
+      \isEquiv(f):\equiv\prod_{y:B}\isContr(f^{-1}(y))
     \end{mathpar}
   \item $f$ hat eine Linksinverse und eine Rechtsinverse:
     \begin{mathpar}
-      \mathrm{LRInv}\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
+      \isEquiv(f):\equiv\mathrm{LRInv}\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
     \end{mathpar}
-  \item 
+  \item $f$ hat eine kohärente Inverse:
+    \begin{mathpar}
+      \isEquiv(f):\equiv\mathrm{CohInv}(f):\equiv \sum_{g:B\to A} \sum_{H:g\circ f\sim\id}\sum_{K:f\circ g\sim\id} \prod_{x:A}f(H_x)=K_{f(x)}
+    \end{mathpar}
   \end{enumerate}
   Wir schreiben für alle drei Begriffe $\isEquiv(f)$, weil sich noch rausstellen wird, dass alle diese Typen Aussagen sind und damit alle drei Typen äquivalent sind.
 \end{theorem}
