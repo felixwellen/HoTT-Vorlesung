@@ -1,6 +1,6 @@
 {-
   Hier kann man ganz unverfänglich Agda im Browser ausprobieren:
-  
+
   https://agdapad.quasicoherent.io/
 
   (was aber evtl manchmal abgeschaltet ist)
@@ -21,6 +21,8 @@ module Vorlesung where
 -}
 _∘_ : {A B C : Set} → (B → C) → (A → B) → (A → C)
 g ∘ f = λ x → g(f(x))
+
+infixr 20 _∘_
 
 {-
   Wir geben eine Definition an, die es uns erlaubt auch "Π B" für einen abhängigen Typ "B" zu schreiben,
@@ -238,7 +240,7 @@ record ∑ (A : Set) (B : A → Set) : Set where
     π₂ : B π₁
 open ∑
 {-
-  das folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B'
+  Das Folgende erlaubt die Schreibweise 'Σ[ x ∈ A ] B'
 -}
 infix 2 ∑-syntax
 
@@ -260,6 +262,8 @@ A × B = ∑[ x ∈ A ] B
 -}
 _inversZu_ : {A B : Set} (f : A → B) (g : B → A) → Set
 f inversZu g = (∏[ x ∈ _ ] g(f x) ≡ x) × (∏[ y ∈ _ ] f(g y) ≡ y)
+
+infix 6 _inversZu_
 
 _hatInverse : {A B : Set} (f : A → B) → Set
 f hatInverse = ∑[ g ∈ (_ → _) ] g inversZu f
@@ -316,10 +320,13 @@ module lemma1-5-8 {A B : Set} where
 
 {-
   1.6.1 Funktionsgleichheit
+  ∼ \sim
 -}
 
 _∼_ : {A B : Set} (f : A → B) → (g : A → B) → Set
 _∼_ {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
+
+infix 18 _∼_
 
 {-
   1.6.2 Funktionsextensionalität
@@ -360,3 +367,10 @@ isSet A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y 
   where
     helper : (a : ∅) → (b : ∅) → a ≡ b
     helper () ()
+
+{-
+  Ergebnis von Blatt 3, Aufgabe 3:
+  Kontrahierbare Typen haben kontrahierbare Gleichheitstypen
+-}
+AisContr→≡isContr : ∀ {A : Set} → isContr(A) → ∏[ x ∈ A ] ∏[ y ∈ A ] isContr(x ≡ y)
+AisContr→≡isContr c x y = ( ((π₂ c) x) ∙ ((π₂ c) y) ⁻¹ ) , λ {(refl z) → (⁻¹RInv ( (π₂ c) z))⁻¹}
