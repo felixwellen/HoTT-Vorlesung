@@ -70,7 +70,6 @@ succℕ n · k = (n · k) + k
 
 {-
   Ein paar Induktive Typen
-  (mit noch nicht so tollen Namen)
 -}
 
 {-
