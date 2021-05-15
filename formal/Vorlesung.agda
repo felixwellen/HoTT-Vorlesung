@@ -110,11 +110,14 @@ data _∐_ (A B : Set) : Set where
   1.4.1
   Als Symbol für die Gleichheit verwenden wir:
   ≡           (\equiv \==)
-  (damit sind die Symbole gegenüber der Vorlesung vertauscht)
-  Gleichheit.
+  Damit sind die Symbole '≡' und '=' gegenüber der Vorlesung vertauscht.
+
   Die beiden Parameter "x,y : A" können wir in Agda realisieren, indem wir einen
   induktiven Typ vom Typ "A → A → Set" definieren.
-  mit der 'infixl' zeile legen wir fest, dass _≡_ eine niedrigere Priorität als default (=20) hat
+  Mit der 'infixl' zeile legen wir fest, dass _≡_ eine niedrigere Priorität als
+  default (=20) hat. Damit lässt sich später etwa '(p ∙ q) ⁻¹ ≡ q ⁻¹ ∙ p ⁻¹' schreiben
+  statt '((p ∙ q) ⁻¹) ≡ ((q ⁻¹) ∙ (p ⁻¹))' - vorausgesetzt für alle anderen operatoren
+  werden auch sinnvolle Prioritäten gesetzt.
 -}
 infixl 10 _≡_
 
