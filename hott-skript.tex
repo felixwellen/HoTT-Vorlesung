@@ -1,49 +1,6 @@
 % latexmk -pdflatex='xelatex %O %S' -pvc -pdf hott-skript.tex
-\documentclass[a4paper,12pt]{article}
+\documentclass{hott}
 
-\usepackage[lmargin=2.5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm]{geometry}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{enumerate}
-\usepackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
-
-\usepackage{polyglossia}
-\setdefaultlanguage{german}
-
-\usepackage{tikz}
-\usetikzlibrary{cd}
-\usetikzlibrary{arrows}
-
-% für tabellen
-\usepackage{booktabs}
-
-\usepackage{mathpartir}
-
-\usepackage{enumitem}
-\setitemize{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
-\setenumerate{topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex}
-
-\usepackage{ntheorem}
-\theorembodyfont{}
-\theoremstyle{break}
-    \newtheorem{theorem}{Theorem}[subsection]
-    \newtheorem{lemma}[theorem]{Lemma}
-    \newtheorem{definition}[theorem]{Definition}
-    \newtheorem{bemerkung}[theorem]{Bemerkung}
-    \newtheorem{konvention}[theorem]{Konvention}
-    \newtheorem{regeln}[theorem]{Regeln}
-    \newtheorem{axiom}[theorem]{Axiom}
-    \newtheorem{beispiel}[theorem]{Beispiel}
-\theoremstyle{nonumberbreak}
-\theoremstyle{nonumberplain}
-\theoremsymbol{\ensuremath{□}}
-    \newtheorem{beweis}{Beweis}
-
-\usepackage{cleveref}
-
-\usepackage{makeidx}
-
-\usepackage{hott}
 \setenumerate[1]{label=(\alph*),topsep=0pt}
 \setenumerate[2]{label=(\roman*),topsep=0pt}
 
