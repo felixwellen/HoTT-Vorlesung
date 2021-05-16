@@ -252,6 +252,29 @@ infix 2 ∑-syntax
 syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
 
 {-
+  1.4.13
+  Transport (in B entlang von p)
+-}
+
+tr : {A : Set} (B : A → Set) {x y : A} (p : x ≡ y) → B(x) → B(y)
+tr B (refl _) = λ z → z
+
+-- Lemma 1.4.14
+tr-x≡a : {A : Set} {a : A}
+  → {x x' : A} (p : x ≡ x')
+  → (λ { q → p ⁻¹ ∙ q }) ≡ tr (λ x → x ≡ a) (p)
+tr-x≡a (refl _) = refl λ z → z
+
+-- Lemma 1.4.15
+tr-concat : {A : Set} {B : A → Set} {x y z : A} → ∏[ p ∈ x ≡ y ] ∏[ q ∈ y ≡ z ] tr B (q) ∘ tr B (p) ≡ tr B (p ∙ q)
+tr-concat {_} {B} (refl w) q = refl (tr B q)
+
+-- Lemma 1.5.9
+∑= : ∀ {A : Set} {x y : A} {B : A → Set} {bx : B(x)} {by' : B(y)}
+  → ∏[ p ∈ x ≡ y ] (  ( tr B (p)(bx) ≡ by' ) → ( (x , bx) ≡ (y , by') )  )
+∑= (refl z) (refl w) = refl (z , w)
+
+{-
   1.5.3
   × \times
 -}
