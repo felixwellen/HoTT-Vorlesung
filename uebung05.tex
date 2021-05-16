@@ -3,15 +3,22 @@
 \begin{document}
 \maketitle{5}
 
-\begin{exercise}
-  Sei $A$ ein Typ, $x,y,z:A$ Terme, $p:x=y$, $q:y=z$ Gleichheiten und $B:A\to\mU$ ein abhängiger Typ.
-  Zeige durch Angabe von Inversen, dass folgende Funktionen Äquivalenzen sind:
-  \begin{enumerate}
-    \item $\_^{-1}:x=y\to y=x$
-    \item $p\kon\_:y=z\to x=z$
-    \item $\_\kon q:x=y\to x=z$
-    \item $\transp_B(p):B(x)\to B(y)$
-  \end{enumerate}
+\begin{exercise}[Äquivalenzen]
+  Sei $A,B,C,D$ Typen.
+  Finde Äquivalenzen:
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item $(\einheit \to A)\simeq A$.
+      \item $(\zwei \to A)\simeq A\times A$. 
+      \item $x,y:A \yields (x=y) \simeq (y=x)$.
+      \item $x,y,z:A,p:x=y \yields (y=z) \simeq (x=z)$.
+      \item $x,y,z:A,q:y=z \yields (x=y) \simeq (x=z)$.
+      \item $x,y:A,p:x=y \yields (y=y) \simeq (x=x)$.
+      \item $\beta:B\simeq C\yields (A\to B) \simeq (A\to C)$
+      \item $\alpha:A\simeq B\yields (B\to C) \simeq (A\to B)$
+      \item $\alpha:A\simeq B\yields (B\to B) \simeq (A\to A)$
+    \end{enumerate}
+  \end{multicols}
 \end{exercise}
 
 \end{document}
