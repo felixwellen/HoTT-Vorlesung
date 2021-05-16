@@ -3,6 +3,32 @@
 \begin{document}
 \maketitle{5}
 
+\begin{exercise}[Kommutative Dreiecke]
+  Seien $A,B,C$ Typen.
+  Ein \emph{kommutatives Dreieck} besteht aus Funktionen
+  \begin{center}
+    \begin{tikzcd}[column sep=small]
+      A
+        \arrow[rr, "h"]
+        \arrow[dr, "f"']
+      && C
+      \\
+      & B
+        \arrow[ur, "g"']
+    \end{tikzcd}
+  \end{center}
+  sowie einer Homotopie $h\sim g\circ f$.
+  Definiere den Typ der kommutativen Dreiecke anhand dieser Beschreibung.
+  Zeige für jedes kommutative Dreieck obiger Form:
+  \begin{enumerate}
+    \item Besitzt $h$ ein Rechtsinverses, so auch $g$.
+      Die Umkehrung gilt, falls $f$ ein Rechtsinverses hat.
+    \item Besitzt $h$ ein Linksinverses, so auch $f$.
+      Die Umkehrung gilt, falls $g$ ein Linksinverses hat.
+    \item Sind zwei der drei Funktionen $f,g,h$ Äquivalenzen, so auch die dritte.
+  \end{enumerate}
+\end{exercise}
+
 \begin{exercise}[Äquivalenzen]
   Sei $A,B,C,D$ Typen.
   Finde Äquivalenzen:
