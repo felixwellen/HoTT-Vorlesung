@@ -28,6 +28,8 @@ Ein paar Details zu einzelnen Distros und Mac OS X sind hier:
 
 https://agda.readthedocs.io/en/v2.6.0.1/getting-started/installation.html
 
+https://wiki.portal.chalmers.se/agda/Main/Windows
+
 Agda komilieren
 ---------------
 Auf den meisten aktuellen System sollte es möglich sein, Agda zu kompilieren.
