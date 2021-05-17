@@ -33,20 +33,29 @@
   Das heißt, finde eine logische Äquivalenz $\isContr(A)\leftrightarrow A\simeq\einheit$.
 \end{exercise}
 
-\begin{exercise}[Einige Äquivalenzen]
+\begin{exercise}[Äquivalenzen I]
   Seien $A,B$ Typen.
   Zeige:
-  \begin{multicols}{2}
     \begin{enumerate}
-      \item $\einheit+\einheit \simeq \zwei$
-      \item $(\einheit \to A)\simeq A$.
-      \item $(\zwei \to A)\simeq A\times A$. 
       \item $x,y:A \yields (x=y) \simeq (y=x)$.
       \item $x,y,z:A,p:x=y \yields (y=z) \simeq (x=z)$.
       \item $x,y,z:A,q:y=z \yields (x=y) \simeq (x=z)$.
       \item $x,y:A,p:x=y \yields (y=y) \simeq (x=x)$.
       \item ${x,y:A, \alpha:A\simeq B \yields (x=y) \simeq (\pi_1(\alpha)(x)=\pi_1(\alpha)(y))}$
     \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Äquivalenzen II]
+  Zeige, eventuell unter Verwendung von Funktionsextensionalität:
+  \begin{multicols}{2}
+  \begin{enumerate}
+    \item $(\leer \to A) \simeq \einheit$
+    \item $(A+B\to C) \simeq (A \to C) \times (B \to C)$
+    \item $(A \to \einheit) \simeq \einheit$
+    \item $(A \to B\times C) \simeq (A \to B) \times (A \to C)$
+    \item $(\einheit \to A)\simeq A$
+    \item $(\zwei \to A)\simeq A\times A$
+  \end{enumerate}
   \end{multicols}
 \end{exercise}
 
