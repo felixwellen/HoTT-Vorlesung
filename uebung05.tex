@@ -47,4 +47,17 @@
   \end{multicols}
 \end{exercise}
 
+\begin{bonus}[Quasi-Inversen kohärent machen]
+  Seien $A,B$ Typen, $f:A\to B$, $g:B\to A$ Funktionen und $H:g\circ f \sim\id$, $K:f\circ g\sim\id$ Homotopien.
+  Zeige dass für
+  \begin{mathpar}
+    K':\equiv (y:B)\mapsto K_{f(g(y))}^{-1}\kon f(H_{g(y)})\kon K_y : f\circ g\sim\id
+  \end{mathpar}
+  gilt:
+  \begin{mathpar}
+    \prod_{x:A}f(H_x)=K'_{f(x)}
+  \end{mathpar}
+  Damit ist $g$ eine kohärente Inverse von $f$.
+\end{bonus}
+
 \end{document}
