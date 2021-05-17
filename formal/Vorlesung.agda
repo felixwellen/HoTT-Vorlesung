@@ -4,7 +4,10 @@
   https://agdapad.quasicoherent.io/
 
   (was aber evtl manchmal abgeschaltet ist)
+  Mehr dazu, wie man an Agda rankommt, gibt es in der README.md
+-}
 
+{-
   Die Definition in dieser Datei sollen die Vorlesungsinhalte nachbilden.
   Wenn Agda auf eine Datei im gleichen Verzeichnis angewandt wird,
   kann man die Definition hier mit 'open import Vorlesung' importieren.
