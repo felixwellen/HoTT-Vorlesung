@@ -14,7 +14,7 @@
 -}
 module VorlesungMitUniversen where
 {-
-  Normalerweise gibt es in Agda eine Hierarchie von Universen die mit 'Set i' bezeichnel werden.
+  Normalerweise gibt es in Agda eine Hierarchie von Universen die mit 'Set i' bezeichnet werden.
   Für i gibt es den Typ Level.
   Mit dem folgenden sagen wir Agda, dass es eine Hierarchie von Universen 'U i' geben soll.
 -}
@@ -26,6 +26,21 @@ open import Agda.Primitive public
            ; _⊔_   to ℓ-max
            ; Set   to U
            ; Setω  to Uω )
+
+{-
+  Es ist gängige Praxis, Universenlevel in Agda mit ℓ (\ell) zu bezeichnen.
+  Wir werden dafür mit dem folgenden so etwas wie 'Hier seien stets ℓ, ℓ′ und ℓ″ Universenlevel':
+-}
+
+private
+  variable
+    ℓ ℓ′ ℓ″ : Level
+
+{-
+  Die Universenlevel können wir nun frei verwenden und Agda wird sie
+  bei Bedarf in unsere Definitionen mit aufnehmen.
+-}
+
 
 {-
   Funktionstypen sind in Agda direkt eingebaut, wir müssen die entsprechenden Regeln nicht angeben.
@@ -44,9 +59,11 @@ infixr 20 _∘_
   Wir geben eine Definition an, die es uns erlaubt auch "Π B" für einen abhängigen Typ "B" zu schreiben,
   obwohl es bereits mit "(x : A) → B x" den Typ der abhängigen Funktionen gibt.
   Abhängige Typen "x:A ⊢ B(x)" schreibt man "B : A → U".
+  Wir erlauben hier, dass A und B(x) in verschiedenen Universen liegen.
+  Das Ergebnis liegt dann im größeren der beiden Universen 'U ℓ' und 'U'
 -}
 
-∏ : (A : U) (B : A → U) → U
+∏ : (A : U ℓ) (B : A → U ℓ′) → U (ℓ-max ℓ ℓ′)
 ∏ A B = (x : A) → B x
 
 {-
