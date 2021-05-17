@@ -61,6 +61,13 @@ ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P
 ind= p₀ pₛ 0ℕ = p₀
 ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
 
+infixr 20 double_
+
+double_ : ℕ → ℕ
+double 0ℕ = 0ℕ
+double (succℕ n) = succℕ (succℕ (double n))
+
+
 d : ℕ → ℕ
 d 0ℕ = 0ℕ
 d (succℕ n) = succℕ (succℕ (d n))
@@ -132,6 +139,13 @@ data _≡_ {A : Set} : A → A → Set where
 {-
   Beispiel 1.4.2
 -}
+{-
+test : {A : Set} (x y : A) → (p : x ≡ y) → Set
+test x .x (refl _) = {!!}
+-}
+
+test2 : 0ℕ ≡ succℕ 0ℕ → ∅
+test2 ()
 
 bsp1-4-2 : (x : 𝟙) → x ≡ ∗
 bsp1-4-2 ∗ = refl ∗
