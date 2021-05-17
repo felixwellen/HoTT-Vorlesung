@@ -28,20 +28,19 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[Äquivalenzen]
-  Sei $A,B,C,D$ Typen.
-  Finde Äquivalenzen:
+\begin{exercise}[Einige Äquivalenzen]
+  Seien $A,B$ Typen.
+  Zeige:
   \begin{multicols}{2}
     \begin{enumerate}
+      \item $\einheit+\einheit \simeq \zwei$
       \item $(\einheit \to A)\simeq A$.
       \item $(\zwei \to A)\simeq A\times A$. 
       \item $x,y:A \yields (x=y) \simeq (y=x)$.
       \item $x,y,z:A,p:x=y \yields (y=z) \simeq (x=z)$.
       \item $x,y,z:A,q:y=z \yields (x=y) \simeq (x=z)$.
       \item $x,y:A,p:x=y \yields (y=y) \simeq (x=x)$.
-      \item $\beta:B\simeq C\yields (A\to B) \simeq (A\to C)$
-      \item $\alpha:A\simeq B\yields (B\to C) \simeq (A\to B)$
-      \item $\alpha:A\simeq B\yields (B\to B) \simeq (A\to A)$
+      \item ${x,y:A, \alpha:A\simeq B \yields (x=y) \simeq (\pi_1(\alpha)(x)=\pi_1(\alpha)(y))}$
     \end{enumerate}
   \end{multicols}
 \end{exercise}
