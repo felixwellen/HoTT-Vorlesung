@@ -1023,9 +1023,10 @@ Letztere Aussage hat einen eigenen Namen und wird von uns im Folgenden als Axiom
 \begin{axiom}[Funktionsextensionalität]
   Unter \begriff{Funktionsextensionalität} versteht man einen Term, der für Typen $A,B$ und Funktionen $f,g:A\to B$ wie folgt gegeben ist:
   \begin{mathpar}
-    \mathrm{FunExt}_{f,g}\colonequiv \left(\prod_{x:A}f(x)=g(x)\right)\to f=g
+    \mathrm{FunExt}_{f,g}:\left(\prod_{x:A}f(x)=g(x)\right)\to f=g
   \end{mathpar}
 \end{axiom}
+(Genauer wollen wir fordern, dass $\mathrm{FunExt}_{f,g}$ und $\mathrm{ap}((p:x=y)\mapsto x f\mapsto f(x)):(f=g)\to f\sim g$ invers zueinander sind, aber das brauchen wir nicht, bis wir $\mathrm{FunExt}$ sowieso nochmal auf eine andere Art einführen.)
 Wir werden uns jeweils merken, für welche Aussagen wir dieses Axiom brauchen.
 
 \begin{bemerkung}
@@ -1196,7 +1197,7 @@ Um diese zu formulieren brauchen wir aber noch manche der folgenden, sowieso wic
   \begin{enumerate}
   \item Für $b:B$ ist die \begriff{Faser} von $f$ über $b$ gegeben durch:
     \begin{mathpar}
-      \mathrm{fib}^{-1}(b)\colonequiv f^{-1}(b)\colonequiv \sum_{x:A}f(x)=b
+      \mathrm{fib}_f^{-1}(b)\colonequiv f^{-1}(b)\colonequiv \sum_{x:A}f(x)=b
     \end{mathpar}
   \item $f$ heißt \begriff{injektiv}, wenn
     \begin{mathpar}
