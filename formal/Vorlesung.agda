@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 {-
   Hier kann man ganz unverfänglich Agda im Browser ausprobieren:
 
