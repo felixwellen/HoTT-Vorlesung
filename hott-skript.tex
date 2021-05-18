@@ -1,49 +1,6 @@
 % latexmk -pdflatex='xelatex %O %S' -pvc -pdf hott-skript.tex
-\documentclass[a4paper,12pt]{article}
+\documentclass{hott}
 
-\usepackage[lmargin=2.5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm]{geometry}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{enumerate}
-\usepackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
-
-\usepackage{polyglossia}
-\setdefaultlanguage{german}
-
-\usepackage{tikz}
-\usetikzlibrary{cd}
-\usetikzlibrary{arrows}
-
-% für tabellen
-\usepackage{booktabs}
-
-\usepackage{mathpartir}
-
-\usepackage{enumitem}
-\setitemize{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
-\setenumerate{topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex}
-
-\usepackage{ntheorem}
-\theorembodyfont{}
-\theoremstyle{break}
-    \newtheorem{theorem}{Theorem}[subsection]
-    \newtheorem{lemma}[theorem]{Lemma}
-    \newtheorem{definition}[theorem]{Definition}
-    \newtheorem{bemerkung}[theorem]{Bemerkung}
-    \newtheorem{konvention}[theorem]{Konvention}
-    \newtheorem{regeln}[theorem]{Regeln}
-    \newtheorem{axiom}[theorem]{Axiom}
-    \newtheorem{beispiel}[theorem]{Beispiel}
-\theoremstyle{nonumberbreak}
-\theoremstyle{nonumberplain}
-\theoremsymbol{\ensuremath{□}}
-    \newtheorem{beweis}{Beweis}
-
-\usepackage{cleveref}
-
-\usepackage{makeidx}
-
-\usepackage{hott}
 \setenumerate[1]{label=(\alph*),topsep=0pt}
 \setenumerate[2]{label=(\roman*),topsep=0pt}
 
@@ -245,7 +202,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
         \PiIntro
       }
     \end{mathpar}
-    Zusammengefasst: $\id_A:\equiv (x : A)\mapsto x$.
+    Zusammengefasst: $\id_A\colonequiv (x : A)\mapsto x$.
   \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}.
     Ganz genau ist die Komposition der durch die folgende Herleitung gegebene Term:
     \begin{mathpar}
@@ -286,7 +243,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
         \PiElim
       }
     \end{mathpar}
-    In Zukunft werden wir solche Sachverhalte auch einfach durch ``$f\circ g:\equiv x\mapsto f(g(x))$'' ausdrücken.
+    In Zukunft werden wir solche Sachverhalte auch einfach durch ``$f\circ g\colonequiv x\mapsto f(g(x))$'' ausdrücken.
   \end{enumerate}
 \end{definition}
 
@@ -318,7 +275,7 @@ Den Index ``$_{\N}$'' soll Verwechslungen verhindern und wird gelegentlich wegeg
 \begin{definition}
   Wir verwenden die übliche Schreibweise für natürliche Zahlen:
   \begin{mathpar}
-    0:\equiv 0_{\N}, 1:\equiv \mathrm{succ}_{\N}(0), 2:\equiv \mathrm{succ}_{\N}(1),\dots
+    0\colonequiv 0_{\N}, 1\colonequiv \mathrm{succ}_{\N}(0), 2\colonequiv \mathrm{succ}_{\N}(1),\dots
   \end{mathpar}
 \end{definition}
 Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natürlichen Zahlen zu zeigen, aber auch Funktionen auf den natürlichen Zahlen zu konstruieren:
@@ -342,7 +299,7 @@ Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend b
 \begin{bemerkung}
   Wir werden später die Möglichkeit haben, mittels abhängigen Typen Aussagen über natürliche Zahlen zu konstruieren, wie z.B.
   \begin{mathpar}
-    P(n):\equiv\text{ ``$n(n+1)=2\cdot (n + (n-1) + \dots + 1)$'' }
+    P(n)\colonequiv\text{ ``$n(n+1)=2\cdot (n + (n-1) + \dots + 1)$'' }
   \end{mathpar}
   Dazu fehlen uns momentan allerdings noch Typen für die zweite Art von Gleichheit ``$=$''.
   Bis wir diese einführen können, müssen wir uns noch mit konstanter Abhängigkeit begnügen.
@@ -352,7 +309,7 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
   \label{def:rekursion}
   Sei $A$ ein Typ. Dann ist für $f_0:A$ und $f_s:\N\to(A\to A)$ durch $\N\mathrm{E}$ eine Funktion
   \begin{mathpar}
-    \ind{\N}(n:\N\yields A,f_0,f_s):\equiv\rec{\N}(A,f_0,f_s):\N\to A
+    \ind{\N}(n:\N\yields A,f_0,f_s)\colonequiv\rec{\N}(A,f_0,f_s):\N\to A
   \end{mathpar}
   gegeben. Diese Art Funktionen (auf $\N$) zu definieren nennt man ($\N$-)\begriff{Rekursion}.
 \end{definition}
@@ -360,12 +317,12 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
   \label{bsp:verdopplung}
   Sei $d:\N\to\N$ gegeben durch
   \begin{mathpar}
-    d:\equiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
+    d\colonequiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
   \end{mathpar}
   das entspricht einer rekursiven Definition durch die Gleichungen
   \begin{align*}
-    d(0)   &:\equiv 0 \\
-    d(n+1) &:\equiv d(n)+2
+    d(0)   &\colonequiv 0 \\
+    d(n+1) &\colonequiv d(n)+2
   \end{align*}
   -- also einer Funktion, die ihr Argument verdoppelt.
 \end{beispiel}
@@ -421,12 +378,12 @@ Folgende Konvention werden wir ab jetzt verwenden:
   \begin{enumerate}[label=(\alph*)]
   \item Wir verwenden die folgenden Klammerungen:
     \begin{mathpar}
-      \prod_{x:A}B\to C :\equiv \prod_{x:A}(B\to C)
+      \prod_{x:A}B\to C \colonequiv \prod_{x:A}(B\to C)
     \end{mathpar}
     und auch im Allgemeinen, dass $\prod$ als letzter Typ-Former ausgeführt wird.
   \item Weiter klammern wir iterierte Funktionen von rechts:
     \begin{mathpar}
-      A_1\to A_2 \to \dots \to A_n :\equiv A_1 \to (A_2 \to (\dots (A_{n-1} \to A_n)\dots)
+      A_1\to A_2 \to \dots \to A_n \colonequiv A_1 \to (A_2 \to (\dots (A_{n-1} \to A_n)\dots)
     \end{mathpar}
   \item Wir erlauben uns etwas Freiheit beim Schreiben von Funktionsanwendungen, also etwa für $f:A\to B\to C$ auch mal $f(a,b)$ statt $f(a)(b)$ zu schreiben oder auch $a f b$, wenn $f$ ein Operator ist.
   \end{enumerate}
@@ -436,21 +393,21 @@ Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun 
   \begin{enumerate}
   \item Die Addition $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
     \begin{align*}
-      0 + k &:\equiv k \\
-      \sucN(n) + k &:\equiv \sucN(n + k)
+      0 + k &\colonequiv k \\
+      \sucN(n) + k &\colonequiv \sucN(n + k)
     \end{align*}
     Formal ist $+$ gegeben durch:
     \begin{mathpar}
-      +:\equiv\rec{\N}(\N\to\N, k\mapsto k, n \mapsto f \mapsto (k \mapsto \sucN(f(k))))
+      +\colonequiv\rec{\N}(\N\to\N, k\mapsto k, n \mapsto f \mapsto (k \mapsto \sucN(f(k))))
     \end{mathpar}
   \item Die Multiplikation $\cdot:\N\to\N\to\N$ ist gegeben durch:
     \begin{align*}
-      0 \cdot k &:\equiv 0  \\
-      \sucN(n) \cdot k &:\equiv (n \cdot k) + k
+      0 \cdot k &\colonequiv 0  \\
+      \sucN(n) \cdot k &\colonequiv (n \cdot k) + k
     \end{align*}
     Bzw.:
     \begin{mathpar}
-      \cdot :\equiv \rec{\N}(\N\to\N, k\mapsto 0, n \mapsto f\mapsto (k\mapsto f(k) + k))
+      \cdot \colonequiv \rec{\N}(\N\to\N, k\mapsto 0, n \mapsto f\mapsto (k\mapsto f(k) + k))
     \end{mathpar}
   \end{enumerate}
 \end{definition}
@@ -550,8 +507,8 @@ Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typent
   \item Das Koprodukt erlaubt eine Alternative Konstruktion des Typs $\zwei$ als $\einheit\amalg\einheit$.
     Wir können zwar noch nicht ausdrücken, dass zwei Typen gleich sind (abgesehen von der Urteilsgleichheit, die uns hier nicht helfen würde), wollen aber trotzdem schonmal die beiden Abbildungen definieren, die uns das später erlauben werden:
     \begin{align*}
-      f(0_{\zwei})&:\equiv\iota_1(\ast) &g(\iota_1(\ast)):\equiv 0_{\zwei}\\
-      f(1_{\zwei})&:\equiv\iota_2(\ast)&g(\iota_2(\ast)):\equiv 1_{\zwei}
+      f(0_{\zwei})&\colonequiv\iota_1(\ast) &g(\iota_1(\ast))\colonequiv 0_{\zwei}\\
+      f(1_{\zwei})&\colonequiv\iota_2(\ast)&g(\iota_2(\ast))\colonequiv 1_{\zwei}
     \end{align*}
   \item Für Typen $A$, $B$ gibt es stets die Abbildung
     \begin{mathpar}
@@ -565,7 +522,7 @@ Da wir uns im Folgenden der Situation nähern die Typentheorie einsetzen zu kön
 wollen wir auch weniger syntaktische Sprechweisen bevorzugen und etwa eher von \begriff{Elementen eines Typs} statt Termen sprechen.
 Außerdem wollen wir es uns nun erlauben, Verschachtelte $\prod$-Ausdrücke über den gleichen Typen wie folgt abzukürzen:
 \begin{mathpar}
-  \prod_{x:A}\prod_{y:A}\dots :\equiv\prod_{x,y:A}\dots
+  \prod_{x:A}\prod_{y:A}\dots \colonequiv\prod_{x,y:A}\dots
 \end{mathpar}
 
 In diesem Abschnitt werden wir die \begriff{Gleichheit von Objekten} $x=y$ einführen.
@@ -630,7 +587,7 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
   \item Für $p:x=_A y$ bezeichnen wir mit $p^{-1}:y=_A x$ die \begriff{inverse Gleichheit}, also eine Funktion $\_^{-1}:x=_A y\to y=_A x$,
     welche wir durch Vorgabe für ``$\refl_x$'' definieren können:
     \begin{mathpar}
-      (\refl_x)^{-1}:\equiv \refl_x
+      (\refl_x)^{-1}\colonequiv \refl_x
     \end{mathpar}
     bzw durch die folgende Induktion:
     \begin{mathpar}
@@ -638,7 +595,7 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
     \end{mathpar}
   \item Seien $x,y,z:A$. Für zwei Gleichheiten $p:x=_A y$ und $q:y=_A z$ ist die \begriff{Konkatenation} $p\kon q$ gegeben durch:
     \begin{mathpar}
-      \refl_x\kon q :\equiv q
+      \refl_x\kon q \colonequiv q
     \end{mathpar}
     Der Induktionsterm sieht für $z:A$ wie folgt aus:
     \begin{align*}
@@ -810,7 +767,7 @@ Das ist mit der bekannten Vorgehensweise schnell erledigt:
   Es sei $f(p):f(x)=_B f(y)$ das \begriff{Bild der Gleichheit} $p$, das wir auch mit $ap(f,p):f(x)=_B f(y)$ bezeichnen,
   gegeben durch
   \begin{mathpar}
-    f(\refl_x):\equiv \refl_{f(x)}
+    f(\refl_x)\colonequiv \refl_{f(x)}
   \end{mathpar}
 \end{definition}
 Auch hierfür wollen wir zumindest die grundlegenden Gleichungen erwähnen:
@@ -834,13 +791,13 @@ Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine 
   \begin{mathpar}
     \mathrm{tr}_B(p):B(x)\to B(y)
   \end{mathpar}
-  gegeben durch $\mathrm{tr}(\refl_x):\equiv \id_{B(x)}$.
+  gegeben durch $\mathrm{tr}(\refl_x)\colonequiv \id_{B(x)}$.
   Die Abbildung $\mathrm{tr}_B(p)$ heißt \begriff{Transport} in $B$ entlang von $p$.
 \end{definition}
 Transport kann man für spezielle Typen konkretisieren.
 \begin{lemma}
   \label{lem:transp-lpath}
-  Seien $A$ ein Typ und $a:A$. Für den von $x:A$ abhängigen Typ $B(x):\equiv (x=a)$ kann der Transport für $x,x':A$ und $p:x=x'$ berechnet werden:
+  Seien $A$ ein Typ und $a:A$. Für den von $x:A$ abhängigen Typ $B(x)\colonequiv (x=a)$ kann der Transport für $x,x':A$ und $p:x=x'$ berechnet werden:
   \begin{mathpar}
     ((q:x=a)\mapsto p^{-1}\kon q) = \mathrm{tr}_B(p) : B(x) \to B(x')
   \end{mathpar}
@@ -894,7 +851,7 @@ Die Induktionsregel, also den dritten Punkt oben, hätten wir auch wie folgt for
 Für $c:\prod_{x:A}\prod_{b:B(x)}C(a,b)$ gibt es $\ind{\sum}(C,c):\prod_{y:\sum_{x:A}B(x)}C(y)$.
 Und wir wollen auch hier wieder Funktionen durch ihre definierende Gleichung in folgender Form angeben:
 \begin{mathpar}
-  g(a,b):\equiv c(a,b)
+  g(a,b)\colonequiv c(a,b)
 \end{mathpar}
 Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
 \begin{definition}
@@ -902,12 +859,12 @@ Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
   \begin{enumerate}
   \item Die Funktion $\pi_1:\left(\sum_{x:A}B(x)\right)\to A$ gegeben durch
       \begin{mathpar}
-        \pi_1(a,b):\equiv a
+        \pi_1(a,b)\colonequiv a
       \end{mathpar}
       heißt \begriff{Projektion} auf die Basis oder Projektion auf den ersten Faktor.
     \item Die abhängige Funktion $\pi_2:\left(y:\sum_{x:A}B(x)\right)\to B(\pi_1(y))$ gegeben durch
       \begin{mathpar}
-                \pi_2(a,b):\equiv b
+                \pi_2(a,b)\colonequiv b
       \end{mathpar}
       heißt zweite \begriff{Projektion} oder Projektion auf den zweiten Faktor.
   \end{enumerate}
@@ -932,7 +889,7 @@ Ein Beispiel dafür ist die folgenden wichtigen Definitionen, die uns von nun an
   \item Sei $f:A\to B$ eine Funktion. Wir sagen, dass $f$ eine \begriff{Quasi-Inverse} oder \begriff{Inverse} hat,
     wenn der Typ
     \begin{mathpar}
-      \mathrm{qinv(f)}:\equiv\sum_{g:B\to A}\left(\left(\prod_{x:A}g(f(x))=x\right) \times \left(\prod_{y:B}f(g(y))=y\right)\right)
+      \mathrm{qinv(f)}\colonequiv\sum_{g:B\to A}\left(\left(\prod_{x:A}g(f(x))=x\right) \times \left(\prod_{y:B}f(g(y))=y\right)\right)
       \end{mathpar}
       einen Term hat.
   \end{enumerate}
@@ -947,12 +904,12 @@ Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
   \end{mathpar}
   ist gegeben durch:
   \begin{mathpar}
-    \mathrm{curry}(f):\equiv (x\mapsto (y\mapsto f(x,y)))
+    \mathrm{curry}(f)\colonequiv (x\mapsto (y\mapsto f(x,y)))
   \end{mathpar}
   Analog lässt sich auch \begriff{Uncurrying} definieren:
   \begin{align*}
     &\mathrm{uncurry}: (A\to (B\to C)) \to ((A\times B) \to C) \\
-    &\mathrm{uncurry}(f):\equiv x\mapsto f(\pi_1(x),\pi_2(x))
+    &\mathrm{uncurry}(f)\colonequiv x\mapsto f(\pi_1(x),\pi_2(x))
   \end{align*}
 \end{definition}
 
@@ -998,13 +955,13 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
     Zur Verwendung in Teil (b), geben wir den damit konstruierten Term den Namen $u$.
   \item Wir definieren $\mathrm{pair}_=$ durch doppelte Gleichheitsinduktion:
     \begin{mathpar}
-      \pair_=(\refl_a,\refl_b):\equiv \refl_{(a,b)}
+      \pair_=(\refl_a,\refl_b)\colonequiv \refl_{(a,b)}
     \end{mathpar}
     und $\mathrm{pair}_=^{-1}$ definieren wir zunächst etwas zu allgemein durch Bilder einer Gleichheit $p:x=y$ unter den Projektionen:
     \begin{mathpar}
-      \pair_=^{-1'}(p):\equiv (\pi_1(p),\pi_2(p))
+      \pair_=^{-1'}(p)\colonequiv (\pi_1(p),\pi_2(p))
     \end{mathpar}
-    und setzen $\pair_=^{-1}(p:(a,a')=(b,b')):\equiv\pair_=^{-1'}(p)$.
+    und setzen $\pair_=^{-1}(p:(a,a')=(b,b'))\colonequiv\pair_=^{-1'}(p)$.
     Damit können wir mit Gleichheitsinduktion zeigen, dass $\pair_=$ und $\pair_=^{-1}$ zueinander invers sind.
     Ein Teil ist sofort erledigt:
     \begin{mathpar}
@@ -1056,7 +1013,7 @@ In verschiedenen Zusammenhängen ist bereits die punkweise Gleichheit von Funkti
 \begin{definition}
   Seien $A,B$ Typen und $f,g:A\to B$ Funktionen. Wir nennen $f$ und $g$ \begriff{homotop} oder \begriff{punktweise gleich}, wenn der folgenden Typ einen Term hat
   \begin{mathpar}
-    f \sim g :\equiv \prod_{x:A} f(x)=g(x)
+    f \sim g \colonequiv \prod_{x:A} f(x)=g(x)
   \end{mathpar}
   Die Elemente von $f\sim g$ heißen \begriff{Homotopien} oder \begriff{punktweise Gleichheiten}.
 \end{definition}
@@ -1105,16 +1062,16 @@ Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten
   \begin{enumerate}
   \item $A$ heißt \begriff{kontrahierbar} oder \begriff{$-2$-Typ}, wenn
     \begin{mathpar}
-      \isContr(A):\equiv \sum_{c : A} \prod_{x : A} x=c
+      \isContr(A)\colonequiv \sum_{c : A} \prod_{x : A} x=c
     \end{mathpar}
     (einen Term hat). 
   \item $A$ heißt \begriff{Aussage} oder \begriff{$-1$-Typ}, wenn
     \begin{mathpar}
-      \isProp(A):\equiv \prod_{x,y : A}x=y
+      \isProp(A)\colonequiv \prod_{x,y : A}x=y
     \end{mathpar}
   \item $A$ heißt \begriff{$0$-Typ} oder \begriff{Menge}, wenn
     \begin{mathpar}
-      \isSet(A):\equiv \prod_{x,y : A}\prod_{p,q : x=y}p=q
+      \isSet(A)\colonequiv \prod_{x,y : A}\prod_{p,q : x=y}p=q
     \end{mathpar}
   \end{enumerate}
 \end{definition}
@@ -1222,15 +1179,15 @@ Damit können wir alle üblichen Logikkonstrukte für Aussagen definieren:
 \begin{definition}
   Seien $P$ und $Q$ Aussagen.
   \begin{enumerate}
-  \item $P\Rightarrow Q:\equiv P\to Q$
-  \item $P\wedge Q:\equiv P\times Q$
-  \item $P\vee Q:\equiv \|P\amalg Q\|$
-  \item $\neg P:\equiv P\to \leer$
+  \item $P\Rightarrow Q\colonequiv P\to Q$
+  \item $P\wedge Q\colonequiv P\times Q$
+  \item $P\vee Q\colonequiv \|P\amalg Q\|$
+  \item $\neg P\colonequiv P\to \leer$
   \end{enumerate}
   Sei nun $A$ ein Typ und $P(x)$ eine Aussage für $x:A$.
   \begin{enumerate}
-  \item $\forall x:A \text{ gilt } P(x) :\equiv \prod_{x:A}P(x)$
-  \item $\exists x:A \text{ mit } P(x):\equiv \|\sum_{x:A}P(x)\|$
+  \item $\forall x:A \text{ gilt } P(x) \colonequiv \prod_{x:A}P(x)$
+  \item $\exists x:A \text{ mit } P(x)\colonequiv \|\sum_{x:A}P(x)\|$
   \end{enumerate}
 \end{definition}
 Bei dieser Gelegenheit sollte festgehalten werden, dass es möglich ist, nicht konstruktive Axiome anzunehmen, um unsere Typentheorie bei Bedarf zu spezialisieren.
@@ -1240,7 +1197,7 @@ Um diese zu formulieren brauchen wir aber noch manche der folgenden, sowieso wic
   \begin{enumerate}
   \item Für $b:B$ ist die \begriff{Faser} von $f$ über $b$ gegeben durch:
     \begin{mathpar}
-      \mathrm{fib}_f(b):\equiv f^{-1}(b):\equiv \sum_{x:A}f(x)=b
+      \mathrm{fib}_f^{-1}(b)\colonequiv f^{-1}(b)\colonequiv \sum_{x:A}f(x)=b
     \end{mathpar}
   \item $f$ heißt \begriff{injektiv}, wenn
     \begin{mathpar}
@@ -1252,7 +1209,7 @@ Um diese zu formulieren brauchen wir aber noch manche der folgenden, sowieso wic
     \end{mathpar}
   \item $f$ heißt \begriff{Äquivalenz}, wenn
     \begin{mathpar}
-      \isEquiv(f):\equiv\prod_{y:B}\isContr(f^{-1}(y))
+      \isEquiv(f)\colonequiv\prod_{y:B}\isContr(f^{-1}(y))
     \end{mathpar}
   \end{enumerate}
 \end{definition}
@@ -1325,8 +1282,8 @@ was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
   Dank Universen können wir nun abhängige Typen über Rekursion definieren:
   \begin{align*}
     B&:\zwei\to\mU \\
-    B(0_{\zwei})&:\equiv \leer \\
-    B(1_{\zwei})&:\equiv \einheit
+    B(0_{\zwei})&\colonequiv \leer \\
+    B(1_{\zwei})&\colonequiv \einheit
   \end{align*}
 \end{beispiel}
 
@@ -1368,12 +1325,12 @@ Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inve
   \item $f$ hat eine \begriff{Rechtsinverse} oder einen \begriff{Schnitt}, wenn es ein $h:B\to A$ gibt und $f\circ h\sim \id_B$.
   \item $f$ ist eine \begriff{Äquivalenz} oder eine Funktion mit \begriff{Links- und Rechtsinversen}, wenn
     \begin{mathpar}
-      \isEquiv(f):\equiv\mathrm{LRInv}(f):\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
+      \isEquiv(f)\colonequiv\mathrm{LRInv}(f)\colonequiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
     \end{mathpar}
   \item Wenn es eine Äquivanz zwischen $A$ und $B$ gibt, dann sagen wir $A$ ist \begriff{äquivalent} zu $B$.
   \item Für den Typ der Äquivalenzen zwischen $A$ und $B$ schreiben wir:
     \begin{mathpar}
-      A\simeq B:\equiv\sum_{f:A\to B}\isEquiv(f)
+      A\simeq B\colonequiv\sum_{f:A\to B}\isEquiv(f)
     \end{mathpar}
   \end{enumerate}
 \end{definition}
@@ -1426,7 +1383,7 @@ Wenn wir also zu einer Funktion $f:A\to B$ eine beidseitige Inverse konstruieren
   Mit \cref{thm:aequivalenzen} gilt damit das gleiche für die anderen Äquivalenzbegriffe.
   \begin{enumerate}
   \item Die Identität ist ihre eigene Links- und Rechtsinverse. Die nötigen Homotopien gelten schon als urteilsmäßige von Funktionen.
-  \item Wenn $f:A\to B$ eine Linksinverse $g:B\to A$ und eine Rechtsinverse $h:B\to A$ hat, dann ist bekommen wir mit Bemerkung \labelcref{lrinv-qinv} eine Quasi-Inverse $f^{-1}:B\to A$.
+  \item Wenn $f:A\to B$ eine Linksinverse $g:B\to A$ und eine Rechtsinverse $h:B\to A$ hat, dann ist bekommen wir mit Bemerkung \labelcref{bem:lrinv-qinv} eine Quasi-Inverse $f^{-1}:B\to A$.
     Und $f^{-1}$ ist eine Äquivalenz mit Linksinverser $f$ und Rechtsinverser $f$.
   \item Auf Übungsblatt 4 wird das für Quasi-Inversen gezeigt. Zusammen mit Bemerkung \labelcref{bem:lrinv-qinv} gilt das also auch für Äquivalenzen.
   \end{enumerate}
@@ -1452,12 +1409,12 @@ Wir werden allerdings erstmal eine Implikation klären und für die zweite einen
   Wir konstruieren eine beidseitige Inverse $g:B\to A$ indem wir $y:B$ auf das Kontraktionszentrum der Faser $f^{-1}(y)$ abbilden:
   Für $\pi_1(k_y)$ ist ein Element von $f^{-1}(y)$, besteht also aus $x:A$ und $p:f(x)=y$, also können wir festlegen
   \begin{mathpar}
-    g(y):\equiv x
+    g(y)\colonequiv x
   \end{mathpar}
-  Dann ist $f(g(y))=f(x)=y$, also $g$ Rechtsinverse von $f$. Für $x:A$ sei $x':\equiv g(f(x))$.
+  Dann ist $f(g(y))=f(x)=y$, also $g$ Rechtsinverse von $f$. Für $x:A$ sei $x'\colonequiv g(f(x))$.
   Es müssen $x:A$ und $x':A$ beide in $f^{-1}(f(x))$ liegen und da diese Faser kontrahierbar ist, gibt es eine Gleichheit $q:x=x'=g(f(x))$.
   Genauer haben wir durch die Kontrahierbarkeit eine Gleichheit $q':(x,\refl_{f(x)})=(x',p')$ in der Faser $f^{-1}(f(x))$.
-  Diese Gleichheit können wir mit $\pi_1:f^{-1}(f(x))\to A$ abbilden, also $q:\equiv \pi_1(q')$ setzen.
+  Diese Gleichheit können wir mit $\pi_1:f^{-1}(f(x))\to A$ abbilden, also $q\colonequiv \pi_1(q')$ setzen.
 \end{beweis}
 
 Die Umkehrung dieser Aussage ist komplizierter zu zeigen und wir werden zunächst zeigen, dass sich Links- Rechtsinverse in eine sogenannte kohärente Inverse überstzen lassen.
@@ -1496,7 +1453,7 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
   Wir müssen nun für jede Faser von $f$ eine Kontraktion angeben.
   Als Kontraktionszentrum für die Faser über $y:B$ wählen wir
   \begin{mathpar}
-    k_y:\equiv (g(y), K_y) : f^{-1}(y)
+    k_y\colonequiv (g(y), K_y) : f^{-1}(y)
   \end{mathpar}
   Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Damit haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
   \begin{mathpar}
@@ -1522,7 +1479,7 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
 \begin{beweis}
   Seien $g,h:B\to A$ und $H:g\circ f\sim\id$, $K:f\circ g\sim \id$. Setzte für $y:B$:
   \begin{mathpar}
-    K':\equiv K_{f(g(y))}^{-1}\kon f(H_{g(y)})\kon K_{y}
+    K'\colonequiv K_{f(g(y))}^{-1}\kon f(H_{g(y)})\kon K_{y}
   \end{mathpar}
   und rechne nach dass für $x:A$ gilt: $f(H_x)=K'_{f(x)}$.
 \end{beweis}
@@ -1533,15 +1490,15 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
   \begin{enumerate}
   \item Alle Fasern von $f$ sind kontrahierbar:
     \begin{mathpar}
-      \isEquiv(f):\equiv\prod_{y:B}\isContr(f^{-1}(y))
+      \isEquiv(f)\colonequiv\prod_{y:B}\isContr(f^{-1}(y))
     \end{mathpar}
   \item $f$ hat eine Linksinverse und eine Rechtsinverse:
     \begin{mathpar}
-      \isEquiv(f):\equiv\mathrm{LRInv}\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
+      \isEquiv(f)\colonequiv\mathrm{LRInv}\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
     \end{mathpar}
   \item $f$ hat eine kohärente Inverse:
     \begin{mathpar}
-      \isEquiv(f):\equiv\mathrm{CohInv}(f):\equiv \sum_{g:B\to A} \sum_{H:g\circ f\sim\id}\sum_{K:f\circ g\sim\id} \prod_{x:A}f(H_x)=K_{f(x)}
+      \isEquiv(f)\colonequiv\mathrm{CohInv}(f)\colonequiv \sum_{g:B\to A} \sum_{H:g\circ f\sim\id}\sum_{K:f\circ g\sim\id} \prod_{x:A}f(H_x)=K_{f(x)}
     \end{mathpar}
   \end{enumerate}
   Wir schreiben für alle drei Begriffe $\isEquiv(f)$, weil sich noch rausstellen wird, dass alle diese Typen Aussagen sind und damit alle drei Typen äquivalent sind.
@@ -1556,10 +1513,10 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
 \begin{definition}
   $\Eq{\N}:\N\to\N\to\mU$ definieren wir durch doppelte Rekursion wie folgt:
   \begin{align*}
-    &\Eq{\N}(0_\N,    &0_\N)    &:\equiv\einheit \\
-    &\Eq{\N}(0_\N,    &\sucN(k))&:\equiv\leer \\
-    &\Eq{\N}(\sucN(n),&0_\N)    &:\equiv\leer \\
-    &\Eq{\N}(\sucN(n),&\sucN(k))&:\equiv\Eq{\N}(n,k) 
+    &\Eq{\N}(0_\N,    &0_\N)    &\colonequiv\einheit \\
+    &\Eq{\N}(0_\N,    &\sucN(k))&\colonequiv\leer \\
+    &\Eq{\N}(\sucN(n),&0_\N)    &\colonequiv\leer \\
+    &\Eq{\N}(\sucN(n),&\sucN(k))&\colonequiv\Eq{\N}(n,k) 
   \end{align*}
 \end{definition}
 
