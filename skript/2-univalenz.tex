@@ -275,7 +275,7 @@ Dieser liegt allerdings im nächsthöheren Universum $\mU_{i+1}$, da wir in der 
   \inferrule{\Gamma\yields \mU_i:\mU_{i+1}\and \Gamma\yields A,B:\mU_i}{\Gamma\yields A=_{\mU_i}B:\mU_{i+1}}{=\mathrm{F}}
 \end{mathpar}
 
-Damit lässt sich zeigen, dass gleiche Typen Äquivalent sind.
+Damit lässt sich zeigen, dass gleiche Typen äquivalent sind.
 \begin{bemerkung}
   Für $A,B:\mU$ gibt es eine Funktion
   \begin{mathpar}
@@ -304,12 +304,47 @@ Die Umkehrung, aus einer Äquivalenz auch eine Gleichheit konstruieren zu könne
   Wir nehmen an, dass das Univalenzaxion für jedes Universum gilt.
 \end{axiom}
 
+Mit Univalenz ergibt sich, dass es tatsächlich verschiedene Gleichheiten zwischen Elementen geben kann.
+\begin{beispiel}
+  Es gilt $(\zwei\simeq\zwei)\simeq\zwei$ und per Univalenz damit auch:
+  \begin{mathpar}
+    f:\zwei\simeq (\zwei=_{\mU}\zwei)
+  \end{mathpar}
+  Also: $f(0_\zwei)\not=f(1_\zwei)$.
+\end{beispiel}
+
 Wir importieren die folgende Aussage (findet man im HoTT-Book am Ende von Kapitel 4): 
 \begin{fakt}
   Univalenz impliziert Funktionsextensionalität.
 \end{fakt}
 
 Wir verzichten daher im folgenden darauf, auf Verwendung von Funktionsextensionalität hinzuweisen.
+Zunächst halten wir fest, dass abhängige Summen und abhängige Produkte mit äquivalenten Eingangsdaten äquivalente Typen produzieren:
+\begin{bemerkung}
+  Seien $A:\mU$ und $B,B':A\to\mU$. Wenn $B$ und $B'$ punktweise äquivalent sind, also gilt $\prod_{x:A}B(x)\simeq B'(x)$, dann gilt auch:
+  \begin{mathpar}
+    \left(\sum_{x:A}B(x)\right)\simeq \left(\sum_{x:A}B'(x)\right)\text{ und }\left(\prod_{x:A}B(x)\right)\simeq \left(\prod_{x:A}B'(x)\right)
+  \end{mathpar}
+\end{bemerkung}
+\begin{beweis}
+  Aus der punktweisen Äquivalenz $\prod_{x:A}B(x)\simeq B'(x)$ machen wir durch punktweises Anwenden von $\ua$ eine punktweise Gleichheit $\prod_{x:A}B(x)=B'(x)$ und daraus mit Funktionsextensionalität eine Gleichheit $p:B=B'$.
+  Dann ist aber auch
+  \begin{mathpar}
+    \mathrm{ap}(\prod,p):\left(\prod_{x:A}B(x)\right)=\left(\prod_{x:A}B'(x)\right)
+  \end{mathpar}
+  und damit $\simeq_=(\mathrm{ap}(\prod,p)):\left(\prod_{x:A}B(x)\right)\simeq\left(\prod_{x:A}B'(x)\right)$.
+  Mit dem gleichen Argument können wir die entsprechende Aussage für abhängige Summen zeigen.
+\end{beweis}
+Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisieren:
+\begin{bemerkung}
+  Für $A:\mU$ und $B,B':A\to \mU$ gibt es eine Äquivalenz:
+  \begin{mathpar}
+    (B=B') \simeq \left(\prod_{x:A}B(x)\simeq B'(x)\right)
+  \end{mathpar}
+\end{bemerkung}
+\begin{beweis}
+  
+\end{beweis}
 Im nächsten Kapitel ergibt sich ein einfacher Beweis einer stärkeren Version von Funktionsextensionalität.
 
 Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängige Typen dasselbse sind, wie Funktionen nach $A$.
