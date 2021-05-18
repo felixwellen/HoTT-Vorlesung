@@ -1551,6 +1551,40 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
 \end{beweis}
 
 \subsection{Univalenz}
+In diesem Abschnitt werden wir uns mit den Universen und ihren Gleichheitstypen beschäftigen.
+Eine historisch wichtige Idee von Vladimir Voevodsky ist das \begriff{Univalenzaxiom},
+das die Gleichheitstypen im Universum mit den Äquivalenzen von Typen identifiziert.
+Dieses Axiom werden wir kennenlernen und Konsequenzen daraus ziehen.
+Davor wollen wir aber noch allgemeine Konsequenzen aus der Existenz von Universen ziehen.
+
+Mit Universen sind wir in der Lage Ungleichheit von Elementen eines Typs zu beweisen.
+Diese definieren wir zunächst als Negation der Gleichheit:
+\begin{definition}
+  Seien $A:\mU$ und $x,y:A$. Dann ist $x$ \begriff{ungleich} $y$, wenn
+  \begin{mathpar}
+    x\not= y\colonequiv (x=y\to \leer)
+  \end{mathpar}
+\end{definition}
+Man beachte, dass es sich bei diesem Typ stets um eine Aussage handelt.
+Es sind also in $x\not= y$ keine so interessanten Dinge zu finden, wie im Gleichheitstyp und wir werden uns auch wenig mit Ungleichheiten beschäftigen.
+\begin{bemerkung}
+  Es gilt $1_\zwei \not= 0_\zwei$.
+\end{bemerkung}
+\begin{beweis}
+  Per Rekursion können wir uns den folgenden abhängigen Typen definieren:
+  \begin{align*}
+    B&:\zwei\to\mU \\
+    B(0_\zwei)&\colonequiv \leer \\
+    B(1_\zwei)&\colonequiv \eins
+  \end{align*}
+  Um die Ungleichheit zu zeigen, dürfen wir $p:1_\zwei = 0_\zwei$ annehmen und müssen ein Element in $\leer$ konstruieren.
+  Sei also $p:1_\zwei = 0_\zwei$. Damit haben wir auch eine Abbildung:
+  \begin{mathpar}
+    \transp_B(p):B(1_\zwei)\to B(0_\zwei)
+  \end{mathpar}
+  Und wegen $\ast:B(1_\zwei)\equiv \eins$ haben wir auch ein Element, das wir in diese Abbildung einsetzen können.
+  Es ist also $\transp_B(p)(\ast):B(0_\zwei)\equiv \leer$.
+\end{beweis}
 
 \subsection{Gleichungen in den natürlichen Zahlen}
 \begin{definition}
