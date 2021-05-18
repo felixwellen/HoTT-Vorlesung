@@ -50,4 +50,4 @@
 \theoremsymbol{\ensuremath{\Box}}
     \newtheorem{beweis}{Beweis}
 
-\RequirePackage{hott}
+\RequirePackage{../hott}
