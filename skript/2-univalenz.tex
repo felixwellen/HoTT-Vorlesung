@@ -275,17 +275,43 @@ Dieser liegt allerdings im nächsthöheren Universum $\mU_{i+1}$, da wir in der 
   \inferrule{\Gamma\yields \mU_i:\mU_{i+1}\and \Gamma\yields A,B:\mU_i}{\Gamma\yields A=_{\mU_i}B:\mU_{i+1}}{=\mathrm{F}}
 \end{mathpar}
 
-Ohne 
+Damit lässt sich zeigen, dass gleiche Typen Äquivalent sind.
+\begin{bemerkung}
+  Für $A,B:\mU$ gibt es eine Funktion
+  \begin{mathpar}
+    \simeq_=:A=_{\mU} B\to (A\simeq B)
+  \end{mathpar}
+  den \begriff{Universentransport}.
+\end{bemerkung}
+\begin{beweis}
+  Seien $A,B:\mU_i$. Dann gibt es einen abhängigen Typ $X:\mU_i\to\mU_{i+1}$ und damit
+  \begin{mathpar}
+    \simeq_=\colonequiv\transp_{X}:A=_{\mU_i}B\to A\simeq B
+  \end{mathpar}
+\end{beweis}
 
+Es ist also möglich, aus einer Gleichheit von Typen eine Äquivalenz zu kontruieren.
+Die Umkehrung, aus einer Äquivalenz auch eine Gleichheit konstruieren zu können, nennt man das Univalenzaxiom.
+\begin{axiom}[Univalenzaxiom]
+  Wir nehmen von nun an an, dass das \begriff{Univalenzaxiom} gilt: Für $A,B:\mU$ ist die Funktion
+  \begin{mathpar}
+    \simeq_=:A=_{\mU}B\to A\simeq B
+  \end{mathpar}
+  eine Äquivalenz ist. Die Inverse von $\simeq_=$ bezeichnen wir mit $\ua$\index{$\ua$}:
+  \begin{mathpar}
+    \ua:A\simeq B\to A=_{\mU}B
+  \end{mathpar}
+  Wir nehmen an, dass das Univalenzaxion für jedes Universum gilt.
+\end{axiom}
 
 \subsection{Gleichheit in den natürlichen Zahlen}
 \label{sec:zahlen-gleichheit}
 \begin{definition}
   $\Eq{\N}:\N\to\N\to\mU$ definieren wir durch doppelte Rekursion wie folgt:
   \begin{align*}
-    &\Eq{\N}(0_\N,    &0_\N)    &\colonequiv\einheit \\
-    &\Eq{\N}(0_\N,    &\sucN(k))&\colonequiv\leer \\
-    &\Eq{\N}(\sucN(n),&0_\N)    &\colonequiv\leer \\
-    &\Eq{\N}(\sucN(n),&\sucN(k))&\colonequiv\Eq{\N}(n,k) 
+    \Eq{\N}(0_\N,    0_\N)     &\colonequiv\einheit \\
+    \Eq{\N}(0_\N,    \sucN(k)) &\colonequiv\leer \\
+    \Eq{\N}(\sucN(n),0_\N)     &\colonequiv\leer \\
+    \Eq{\N}(\sucN(n),\sucN(k)) &\colonequiv\Eq{\N}(n,k) 
   \end{align*}
 \end{definition}
