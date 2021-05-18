@@ -1,4 +1,3 @@
-{-# OPTIONS --without-K #-}
 {-
   Hier kann man ganz unverfänglich Agda im Browser ausprobieren:
 
@@ -13,7 +12,35 @@
   Wenn Agda auf eine Datei im gleichen Verzeichnis angewandt wird,
   kann man die Definition hier mit 'open import Vorlesung' importieren.
 -}
-module Vorlesung where
+module VorlesungMitUniversen where
+{-
+  Normalerweise gibt es in Agda eine Hierarchie von Universen die mit 'Set i' bezeichnet werden.
+  Für i gibt es den Typ Level.
+  Mit dem folgenden sagen wir Agda, dass es eine Hierarchie von Universen 'U i' geben soll.
+-}
+
+open import Agda.Primitive public
+  using    ( Level )
+  renaming ( lzero to ℓ-zero
+           ; lsuc  to ℓ-suc
+           ; _⊔_   to ℓ-max
+           ; Set   to U
+           ; Setω  to Uω )
+
+{-
+  Es ist gängige Praxis, Universenlevel in Agda mit ℓ (\ell) zu bezeichnen.
+  Wir werden dafür mit dem folgenden so etwas wie 'Hier seien stets ℓ, ℓ′ und ℓ″ Universenlevel':
+-}
+
+private
+  variable
+    ℓ ℓ′ ℓ″ : Level
+
+{-
+  Die Universenlevel können wir nun frei verwenden und Agda wird sie
+  bei Bedarf in unsere Definitionen mit aufnehmen.
+-}
+
 
 {-
   Funktionstypen sind in Agda direkt eingebaut, wir müssen die entsprechenden Regeln nicht angeben.
@@ -23,7 +50,7 @@ module Vorlesung where
   Funktionsterme "x↦f(x)" werden in Agda "λ x → f(x)" geschrieben und Anwendungen "f x" statt "f(x)".
   Die Leerzeichen sind dabei wichtig.
 -}
-_∘_ : {A B C : Set} → (B → C) → (A → B) → (A → C)
+_∘_ : {A B C : U} → (B → C) → (A → B) → (A → C)
 g ∘ f = λ x → g(f(x))
 
 infixr 20 _∘_
@@ -31,10 +58,12 @@ infixr 20 _∘_
 {-
   Wir geben eine Definition an, die es uns erlaubt auch "Π B" für einen abhängigen Typ "B" zu schreiben,
   obwohl es bereits mit "(x : A) → B x" den Typ der abhängigen Funktionen gibt.
-  Abhängige Typen "x:A ⊢ B(x)" schreibt man "B : A → Set".
+  Abhängige Typen "x:A ⊢ B(x)" schreibt man "B : A → U".
+  Wir erlauben hier, dass A und B(x) in verschiedenen Universen liegen.
+  Das Ergebnis liegt dann im größeren der beiden Universen 'U ℓ' und 'U'
 -}
 
-∏ : (A : Set) (B : A → Set) → Set
+∏ : (A : U ℓ) (B : A → U ℓ′) → U (ℓ-max ℓ ℓ′)
 ∏ A B = (x : A) → B x
 
 {-
@@ -42,7 +71,7 @@ infixr 20 _∘_
 -}
 infix 2 ∏-syntax
 
-∏-syntax : (A : Set) (B : A → Set) → Set
+∏-syntax : (A : U) (B : A → U) → U
 ∏-syntax = ∏
 
 syntax ∏-syntax A (λ x → B) = ∏[ x ∈ A ] B
@@ -50,7 +79,7 @@ syntax ∏-syntax A (λ x → B) = ∏[ x ∈ A ] B
 {-
   Natürliche Zahlen...
 -}
-data ℕ : Set where
+data ℕ : U where
   0ℕ : ℕ
   succℕ : ℕ → ℕ
 {-
@@ -58,16 +87,9 @@ data ℕ : Set where
   Das können wir nutzen, um den Induktionsterm aus der Vorlesung zu definieren.
 -}
 
-ind= : {P : ℕ → Set} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → ∏[ n ∈ ℕ ] (P n)
+ind= : {P : ℕ → U} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → ∏[ n ∈ ℕ ] (P n)
 ind= p₀ pₛ 0ℕ = p₀
 ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
-
-infixr 20 double_
-
-double_ : ℕ → ℕ
-double 0ℕ = 0ℕ
-double (succℕ n) = succℕ (succℕ (double n))
-
 
 d : ℕ → ℕ
 d 0ℕ = 0ℕ
@@ -91,21 +113,21 @@ succℕ n · k = (n · k) + k
   ∅ \0
 -}
 
-data ∅ : Set where
+data ∅ : U where
 
 {-
   1.3.1
   ∗ \ast
 -}
 
-data 𝟙 : Set where
+data 𝟙 : U where
   ∗ : 𝟙
 
 {-
   1.3.4
 -}
 
-data 𝟚 : Set where
+data 𝟚 : U where
   0₂ : 𝟚
   1₂ : 𝟚
 
@@ -115,7 +137,7 @@ data 𝟚 : Set where
   Koprodukt, 1.3.5
 -}
 
-data _∐_ (A B : Set) : Set where
+data _∐_ (A B : U) : U where
   ι₁ : A → A ∐ B
   ι₂ : B → A ∐ B
 
@@ -126,7 +148,7 @@ data _∐_ (A B : Set) : Set where
   Damit sind die Symbole '≡' und '=' gegenüber der Vorlesung vertauscht.
 
   Die beiden Parameter "x,y : A" können wir in Agda realisieren, indem wir einen
-  induktiven Typ vom Typ "A → A → Set" definieren.
+  induktiven Typ vom Typ "A → A → U" definieren.
   Mit der 'infixl' zeile legen wir fest, dass _≡_ eine niedrigere Priorität als
   default (=20) hat. Damit lässt sich später etwa '(p ∙ q) ⁻¹ ≡ q ⁻¹ ∙ p ⁻¹' schreiben
   statt '((p ∙ q) ⁻¹) ≡ ((q ⁻¹) ∙ (p ⁻¹))' - vorausgesetzt für alle anderen operatoren
@@ -134,19 +156,12 @@ data _∐_ (A B : Set) : Set where
 -}
 infixl 10 _≡_
 
-data _≡_ {A : Set} : A → A → Set where
+data _≡_ {A : U} : A → A → U where
   refl : (x : A) → x ≡ x
 
 {-
   Beispiel 1.4.2
 -}
-{-
-test : {A : Set} (x y : A) → (p : x ≡ y) → Set
-test x .x (refl _) = {!!}
--}
-
-test2 : 0ℕ ≡ succℕ 0ℕ → ∅
-test2 ()
 
 bsp1-4-2 : (x : 𝟙) → x ≡ ∗
 bsp1-4-2 ∗ = refl ∗
@@ -157,14 +172,14 @@ bsp1-4-2 ∗ = refl ∗
   mit der 'infixl' zeile legen wir fest, dass ⁻¹ links assoziativ ist und eine höhere Priorität als default (=20) hat
 -}
 infixl 21 _⁻¹
-_⁻¹ : {A : Set} {x y : A} → (x ≡ y) → (y ≡ x)
+_⁻¹ : {A : U} {x y : A} → (x ≡ y) → (y ≡ x)
 (refl x) ⁻¹ = refl x
 
 {-
   ∙ \.
 -}
 
-_∙_ : {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
+_∙_ : {A : U} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 (refl x) ∙ p = p
 
 {-
@@ -176,11 +191,11 @@ bsp1-4-4 x y = bsp1-4-2 x ∙ (bsp1-4-2 y) ⁻¹
 
 {-
   1.4.6, 1.4.7, 1.4.8
-  Mit 'module _ {A : Set} where' öffnen wir einen durch Einrückung abgegrenzten Bereich,
-  in dem alle Definitionen den Parameter '{A : Set}' ohne diesen jedesmal erwähnen zu müssen.
+  Mit 'module _ {A : U} where' öffnen wir einen durch Einrückung abgegrenzten Bereich,
+  in dem alle Definitionen den Parameter '{A : U}' ohne diesen jedesmal erwähnen zu müssen.
 -}
 
-module _ {A : Set} where
+module _ {A : U} where
   reflLNeutral : {x y : A}
                  → (p : x ≡ y)
                  → (refl x) ∙ p ≡ p
@@ -210,7 +225,7 @@ module _ {A : Set} where
   1.4.11
 -}
 
-ap : {A B : Set} {x y : A}
+ap : {A B : U} {x y : A}
      → (f : A → B)
      → (p : x ≡ y)
      → f x ≡ f y
@@ -220,7 +235,7 @@ ap f (refl x) = refl (f x)
   1.4.10
 -}
 
-module macLane {A : Set} {x y z w u : A}
+module macLane {A : U} {x y z w u : A}
                (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u) where
 
        α₁ : ((p ∙ q) ∙ r) ∙ s ≡ (p ∙ (q ∙ r)) ∙ s
@@ -240,7 +255,7 @@ module macLane {A : Set} {x y z w u : A}
 
 open macLane
 
-bem1-4-10 : {A : Set} {x y z w u : A}
+bem1-4-10 : {A : U} {x y z w u : A}
             (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u)
             → ((α₁ p q r s) ∙ (α₂ p q r s)) ∙ (α₃ p q r s) ≡ (α₄ p q r s) ∙ (α₅ p q r s)
 bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
@@ -253,7 +268,7 @@ bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
   π₁ \pi\_1
 -}
 
-record ∑ (A : Set) (B : A → Set) : Set where
+record ∑ (A : U) (B : A → U) : U where
   constructor _,_
   field
     π₁ : A
@@ -264,7 +279,7 @@ open ∑
 -}
 infix 2 ∑-syntax
 
-∑-syntax : (A : Set) (B : A → Set) → Set
+∑-syntax : (A : U) (B : A → U) → U
 ∑-syntax = ∑
 
 syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
@@ -274,21 +289,21 @@ syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
   Transport (in B entlang von p)
 -}
 
-tr : {A : Set} (B : A → Set) {x y : A} (p : x ≡ y) → B(x) → B(y)
+tr : {A : U} (B : A → U) {x y : A} (p : x ≡ y) → B(x) → B(y)
 tr B (refl _) = λ z → z
 
 -- Lemma 1.4.14
-tr-x≡a : {A : Set} {a : A}
+tr-x≡a : {A : U} {a : A}
   → {x x' : A} (p : x ≡ x')
   → (λ { q → p ⁻¹ ∙ q }) ≡ tr (λ x → x ≡ a) (p)
 tr-x≡a (refl _) = refl λ z → z
 
 -- Lemma 1.4.15
-tr-concat : {A : Set} {B : A → Set} {x y z : A} → ∏[ p ∈ x ≡ y ] ∏[ q ∈ y ≡ z ] tr B (q) ∘ tr B (p) ≡ tr B (p ∙ q)
+tr-concat : {A : U} {B : A → U} {x y z : A} → ∏[ p ∈ x ≡ y ] ∏[ q ∈ y ≡ z ] tr B (q) ∘ tr B (p) ≡ tr B (p ∙ q)
 tr-concat {_} {B} (refl w) q = refl (tr B q)
 
 -- Lemma 1.5.9
-∑= : ∀ {A : Set} {x y : A} {B : A → Set} {bx : B(x)} {by' : B(y)}
+∑= : ∀ {A : U} {x y : A} {B : A → U} {bx : B(x)} {by' : B(y)}
   → ∏[ p ∈ x ≡ y ] (  ( tr B (p)(bx) ≡ by' ) → ( (x , bx) ≡ (y , by') )  )
 ∑= (refl z) (refl w) = refl (z , w)
 
@@ -297,29 +312,29 @@ tr-concat {_} {B} (refl w) q = refl (tr B q)
   × \times
 -}
 
-_×_ : (A B : Set) → Set
+_×_ : (A B : U) → U
 A × B = ∑[ x ∈ A ] B
 
 {-
   1.5.4
 -}
-_inversZu_ : {A B : Set} (f : A → B) (g : B → A) → Set
+_inversZu_ : {A B : U} (f : A → B) (g : B → A) → U
 f inversZu g = (∏[ x ∈ _ ] g(f x) ≡ x) × (∏[ y ∈ _ ] f(g y) ≡ y)
 
 infix 6 _inversZu_
 
-_hatInverse : {A B : Set} (f : A → B) → Set
+_hatInverse : {A B : U} (f : A → B) → U
 f hatInverse = ∑[ g ∈ (_ → _) ] g inversZu f
 
 {-
   1.5.5
 -}
 
-curry : {A B C : Set}
+curry : {A B C : U}
         → ((A × B) → C) → (A → (B → C))
 curry f = λ a b → f (a , b)
 
-uncurry : {A B C : Set}
+uncurry : {A B C : U}
           → (A → (B → C)) → ((A × B) → C)
 uncurry f = λ x → f (π₁ x) (π₂ x)
 
@@ -327,15 +342,15 @@ uncurry f = λ x → f (π₁ x) (π₂ x)
   1.5.7
 -}
 
-_teilt_ : (a b : ℕ) → Set
+_teilt_ : (a b : ℕ) → U
 a teilt b = ∑[ d ∈ ℕ ]  d · a ≡ b
 
 {-
   1.5.8
 -}
 
-module lemma1-5-8 {A B : Set} where
-  u : {A B : Set} → (x : A × B) → x ≡ (π₁ x , π₂ x)
+module lemma1-5-8 {A B : U} where
+  u : {A B : U} → (x : A × B) → x ≡ (π₁ x , π₂ x)
   u (x , y) = refl (x , y)
 
   pair=⁻¹' : {x y : A × B}
@@ -366,7 +381,7 @@ module lemma1-5-8 {A B : Set} where
   ∼ \sim
 -}
 
-_∼_ : {A B : Set} (f : A → B) → (g : A → B) → Set
+_∼_ : {A B : U} (f : A → B) → (g : A → B) → U
 _∼_ {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
 
 infix 18 _∼_
@@ -376,22 +391,22 @@ infix 18 _∼_
 -}
 
 postulate
-  FunExt : {A B : Set} (f g : A → B) → (∏[ x ∈ A ] f(x) ≡ g(x)) → f ≡ g
+  FunExt : {A B : U} (f g : A → B) → (∏[ x ∈ A ] f(x) ≡ g(x)) → f ≡ g
 
 {-
   1.6.5
 -}
 -- A ist kontrahierbar / ein -2-Typ
-isContr : (A : Set) → Set
+isContr : (A : U) → U
 isContr A = ∑[ c ∈ A ] ∏[ x ∈ A ] x ≡ c
 
 -- A ist eine Aussage / ein -1-Typ
-isProp : (A : Set) → Set
+isProp : (A : U) → U
 isProp A = ∏[ x ∈ A ] ∏[ y ∈ A ] x ≡ y
 
 -- A ist eine Menge / ein 0-Typ
-isSet : (A : Set) → Set
-isSet A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] p ≡ q
+isU : (A : U) → U
+isU A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] p ≡ q
 
 
 {-
@@ -415,5 +430,5 @@ isSet A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y 
   Ergebnis von Blatt 3, Aufgabe 3:
   Kontrahierbare Typen haben kontrahierbare Gleichheitstypen
 -}
-AisContr→≡isContr : ∀ {A : Set} → isContr(A) → ∏[ x ∈ A ] ∏[ y ∈ A ] isContr(x ≡ y)
+AisContr→≡isContr : ∀ {A : U} → isContr(A) → ∏[ x ∈ A ] ∏[ y ∈ A ] isContr(x ≡ y)
 AisContr→≡isContr c x y = ( ((π₂ c) x) ∙ ((π₂ c) y) ⁻¹ ) , λ {(refl z) → (⁻¹RInv ( (π₂ c) z))⁻¹}
