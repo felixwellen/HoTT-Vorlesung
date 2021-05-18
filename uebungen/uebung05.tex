@@ -1,0 +1,93 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{5}
+
+\begin{exercise}[Charakterisierung von Kontrahierbarkeit]
+  Zeige, dass ein Typ $A$ genau dann kontrahierbar ist, wenn er äquivalent zum Einheitstyp $\einheit$ ist.
+  Das heißt, finde eine logische Äquivalenz $\isContr(A)\leftrightarrow A\simeq\einheit$.
+\end{exercise}
+
+\begin{exercise}[Kommutative Dreiecke]
+  Seien $A,B,C$ Typen.
+  Ein \emph{kommutatives Dreieck} besteht aus Funktionen
+  \begin{center}
+    \begin{tikzcd}[column sep=small]
+      A
+        \arrow[rr, "h"]
+        \arrow[dr, "f"']
+      && C
+      \\
+      & B
+        \arrow[ur, "g"']
+    \end{tikzcd}
+  \end{center}
+  sowie einer Homotopie $h\sim g\circ f$.
+  Definiere den Typ der kommutativen Dreiecke anhand dieser Beschreibung und zeige für jedes kommutative Dreieck obiger Form:
+  \begin{enumerate}
+    \item Besitzt $h$ ein Rechtsinverses, so auch $g$.
+      Die Umkehrung gilt, falls $f$ ein Rechtsinverses hat.
+    \item Besitzt $h$ ein Linksinverses, so auch $f$.
+      Die Umkehrung gilt, falls $g$ ein Linksinverses hat.
+    \item Sind zwei der drei Funktionen $f,g,h$ Äquivalenzen, so auch die dritte.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Äquivalenzen und Gleichheiten]
+  \begin{enumerate}
+    \item Sei $A$ ein Typ.
+      Zeige:
+        \begin{enumerate}
+          \item $x,y:A \yields (x=y) \simeq (y=x)$.
+          \item $x,y,z:A,p:x=y \yields (y=z) \simeq (x=z)$.
+          \item $x,y,z:A,q:y=z \yields (x=y) \simeq (x=z)$.
+          \item $x,y:A,p:x=y \yields (y=y) \simeq (x=x)$.
+        \end{enumerate}
+
+    \item Sei $f:A\to B$ eine Äquivalenz.
+      Zeige:
+        \begin{enumerate}
+          \item $x,y:A\yields (x =_A y)\simeq (f(x) =_B f(y))$
+          \item $\isContr(B)\to\isContr(A)$
+          \item $\isProp(B)\to\isProp(A)$
+          \item $\isSet(B)\to\isSet(A)$
+        \end{enumerate}
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Äquivalenzen und Funktionen]
+  Zeige, eventuell unter Verwendung von Funktionsextensionalität:
+  \begin{multicols}{2}
+  \begin{enumerate}
+    \item $(\leer \to A) \simeq \einheit$
+    \item $(A+B\to C) \simeq (A \to C) \times (B \to C)$
+    \item $(A \to \einheit) \simeq \einheit$
+    \item $(A \to B\times C) \simeq (A \to B) \times (A \to C)$
+    \item $(\einheit \to A)\simeq A$
+    \item $(\zwei \to A)\simeq A\times A$
+  \end{enumerate}
+  \end{multicols}
+\end{exercise}
+
+\begin{bonus}
+  \begin{enumerate}
+    \item $A\to\einheit$ ist surjektiv.
+    \item $\leer\to A$ ist injektiv.
+      {\tiny Tipp: Jede Funktion $A\to\leer$ ist eine Äquivalenz.}
+  \end{enumerate}
+\end{bonus}
+
+\begin{bonus}[Quasi-Inversen kohärent machen]
+  Seien $A,B$ Typen, $f:A\to B$, $g:B\to A$ Funktionen und $H:g\circ f \sim\id$, $K:f\circ g\sim\id$ Homotopien.
+  Zeige dass für
+  \begin{mathpar}
+    K':\equiv (y:B)\mapsto K_{f(g(y))}^{-1}\kon f(H_{g(y)})\kon K_y : f\circ g\sim\id
+  \end{mathpar}
+  gilt:
+  \begin{mathpar}
+    \prod_{x:A}f(H_x)=K'_{f(x)}
+  \end{mathpar}
+  Damit ist $g$ eine kohärente Inverse von $f$.
+\end{bonus}
+
+\end{document}
