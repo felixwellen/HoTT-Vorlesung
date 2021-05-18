@@ -6,7 +6,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{enumitem}
 \RequirePackage{geometry}
-\RequirePackage{hott}
+\RequirePackage{../hott}
 \RequirePackage{mathpartir}
 \RequirePackage{mathtools}
 \RequirePackage{multicol}
