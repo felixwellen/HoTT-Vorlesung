@@ -309,19 +309,26 @@ Wir importieren die folgende Aussage (findet man im HoTT-Book am Ende von Kapite
   Univalenz impliziert Funktionsextensionalität.
 \end{fakt}
 
+Wir verzichten daher im folgenden darauf, auf Verwendung von Funktionsextensionalität hinzuweisen.
+Im nächsten Kapitel ergibt sich ein einfacher Beweis einer stärkeren Version von Funktionsextensionalität.
+
 Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängige Typen dasselbse sind, wie Funktionen nach $A$.
 \begin{lemma}
   Sei $A:\mU$. Dann gilt:
   \begin{mathpar}
-    \left(\sum_{B:\mU}B\to A\right)\simeq (A\to \mU)
+    \left(\sum_{B:\mU}(B\to A)\right)\simeq (A\to \mU)
   \end{mathpar}
 \end{lemma}
+
 \begin{beweis}
   Einen abhängigen Typ $B:A\to\mU$ bilden wir auf die Funktion
   \begin{mathpar}
     \pi_1:\left(\sum_{x:A}B(x)\right)\to A
   \end{mathpar}
-  ab. 
+  ab. Und eine Funktion $f:B\to A$ bilden wir auf den abhängigen Typ ihrer Fasern ab:
+  \begin{mathpar}
+    \mathrm{fib}_f\equiv \left((x:A)\mapsto f^{-1}(x)\right):A\to \mU
+  \end{mathpar}
 \end{beweis}
 
 \subsection{Gleichheit in den natürlichen Zahlen}
