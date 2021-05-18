@@ -1542,8 +1542,25 @@ Es sind also in $x\not= y$ keine so interessanten Dinge zu finden, wie im Gleich
   Und wegen $\ast:B(1_\zwei)\equiv \eins$ haben wir auch ein Element, das wir in diese Abbildung einsetzen können.
   Es ist also $\transp_B(p)(\ast):B(0_\zwei)\equiv \leer$.
 \end{beweis}
-
+Dieser Trick lässt sich auf alle Elemente induktiver Typen übertragen, für die wir ``verschiedene'' Werte vorgeben können.
+Für einzelne natürliche Zahlen etwa:
+\begin{bemerkung}
+  Es gilt $0_{\N}\not= 1_{\N}\colonequiv \sucN(0_{\N})$.
+\end{bemerkung}
+\begin{beweis}
+  Sei
+  \begin{align*}
+    B&:\N\to \mU \\
+    B(0_{\N})&\colonequiv \leer \\
+    B(1_{\N})&\colonequiv \eins
+  \end{align*}
+  womit für $p:0_{\N}=1_{\N}$ ein Element $\transp_B(p^{-1})(\ast):\leer$ gegeben ist.
+\end{beweis}
+Typischerweise interessiert man sich für eine vollständige Charakterisierung der Gleichheitstypen eines Typs.
+Für die natürlichen Zahlen wäre das ein in $n,k:\N$ abhängiger Typ $B(n,k)$ sodass $B(n,k)\simeq (n=_\N k)$.
+Das wird unser Ziel in \cref{sec:zahlen-gleichheit} sein.
 \subsection{Gleichungen in den natürlichen Zahlen}
+\label{sec:zahlen-gleichheit}
 \begin{definition}
   $\Eq{\N}:\N\to\N\to\mU$ definieren wir durch doppelte Rekursion wie folgt:
   \begin{align*}
