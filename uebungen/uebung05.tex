@@ -33,26 +33,25 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[Äquivalenzen I]
-  Seien $A,B$ Typen.
-  Zeige:
-    \begin{enumerate}
-      \item $x,y:A \yields (x=y) \simeq (y=x)$.
-      \item $x,y,z:A,p:x=y \yields (y=z) \simeq (x=z)$.
-      \item $x,y,z:A,q:y=z \yields (x=y) \simeq (x=z)$.
-      \item $x,y:A,p:x=y \yields (y=y) \simeq (x=x)$.
-      \item ${x,y:A, \alpha:A\simeq B \yields (x=y) \simeq (\pi_1(\alpha)(x)=\pi_1(\alpha)(y))}$
-    \end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Äquivalenz ist eine Kongruenzrelation]
+\begin{exercise}[Äquivalenzen und Gleichheiten]
   \begin{enumerate}
-    \item Zeige, eventuell unter Verwendung von Funktionsextensionalität, dass $\simeq$ eine Kongruenzrelation bezüglich $\to$ ist.
-      Das heißt, gegeben Typen $A,B,C$, finde Äquivalenzen
-      \begin{enumerate}
-        \item $\alpha:A\simeq B \yields (B\to C) \simeq (A\to C)$,
-        \item $\beta:B\simeq C \yields (A\to B)\simeq (A\to C)$.
-      \end{enumerate}
+    \item Sei $A$ ein Typ.
+      Zeige:
+        \begin{enumerate}
+          \item $x,y:A \yields (x=y) \simeq (y=x)$.
+          \item $x,y,z:A,p:x=y \yields (y=z) \simeq (x=z)$.
+          \item $x,y,z:A,q:y=z \yields (x=y) \simeq (x=z)$.
+          \item $x,y:A,p:x=y \yields (y=y) \simeq (x=x)$.
+        \end{enumerate}
+
+    \item Sei $f:A\to B$ eine Äquivalenz.
+      Zeige:
+        \begin{enumerate}
+          \item $x,y:A\yields (x =_A y)\simeq (f(x) =_B f(y))$
+          \item $\isContr(B)\to\isContr(A)$
+          \item $\isProp(B)\to\isProp(A)$
+          \item $\isSet(B)\to\isSet(A)$
+        \end{enumerate}
   \end{enumerate}
 \end{exercise}
 
@@ -66,6 +65,8 @@
     \item $(A \to B\times C) \simeq (A \to B) \times (A \to C)$
     \item $(\einheit \to A)\simeq A$
     \item $(\zwei \to A)\simeq A\times A$
+    \item $\alpha:A\simeq B \yields (B\to C) \simeq (A\to C)$,
+    \item $\beta:B\simeq C \yields (A\to B)\simeq (A\to C)$.
   \end{enumerate}
   \end{multicols}
 \end{exercise}
