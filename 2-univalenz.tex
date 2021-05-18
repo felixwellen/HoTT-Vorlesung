@@ -1,0 +1,288 @@
+\subsection{Äquivalenzen}
+\label{sub:aequivalenzen}
+
+In diesem Abschnitt werden wir drei verschiedene Definitionen von Äquivalenzen einführen und zeigen,
+dass es sich um den selben Begriff handelt. Einen haben wir bereits eingeführt - Funktionen mit kontrahierbaren Fasern heißen Äquivalenz.
+Von einem Äquivalenzbegriff erwarten wir, dass es sich beim entsprechenden Typ $\isEquiv(f)$ um eine Aussage handelt.
+Das hat zur Folge, dass wir es als eine Eigenschaft von Funktionen anssehen können eine Äquivalenz zu sein.
+Damit ist dann auch der Typ der Äquivalenzen zwischen $A$ und $B$ eine Untertyp von $A\to B$, d.h. die Vergiß-Abbildung
+\begin{mathpar}
+  \pi_1:\left(\sum_{f:A\to B}\isEquiv(f)\right)\to (A\to B)
+\end{mathpar}
+ist injektiv.
+
+Zur Vorbereitung beschäftigen wir uns noch etwas mit Homotopien.
+\begin{bemerkung}
+  Seien $A,B:\mU$ und $f,g:A\to B$.
+  \begin{enumerate}
+  \item Sei $H:f\sim g$. Für $\varphi:A'\to A$ gibt es eine Homotopie $H_{\varphi(\_)}:f\circ \varphi\sim g\circ \varphi$ und für $\psi:B\to B'$ gibt es eine Homotopie $\psi(H):\psi\circ f\sim \psi\circ g$. Diese Operationen nennt man \begriff{whiskering}.
+  \item Sei $H:f\sim g$. Homotopien sind natürlich in folgendem Sinn: Für $p:x=_A y$ gilt:
+    \begin{mathpar}
+      H_x\kon g(p) = f(p)\kon H_{y}
+    \end{mathpar}
+  \item Für eine Homotopie $H:f\sim\id$ gilt $f(H_x)=H_{f(x)}$.
+  \end{enumerate}
+\end{bemerkung}
+
+
+Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inverse und legen dabei mehr Notation für Äquivalenzen fest:
+
+\begin{definition}
+  Seien $A,B:\mU$ und $f:A\to B$.
+  \begin{enumerate}
+  \item $f$ hat eine \begriff{Linksinverse}, wenn es ein $g:B\to A$ gibt und $g\circ f\sim\id_A$.
+  \item $f$ hat eine \begriff{Rechtsinverse} oder einen \begriff{Schnitt}, wenn es ein $h:B\to A$ gibt und $f\circ h\sim \id_B$.
+  \item $f$ ist eine \begriff{Äquivalenz} oder eine Funktion mit \begriff{Links- und Rechtsinversen}, wenn
+    \begin{mathpar}
+      \isEquiv(f)\colonequiv\mathrm{LRInv}(f)\colonequiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
+    \end{mathpar}
+  \item Wenn es eine Äquivanz zwischen $A$ und $B$ gibt, dann sagen wir $A$ ist \begriff{äquivalent} zu $B$.
+  \item Für den Typ der Äquivalenzen zwischen $A$ und $B$ schreiben wir:
+    \begin{mathpar}
+      A\simeq B\colonequiv\sum_{f:A\to B}\isEquiv(f)
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
+Es wird sich herausstellen, dass $\mathrm{LRInv}(f)$ und $\mathrm{qinv}(f)$ für manche Funktionen keine äquivalenten Typen sind.
+Insbesondere werden wir noch sehen, dass $\qinv(f)$ immer eine Aussage ist, $\mathrm{LRInv}(f)$ aber keine Aussage mehr sein muss, wenn $A$ und $B$ komplizierte Gleichheitstypen haben.
+Die beiden Begriffe sind aber logisch äquivalent, d.h. es gibt für jedes $f:A\to B$ Abbildungen $\mathrm{LRInv}(f)\to \qinv(f)$ und $\qinv(f)\to\mathrm{LRInv}(f)$.
+Zunächst halten wir die Vokabel ``logisch äquivalent'' fest:
+
+\begin{definition}
+  Zwei Typen $A$ und $B$ heißen \begriff{logisch äquivalent}, wenn es Funktionen $f:A\to B$ und $g:B\to A$ gibt.
+\end{definition}
+
+Bei Aussagen reicht die logische Äquivalenz bereits, damit die Typen äquivalent sind.
+Damit werden die verschiedenen Varianten des Typs ``$\isEquiv(f)$'', die wir in diesem Abschnitt kennenlernen, äquivalente Typen sein,
+wenn wir logische Äquivalenz gezeigt haben und dass es sich jeweils um Aussagen handelt. Letzteres werden wir allerdings noch Aufschieben.
+
+\begin{bemerkung}
+  \label{bem:lrinv-qinv}
+  Seien $A,B:\mU$ und $f:A\to B$. Die Typen $\mathrm{LRInv}(f)$ und $\qinv(f)$ sind logisch äquivalent.
+\end{bemerkung}
+\begin{beweis}
+  Nehmen wir zünachst an, es gibt eine Quasi-Inverse $g:B\to A$ mit $H:g\circ f\sim\id_A$ und $K:f\circ g\sim\id_B$. Dann ist
+  \begin{mathpar}
+    ((g,H),(g,K)):\mathrm{LRInv}(f)
+  \end{mathpar}
+  Seien nun andererseits $g,h:B\to A$ links- und rechtsinvers zu $f$. Wir zeigen, dass $g$ und $h$ homotop sind. Damit können wir dann zeigen, dass $g$ auch rechtsinvers ist.
+  Durch whiskering erhalten wir:
+  \begin{mathpar}
+    g\sim g\circ (f\circ h) \sim (g\circ f)\circ h  \sim h
+  \end{mathpar}
+  Also ist $g$ rechtsinvers:
+  \begin{mathpar}
+    f\circ g\sim f\circ h\sim \id
+  \end{mathpar}
+\end{beweis}
+
+Wenn wir also zu einer Funktion $f:A\to B$ eine beidseitige Inverse konstruieren, dann ist $f$ eine Äquivalenz (im Sinn einer Funktion mit Links- und Rechtsinversen).
+Äquivalenzen haben die Operationen, die wir bereits von Gleichheiten kennen:
+
+\begin{bemerkung}
+  \begin{enumerate}
+  \item Die Identität ist eine Äquivalenz.
+  \item Eine Inverse einer Äquivalenz ist eine Äquivalenz.
+  \item Seien $A,B,C:\mU$. Wenn $f:A\to B$ und $g:B\to C$ Äquivalenzen sind, dann ist $g\circ f:A\to C$ eine Äquivalenz.
+  \end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+  Wir zeigen die Aussagen für den Äquivalenzbegriff der Funktion mit Links- und Rechtsinversen.
+  Mit \cref{thm:aequivalenzen} gilt damit das gleiche für die anderen Äquivalenzbegriffe.
+  \begin{enumerate}
+  \item Die Identität ist ihre eigene Links- und Rechtsinverse. Die nötigen Homotopien gelten schon als urteilsmäßige von Funktionen.
+  \item Wenn $f:A\to B$ eine Linksinverse $g:B\to A$ und eine Rechtsinverse $h:B\to A$ hat, dann ist bekommen wir mit Bemerkung \labelcref{bem:lrinv-qinv} eine Quasi-Inverse $f^{-1}:B\to A$.
+    Und $f^{-1}$ ist eine Äquivalenz mit Linksinverser $f$ und Rechtsinverser $f$.
+  \item Auf Übungsblatt 4 wird das für Quasi-Inversen gezeigt. Zusammen mit Bemerkung \labelcref{bem:lrinv-qinv} gilt das also auch für Äquivalenzen.
+  \end{enumerate}
+\end{beweis}
+
+\begin{beispiel}[Transport ist Äquivalenz]
+  Für $A:\mU$, $B:A\to\mU$, $x,y:A$ und jedes $p:x=y$ ist $\transp_B(p):B(x)\to B(y)$ eine Äquivalenz mit Inverser $\transp_B(p^{-1}):B(y)\to B(x)$.
+\end{beispiel}
+
+Wir wollen nun den Äquivalenzbegriff der Links- und Rechtsinvertierbarkeit mit dem der kontrahierbaren Fasern in Zusammenhang bringen.
+Wir werden allerdings erstmal eine Implikation klären und für die zweite einen dritten Äquivalenzbegriff einführen.
+
+\begin{bemerkung}
+  \label{bem:isContr-lrinv}
+  Seien $A,B:\mU$ und $f:A\to B$. Wenn alle Fasern von $f$ kontrahierbar sind, dann hat $f$ Links- und Rechtsinverse, es gibt also eine Funktion:
+  \begin{mathpar}
+    \left(\prod_{y:B}\isContr(f^{-1}(y))\right) \to \mathrm{LRInv}(f)
+  \end{mathpar}
+\end{bemerkung}
+
+\begin{beweis}
+  Sei $k:\prod_{y:B}\isContr(f^{-1}(y))$.
+  Wir konstruieren eine beidseitige Inverse $g:B\to A$ indem wir $y:B$ auf das Kontraktionszentrum der Faser $f^{-1}(y)$ abbilden:
+  Für $\pi_1(k_y)$ ist ein Element von $f^{-1}(y)$, besteht also aus $x:A$ und $p:f(x)=y$, also können wir festlegen
+  \begin{mathpar}
+    g(y)\colonequiv x
+  \end{mathpar}
+  Dann ist $f(g(y))=f(x)=y$, also $g$ Rechtsinverse von $f$. Für $x:A$ sei $x'\colonequiv g(f(x))$.
+  Es müssen $x:A$ und $x':A$ beide in $f^{-1}(f(x))$ liegen und da diese Faser kontrahierbar ist, gibt es eine Gleichheit $q:x=x'=g(f(x))$.
+  Genauer haben wir durch die Kontrahierbarkeit eine Gleichheit $q':(x,\refl_{f(x)})=(x',p')$ in der Faser $f^{-1}(f(x))$.
+  Diese Gleichheit können wir mit $\pi_1:f^{-1}(f(x))\to A$ abbilden, also $q\colonequiv \pi_1(q')$ setzen.
+\end{beweis}
+
+Die Umkehrung dieser Aussage ist komplizierter zu zeigen und wir werden zunächst zeigen, dass sich Links- Rechtsinverse in eine sogenannte kohärente Inverse überstzen lassen.
+Kohärente Inverse $g:B\to A$ einer Funktion $f:A\to B$ haben eine Kompatiblität zwischen den beiden Homotopien $f\circ g\sim \id$ und $g\circ f\sim \id$.
+Für eine Funktion $f:A\to B$ mit Inverser $g:B\to A$ besagt diese Kohärenz, dass die beiden Möglichkeiten eine Homotopie $f\circ g\circ f\sim f$ zu konstruieren punktweise gleich sind.
+
+\begin{definition}
+  Seien $A,B:\mU$ und $f:A\to B$.
+  Eine Funktion $g:B\to A$ heißt \begriff{kohärente Inverse} von $f$, wenn $f$ und $g$ es Homotopien $H:g\circ f\sim \id$ und $K:f\circ g \sim \id$ gibt und
+  \begin{mathpar}
+    \mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}
+  \end{mathpar}
+  Wir schreiben $\mathrm{CohInv}(f)$ für den Typ der \begriff{kohärenten Inversen} von $f$.
+\end{definition}
+
+Wir wollen direkt einsehen, dass wir von dieser Sorte Äquivalenz die Kontrahierbarkeit der Fasern beweisen können:
+
+\begin{bemerkung}
+  \label{bem:qinv-equiv}
+  Seien $A,B:\mU$ und $f:A\to B$. Wenn $f$ eine kohärente Inverse hat, dann sind die Fasern von $f$ kontrahierbar.
+\end{bemerkung}
+Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden können:
+\begin{lemma}
+  \label{lem:gleichheit-in-faser}
+  Seien $A,B$ Typen, $f:A\to B$ und $y:B$. Für $(x,q),(x',q'):f^{-1}(y)$ gibt es eine Funktion:
+  \begin{mathpar}
+    \prod_{p:x=_A x'}f(p)^{-1}\kon q=q'\to (x,q)=(x',q')
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}[von \cref{lem:gleichheit-in-faser}]
+  Induktion über $p$ und $\sum_=$.
+\end{beweis}
+
+\begin{beweis}[von \labelcref{bem:qinv-equiv}]
+  Habe also $f:A\to B$ eine kohärente Inverse, gebe es also $g:B\to A$, $H:g\circ f\sim \id$, $K:f\circ g \sim \id$ und $\mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}$.
+  Wir müssen nun für jede Faser von $f$ eine Kontraktion angeben.
+  Als Kontraktionszentrum für die Faser über $y:B$ wählen wir
+  \begin{mathpar}
+    k_y\colonequiv (g(y), K_y) : f^{-1}(y)
+  \end{mathpar}
+  Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Damit haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
+  \begin{mathpar}
+    H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x':x=x'
+  \end{mathpar}
+  Darauf wenden wir jetzt $f$ an:
+  \begin{mathpar}
+    f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x'):f(x)=f(x')
+  \end{mathpar}
+  und berechnen mit natürlichkeit von Homotopien, der Kohärenz und Gruppoidgesetzen:
+  \begin{align*}
+    f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x')&=f(H_x^{-1})\kon f(g(q\kon q'^{-1})) \kon f(H_x') \\
+                                              &=f(H_x^{-1})\kon K_{f(x)}\kon q\kon q'^{-1}\kon K_{f(x')}^{-1} \kon f(H_x') \\
+                                              &=q\kon q'^{-1}
+  \end{align*}
+  Mit dem Lemma haben wir also die gewünschte Gleichheit.
+\end{beweis}
+
+\begin{bemerkung}
+  Seien $A,B:\mU$ und $f:A\to B$ habe eine beidseitige Inverse $g:B\to A$.
+  Dann ist $g$ auch eine kohärente Inverse von $f$.
+\end{bemerkung}
+\begin{beweis}
+  Seien $g,h:B\to A$ und $H:g\circ f\sim\id$, $K:f\circ g\sim \id$. Setzte für $y:B$:
+  \begin{mathpar}
+    K'\colonequiv K_{f(g(y))}^{-1}\kon f(H_{g(y)})\kon K_{y}
+  \end{mathpar}
+  und rechne nach dass für $x:A$ gilt: $f(H_x)=K'_{f(x)}$.
+\end{beweis}
+
+\begin{theorem}
+  \label{thm:aequivalenzen}
+  Seien $A,B:\mU$ und $f:A\to B$, dann sind die folgenden Äquivalenzbegriffe logisch äquivalent:
+  \begin{enumerate}
+  \item Alle Fasern von $f$ sind kontrahierbar:
+    \begin{mathpar}
+      \isEquiv(f)\colonequiv\prod_{y:B}\isContr(f^{-1}(y))
+    \end{mathpar}
+  \item $f$ hat eine Linksinverse und eine Rechtsinverse:
+    \begin{mathpar}
+      \isEquiv(f)\colonequiv\mathrm{LRInv}\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
+    \end{mathpar}
+  \item $f$ hat eine kohärente Inverse:
+    \begin{mathpar}
+      \isEquiv(f)\colonequiv\mathrm{CohInv}(f)\colonequiv \sum_{g:B\to A} \sum_{H:g\circ f\sim\id}\sum_{K:f\circ g\sim\id} \prod_{x:A}f(H_x)=K_{f(x)}
+    \end{mathpar}
+  \end{enumerate}
+  Wir schreiben für alle drei Begriffe $\isEquiv(f)$, weil sich noch rausstellen wird, dass alle diese Typen Aussagen sind und damit alle drei Typen äquivalent sind.
+\end{theorem}
+\begin{beweis}
+  Die Bemerkungen dieses Abschnitts beweisen per Ringschluss die logische Äquivalenz.
+\end{beweis}
+
+\subsection{Univalenz}
+In diesem Abschnitt werden wir uns mit den Universen und ihren Gleichheitstypen beschäftigen.
+Eine historisch wichtige Idee von Vladimir Voevodsky ist das \begriff{Univalenzaxiom},
+das die Gleichheitstypen im Universum mit den Äquivalenzen von Typen identifiziert.
+Dieses Axiom werden wir kennenlernen und Konsequenzen daraus ziehen.
+Davor wollen wir aber noch allgemeine Konsequenzen aus der Existenz von Universen ziehen.
+
+Mit Universen sind wir in der Lage Ungleichheit von Elementen eines Typs zu beweisen.
+Diese definieren wir zunächst als Negation der Gleichheit:
+\begin{definition}
+  Seien $A:\mU$ und $x,y:A$. Dann ist $x$ \begriff{ungleich} $y$, wenn
+  \begin{mathpar}
+    x\not= y\colonequiv (x=y\to \leer)
+  \end{mathpar}
+\end{definition}
+Man beachte, dass es sich bei diesem Typ stets um eine Aussage handelt.
+Es sind also in $x\not= y$ keine so interessanten Dinge zu finden, wie im Gleichheitstyp und wir werden uns auch wenig mit Ungleichheiten beschäftigen.
+\begin{bemerkung}
+  Es gilt $1_\zwei \not= 0_\zwei$.
+\end{bemerkung}
+\begin{beweis}
+  Per Rekursion können wir uns den folgenden abhängigen Typen definieren:
+  \begin{align*}
+    B&:\zwei\to\mU \\
+    B(0_\zwei)&\colonequiv \leer \\
+    B(1_\zwei)&\colonequiv \eins
+  \end{align*}
+  Um die Ungleichheit zu zeigen, dürfen wir $p:1_\zwei = 0_\zwei$ annehmen und müssen ein Element in $\leer$ konstruieren.
+  Sei also $p:1_\zwei = 0_\zwei$. Damit haben wir auch eine Abbildung:
+  \begin{mathpar}
+    \transp_B(p):B(1_\zwei)\to B(0_\zwei)
+  \end{mathpar}
+  Und wegen $\ast:B(1_\zwei)\equiv \eins$ haben wir auch ein Element, das wir in diese Abbildung einsetzen können.
+  Es ist also $\transp_B(p)(\ast):B(0_\zwei)\equiv \leer$.
+\end{beweis}
+Dieser Trick lässt sich auf alle Elemente induktiver Typen übertragen, für die wir ``verschiedene'' Werte vorgeben können.
+Für einzelne natürliche Zahlen etwa:
+\begin{bemerkung}
+  Es gilt $0_{\N}\not= 1_{\N}\colonequiv \sucN(0_{\N})$.
+\end{bemerkung}
+\begin{beweis}
+  Sei
+  \begin{align*}
+    B&:\N\to \mU \\
+    B(0_{\N})&\colonequiv \leer \\
+    B(1_{\N})&\colonequiv \eins
+  \end{align*}
+  womit für $p:0_{\N}=1_{\N}$ ein Element $\transp_B(p^{-1})(\ast):\leer$ gegeben ist.
+\end{beweis}
+Typischerweise interessiert man sich für eine vollständige Charakterisierung der Gleichheitstypen eines Typs.
+Für die natürlichen Zahlen wäre das ein in $n,k:\N$ abhängiger Typ $B(n,k)$ sodass $B(n,k)\simeq (n=_\N k)$.
+Das wird unser Ziel in \cref{sec:zahlen-gleichheit} sein.
+
+Ohne Weiteres können wir bereits für $A,B:\mU_i$ den Typ $A=_{\mU_i}B$ der Gleichheiten zwischen $A$ und $B$ formen.
+Dieser liegt allerdings im nächsthöheren Universum $\mU_{i+1}$, da wir in der Formierungsregel für Gleichheitstypen ``X ist ein Typ'' durch ``$X : \mU_i$'' ersetzen und dafür nur ``$\mU_i : \mU_{i+1}$'' in Frage kommt:
+\begin{mathpar}
+  \inferrule{\Gamma\yields \mU_i:\mU_{i+1}\and \Gamma\yields A,B:\mU_i}{\Gamma\yields A=_{\mU_i}B:\mU_{i+1}}{=\mathrm{F}}
+\end{mathpar}
+
+\subsection{Gleichheit in den natürlichen Zahlen}
+\label{sec:zahlen-gleichheit}
+\begin{definition}
+  $\Eq{\N}:\N\to\N\to\mU$ definieren wir durch doppelte Rekursion wie folgt:
+  \begin{align*}
+    &\Eq{\N}(0_\N,    &0_\N)    &\colonequiv\einheit \\
+    &\Eq{\N}(0_\N,    &\sucN(k))&\colonequiv\leer \\
+    &\Eq{\N}(\sucN(n),&0_\N)    &\colonequiv\leer \\
+    &\Eq{\N}(\sucN(n),&\sucN(k))&\colonequiv\Eq{\N}(n,k) 
+  \end{align*}
+\end{definition}
