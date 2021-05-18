@@ -50,10 +50,4 @@
 \theoremsymbol{\ensuremath{\Box}}
     \newtheorem{beweis}{Beweis}
 
-\newcommand{\yields}{\vdash}
-\newcommand{\cbar}{\, | \,}
-\providecommand*\colonequiv{\vcentcolon\mspace{-1.2mu}\equiv}
-
-\newcommand{\begriff}[1]{\emph{#1}\index{#1}}
-
 \RequirePackage{hott}
