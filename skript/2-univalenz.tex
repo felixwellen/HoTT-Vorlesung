@@ -279,14 +279,14 @@ Damit lässt sich zeigen, dass gleiche Typen äquivalent sind.
 \begin{bemerkung}
   Für $A,B:\mU$ gibt es eine Funktion
   \begin{mathpar}
-    \simeq_=:A=_{\mU} B\to (A\simeq B)
+    \transp_\mU:A=_{\mU} B\to (A\simeq B)
   \end{mathpar}
   den \begriff{Universentransport}.
 \end{bemerkung}
 \begin{beweis}
   Seien $A,B:\mU_i$. Dann gibt es einen abhängigen Typ $X:\mU_i\to\mU_{i+1}$ und damit
   \begin{mathpar}
-    \simeq_=\colonequiv\transp_{X}:A=_{\mU_i}B\to A\simeq B
+    \transp_\mU\colonequiv\transp_{X}:A=_{\mU_i}B\to A\simeq B
   \end{mathpar}
 \end{beweis}
 
@@ -295,7 +295,7 @@ Die Umkehrung, aus einer Äquivalenz auch eine Gleichheit konstruieren zu könne
 \begin{axiom}[Univalenzaxiom]
   Wir nehmen von nun an an, dass das \begriff{Univalenzaxiom} gilt: Für $A,B:\mU$ ist die Funktion
   \begin{mathpar}
-    \simeq_=:A=_{\mU}B\to A\simeq B
+    \transp_\mU:A=_{\mU}B\to A\simeq B
   \end{mathpar}
   eine Äquivalenz ist. Die Inverse von $\simeq_=$ bezeichnen wir mit $\ua$\index{$\ua$}:
   \begin{mathpar}
@@ -312,6 +312,27 @@ Mit Univalenz ergibt sich, dass es tatsächlich verschiedene Gleichheiten zwisch
   \end{mathpar}
   Also: $f(0_\zwei)\not=f(1_\zwei)$.
 \end{beispiel}
+
+\begin{bemerkung}
+  Für $A:\mU$ gilt $\ua(\id_A)=\refl_A$.
+\end{bemerkung}
+\begin{beweis}
+  Es gilt $\transp_\mU(\refl_A)=\id_A$ und damit $\ua(\id_A)=\ua(\transp_\mU(\refl_A))=\refl_A$.
+\end{beweis}
+
+Da wir nun wissen, dass Gleichheiten und Äquivalenzen dasselbe sind, können wir auch die Gleichheitsinduktion auf Äquivalenzen übertragen:
+\begin{lemma}[Äquivalenzinduktion]
+  Für $C:\prod_{A,B:\mU}A\simeq B\to \mU$ gibt es:
+  \begin{mathpar}
+    \ind{\simeq}:\left(\prod_{A:\mU}C(A,A,\id_A)\right)\to \prod_{A,B:\mU}\prod_{f:A\simeq B}C(A,B,f)
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Durch Gleichheitsinduktion ergibt sich:
+  \begin{mathpar}
+    \ind{=}:\left(\prod_{A:\mU}C(A,A,\ua(\refl_A))\right)\to\prod_{A,B:\mU}\prod_{p:A=_{\mU}B}C(A,B,\ua(p))
+  \end{mathpar}
+\end{beweis}
 
 Wir importieren die folgende Aussage (findet man im HoTT-Book am Ende von Kapitel 4): 
 \begin{fakt}
