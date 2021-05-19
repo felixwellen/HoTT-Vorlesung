@@ -1,0 +1,53 @@
+% latexmk -pdflatex='xelatex %O %S' -pvc -pdf hott-skript.tex
+\documentclass{hott}
+
+\setenumerate[1]{label=(\alph*),topsep=0pt}
+\setenumerate[2]{label=(\roman*),topsep=0pt}
+
+\title{Vorlesungsskript zur Homotopietypentheorie}
+\author{Felix Cherubini}
+
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+ \pagebreak
+Dieses Skript entsteht als Begleitmaterial zur Vorlesung ``Homotopietypentheorie'' (HoTT), die ich im Sommersemester 2021 an der Universität Augsburg halte.
+Zweck dieses Skripts ist es, den Zuhörern und mir selbst zur Erinnerung an die Vorlesungsinhalte zu dienen --
+bei der Beschäftigung mit dem Thema ist es hilfreich in Lehrbücher zu schauen.
+Das sogenannte \href{https://homotopytypetheory.org/book/}{``HoTT-Book''} ist sicher eine gute Quelle.
+
+Wer Fehler findet und diese korrigieren oder darauf aufmerksam machen will, kann das auf der github seite dieses Skripts machen:
+\href{https://github.com/felixwellen/HoTT-Vorlesung}{https://github.com/felixwellen/HoTT-Vorlesung}.
+Dort gibt es auch die Möglichkeit, sogenannte ``Issues'' anzulegen.
+Hier könnten sie etwa darüber informieren, wenn sie eine Passage nicht verstehen oder einen Fehler gefunden haben.
+Sie haben über sogenannte ``Pull requests'' die Möglichkeit, Fehler auch selbst zu korrigieren.
+
+Die Homotopietypentheorie ist eine eigenständige Art Mathematik zu betreiben und basiert auf einer abhängigen Typentheorie.
+Das bringt mit sich, dass wir zunächst Erlernen werden, wie man in Homotopietypentheorie Objekte konstruiert, Aussagen formuliert und Beweise führt.
+Nach den Grundlagen werden wir uns in Richtung Homotopietheorie orientieren, einem Teilgebiet der Mathematik, in dem einige Vorzüge der Ho\-mo\-to\-pie\-ty\-pen\-theo\-rie zur Geltung kommen.
+
+Im Folgenden werden wir nach und nach \begriff{Regeln} einführen (oder zumindest erwähnen), die schließlich zusammen eine Typentheorie ergeben.
+Diese werden wir noch um das sogenannte \begriff{Univalenzaxiom} erweitern.
+
+\section*{Regeln}
+\input{0-regeln.tex}
+
+\section{Abhängige Typentheorie}
+\input{1-abhängige-typentheorie.tex}
+
+\section{Univalenz}
+\input{2-univalenz.tex}
+
+\section{Homotopietheorie}
+\subsection{n-Typen}
+\subsection{Höhere Induktive Typen}
+\subsection{Überlagerungen}
+\subsection{Homotopiegruppen}
+
+\printindex
+
+\end{document}

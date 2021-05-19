@@ -1,0 +1,73 @@
+\section*{Regeln}
+Wir werden zunächst nur Regeln kennenlernen, die Teil einer abhängigen Typentheorie sind.
+Regeln einer (abhängigen) Typentheorie können etwa so aussehen:
+\begin{mathpar}
+\inferrule*{\Gamma \yields f : A\to B \and \Gamma \yields t : A}{\Gamma \yields f(t) : B}
+\end{mathpar}
+Über dem waagrechten Strich stehen die Voraussetzungen und darunter, was aus den Voraussetzungen geschlossen werden darf.
+Dabei kann man zum Beispiel ``$\Gamma \yields t : A$'' lesen als ``Im Kontext $\Gamma$ gibt es einen Term $t$ des Typs $A$''.
+Wir werden nur anfangs mit Regeln arbeiten, um ein Verständnis für Typentheorie zu erlangen.
+Irgendwann werden wir Regeln wie die obige wieder, wie in der Mathematik üblich, sprachlich formulieren,
+etwa so
+\begin{center}
+  Für $f : A\to B$ und $t : A$ gibt es ein $f(t) : B$.
+\end{center}
+Wie wir später sehen werden, können diese Regeln zu Herleitungsbäumen kombiniert werden.
+Dieses Kombinieren ist der vollständig formale Weg Beweise in der Homotopietypentheorie zu führen.
+
+Ein Kontext wie ``$\Gamma$'' darf man sich als Liste von Variablen zusammen mit ihren Typen vorstellen. Also etwa so:
+\begin{mathpar}
+  x_1 : A_1, \cdots ,x_n : A_n
+\end{mathpar}
+Dabei dürfen die Variablen nach ihrer Einführung verwendet werden.
+So könnte etwa in der Konstruktion des Typs $A_2$ die Variable $x_1$ verwendet werden.
+Dass der Kontext eine solche Liste ist, wird üblicherweise durch die strukturellen Regeln einer abhängigen Typentheorie festgelegt.
+\begin{table}
+  \centering
+  \begin{tabular}{ll}
+    Urteil                        & Bedeutung (evtl. im Kontext $\Gamma$) \\
+    \hline
+    $\Gamma\yields t : A$         & $t$ ist ein Term vom Typ $A$ \\
+    $\Gamma\yields A$ Typ         & $A$ ist ein Typ \\
+    $\Gamma\yields A\equiv B$     & $A$ und $B$ sind (urteils-)gleiche Typen \\
+    $\Gamma\yields t\equiv s : A$ & $t$ und $s$ sind (urteils-)gleiche Terme des Typs $A$ \\
+    $\Gamma$ Kontext              & $\Gamma$ ist ein Kontext
+  \end{tabular}
+  \caption{Urteile}
+  \label{tab:urteile}
+\end{table}
+
+Ein Block der Form ``$\Gamma \yields t : A$''  ist ein spezielles \begriff{Urteil}.
+Insgesamt gibt es die Urteile in \cref{tab:urteile}.
+
+Eine Regel ist im Allgemeinen Fall nun von dieser Form:
+\begin{mathpar}
+\inferrule{\mathcal U_1 \and \dots \and \mathcal U_n}{\mathcal U_0}{\mathrm{Name}}
+\end{mathpar}
+Für $n\in\mathbb N=\{0,1,\dots\}$ und Urteile $\mathcal U_0,\dots,\mathcal U_n$.
+
+\subsection*{Strukturregeln}
+
+Neben den Regeln für einzelne Typen, die wir in den folgenden Abschnitten kennenlernen, gibt es sogenannte \begriff{strukturelle Regeln} oder \begriff{Strukturregeln}.
+Diese legen fest, wie Grundsätzliches funktioniert, etwa wie Kontexte geformt werden dürfen und was man mit Gleichheitsurteilen anfangen darf.
+Hier ist ein Beispiel, die sogenannte ``Weakening''-Regel oder \begriff{Abschwächungsregel}:
+\begin{mathpar}
+\inferrule{\Gamma \yields \mathcal U \and \Gamma \yields A \text{ Typ}}{\Gamma, x : A \yields \mathcal U}{\Weak}
+\end{mathpar}
+Das gilt für alles was man durch andere Regeln an der Stelle von $\mathcal U$ bekommen könnte.
+Die folgende \begriff{Variablenregel} erlaubt es Variablen aus dem Kontext zu benutzen:
+\begin{mathpar}
+  \inferrule{\Gamma, x:A\text{ Kontext}}{\Gamma, x:A\yields x:A }{\mathrm{Var}}
+\end{mathpar}
+Die Regeln für die Urteilsgleichheit legen fest, dass diese eine Äquivalenzrelation auf Termen und Typen ist.
+Außerdem gibt es Strukturregeln und sogenannte \begriff{Kongruenzregeln}, die es letztendlich erlauben, Terme und Typen durch Urteilsgleiches zu ersetzen.
+Wir erlauben es uns einfach zu Ersetzen und führen diese Regeln nicht aus.
+
+Weiter sind Typentheorien typischerweise so aufgebaut, dass wenn es möglich ist $t:A$ herzuleiten, es auch immer möglich ist, $A\text{ Typ}$ herzuleiten,
+in welchem Fall es wieder möglich ist, herzuleiten, dass der Kontext in dem das gilt ein Kontext ist.
+Allgemeiner erlauben wir uns stets notwendige Voraussetzungen für vorliegende Urteile zu verwenden.
+Also etwa der Schluss von einem Urteil, in dem der Typ ``$A\to B$'' vorkommt, zum Urteil ``$A$ Typ''.
+Wir wollen diese Tatsachen frei verwenden und wie Regeln einsetzen, die wir zusammenfassend mit ``$\mathrm{Str}$'' bezeichnen.
+
+Diese Regeln führen wir hier nicht auf, eine gute Quelle, um die genauen Regeln im Bedarfsfall anzuschauen,
+ist das (noch nicht erschienene) Lehrbuch von Egbert Rijke oder Anhang A.2 des HoTT-Books.

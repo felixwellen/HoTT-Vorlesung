@@ -44,10 +44,11 @@
     \newtheorem{konvention}[theorem]{Konvention}
     \newtheorem{regeln}[theorem]{Regeln}
     \newtheorem{axiom}[theorem]{Axiom}
+    \newtheorem{fakt}[theorem]{Fakt}
     \newtheorem{beispiel}[theorem]{Beispiel}
 
 \theoremstyle{nonumberplain}
 \theoremsymbol{\ensuremath{\Box}}
     \newtheorem{beweis}{Beweis}
 
-\RequirePackage{hott}
+\RequirePackage{../hott}
