@@ -385,7 +385,27 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
 \end{beweis}
 Im nächsten Kapitel ergibt sich ein einfacher Beweis einer stärkeren Version von Funktionsextensionalität.
 
-Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängige Typen dasselbse sind, wie Funktionen nach $A$.
+Wir wollen uns nun Fasern und abhängigen Typen zuwenden.
+Dazu zeigen wir zunächst folgendes nützliches Lemma, das eine leicht veränderte Variante der Gleichheitsinduktion ist:
+\begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
+  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
+\end{lemma}
+\begin{beweis}
+  Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
+  \begin{mathpar}
+    C':\prod_{z:\sum_{y:A}x=y}C(\pi_1(z),\pi_2(z))
+  \end{mathpar}
+  Wir wissen dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
+  \begin{mathpar}
+    \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
+  \end{mathpar}
+  Also
+  \begin{mathpar}
+    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
+  \end{mathpar}
+\end{beweis}
+
+Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen auf $A$ dasselbe sind, wie Funktionen nach $A$.
 \begin{lemma}
   Sei $A:\mU$. Dann gilt:
   \begin{mathpar}
