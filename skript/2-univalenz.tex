@@ -307,8 +307,74 @@ Die Umkehrung, aus einer Äquivalenz auch eine Gleichheit konstruieren zu könne
 \end{axiom}
 
 Mit Univalenz ergibt sich, dass es tatsächlich verschiedene Gleichheiten zwischen Elementen geben kann.
+Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivalenzen weit genug dafür verstehen:
+\begin{bemerkung}
+  Es gilt $\zwei\simeq (\zwei\simeq \zwei)$ (mit Funktionsextensionalität).
+\end{bemerkung}
+\begin{beweis}
+  Zunächst geben wir der Äquivalenz, die die beiden Elemente von $\zwei$ vertauscht den Namen $s$:
+  \begin{align*}
+    s:&\zwei\simeq\zwei \\
+    s(0_\zwei)&\colonequiv 1_\zwei \\
+    s(1_\zwei)&\colonequiv 0_\zwei
+  \end{align*}
+  Damit können wir Elemente von $\zwei$ auf Äquivalenzen abbilden:
+  \begin{align*}
+    \varphi:&\zwei\to (\zwei\simeq\zwei) \\
+    \varphi(0_\zwei)&\colonequiv \id_\zwei \\
+    \varphi(1_\zwei)&\colonequiv s
+  \end{align*}
+  Für die Umkehrabbildung wählen wir:
+  \begin{align*}
+    \psi:&(\zwei\simeq\zwei)\to\zwei \\
+    \psi&\colonequiv f\mapsto f(0_\zwei) \\
+  \end{align*}
+  Es gilt per $\ind{\zwei}$ durch die Urteilsgleichheiten $\psi\varphi(0_\zwei)\equiv 0_\zwei$ und $\psi\varphi(1_\zwei)\equiv 1_\zwei$ bereits $\psi\circ\varphi\sim \id$.
+  Also ist noch zu zeigen:
+  \begin{mathpar}
+    \prod_{f:\zwei\simeq \zwei} \varphi(\psi(f))=f
+  \end{mathpar}
+  Oder nach auswerten von $\psi$ und mit Funktionsextensionalität:
+  \begin{mathpar}
+    \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
+  \end{mathpar}
+  Aus Beispiel \labelcref{bsp:einheit-kontrahierbar} wissen wir, dass:
+  \begin{mathpar}
+    t:\prod_{x:\zwei}(x=0_\zwei)\amalg(x=1_\zwei)
+  \end{mathpar}
+  womit wir die Fallunterscheidung ``$f(0)$ ist $1_\zwei$ oder $0_\zwei$'' umsetzen können:
+  \begin{mathpar}
+    f\mapsto x\mapsto t_{f(0_\zwei)} : \prod_{f:\zwei\simeq\zwei}\prod_{x:\zwei}(f(0_\zwei)=0_\zwei)\amalg(f(0_\zwei)=1_\zwei)
+  \end{mathpar}
+  Die beiden Fälle können wir abarbeiten, indem wir Funktionen auf den einzelnen Faktoren, in unseren Zieltyp angeben, wobei wir gleichzeitig mit $\ind{\zwei}$ eine Fallunterscheidung über $x$ machen.
+  Insgesamt müssen wir also noch konstruieren:
+  \begin{align*}
+    F_{00}& : f(0_\zwei)=0_\zwei \to \varphi(f(0_\zwei))(0_\zwei)=f(0_\zwei) \\
+    F_{01}& : f(0_\zwei)=0_\zwei \to \varphi(f(0_\zwei))(1_\zwei)=f(1_\zwei) \\
+    F_{10}& : f(0_\zwei)=1_\zwei \to  \varphi(f(0_\zwei))(0_\zwei)=f(0_\zwei) \\
+    F_{11}& : f(0_\zwei)=1_\zwei \to  \varphi(f(0_\zwei))(1_\zwei)=f(1_\zwei)
+  \end{align*}
+  Denn damit haben wir dann:
+  \begin{mathpar}
+    f\mapsto \ind{\zwei}(\dots,\ind{\amalg}(\dots,F_{00},F_{10})(t_{f(0_\zwei)}),\ind{\amalg}(\dots,F_{01},F_{11})(t_{f(0_\zwei)})): \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
+  \end{mathpar}
+  Die Funktionen $F_{00}$ und $F_{10}$ können mit Gruppoidgestzen konstruiert werden.
+  Für die übrigen müssen wir verwenden, dass $0_\zwei\not=1_\zwei$.
+  Etwa für $F_{01}$ nehmen wir also $p:f(0_\zwei)=0_\zwei$ an und verwenden wieder die Fallunterscheidung für die Gleichheit in $\zwei$:
+  \begin{mathpar}
+    (f(1_\zwei)=0_\zwei)\amalg(f(1_\zwei)=1_\zwei)
+  \end{mathpar}
+  Es geht also wieder darum, zwei Funktionen zu konstruieren. Für $f(1_\zwei)=1_\zwei)$ geht das wieder mit den üblichen Methoden, für die andere Gleichheit, können wir zusammen mit $p$ zeigen:
+  \begin{mathpar}
+    f(1_\zwei)=f(0_\zwei)
+  \end{mathpar}
+  und darauf die Inverse von $f$ anwenden um $1_\zwei=0_\zwei$ zu erhalten. Nun ist $0_\zwei\not=1_\zwei$ eine Abbildung von $1_\zwei=0_\zwei$ nach $\emptyset$.
+  Da es von $\emptyset$ eine Abbildung in jeden beliebigen Typ gibt, haben wir insgesamt auch eine Abbildung von $1_\zwei=0_\zwei$ in die zu zeigende Behauptung.
+  Das beweist den Fall $F_{01}$ und $F_{11}$ lässt sich analog zeigen.
+\end{beweis}
+
 \begin{beispiel}
-  Es gilt $(\zwei\simeq\zwei)\simeq\zwei$ und per Univalenz damit auch:
+  Mit $\zwei\simeq(\zwei\simeq\zwei)$ und per Univalenz gilt:
   \begin{mathpar}
     f:\zwei\simeq (\zwei=_{\mU}\zwei)
   \end{mathpar}
