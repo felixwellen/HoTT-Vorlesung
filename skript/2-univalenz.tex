@@ -307,8 +307,74 @@ Die Umkehrung, aus einer Äquivalenz auch eine Gleichheit konstruieren zu könne
 \end{axiom}
 
 Mit Univalenz ergibt sich, dass es tatsächlich verschiedene Gleichheiten zwischen Elementen geben kann.
+Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivalenzen weit genug dafür verstehen:
+\begin{bemerkung}
+  Es gilt $\zwei\simeq (\zwei\simeq \zwei)$ (mit Funktionsextensionalität).
+\end{bemerkung}
+\begin{beweis}
+  Zunächst geben wir der Äquivalenz, die die beiden Elemente von $\zwei$ vertauscht den Namen $s$:
+  \begin{align*}
+    s:&\zwei\simeq\zwei \\
+    s(0_\zwei)&\colonequiv 1_\zwei \\
+    s(1_\zwei)&\colonequiv 0_\zwei
+  \end{align*}
+  Damit können wir Elemente von $\zwei$ auf Äquivalenzen abbilden:
+  \begin{align*}
+    \varphi:&\zwei\to (\zwei\simeq\zwei) \\
+    \varphi(0_\zwei)&\colonequiv \id_\zwei \\
+    \varphi(1_\zwei)&\colonequiv s
+  \end{align*}
+  Für die Umkehrabbildung wählen wir:
+  \begin{align*}
+    \psi:&(\zwei\simeq\zwei)\to\zwei \\
+    \psi&\colonequiv f\mapsto f(0_\zwei) \\
+  \end{align*}
+  Es gilt per $\ind{\zwei}$ durch die Urteilsgleichheiten $\psi\varphi(0_\zwei)\equiv 0_\zwei$ und $\psi\varphi(1_\zwei)\equiv 1_\zwei$ bereits $\psi\circ\varphi\sim \id$.
+  Also ist noch zu zeigen:
+  \begin{mathpar}
+    \prod_{f:\zwei\simeq \zwei} \varphi(\psi(f))=f
+  \end{mathpar}
+  Oder nach auswerten von $\psi$ und mit Funktionsextensionalität:
+  \begin{mathpar}
+    \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
+  \end{mathpar}
+  Aus Beispiel \labelcref{bsp:einheit-kontrahierbar} wissen wir, dass:
+  \begin{mathpar}
+    t:\prod_{x:\zwei}(x=0_\zwei)\amalg(x=1_\zwei)
+  \end{mathpar}
+  womit wir die Fallunterscheidung ``$f(0)$ ist $1_\zwei$ oder $0_\zwei$'' umsetzen können:
+  \begin{mathpar}
+    f\mapsto x\mapsto t_{f(0_\zwei)} : \prod_{f:\zwei\simeq\zwei}\prod_{x:\zwei}(f(0_\zwei)=0_\zwei)\amalg(f(0_\zwei)=1_\zwei)
+  \end{mathpar}
+  Die beiden Fälle können wir abarbeiten, indem wir Funktionen auf den einzelnen Faktoren, in unseren Zieltyp angeben, wobei wir gleichzeitig mit $\ind{\zwei}$ eine Fallunterscheidung über $x$ machen.
+  Insgesamt müssen wir also noch konstruieren:
+  \begin{align*}
+    F_{00}& : f(0_\zwei)=0_\zwei \to \varphi(f(0_\zwei))(0_\zwei)=f(0_\zwei) \\
+    F_{01}& : f(0_\zwei)=0_\zwei \to \varphi(f(0_\zwei))(1_\zwei)=f(1_\zwei) \\
+    F_{10}& : f(0_\zwei)=1_\zwei \to  \varphi(f(0_\zwei))(0_\zwei)=f(0_\zwei) \\
+    F_{11}& : f(0_\zwei)=1_\zwei \to  \varphi(f(0_\zwei))(1_\zwei)=f(1_\zwei)
+  \end{align*}
+  Denn damit haben wir dann:
+  \begin{mathpar}
+    f\mapsto \ind{\zwei}(\dots,\ind{\amalg}(\dots,F_{00},F_{10})(t_{f(0_\zwei)}),\ind{\amalg}(\dots,F_{01},F_{11})(t_{f(0_\zwei)})): \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
+  \end{mathpar}
+  Die Funktionen $F_{00}$ und $F_{10}$ können mit Gruppoidgestzen konstruiert werden.
+  Für die übrigen müssen wir verwenden, dass $0_\zwei\not=1_\zwei$.
+  Etwa für $F_{01}$ nehmen wir also $p:f(0_\zwei)=0_\zwei$ an und verwenden wieder die Fallunterscheidung für die Gleichheit in $\zwei$:
+  \begin{mathpar}
+    (f(1_\zwei)=0_\zwei)\amalg(f(1_\zwei)=1_\zwei)
+  \end{mathpar}
+  Es geht also wieder darum, zwei Funktionen zu konstruieren. Für $f(1_\zwei)=1_\zwei)$ geht das wieder mit den üblichen Methoden, für die andere Gleichheit, können wir zusammen mit $p$ zeigen:
+  \begin{mathpar}
+    f(1_\zwei)=f(0_\zwei)
+  \end{mathpar}
+  und darauf die Inverse von $f$ anwenden um $1_\zwei=0_\zwei$ zu erhalten. Nun ist $0_\zwei\not=1_\zwei$ eine Abbildung von $1_\zwei=0_\zwei$ nach $\emptyset$.
+  Da es von $\emptyset$ eine Abbildung in jeden beliebigen Typ gibt, haben wir insgesamt auch eine Abbildung von $1_\zwei=0_\zwei$ in die zu zeigende Behauptung.
+  Das beweist den Fall $F_{01}$ und $F_{11}$ lässt sich analog zeigen.
+\end{beweis}
+
 \begin{beispiel}
-  Es gilt $(\zwei\simeq\zwei)\simeq\zwei$ und per Univalenz damit auch:
+  Mit $\zwei\simeq(\zwei\simeq\zwei)$ und per Univalenz gilt:
   \begin{mathpar}
     f:\zwei\simeq (\zwei=_{\mU}\zwei)
   \end{mathpar}
@@ -355,10 +421,13 @@ Wir importieren die folgende Aussage (findet man im HoTT-Book am Ende von Kapite
 \begin{fakt}
   Univalenz impliziert Funktionsextensionalität.
 \end{fakt}
-
+Im nächsten Kapitel ergibt sich ein einfacher Beweis einer stärkeren Version von Funktionsextensionalität.
 Wir verzichten daher im folgenden darauf, auf Verwendung von Funktionsextensionalität hinzuweisen.
+
+\subsection{Faserungen und Gleichheitssätze}
 Zunächst halten wir fest, dass abhängige Summen und abhängige Produkte mit äquivalenten Eingangsdaten äquivalente Typen produzieren:
 \begin{bemerkung}
+  \label{bem:ap-univalenz-sigma-prod}
   Seien $A:\mU$ und $B,B':A\to\mU$. Wenn $B$ und $B'$ punktweise äquivalent sind, also gilt $\prod_{x:A}B(x)\simeq B'(x)$, dann gilt auch:
   \begin{mathpar}
     \left(\sum_{x:A}B(x)\right)\simeq \left(\sum_{x:A}B'(x)\right)\text{ und }\left(\prod_{x:A}B(x)\right)\simeq \left(\prod_{x:A}B'(x)\right)
@@ -381,15 +450,44 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
   \end{mathpar}
 \end{bemerkung}
 \begin{beweis}
-  Kommt noch\dots
-\end{beweis}
-Im nächsten Kapitel ergibt sich ein einfacher Beweis einer stärkeren Version von Funktionsextensionalität.
-
-Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängige Typen dasselbse sind, wie Funktionen nach $A$.
-\begin{lemma}
-  Sei $A:\mU$. Dann gilt:
+  Mit Univalenz, Bemerkung \labelcref{bem:ap-univalenz-sigma-prod} und Funktionsextensionalität:
   \begin{mathpar}
-    \left(\sum_{B:\mU}(B\to A)\right)\simeq (A\to \mU)
+    \left(\prod_{x:A}B(x)\simeq B'(x)\right)\simeq \left(\prod_{x:A}B(x)= B'(x)\right)\simeq (B=B')
+  \end{mathpar}
+\end{beweis}
+
+\begin{definition}
+  Sei $A:\mU$ und $B,B':A\to\mU$ zwei abhängige Typen.
+  \begin{enumerate}
+  \item Eine \begriff{faserweise Abbildung} ist ein Term
+    \begin{mathpar}
+      f:\prod_{x:A}\left(B(x)\to B'(x)\right)
+    \end{mathpar}
+  \item Für eine faserweise Abbildung gibt es eine induzierte Abbildung
+    \begin{mathpar}
+      \sum f:\left(\sum_{x:A}B(x)\right)\to \left(\sum_{x:A} B'(x)\right)
+    \end{mathpar}
+    gegeben durch $f(x,b_x)\colonequiv (x,f_x(b_x))$.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  \label{lem:faser-equiv}
+  Seien $A:\mU$ und $B:A\to\mU$. Dann gilt
+  \begin{mathpar}
+     \prod_{x:A} \pi_1^{-1}(x)\simeq B(x)
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  
+\end{beweis}
+
+Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen auf $A$ dasselbe sind, wie Funktionen nach $A$.
+\begin{lemma}
+  \label{lem:objektklassifizierer}
+  Sei $B:\mU$. Dann gilt:
+  \begin{mathpar}
+    \left(\sum_{A:\mU}(A\to B)\right)\simeq (B\to \mU)
   \end{mathpar}
 \end{lemma}
 
@@ -402,10 +500,33 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängige Typen 
   \begin{mathpar}
     \mathrm{fib}_f\equiv \left((x:A)\mapsto f^{-1}(x)\right):A\to \mU
   \end{mathpar}
-  Beweis noch nicht fertig\dots
+  Nach \cref{lem:faser-equiv} ist also bereits diese Konstruktion linksinvers zur vorangegangenen.
+  Es ist also noch zu zeigen, dass die Fasern einer Abbildung sich zur Domäne aufsummieren, bzw. dass für alle
+  $f:A\to B$ gilt:
+  \begin{mathpar}
+    e:\left(\sum_{y:B}(f^{-1}(y))\right) \simeq A
+  \end{mathpar}
+  und $f\circ e=\pi_1$ gilt. Wir können mit \cref{lem:pfade-kontrahierbar} berechnen:
+  \begin{align*}
+    \left(\sum_{y:B}(f^{-1}(y))\right) &\simeq \sum_{y:B}\sum_{x:A}f(x)=y \\
+                                       &\simeq \sum_{x:A}\sum_{y:B}f(x)=y\\
+                                       &\simeq \sum_{x:A}\eins\\
+                                       &\simeq A
+  \end{align*}
 \end{beweis}
 
-\subsection{Gleichheit in den natürlichen Zahlen}
+\begin{theorem}[Fundamentaler Gleichheitssatz]\index{Fundamentaler Gleichheitssatz}
+  Seien $A:\mU$ und $a:A$. Für $B:A\to \mU$ und eine faserweise Abbildung $f:\prod_{x:A}(a=x)\to B(x)$, dann ist $f$ genau dann eine faserweise Äquivalenz, wenn
+  \begin{mathpar}
+    \sum_{x:A}B(x)
+  \end{mathpar}
+  kontrahierbar ist.
+\end{theorem}
+\begin{beweis}
+  Mit \cref{lem:objektklassifizierer}.
+\end{beweis}
+
+\subsection{Gleichheit natürlicher Zahlen}
 \label{sec:zahlen-gleichheit}
 \begin{definition}
   $\Eq{\N}:\N\to\N\to\mU$ definieren wir durch doppelte Rekursion wie folgt:
@@ -416,3 +537,24 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängige Typen 
     \Eq{\N}(\sucN(n),\sucN(k)) &\colonequiv\Eq{\N}(n,k) 
   \end{align*}
 \end{definition}
+
+\subsection{Gleichheit algebraischer Strukturen}
+
+\subsection{Irgendwann sollte man auch das wissen}
+\begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
+  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
+\end{lemma}
+\begin{beweis}
+  Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
+  \begin{mathpar}
+    C':\prod_{z:\sum_{y:A}x=y}C(\pi_1(z),\pi_2(z))
+  \end{mathpar}
+  Wir wissen dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
+  \begin{mathpar}
+    \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
+  \end{mathpar}
+  Also
+  \begin{mathpar}
+    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
+  \end{mathpar}
+\end{beweis}

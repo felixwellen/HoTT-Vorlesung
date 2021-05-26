@@ -15,7 +15,7 @@
 
 % Verweise + Stichwortverzeicnis
 \RequirePackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
-\RequirePackage{cleveref}
+\RequirePackage[german]{cleveref}
 
 \RequirePackage{makeidx}
 
