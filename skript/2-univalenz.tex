@@ -456,12 +456,37 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
   \end{mathpar}
 \end{beweis}
 
+\begin{definition}
+  Sei $A:\mU$ und $B,B':A\to\mU$ zwei abhängige Typen.
+  \begin{enumerate}
+  \item Eine \begriff{faserweise Abbildung} ist ein Term
+    \begin{mathpar}
+      f:\prod_{x:A}\left(B(x)\to B'(x)\right)
+    \end{mathpar}
+  \item Für eine faserweise Abbildung gibt es eine induzierte Abbildung
+    \begin{mathpar}
+      \sum f:\left(\sum_{x:A}B(x)\right)\to \left(\sum_{x:A} B'(x)\right)
+    \end{mathpar}
+    gegeben durch $f(x,b_x)\colonequiv (x,f_x(b_x))$.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  \label{lem:faser-equiv}
+  Seien $A:\mU$ und $B:A\to\mU$. Dann gilt
+  \begin{mathpar}
+     \prod_{x:A} \pi_1^{-1}(x)\simeq B(x)
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  
+\end{beweis}
 
 Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen auf $A$ dasselbe sind, wie Funktionen nach $A$.
 \begin{lemma}
-  Sei $A:\mU$. Dann gilt:
+  Sei $B:\mU$. Dann gilt:
   \begin{mathpar}
-    \left(\sum_{B:\mU}(B\to A)\right)\simeq (A\to \mU)
+    \left(\sum_{A:\mU}(A\to B)\right)\simeq (B\to \mU)
   \end{mathpar}
 \end{lemma}
 
@@ -474,7 +499,19 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   \begin{mathpar}
     \mathrm{fib}_f\equiv \left((x:A)\mapsto f^{-1}(x)\right):A\to \mU
   \end{mathpar}
-  Beweis noch nicht fertig\dots
+  Nach \cref{lem:faser-equiv} ist also bereits diese Konstruktion linksinvers zur vorangegangenen.
+  Es ist also noch zu zeigen, dass die Fasern einer Abbildung sich zur Domäne aufsummieren, bzw. dass für alle
+  $f:A\to B$ gilt:
+  \begin{mathpar}
+    e:\left(\sum_{y:B}(f^{-1}(y))\right) \simeq A
+  \end{mathpar}
+  und $f\circ e=\pi_1$ gilt. Wir können mit \cref{lem:pfade-kontrahierbar} berechnen:
+  \begin{align*}
+    \left(\sum_{y:B}(f^{-1}(y))\right) &\simeq \sum_{y:B}\sum_{x:A}f(x)=y \\
+                                       &\simeq \sum_{x:A}\sum_{y:B}f(x)=y\\
+                                       &\simeq \sum_{x:A}\eins\\
+                                       &\simeq A
+  \end{align*}
 \end{beweis}
 
 \subsection{Gleichheit natürlicher Zahlen}
