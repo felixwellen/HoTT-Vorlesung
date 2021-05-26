@@ -484,6 +484,7 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
 
 Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen auf $A$ dasselbe sind, wie Funktionen nach $A$.
 \begin{lemma}
+  \label{lem:objektklassifizierer}
   Sei $B:\mU$. Dann gilt:
   \begin{mathpar}
     \left(\sum_{A:\mU}(A\to B)\right)\simeq (B\to \mU)
@@ -512,6 +513,17 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
                                        &\simeq \sum_{x:A}\eins\\
                                        &\simeq A
   \end{align*}
+\end{beweis}
+
+\begin{theorem}[Fundamentaler Gleichheitssatz]\index{Fundamentaler Gleichheitssatz}
+  Seien $A:\mU$ und $a:A$. Für $B:A\to \mU$ und eine faserweise Abbildung $f:\prod_{x:A}(a=x)\to B(x)$, dann ist $f$ genau dann eine faserweise Äquivalenz, wenn
+  \begin{mathpar}
+    \sum_{x:A}B(x)
+  \end{mathpar}
+  kontrahierbar ist.
+\end{theorem}
+\begin{beweis}
+  Mit \cref{lem:objektklassifizierer}.
 \end{beweis}
 
 \subsection{Gleichheit natürlicher Zahlen}
