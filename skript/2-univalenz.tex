@@ -421,10 +421,13 @@ Wir importieren die folgende Aussage (findet man im HoTT-Book am Ende von Kapite
 \begin{fakt}
   Univalenz impliziert Funktionsextensionalität.
 \end{fakt}
-
+Im nächsten Kapitel ergibt sich ein einfacher Beweis einer stärkeren Version von Funktionsextensionalität.
 Wir verzichten daher im folgenden darauf, auf Verwendung von Funktionsextensionalität hinzuweisen.
+
+\subsection{Faserungen und Gleichheitssätze}
 Zunächst halten wir fest, dass abhängige Summen und abhängige Produkte mit äquivalenten Eingangsdaten äquivalente Typen produzieren:
 \begin{bemerkung}
+  \label{bem:ap-univalenz-sigma-prod}
   Seien $A:\mU$ und $B,B':A\to\mU$. Wenn $B$ und $B'$ punktweise äquivalent sind, also gilt $\prod_{x:A}B(x)\simeq B'(x)$, dann gilt auch:
   \begin{mathpar}
     \left(\sum_{x:A}B(x)\right)\simeq \left(\sum_{x:A}B'(x)\right)\text{ und }\left(\prod_{x:A}B(x)\right)\simeq \left(\prod_{x:A}B'(x)\right)
@@ -447,29 +450,12 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
   \end{mathpar}
 \end{bemerkung}
 \begin{beweis}
-  Kommt noch\dots
+  Mit Univalenz, Bemerkung \labelcref{bem:ap-univalenz-sigma-prod} und Funktionsextensionalität:
+  \begin{mathpar}
+    \left(\prod_{x:A}B(x)\simeq B'(x)\right)\simeq \left(\prod_{x:A}B(x)= B'(x)\right)\simeq (B=B')
+  \end{mathpar}
 \end{beweis}
-Im nächsten Kapitel ergibt sich ein einfacher Beweis einer stärkeren Version von Funktionsextensionalität.
 
-Wir wollen uns nun Fasern und abhängigen Typen zuwenden.
-Dazu zeigen wir zunächst folgendes nützliches Lemma, das eine leicht veränderte Variante der Gleichheitsinduktion ist:
-\begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
-  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
-\end{lemma}
-\begin{beweis}
-  Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
-  \begin{mathpar}
-    C':\prod_{z:\sum_{y:A}x=y}C(\pi_1(z),\pi_2(z))
-  \end{mathpar}
-  Wir wissen dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
-  \begin{mathpar}
-    \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
-  \end{mathpar}
-  Also
-  \begin{mathpar}
-    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
-  \end{mathpar}
-\end{beweis}
 
 Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen auf $A$ dasselbe sind, wie Funktionen nach $A$.
 \begin{lemma}
@@ -491,8 +477,6 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   Beweis noch nicht fertig\dots
 \end{beweis}
 
-\subsection{Faserungen und Gleichheitssätze}
-
 \subsection{Gleichheit natürlicher Zahlen}
 \label{sec:zahlen-gleichheit}
 \begin{definition}
@@ -506,3 +490,22 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
 \end{definition}
 
 \subsection{Gleichheit algebraischer Strukturen}
+
+\subsection{Irgendwann sollte man auch das wissen}
+\begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
+  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
+\end{lemma}
+\begin{beweis}
+  Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
+  \begin{mathpar}
+    C':\prod_{z:\sum_{y:A}x=y}C(\pi_1(z),\pi_2(z))
+  \end{mathpar}
+  Wir wissen dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
+  \begin{mathpar}
+    \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
+  \end{mathpar}
+  Also
+  \begin{mathpar}
+    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
+  \end{mathpar}
+\end{beweis}
