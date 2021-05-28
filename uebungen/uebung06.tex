@@ -3,9 +3,25 @@
 \begin{document}
 \maketitle{6}
 
-\begin{exercise}
+\begin{exercise}[Abhängige Summen verhalten sich sinnvoll]
+  Seien $A:\mU$ und $B,C:A\to\mU$. Zeige dass gilt:
+  \begin{enumerate}
+  \item $\left(\sum_{x:A}\sum_{b:B(x)}C(x)\right)\simeq\left(\sum_{x:A}\sum_{c:C(x)}B(x)\right)$.
+  \item $\left(\sum_{x:A}\sum_{b:B(x)}\eins\right)\simeq\sum_{x:A}B(x)$.
+  \item Wenn $e:\eins\simeq\left(\sum_{x:A}B(x)\right)$ ist, dann gilt
+    \begin{mathpar}
+      \left(\sum_{x:A}\sum_{b:B(x)}C(x)\right)\simeq C(\pi_1(e(\ast)))
+    \end{mathpar}
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Jede Abbildung ist die Projektion von der Summe ihrer Fasern]
   Seien $A:\mU$, $B:A\to\mU$.
-  Zeige, dass $\prod_{x:A} \pi_1^{-1}(x)\simeq B(x)$.
+  Zeige unter Verwendung der Aussagen aus Aufgabe 1, dass es eine faserweise Äquivalenz
+  \begin{mathpar}
+    f:\prod_{x:A} (\pi_1^{-1}(x)\simeq B(x))
+  \end{mathpar}
+  gibt.
 \end{exercise}
 
 \end{document}
