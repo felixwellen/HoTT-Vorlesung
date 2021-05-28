@@ -7,8 +7,8 @@
   Seien $A:\mU$ und $B,C:A\to\mU$. Zeige dass gilt:
   \begin{enumerate}
   \item $\left(\sum_{x:A}\sum_{b:B(x)}C(x)\right)\simeq\left(\sum_{x:A}\sum_{c:C(x)}B(x)\right)$.
-  \item $\left(\sum_{z:\sum_{x:A}B(x)}C(\pi_1(z))\right)\simeq\left(\sum_{x:A}\sum_{b:B(x)}C(x)\right)$.
   \item $\left(\sum_{x:A}\sum_{b:B(x)}\eins\right)\simeq\sum_{x:A}B(x)$.
+  \item Für jedes $z:\sum_{x:A}B(x)$ gilt: $z=(\pi_1(z),\pi_2(z))$.
   \end{enumerate}
 \end{exercise}
 
@@ -18,14 +18,5 @@
     \left(\sum_{x:A}B(x)\right)\simeq B(a)
   \end{mathpar}
 \end{exercise}
-
-\begin{bonus}[Jeder abhängige Typ besteht aus Fasern einer Abbildung]
-  Seien $A:\mU$, $B:A\to\mU$.
-  Zeige unter Verwendung der Aussagen aus Aufgabe 1 und 2, dass es eine faserweise Äquivalenz
-  \begin{mathpar}
-    f:\prod_{x:A} (\pi_1^{-1}(x)\simeq B(x))
-  \end{mathpar}
-  gibt, wobei $\pi_1:\sum_{x:A}B(x)\to A$ ist.
-\end{bonus}
 
 \end{document}
