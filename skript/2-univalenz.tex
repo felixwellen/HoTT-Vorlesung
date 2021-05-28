@@ -523,7 +523,15 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   kontrahierbar ist.
 \end{theorem}
 \begin{beweis}
-  Mit \cref{lem:objektklassifizierer}.
+  Mit \cref{lem:objektklassifizierer} wissen wir, dass $f$ genau dann eine faserweise Äquivalenz ist, wenn
+  \begin{mathpar}
+    \sum f:\left(\sum_{x:A}a=x\right)\to \left(\sum_{x:A}B(x)\right)
+  \end{mathpar}
+  eine Äquivalenz ist. In \cref{lem:pfade-kontrahierbar} haben wir gesehen, dass der linke Typ kontrahierbar ist, also gilt:
+  \begin{mathpar}
+    \left(\sum_{x:A}a=x\right)\simeq \eins
+  \end{mathpar}
+  Wenn nun auch $\eins\simeq \sum_{x:A}B(x)$ gilt, dann ist die Abbildung $\sum f$ bereits eine Äquivalenz, also auch $f$ eine faserweise Äquivalenz.
 \end{beweis}
 
 \subsection{Gleichheit natürlicher Zahlen}
