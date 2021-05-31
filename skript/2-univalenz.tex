@@ -480,16 +480,16 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
 \end{lemma}
 \begin{beweis}
   
-\end{beweis}
+\end{beweis} Später.
 
 Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen auf $A$ dasselbe sind, wie Funktionen nach $A$.
-\begin{lemma}
+\begin{theorem}[Objektklassifikation]
   \label{lem:objektklassifizierer}
   Sei $B:\mU$. Dann gilt:
   \begin{mathpar}
     \left(\sum_{A:\mU}(A\to B)\right)\simeq (B\to \mU)
   \end{mathpar}
-\end{lemma}
+\end{theorem}
 
 \begin{beweis}
   Einen abhängigen Typ $B:A\to\mU$ bilden wir auf die Funktion
@@ -516,6 +516,7 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
 \end{beweis}
 
 \begin{theorem}[Fundamentaler Gleichheitssatz]\index{Fundamentaler Gleichheitssatz}
+  \label{thm:fundamental-gleichheit}
   Seien $A:\mU$ und $a:A$. Für $B:A\to \mU$ und eine faserweise Abbildung $f:\prod_{x:A}(a=x)\to B(x)$, dann ist $f$ genau dann eine faserweise Äquivalenz, wenn
   \begin{mathpar}
     \sum_{x:A}B(x)
@@ -523,8 +524,109 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   kontrahierbar ist.
 \end{theorem}
 \begin{beweis}
-  Mit \cref{lem:objektklassifizierer}.
+  Mit \cref{lem:objektklassifizierer} wissen wir, dass $f$ genau dann eine faserweise Äquivalenz ist, wenn
+  \begin{mathpar}
+    \sum f:\left(\sum_{x:A}a=x\right)\to \left(\sum_{x:A}B(x)\right)
+  \end{mathpar}
+  eine Äquivalenz ist. In \cref{lem:pfade-kontrahierbar} haben wir gesehen, dass der linke Typ kontrahierbar ist, also gilt:
+  \begin{mathpar}
+    \left(\sum_{x:A}a=x\right)\simeq \eins
+  \end{mathpar}
+  Wenn nun auch $\eins\simeq \sum_{x:A}B(x)$ gilt, dann ist die Abbildung $\sum f$ bereits eine Äquivalenz, also auch $f$ eine faserweise Äquivalenz.
 \end{beweis}
+
+\begin{beispiel}
+  Sei $\Eq{\zwei}:\zwei\to\zwei\to\mU$ gegeben durch Rekursion in beiden Argumenten:
+  \begin{align*}
+    \Eq{\zwei}(0_\zwei,0_\zwei)&\colonequiv\eins \\
+    \Eq{\zwei}(0_\zwei,1_\zwei)&\colonequiv\leer \\
+    \Eq{\zwei}(1_\zwei,0_\zwei)&\colonequiv\leer \\
+    \Eq{\zwei}(1_\zwei,1_\zwei)&\colonequiv\eins 
+  \end{align*}
+  Mit \cref{thm:fundamental-gleichheit} können wir zeigen, dass
+  \begin{mathpar}
+    \prod_{x,y:\zwei}(x=_\zwei y)\simeq \Eq{\zwei}(x,y)
+  \end{mathpar}
+  indem wir für jedes $x:\zwei$ zeigen, dass $\sum_{y:\zwei}\Eq{\zwei}(x,y)$ kontrahierbar ist.
+  Per $\zwei$-Induktion reicht es das für $x\equiv 0_\zwei,1_\zwei$ zu zeigen.
+  Für
+  \begin{mathpar}
+    \sum_{y:\zwei}\Eq{\zwei}(0_\zwei,y)
+  \end{mathpar}
+  wählen wir als Kontraktionszentrum $(0_\zwei,\ast)$. Nun müssen wir zeigen, dass jeder andere Punkt gleich diesem Kontraktionszentrum ist, also mit $\sum$-Induktion:
+  \begin{mathpar}
+    \prod_{y:\zwei}\prod_{e:\Eq{\zwei}(0_\zwei,y)}(0_\zwei,\ast)=(y,e)
+  \end{mathpar}
+  Mit anwenden von $\zwei$-Induktion auf $y$ reicht es also, die beiden Fälle $\prod_{e:\Eq{\zwei}(0_\zwei,0_\zwei)}(0_\zwei,\ast)=(0_\zwei,e)$ und $\prod_{e:\Eq{\zwei}(0_\zwei,1_\zwei)}(0_\zwei,\ast)=(1_\zwei,e)$ abzuhandeln.
+  Im ersten Fall kann $\eins$-Induktion angewandt werden und $\refl_{(0_\zwei,\ast)}$ ist eine Lösung. Im zweiten Fall ist $\leer$-Induktion eine Lösung. \\
+  Analog lässt sich zeigen, dass $\sum_{y:\zwei}\Eq{\zwei}(1_\zwei,y)$, was den Beweis beendet.
+\end{beispiel}
+
+Es ist also insbesondere $\zwei$ ein 0-Typ bzw. eine Menge.
+
+
+Wir wollen nun noch \cref{lem:faser-equiv} beweisen. Dazu brauchen wir das folgende alternative Induktionsprinzip für Gleichheit:
+
+\begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
+  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
+\end{lemma}
+\begin{beweis}
+  Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
+  \begin{mathpar}
+    C'\colonequiv(z:\sum_{y:A}x=y)\mapsto C(\pi_1(z),\pi_2(z))
+  \end{mathpar}
+  Wir wissen, dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
+  \begin{mathpar}
+    \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
+  \end{mathpar}
+  Also
+  \begin{mathpar}
+    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
+  \end{mathpar}
+\end{beweis}
+
+Damit können wir zeigen:
+
+\begin{lemma}
+  Seien $A:\mU$ und $B:A\to\mU$. Für $C:\left(\sum_{x:A}B(x)\right)\to\mU$ gilt:
+  \begin{mathpar}
+    \left(\sum_{y:\sum_{x:A}B(x)}C(y)\right)\simeq \sum_{x:A}\sum_{b:B(x)}C((x,b))
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Aus Übungsaufgabe 1 von Blatt 6 wissen wir, dass es einen Term gibt (mit $p_{(x,b)}\equiv\refl_{(x,b)}$):
+  \begin{mathpar}
+    p:\prod_{z:\sum_{x:A}B(x)}z=(\pi_1(z),\pi_2(z))
+  \end{mathpar}
+  Es gibt die beiden folgenden Kandidaten für zueinander inversen Abbildungen:
+  \begin{align*}
+    \varphi&:\left(\sum_{y:\sum_{x:A}B(x)}C(y)\right)\to \sum_{x:A}\sum_{b:B(x)}C((x,b))\\
+    \varphi((y,c))&\colonequiv (\pi_1(y),(\pi_2(y),\transp_C(p_y)(c))) \\
+    \psi&: \left(\sum_{x:A}\sum_{b:B(x)}C((x,b))\right)\to\left(\sum_{y:\sum_{x:A}B(x)}C(y)\right) \\
+    \psi((x,(b,c)))&\colonequiv((x,b),c)
+  \end{align*}
+  Damit gilt $\varphi\circ\psi\sim\id$ bereits punktweise urteilsmäßig, es ist also noch zu zeigen, dass auch $\psi\circ\varphi\sim\id$ gilt.
+  Für $y:\sum_{x:A}B(x)$ und $c:C(y)$ gilt:
+  \begin{align*}
+    \psi(\varphi(y,c))&=\psi(\pi_1(y),(\pi_2(y),\transp_{C}(p_y)(c))) \\
+    &=((\pi_1(y),\pi_2(y)), \transp_{C}(p_y)(c))
+  \end{align*}
+  Letzteres ist allerdings mit $\sum_=$ und $p_y$ gleich zu $(y,c)$.
+\end{beweis}
+
+Damit können wir nun \cref{lem:faser-equiv} beweisen:
+
+\begin{beweis}[von \cref{lem:faser-equiv}]
+  Seien $A:\mU$, $B:A\to\mU$ und $x:A$. Für $\pi_1:\sum_{x:A}B(x)\to A$ gilt:
+  \begin{align*}
+    \pi_1^{-1}(x)&\equiv \sum_{y:\sum_{x:A}B(x)}\pi_1(y)=x\\
+                 &\simeq \sum_{x':A}\sum_{b:B(x')}\pi_1((x',b))=x \\
+                 &\equiv \sum_{x':A}\sum_{b:B(x')} x'=x \\
+                 &\simeq \sum_{x':A}\sum_{p:x'=x}B(x')\\
+                 &\simeq B(x)
+  \end{align*}
+\end{beweis}
+
 
 \subsection{Gleichheit natürlicher Zahlen}
 \label{sec:zahlen-gleichheit}
@@ -538,23 +640,42 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   \end{align*}
 \end{definition}
 
-\subsection{Gleichheit algebraischer Strukturen}
-
-\subsection{Irgendwann sollte man auch das wissen}
-\begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
-  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
-\end{lemma}
+\begin{theorem}[Gleichheit natürlicher Zahlen]
+  Die faserweise Abbildung
+  \begin{mathpar}
+    \prod_{n,l:\N}n=l\to \Eq{\N}(n,l)
+  \end{mathpar}
+  gegeben durch $\refl_n\mapsto \ast$ ist eine faserweise Äquivalenz.
+\end{theorem}
 \begin{beweis}
-  Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
+  Nach \cref{thm:fundamental-gleichheit} reicht es zu zeigen, dass für jedes $n:\N$ der Typ
   \begin{mathpar}
-    C':\prod_{z:\sum_{y:A}x=y}C(\pi_1(z),\pi_2(z))
+    \sum_{l:\N}\Eq{\N}(n,l)
   \end{mathpar}
-  Wir wissen dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
+  kontrahierbar ist. Als Kontraktionszentrum wählen wir $(n,\ast)$.
+  Nach Induktion über $n$,$l$ und Ausschluss aller Fälle mit leerer Domäne bleiben noch zu konstruieren:
+  \begin{align*}
+    &\prod_{e:\Eq{\N}(0,0)}(0,e)=(0,\ast) \\
+    &\prod_{e:\Eq{\N}(\sucN(n),\sucN(l))}(\sucN(l),e)=(\sucN(n),\ast)
+  \end{align*}
+  Im ersten Fall lässt sich die Gleichheit stets durch die kontrahierbarkeit von $\eins$ konstruieren.
+  Im zweiten Fall dürfen wir die Induktionshypothese verwenden:
   \begin{mathpar}
-    \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
+    \mathrm{IH}:\prod_{e:\Eq{\N}(n,l)}(l,e)=(n,\ast)
   \end{mathpar}
-  Also
+  Um etwas damit anfangen zu können, definieren wir uns folgenden Funktion:
+  \begin{align*}
+    f&:\left(\sum_{n:\N}\Eq{\N}(n,l)\right)\to \left(\sum_{n:\N}\Eq{\N}(n,\sucN(l))\right) \\
+    f((n,e))&\colonequiv (n+1,e)
+  \end{align*}
+  Damit gilt dann für $e:\Eq{\N}(\sucN(n),\sucN(l))$:
   \begin{mathpar}
-    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
+    f(\mathrm{IH}_e):\left(f((l,e))=f((n,\ast))\right)\equiv \left((\sucN(l),e)=(\sucN(n),\ast)\right)
   \end{mathpar}
 \end{beweis}
+\begin{bemerkung}
+  $\N$ ist eine Menge.
+\end{bemerkung}
+
+\subsection{Gleichheit algebraischer Strukturen}
+
