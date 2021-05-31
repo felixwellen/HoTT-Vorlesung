@@ -573,9 +573,9 @@ Wir wollen nun noch \cref{lem:faser-equiv} beweisen. Dazu brauchen wir das folge
 \begin{beweis}
   Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
   \begin{mathpar}
-    C':\prod_{z:\sum_{y:A}x=y}C(\pi_1(z),\pi_2(z))
+    C'\colonequiv(z:\sum_{y:A}x=y)\mapsto C(\pi_1(z),\pi_2(z))
   \end{mathpar}
-  Wir wissen dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
+  Wir wissen, dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
   \begin{mathpar}
     \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
   \end{mathpar}
@@ -650,10 +650,32 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
 \begin{beweis}
   Nach \cref{thm:fundamental-gleichheit} reicht es zu zeigen, dass für jedes $n:\N$ der Typ
   \begin{mathpar}
-    \sum_{k:\N}\Eq{\N}(n,k)
+    \sum_{l:\N}\Eq{\N}(n,l)
   \end{mathpar}
   kontrahierbar ist. Als Kontraktionszentrum wählen wir $(n,\ast)$.
+  Nach Induktion über $n$,$l$ und Ausschluss aller Fälle mit leerer Domäne bleiben noch zu konstruieren:
+  \begin{align*}
+    &\prod_{e:\Eq{\N}(0,0)}(0,e)=(0,\ast) \\
+    &\prod_{e:\Eq{\N}(\sucN(n),\sucN(l))}(\sucN(l),e)=(\sucN(n),\ast)
+  \end{align*}
+  Im ersten Fall lässt sich die Gleichheit stets durch die kontrahierbarkeit von $\eins$ konstruieren.
+  Im zweiten Fall dürfen wir die Induktionshypothese verwenden:
+  \begin{mathpar}
+    \mathrm{IH}:\prod_{e:\Eq{\N}(n,l)}(l,e)=(n,\ast)
+  \end{mathpar}
+  Um etwas damit anfangen zu können, definieren wir uns folgenden Funktion:
+  \begin{align*}
+    f&:\left(\sum_{n:\N}\Eq{\N}(n,l)\right)\to \left(\sum_{n:\N}\Eq{\N}(n,\sucN(l))\right) \\
+    f((n,e))&\colonequiv (n+1,e)
+  \end{align*}
+  Damit gilt dann für $e:\Eq{\N}(\sucN(n),\sucN(l))$:
+  \begin{mathpar}
+    f(\mathrm{IH}_e):\left(f((l,e))=f((n,\ast))\right)\equiv \left((\sucN(l),e)=(\sucN(n),\ast)\right)
+  \end{mathpar}
 \end{beweis}
+\begin{bemerkung}
+  $\N$ ist eine Menge.
+\end{bemerkung}
 
 \subsection{Gleichheit algebraischer Strukturen}
 
