@@ -1,0 +1,21 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{7}
+
+\begin{exercise}[Gleichheitstyp von Koprodukten]
+  Sei $A,B:\mU$ und $\Eq{\amalg}:A\amalg B\to A\amalg B\to \mU$ gegeben durch:
+  \begin{align*}
+    \Eq{\amalg}(\iota_1(a),\iota_1(a'))&\colonequiv (a=_A a') \\
+    \Eq{\amalg}(\iota_1(a),\iota_2(b))&\colonequiv \leer \\
+    \Eq{\amalg}(\iota_2(b),\iota_1(a))&\colonequiv \leer \\
+    \Eq{\amalg}(\iota_2(b),\iota_2(b'))&\colonequiv (b=_B b')
+  \end{align*}
+  Zeige mit Theorem 2.3.6 der Vorlesung dass eine geeignete faserweise Abbildung für $x:A\amalg B$
+  \begin{mathpar}
+    f_x:\prod_{y:A\amalg B}(x=y)\to\Eq{\amalg}(x,y)
+  \end{mathpar}
+  eine Äquivalenz ist.
+\end{exercise}
+
+\end{document}
