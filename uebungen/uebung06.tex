@@ -1,0 +1,22 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{6}
+
+\begin{exercise}[Abhängige Summen verhalten sich sinnvoll]
+  Seien $A:\mU$ und $B,C:A\to\mU$. Zeige dass gilt:
+  \begin{enumerate}
+  \item $\left(\sum_{x:A}\sum_{b:B(x)}C(x)\right)\simeq\left(\sum_{x:A}\sum_{c:C(x)}B(x)\right)$.
+  \item $\left(\sum_{x:A}\sum_{b:B(x)}\eins\right)\simeq\sum_{x:A}B(x)$.
+  \item Für jedes $z:\sum_{x:A}B(x)$ gilt: $z=(\pi_1(z),\pi_2(z))$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Kontrahierbare Basen darf man kürzen]
+  Seien $A:\mU$ kontrahierbar mit Kontraktionszentrum $a:A$ und $B:A\to\mU$. Zeige dass gilt:
+  \begin{mathpar}
+    \left(\sum_{x:A}B(x)\right)\simeq B(a)
+  \end{mathpar}
+\end{exercise}
+
+\end{document}
