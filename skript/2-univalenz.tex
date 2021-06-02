@@ -543,7 +543,7 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   kontrahierbar ist.
 \end{theorem}
 \begin{beweis}
-  Mit \cref{lem:objektklassifizierer} wissen wir, dass $f$ genau dann eine faserweise Äquivalenz ist, wenn
+  Mit dem vorangegangenen Lemma wissen wir, dass $f$ genau dann eine faserweise Äquivalenz ist, wenn
   \begin{mathpar}
     \sum f:\left(\sum_{x:A}a=x\right)\to \left(\sum_{x:A}B(x)\right)
   \end{mathpar}
@@ -710,5 +710,95 @@ Da es sich etwa beim Typ der Halbgruppen um eine abhängige Summe handeln wird u
 werden wir zunächst die Chrakterisierung von Gleichheitstypen in abhängigen Summen abschließen.
 
 \begin{lemma}[Gleichheit in abhängigen Summen]
-  
+  \label{lem:gleichheit-summe}
+  Seien $A:\mU$ und $B:A\to \mU$. Für $a,a':A$ und $b:B(a), b':B(a')$ gilt:
+  \begin{mathpar}
+    \left((a,b)=(a',b')\right)\simeq \sum_{p:a=a'}\transp_B(p)(b)=b'
+  \end{mathpar}
 \end{lemma}
+\begin{beweis}
+  Wir verwenden den Gleichheitssatz, \cref{thm:fundamental-gleichheit}.
+  Sei dazu der abhängige Typ $\Eq{\sum}:\left(\sum_{x:A}B(x)\right)\to\left(\sum_{x:A}B(x)\right)\to\mU$ gegeben durch $\sum$-Induktion, also für $a,a':A$ und $b:B(a),b':B(a')$:
+  \begin{align*}
+    \Eq{\sum}((a,b),(a',b'))\colonequiv \sum_{p:a=a'}\transp_B(p)(b)=b'
+  \end{align*}
+  und weiter $r:\prod_{x:\sum_{a:A}B(a)}\Eq{\sum}(x,x)$ gegeben durch:
+  \begin{mathpar}
+    r((a,b))\colonequiv (\refl_a, \refl_b)
+  \end{mathpar}
+  Damit gibt es eine durch Gleichheitsinduktion definierte Funktion
+  \begin{mathpar}
+    f:\prod_{x,y:\sum_{a:A}B(a)}x=y\to \Eq{\sum}(x,y)
+  \end{mathpar}
+  Nach dem Gleichheitssatz reicht es nun also zu zeigen, dass für $x:\sum_{a:A}B(a)$ der Typ
+  \begin{mathpar}
+    \sum_{y:\sum_{a:A}B(a)}\Eq{\sum}(x,y)
+  \end{mathpar}
+  kontrahierbar ist. Es gilt für $x\equiv(a,b)$:
+  \begin{align*}
+    \sum_{y:\sum_{a:A}B(a)}\Eq{\sum}((a,b),y)&\simeq \sum_{a':A}\sum_{b':B(a')}\Eq{\sum}((a,b),(a',b')) \\
+                                             &\equiv \sum_{a':A}\sum_{b':B(a')} \sum_{p:a=a'}\transp_B(p)(b)=b' \\
+                                             &\simeq \sum_{a':A}\sum_{p:a=a'} \sum_{b':B(a')} \transp_B(p)(b)=b' \\
+                                             &\simeq \sum_{a':A}\sum_{p:a=a'} \eins \\
+                                             &\simeq \eins
+  \end{align*}
+\end{beweis}
+
+\begin{definition}
+  $\mathrm{Set}\colonequiv\sum_{A:\mU}\isSet(A)$
+\end{definition}
+
+\begin{definition}
+  Sei $A:\mU$. Der Typ der \begriff{Halbgruppenstrukturen} auf $A$ ist gegeben durch:
+  \begin{mathpar}
+    \mathrm{HalbGrp}(A)\colonequiv \sum_{\_\cdot\_:A\to A\to A}\prod_{x,y,z:A} (x \cdot y) \cdot z = x \cdot (y \cdot z)
+  \end{mathpar}
+  Die Elemente $H:\sum_{A:\mathrm{Set}}\mathrm{HalbGrp}(A)$, heißen \begriff{Halbgruppen}.
+\end{definition}
+
+\begin{definition}
+  Ein \begriff{Isomorphismus} von Halbgruppen $(H, \mathrm{str}) \to (H',\mathrm{str}')$ ist eine Abbildung $f:H\to H'$, sodass für alle $x,y:H$ gilt:
+  \begin{mathpar}
+    f(x \cdot y) = f(x) \cdot' f(y)
+  \end{mathpar}
+  wobei $\cdot$ die Multiplikation auf $H$ und $\cdot'$ die auf $H'$ ist.
+  Wir bezeichnen mit $\mathrm{Isom}((H, \mathrm{str}), (H',\mathrm{str}'))$ den Typ der Isomorphismen zwischen zwei Halbgruppen.
+\end{definition}
+
+\begin{theorem}[Gleichheit von Halbgruppen]
+  Seien $(H,\mathrm{str}),(H',\mathrm{str}):\sum_{A:\mU}\mathrm{HalbGrp}(A)$. Es gilt:
+  \begin{mathpar}
+    \left((H,\mathrm{str})=(H',\mathrm{str})\right)\simeq\mathrm{Isom}((H, \mathrm{str}), (H',\mathrm{str}'))
+  \end{mathpar}
+\end{theorem}
+\begin{beweis}
+  Mit \cref{lem:gleichheit-summe} folgt:
+  \begin{mathpar}
+    \left((H,\mathrm{str})=(H',\mathrm{str}')\right)\simeq \sum_{p:H=H'}\transp_{\mathrm{HalbGrp}}(p)(\mathrm{str})=\mathrm{str}'
+  \end{mathpar}
+  Das heißt, wir müssen nur noch klären, dass diese Summe äquivalent zum Typ der Isomorphismen ist.
+  Dazu berechnen wir den Transport in $\mathrm{HalbGrp}$.
+  Sei also $e:A\simeq B$ und $p\colonequiv\ua(e)$, dann erhalten wir eine Äquivalenz
+  \begin{mathpar}
+    \transp_{\mathrm{HalbGrp}}(p):\mathrm{HalbGrp}(A) \to \mathrm{HalbGrp}(B)
+  \end{mathpar}
+  und wir können durch Raten und anschließendem bestätigen durch Gleichheitsinduktion berechnen, was dieser Transport macht.
+  Sei $(\_\cdot\_, \cdot\mathrm{assoc}):\mathrm{HalbGrp}(A)$.
+  Wir raten zunächst, dass die Multiplikation mit $e$ prä- und postkomponiert wird, die Multiplikation des Bildes also für $x,y:B$ gegeben ist durch:
+  \begin{mathpar}
+    x \cdot' y \colonequiv e(e^{-1}(x) \cdot e^{-1}(y))
+  \end{mathpar}
+  Als Assoziativitätszeugen $\cdot'\mathrm{assoc}$ nehmen wir die Ergebnisgleichheit der folgenden Rechnung:
+  \begin{align*}
+    (x \cdot' y) \cdot' z & = e(e^{-1}e(e^{-1}(x)\cdot e^{-1}(y)) \cdot e^{-1}(z)) \\
+                          & = e((e^{-1}(x)\cdot e^{-1}(y)) \cdot e^{-1}(z)) \\
+                          & = e (e^{-1}(x)\cdot (e^{-1}(y) \cdot e^{-1}(z))) \\
+                          & = e (e^{-1}(x)\cdot e^{-1}(e(e^{-1}(y) \cdot e^{-1}(z)))) \\
+                          & =x \cdot' (y \cdot' z)
+  \end{align*}
+  Die Abbildung $e$ ist damit ein Isomorphismus.
+  Nun können wir für diese Konstruktion sehen:
+  \begin{mathpar}
+    \transp_{\mathrm{HalbGrp}}(\ua(\id))((\_\cdot\_,\cdot\mathrm{assoc}))=(\_\cdot'\_,\cdot'\mathrm{assoc})
+  \end{mathpar}
+\end{beweis}
