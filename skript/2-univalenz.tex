@@ -515,6 +515,21 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   \end{align*}
 \end{beweis}
 
+\begin{definition}
+  Seien $A,A',B:\mU$ und $f:A\to B$, $f':A'\to B$. Für $g:A\to A'$ zusammen mit einer Homotopie $H:f\sim f'\circ g$ gibt es eine durch $g$ induzierte Abbildung auf den Fasern:
+  \begin{mathpar}
+    \mathrm{fib}(g):\prod_{y:B}f^{-1}(y)\to f^{'-1}(y)
+  \end{mathpar}
+  wobei $\mathrm{fib}(g)(x,p)\colonequiv (g(x), H_x^{-1}\kon p)$.
+\end{definition}
+
+\begin{lemma}
+  Für $f:\prod_{x:A}B(x)\to B'(x)$ gilt: $f$ ist faserweise Äquivalenz, wenn $\sum f$ Äquivalenz ist.
+\end{lemma}
+\begin{beweis}
+  Wird noch nachgeliefert...
+\end{beweis}
+
 \begin{theorem}[Fundamentaler Gleichheitssatz]\index{Fundamentaler Gleichheitssatz}
   \label{thm:fundamental-gleichheit}
   Seien $A:\mU$ und $a:A$. Für $B:A\to \mU$ und eine faserweise Abbildung $f:\prod_{x:A}(a=x)\to B(x)$, dann ist $f$ genau dann eine faserweise Äquivalenz, wenn
