@@ -641,6 +641,7 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
 \end{definition}
 
 \begin{theorem}[Gleichheit natürlicher Zahlen]
+  \label{thm:gleichheit-nat}
   Die faserweise Abbildung
   \begin{mathpar}
     \prod_{n,l:\N}n=l\to \Eq{\N}(n,l)
@@ -673,9 +674,15 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
     f(\mathrm{IH}_e):\left(f((l,e))=f((n,\ast))\right)\equiv \left((\sucN(l),e)=(\sucN(n),\ast)\right)
   \end{mathpar}
 \end{beweis}
+
 \begin{bemerkung}
-  $\N$ ist eine Menge.
+  $\N$ ist ein 0-Typ.
 \end{bemerkung}
+\begin{beweis}
+  Wir wissen dass die Typen $\leer$ und $\eins$ Aussagen sind durch \cref{bsp:leer-eins-hlevel} und \cref{bem:kontrahierbar-folgt-aussage}.
+  Mit $\N$-Induktion ist also $\Eq{\N}(n,k)$ für alle $n,k\in\N$ eine Aussage.
+  Nach Definition ist ein Typ ein 0-Typ oder eine Menge, wenn alle Gleichheitstypen Aussagen sind, also sind wir mit \cref{thm:gleichheit-nat} fertig.
+\end{beweis}
 
 \subsection{Gleichheit algebraischer Strukturen}
 
