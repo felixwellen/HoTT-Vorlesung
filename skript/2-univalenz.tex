@@ -634,7 +634,7 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
 \begin{beweis}[von \cref{lem:faser-equiv}]
   Seien $A:\mU$, $B:A\to\mU$ und $x:A$. Für $\pi_1:\sum_{x:A}B(x)\to A$ gilt:
   \begin{align*}
-    \pi_1^{-1}(x)&\equiv \sum_{y:\sum_{x:A}B(x)}\pi_1(y)=x\\
+    \pi_1^{-1}(x)&\equiv \sum_{y:\sum_{x':A}B(x')}\pi_1(y)=x\\
                  &\simeq \sum_{x':A}\sum_{b:B(x')}\pi_1((x',b))=x \\
                  &\equiv \sum_{x':A}\sum_{b:B(x')} x'=x \\
                  &\simeq \sum_{x':A}\sum_{p:x'=x}B(x')\\
