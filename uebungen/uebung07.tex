@@ -3,15 +3,6 @@
 \begin{document}
 \maketitle{7}
 
-\begin{exercise}
-  \begin{enumerate}
-    \item Sei $f:A\to B$ eine Äquivalenz.
-      Verwende Äquivalenzinduktion, um zu zeigen, dass $\mathrm{ap}_f$ eine Äquivalenz ist.
-    \item Sei $\sum_{A:\mU} A \simeq B$ für jedes $B:\mU$ kontrahierbar.
-      Folgere das Univalenzaxiom aus dem fundamentalen Gleichheitssatz.
-  \end{enumerate}
-\end{exercise}
-
 \begin{exercise}[Funktiorialität und Homotopieinvarianz der Summe]
       Seien $f,f':\prod_{x:A} B(x)\to C(x)$ und $g:\prod_{x:A} C(x)\to D(x)$ faserweise Abbildungen.
   \begin{enumerate}
@@ -23,6 +14,15 @@
   \end{enumerate}
 \end{exercise}
 
+\begin{exercise}[Äquivalenzinduktion und der fundamentale Gleichheitssatz]
+  \begin{enumerate}
+    \item Sei $f:A\to B$ eine Äquivalenz.
+      Verwende Äquivalenzinduktion um zu zeigen, dass $\mathrm{ap}_f$ eine Äquivalenz ist.
+    \item Sei $\sum_{A:\mU} A \simeq B$ für jedes $B:\mU$ kontrahierbar.
+      Folgere das Univalenzaxiom unter diesen Voraussetzungen aus dem fundamentalen Gleichheitssatz.
+  \end{enumerate}
+\end{exercise}
+
 \begin{exercise}[Gleichheitstyp von Koprodukten]
   Sei $A,B:\mU$ und $\Eq{\amalg}:A\amalg B\to A\amalg B\to \mU$ gegeben durch:
   \begin{align*}
@@ -31,11 +31,11 @@
     \Eq{\amalg}(\iota_2(b),\iota_1(a))&\colonequiv \leer \\
     \Eq{\amalg}(\iota_2(b),\iota_2(b'))&\colonequiv (b=_B b')
   \end{align*}
-  Zeige mit Theorem 2.3.6 der Vorlesung, dass eine geeignete faserweise Abbildung für $x:A\amalg B$
+  Verwende den fundamentalen Gleichheitssatz um für jedes $x:A\amalg B$ eine faserweise Äquivalenz 
   \begin{mathpar}
     f_x:\prod_{y:A\amalg B}(x=y)\to\Eq{\amalg}(x,y)
   \end{mathpar}
-  eine Äquivalenz ist.
+  zu finden.
 \end{exercise}
 
 \end{document}
