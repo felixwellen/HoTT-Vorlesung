@@ -524,7 +524,21 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   \end{mathpar}
 \end{lemma}
 \begin{beweis}
-  Wird noch nachgeliefert...
+  Unser erstes Ziel ist es, Abbildungen in beide Richtungen durch Gleichheitsinduktion zu definieren.
+  Sei dazu zunächst:
+  \begin{mathpar}
+    X:\prod_{z:\sum_{x:A}B(x)}\prod_{y:\sum_{x:A}B'(x)}\prod_{p:(\sum f) (z) = y} f_{\pi_1(y)}^{-1}(\pi_2(y))
+  \end{mathpar}
+  gegeben durch $X(z,(\sum f) (z), \refl_{(\sum f) (z)})\colonequiv(\pi_1(z),\refl_{f_{\pi_1(z)}(\pi_2(z))})$. Damit ist
+  \begin{align*}
+    &\varphi:\prod_{y:\sum_{x:A}B'(x)}\left((\sum f)^{-1}(y)\right)\to f_{\pi_1(y)}^{-1}(\pi_2(y)) \\
+    &\varphi(y,(z,p))\colonequiv X(z,y,p)
+  \end{align*}
+  und mit der gleichen Vorgehensweise lässt sich
+  \begin{mathpar}
+    \psi:\prod_{y:\sum_{x:A}B'(x)}f_{\pi_1(y)}^{-1}(\pi_2(y)) \to \left((\sum f)^{-1}(y)\right)
+  \end{mathpar}
+  definieren und Homotopien, die zeigen dass $\varphi$ und $\psi$ zueinander invers sind.
 \end{beweis}
 
 \begin{lemma}
