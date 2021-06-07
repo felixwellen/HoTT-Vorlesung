@@ -515,6 +515,25 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   \end{align*}
 \end{beweis}
 
+
+\begin{lemma}
+  \label{lem:faser-summe}
+  Seien $A:\mU$, $B,B':A\to\mU$ und $f:\prod_{x:A}B(x)\to B'(x)$. Für alle $y:\sum_{x:A}B'(x)$ gilt:
+  \begin{mathpar}
+    \left((\sum f)^{-1}(y)\right)\simeq f_{\pi_1(y)}^{-1}(\pi_2(y))
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Wird noch nachgeliefert...
+\end{beweis}
+
+\begin{lemma}
+  Für $f:\prod_{x:A}B(x)\to B'(x)$ gilt: $f$ ist genau dann faserweise Äquivalenz, wenn $\sum f$ Äquivalenz ist.
+\end{lemma}
+\begin{beweis}
+  Nach \cref{lem:faser-summe} sind alle Fasern aller $f_x$ genau dann kontrahierbar, wenn die Fasern von $\sum f$ kontrahierbar sind.
+\end{beweis}
+
 \begin{theorem}[Fundamentaler Gleichheitssatz]\index{Fundamentaler Gleichheitssatz}
   \label{thm:fundamental-gleichheit}
   Seien $A:\mU$ und $a:A$. Für $B:A\to \mU$ und eine faserweise Abbildung $f:\prod_{x:A}(a=x)\to B(x)$, dann ist $f$ genau dann eine faserweise Äquivalenz, wenn
@@ -524,7 +543,7 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
   kontrahierbar ist.
 \end{theorem}
 \begin{beweis}
-  Mit \cref{lem:objektklassifizierer} wissen wir, dass $f$ genau dann eine faserweise Äquivalenz ist, wenn
+  Mit dem vorangegangenen Lemma wissen wir, dass $f$ genau dann eine faserweise Äquivalenz ist, wenn
   \begin{mathpar}
     \sum f:\left(\sum_{x:A}a=x\right)\to \left(\sum_{x:A}B(x)\right)
   \end{mathpar}
@@ -619,7 +638,7 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
 \begin{beweis}[von \cref{lem:faser-equiv}]
   Seien $A:\mU$, $B:A\to\mU$ und $x:A$. Für $\pi_1:\sum_{x:A}B(x)\to A$ gilt:
   \begin{align*}
-    \pi_1^{-1}(x)&\equiv \sum_{y:\sum_{x:A}B(x)}\pi_1(y)=x\\
+    \pi_1^{-1}(x)&\equiv \sum_{y:\sum_{x':A}B(x')}\pi_1(y)=x\\
                  &\simeq \sum_{x':A}\sum_{b:B(x')}\pi_1((x',b))=x \\
                  &\equiv \sum_{x':A}\sum_{b:B(x')} x'=x \\
                  &\simeq \sum_{x':A}\sum_{p:x'=x}B(x')\\
@@ -641,6 +660,7 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
 \end{definition}
 
 \begin{theorem}[Gleichheit natürlicher Zahlen]
+  \label{thm:gleichheit-nat}
   Die faserweise Abbildung
   \begin{mathpar}
     \prod_{n,l:\N}n=l\to \Eq{\N}(n,l)
@@ -673,9 +693,112 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
     f(\mathrm{IH}_e):\left(f((l,e))=f((n,\ast))\right)\equiv \left((\sucN(l),e)=(\sucN(n),\ast)\right)
   \end{mathpar}
 \end{beweis}
+
 \begin{bemerkung}
-  $\N$ ist eine Menge.
+  $\N$ ist ein 0-Typ.
 \end{bemerkung}
+\begin{beweis}
+  Wir wissen dass die Typen $\leer$ und $\eins$ Aussagen sind durch \cref{bsp:leer-eins-hlevel} und \cref{bem:kontrahierbar-folgt-aussage}.
+  Mit $\N$-Induktion ist also $\Eq{\N}(n,k)$ für alle $n,k\in\N$ eine Aussage.
+  Nach Definition ist ein Typ ein 0-Typ oder eine Menge, wenn alle Gleichheitstypen Aussagen sind, also sind wir mit \cref{thm:gleichheit-nat} fertig.
+\end{beweis}
 
 \subsection{Gleichheit algebraischer Strukturen}
 
+Wir wollen in diesem Abschnitt am Beispiel der Halbgruppen sehen, dass Gleichheiten zwischen algebraischen Objekten genau den Isomorphismen entsprechen.
+Da es sich etwa beim Typ der Halbgruppen um eine abhängige Summe handeln wird und wir die Gleichheitstypen vollständig verstehen wollen,
+werden wir zunächst die Chrakterisierung von Gleichheitstypen in abhängigen Summen abschließen.
+
+\begin{lemma}[Gleichheit in abhängigen Summen]
+  \label{lem:gleichheit-summe}
+  Seien $A:\mU$ und $B:A\to \mU$. Für $a,a':A$ und $b:B(a), b':B(a')$ gilt:
+  \begin{mathpar}
+    \left((a,b)=(a',b')\right)\simeq \sum_{p:a=a'}\transp_B(p)(b)=b'
+  \end{mathpar}
+\end{lemma}
+\begin{beweis}
+  Wir verwenden den Gleichheitssatz, \cref{thm:fundamental-gleichheit}.
+  Sei dazu der abhängige Typ $\Eq{\sum}:\left(\sum_{x:A}B(x)\right)\to\left(\sum_{x:A}B(x)\right)\to\mU$ gegeben durch $\sum$-Induktion, also für $a,a':A$ und $b:B(a),b':B(a')$:
+  \begin{align*}
+    \Eq{\sum}((a,b),(a',b'))\colonequiv \sum_{p:a=a'}\transp_B(p)(b)=b'
+  \end{align*}
+  und weiter $r:\prod_{x:\sum_{a:A}B(a)}\Eq{\sum}(x,x)$ gegeben durch:
+  \begin{mathpar}
+    r((a,b))\colonequiv (\refl_a, \refl_b)
+  \end{mathpar}
+  Damit gibt es eine durch Gleichheitsinduktion definierte Funktion
+  \begin{mathpar}
+    f:\prod_{x,y:\sum_{a:A}B(a)}x=y\to \Eq{\sum}(x,y)
+  \end{mathpar}
+  Nach dem Gleichheitssatz reicht es nun also zu zeigen, dass für $x:\sum_{a:A}B(a)$ der Typ
+  \begin{mathpar}
+    \sum_{y:\sum_{a:A}B(a)}\Eq{\sum}(x,y)
+  \end{mathpar}
+  kontrahierbar ist. Es gilt für $x\equiv(a,b)$:
+  \begin{align*}
+    \sum_{y:\sum_{a:A}B(a)}\Eq{\sum}((a,b),y)&\simeq \sum_{a':A}\sum_{b':B(a')}\Eq{\sum}((a,b),(a',b')) \\
+                                             &\equiv \sum_{a':A}\sum_{b':B(a')} \sum_{p:a=a'}\transp_B(p)(b)=b' \\
+                                             &\simeq \sum_{a':A}\sum_{p:a=a'} \sum_{b':B(a')} \transp_B(p)(b)=b' \\
+                                             &\simeq \sum_{a':A}\sum_{p:a=a'} \eins \\
+                                             &\simeq \eins
+  \end{align*}
+\end{beweis}
+
+\begin{definition}
+  $\mathrm{Set}\colonequiv\sum_{A:\mU}\isSet(A)$
+\end{definition}
+
+\begin{definition}
+  Sei $A:\mU$. Der Typ der \begriff{Halbgruppenstrukturen} auf $A$ ist gegeben durch:
+  \begin{mathpar}
+    \mathrm{HalbGrp}(A)\colonequiv \sum_{\_\cdot\_:A\to A\to A}\prod_{x,y,z:A} (x \cdot y) \cdot z = x \cdot (y \cdot z)
+  \end{mathpar}
+  Die Elemente $H:\sum_{A:\mathrm{Set}}\mathrm{HalbGrp}(A)$, heißen \begriff{Halbgruppen}.
+\end{definition}
+
+\begin{definition}
+  Ein \begriff{Isomorphismus} von Halbgruppen $(H, \mathrm{str}) \to (H',\mathrm{str}')$ ist eine Abbildung $f:H\to H'$, sodass für alle $x,y:H$ gilt:
+  \begin{mathpar}
+    f(x \cdot y) = f(x) \cdot' f(y)
+  \end{mathpar}
+  wobei $\cdot$ die Multiplikation auf $H$ und $\cdot'$ die auf $H'$ ist.
+  Wir bezeichnen mit $\mathrm{Isom}((H, \mathrm{str}), (H',\mathrm{str}'))$ den Typ der Isomorphismen zwischen zwei Halbgruppen.
+\end{definition}
+
+\begin{theorem}[Gleichheit von Halbgruppen]
+  Seien $(H,\mathrm{str}),(H',\mathrm{str}):\sum_{A:\mU}\mathrm{HalbGrp}(A)$. Es gilt:
+  \begin{mathpar}
+    \left((H,\mathrm{str})=(H',\mathrm{str})\right)\simeq\mathrm{Isom}((H, \mathrm{str}), (H',\mathrm{str}'))
+  \end{mathpar}
+\end{theorem}
+\begin{beweis}
+  Mit \cref{lem:gleichheit-summe} folgt:
+  \begin{mathpar}
+    \left((H,\mathrm{str})=(H',\mathrm{str}')\right)\simeq \sum_{p:H=H'}\transp_{\mathrm{HalbGrp}}(p)(\mathrm{str})=\mathrm{str}'
+  \end{mathpar}
+  Das heißt, wir müssen nur noch klären, dass diese Summe äquivalent zum Typ der Isomorphismen ist.
+  Dazu berechnen wir den Transport in $\mathrm{HalbGrp}$.
+  Sei also $e:A\simeq B$ und $p\colonequiv\ua(e)$, dann erhalten wir eine Äquivalenz
+  \begin{mathpar}
+    \transp_{\mathrm{HalbGrp}}(p):\mathrm{HalbGrp}(A) \to \mathrm{HalbGrp}(B)
+  \end{mathpar}
+  und wir können durch Raten und anschließendem bestätigen durch Gleichheitsinduktion berechnen, was dieser Transport macht.
+  Sei $(\_\cdot\_, \cdot\mathrm{assoc}):\mathrm{HalbGrp}(A)$.
+  Wir raten zunächst, dass die Multiplikation mit $e$ prä- und postkomponiert wird, die Multiplikation des Bildes also für $x,y:B$ gegeben ist durch:
+  \begin{mathpar}
+    x \cdot' y \colonequiv e(e^{-1}(x) \cdot e^{-1}(y))
+  \end{mathpar}
+  Als Assoziativitätszeugen $\cdot'\mathrm{assoc}$ nehmen wir die Ergebnisgleichheit der folgenden Rechnung:
+  \begin{align*}
+    (x \cdot' y) \cdot' z & = e(e^{-1}e(e^{-1}(x)\cdot e^{-1}(y)) \cdot e^{-1}(z)) \\
+                          & = e((e^{-1}(x)\cdot e^{-1}(y)) \cdot e^{-1}(z)) \\
+                          & = e (e^{-1}(x)\cdot (e^{-1}(y) \cdot e^{-1}(z))) \\
+                          & = e (e^{-1}(x)\cdot e^{-1}(e(e^{-1}(y) \cdot e^{-1}(z)))) \\
+                          & =x \cdot' (y \cdot' z)
+  \end{align*}
+  Die Abbildung $e$ ist damit ein Isomorphismus.
+  Nun können wir für diese Konstruktion sehen:
+  \begin{mathpar}
+    \transp_{\mathrm{HalbGrp}}(\ua(\id))((\_\cdot\_,\cdot\mathrm{assoc}))=(\_\cdot'\_,\cdot'\mathrm{assoc})
+  \end{mathpar}
+\end{beweis}
