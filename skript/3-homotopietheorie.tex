@@ -1,0 +1,23 @@
+\subsection{n-Typen}
+In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
+Die Mengen haben den alternativen Namen $0$-Typen und zu Aussagen, kann man auch $-1$-Typen und zu kontrahierbaren Typen $-2$-Typen sagen.
+Wir werden in diesem Abschnitt $n$-Typen definieren, für $n=-2,-1,0,1,\dots$.
+Dazu sei zunächst:
+\begin{definition}
+  Es sei $\N_{-2}$ der induktive Typ mit Konstruktoren $-2:\N_{-2}$ und $\sucHL:\N_{-2}\to\N_{-2}$.
+  Für $\sucHL(n)$ schreiben wir $n+1$.
+  Die Elemente von $\N_{-2}$ nennen wir auch \begriff{Homotopielevel}.
+\end{definition}
+Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
+\begin{definition}
+  Für jeden Typ $A$ sei der Typ $\isNType{n}$ wie folgt per Rekursion über $n:\N_{-2}$ definiert:
+  \begin{align*}
+    -2\mathrm{-Type}(A)&\colonequiv \isContr(A) \\
+    (n+1)\mathrm{-Type}(A)&\colonequiv \prod_{x,y:A}n\mathrm{-Type}(x=_A y)
+  \end{align*}
+\end{definition}
+
+
+\subsection{Höhere Induktive Typen}
+\subsection{Überlagerungen}
+\subsection{Homotopiegruppen}
