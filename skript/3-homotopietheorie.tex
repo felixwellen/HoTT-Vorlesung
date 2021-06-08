@@ -34,15 +34,23 @@ Damit können wir die folgenden Regeln für den induktiven Einheitskreis leichte
 Zunächst wollen wir noch die abhängige Variante mit der bekannten Anwendung von Funktionen auf Gleichheiten vergleichen:
 
 \begin{bemerkung}
+  \label{bem:transpconst}
   Seien $A,B:\mU$. Dann gilt:
   \begin{enumerate}
-  \item Für $x,y:A$, $p:x=_A y$ und alle $b:B$ gilt:
+  \item Für $x,y:A$, $p:x=_A y$ und alle $b:B$ haben wir:
     \begin{mathpar}
-      \transp_{\_\mapsto B}(p)(b)=b
+      \transpconst_{p,b}:\transp_{\_\mapsto B}(p)(b)=b
     \end{mathpar}
-  \item $\mathrm{apd}(f,p)=_t \mathrm{ap}(f,p)$
+    durch Induktion über $p$ und $\transpconst_{\refl_x,b}\colonequiv \refl_b$
+  \item Es gilt: $\mathrm{apd}(f,p)= \transpconst_{p,f(x)}\kon\mathrm{ap}(f,p)$
   \end{enumerate}
 \end{bemerkung}
+\begin{beweis}
+  \begin{enumerate}
+  \item Bereits erledigt.
+  \item Induktion über $p$.
+  \end{enumerate}
+\end{beweis}
 
 
 Anders als bei den Konstruktoren induktiver Typen, werden wir bei höheren Konstruktoren keine urteilsmäßige Gleichheit für Berechnungen fordern,
@@ -64,8 +72,8 @@ sondern nur Gleichheit.
   die $\begriff{Kreisinduktion}$.
   Es gelten folgende Berechnungsregeln:
   \begin{align*}
-    \ind{S^1}(B,b,b_l)(\ast)\equiv b \\
-    \mathrm{apd}(\ind{S^1}(B,b,b_l),l)\equiv \ind{S^1}(B,b,b_l)(l) =b_l
+    \ind{S^1}(B,b,b_l)(\ast)&\equiv b \\
+    \mathrm{apd}(\ind{S^1}(B,b,b_l),l)\equiv \ind{S^1}(B,b,b_l)(l)&=b_l
   \end{align*}
   Wir werden abhängige Funktionen $f:\prod_{x:S^1}B(x)$ auch durch Fallunterscheidung wie angeben:
   \begin{align*}
@@ -73,6 +81,12 @@ sondern nur Gleichheit.
     f(l):= b_l
   \end{align*}
 \end{regeln}
+
+\begin{bemerkung}
+  Wie bereits bei den induktiven Typen, werden wir auch hier darauf verzichten, ein allgemeines Schema anzugeben.
+  Unter Homotopietypentheorie versteht man eine Typentheorie wie soweit eingeführt, in der jeder sinnvolle höhere induktive Typ existiert.
+  Wir werden lediglich Beispiele von sinnvollen höheren induktiven Typen kennenlernen.
+\end{bemerkung}
 
 Wir wollen zunächst das Rekursionprinzip für den Kreis herleiten.
 
@@ -85,16 +99,28 @@ Wir wollen zunächst das Rekursionprinzip für den Kreis herleiten.
 \end{bemerkung}
 \begin{beweis}
   Wir verwenden Kreisinduktion für den konstanten abhängigen Typ $\_\mapsto A:S^1\to\mU$.
-  Dazu wollen wir einsehen, dass
+  Es gibt eine Äquivalenz
   \begin{mathpar}
-    (a =_A a) \simeq (a =_l a)
+    (a =_l a) \simeq (a =_A a)
   \end{mathpar}
-  gilt. Es ist aber, weil der abhängige Typ konstant ist:
+  durch Linkskonkatenation mit $\transpconst_{l,a}^{-1}$.
+  Wir verwenden die Inverse, um aus $a_l:a=_A a$ die Gleichheit $\transpconst_{l,a}\kon a_l:a=_l a$ zu produzieren.
+  Damit gilt für
   \begin{mathpar}
-    \transp_{\_\mapsto A}(p)(a)=a
+    \rec{S^1}(A,a,a_l)\colonequiv \ind{S^1}(\_\mapsto A, a, \transpconst_{l,a}\kon a_l)
   \end{mathpar}
-  per Gleichheitsinduktion über $p$. Also kommt die Äquivalenz oben durch linkkonkatenation mit dieser Gleichheit zustande.
+  nach \cref{bem:transpconst}:
+  \begin{align*}
+    \mathrm{ap}(\rec{S^1}(A,a,a_l),l)&\equiv \mathrm{ap}(\ind{S^1}(\_\mapsto A, a, \transpconst_{l,a}\kon a_l),l) \\
+                                     &=\transpconst_{l,a}^{-1}\kon\mathrm{apd}(\ind{S^1}(\_\mapsto A, a, \transpconst_{l,a}\kon a_l),l) \\
+                                     &=\transpconst_{l,a}^{-1}\kon\transpconst_{l,a}\kon a_l \\
+                                     &=a_l
+  \end{align*}
+  Nach Definition gilt außerdem $\rec{S^1}(A,a,a_l)(\ast)\equiv a$.
 \end{beweis}
+
+
+
 
 \subsection{n-Typen}
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
