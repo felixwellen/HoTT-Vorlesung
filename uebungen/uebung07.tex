@@ -1,0 +1,41 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{7}
+
+\begin{exercise}[Funktiorialität und Homotopieinvarianz der Summe]
+      Seien $f,f':\prod_{x:A} B(x)\to C(x)$ und $g:\prod_{x:A} C(x)\to D(x)$ faserweise Abbildungen.
+  \begin{enumerate}
+    \item Zeige $\sum \id_{B(x)}=\id_{\sum_{x:A} B(x)}$.
+    \item Definiere die \emph{faserweise Komposition} $g \circ f$ und zeige $\sum g \circ \sum f = \sum (g \circ f)$.
+    \item Sei $H:\prod_{x:A} f_x \sim f'_x$ eine \emph{faserweise Homotopie}.
+      Zeige, dass $\sum f \sim \sum f'$.
+    \item Zeige, dass $\sum f$ eine Äquivalenz ist, falls $f$ eine faserweise Äquivalenz ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Äquivalenzinduktion und der fundamentale Gleichheitssatz]
+  \begin{enumerate}
+    \item Sei $f:A\to B$ eine Äquivalenz.
+      Verwende Äquivalenzinduktion um zu zeigen, dass $\mathrm{ap}(f)$ für alle $x,y:A$ eine Äquivalenz $(x=y)\to(f(x)=f(y))$ ist.
+    \item Sei $\sum_{A:\mU} A \simeq B$ für jedes $B:\mU$ kontrahierbar.
+      Folgere das Univalenzaxiom unter diesen Voraussetzungen aus dem fundamentalen Gleichheitssatz.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Gleichheitstyp von Koprodukten]
+  Sei $A,B:\mU$ und $\Eq{\amalg}:A\amalg B\to A\amalg B\to \mU$ gegeben durch:
+  \begin{align*}
+    \Eq{\amalg}(\iota_1(a),\iota_1(a'))&\colonequiv (a=_A a') \\
+    \Eq{\amalg}(\iota_1(a),\iota_2(b))&\colonequiv \leer \\
+    \Eq{\amalg}(\iota_2(b),\iota_1(a))&\colonequiv \leer \\
+    \Eq{\amalg}(\iota_2(b),\iota_2(b'))&\colonequiv (b=_B b')
+  \end{align*}
+  Verwende den fundamentalen Gleichheitssatz um für jedes $x:A\amalg B$ eine faserweise Äquivalenz 
+  \begin{mathpar}
+    f_x:\prod_{y:A\amalg B}(x=y)\to\Eq{\amalg}(x,y)
+  \end{mathpar}
+  zu finden.
+\end{exercise}
+
+\end{document}
