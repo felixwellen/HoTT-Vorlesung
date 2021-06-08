@@ -1,5 +1,18 @@
 \subsection{Höhere Induktive Typen}
-
+\begin{definition}[Abhängige Gleichheit]
+  Seien $A:\mU$, und $B:A\to \mU$. Seien weiter $x,y:A$, $b:B(x)$ und $b':B(y)$.
+  \begin{enumerate}
+  \item Sei $p:x=_A y$. Ein \begriff{abhängier Pfad} oder eine \begriff{abhängige Gleichheit} zwischen $b$ und $b'$ ist ein Element des Typs
+    \begin{mathpar}
+      \left(b =_p^B b'\right)\colonequiv \left(\transp_B(p)(b)=b'\right)
+    \end{mathpar}
+  \item Sei $s:\prod_{x:A}B(x)$ eine abhängige Funktion. Die folgende Funktion ist die Anwendung eine abhängigen Funktion auf eine Gleichheit:
+    \begin{mathpar}
+      \mathrm{apd}(f):\prod_{p:x=_A y}f(x)=_p^B f(y)
+    \end{mathpar}
+    und festgelegt durch $\mathrm{apd}(f,\refl_x)\colonequiv\refl_b$
+  \end{enumerate}
+\end{definition}
 
 \subsection{n-Typen}
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
