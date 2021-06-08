@@ -1,4 +1,20 @@
 \subsection{Höhere Induktive Typen}
+
+Höhere induktive Typen haben neben Konstruktoren der Bauart, die wir bereits von den Induktiven Typen kennen, sogenannte \begriff{höhere Konstruktoren},
+deren Werte in Gleichheitstypen des höheren induktiven Typs liegen.
+Später werden wir auch höhere induktive Typen mit höheren Konstruktoren, die in iterierten Gleichheitstypen liegen, sehen.
+Zunächst wird der Typ $S¹$ zentral sein. Dieser hat wie der Typ $\eins$ einen Punkt-Konstruktor $\ast:S^1$ und zusätzlich einen
+höheren Konstruktor $l:\ast =_{S^1}\ast$.
+
+Eine Rekursionsregel ist leicht formuliert: Um eine Funktion $f:S^1\to A$ zu definieren, muss man $f(\ast):A$ und $f(l):f(\ast)=_A f(\ast)$ vorgeben.
+Das Induktionsprinzip ist etwas unhandlicher und wir wollen zunächst ein paar Definition machen, die uns die Formulierung erleichtern und schließlich nach der Einführung der neuen Regeln
+das Rekursionsprinzip aus dem Induktionsprinzip folgern.
+
+In \cref{lem:gleichheit-summe} haben wir festgestellt, dass ein Teil einer Gleichheit in einer abhängigen Summe von der Form
+\begin{mathpar}
+  \transp_B(p)(b)=b'
+\end{mathpar}
+ist. Das werden wir jetzt als allgemeine Definition von Gleichheiten in abhängigen Typen verwenden.
 \begin{definition}[Abhängige Gleichheit]
   Seien $A:\mU$, und $B:A\to \mU$. Seien weiter $x,y:A$, $b:B(x)$ und $b':B(y)$.
   \begin{enumerate}
@@ -13,6 +29,9 @@
     und festgelegt durch $\mathrm{apd}(f,\refl_x)\colonequiv\refl_b$
   \end{enumerate}
 \end{definition}
+
+
+
 
 \subsection{n-Typen}
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
