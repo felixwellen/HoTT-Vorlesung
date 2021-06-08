@@ -57,7 +57,7 @@ Anders als bei den Konstruktoren induktiver Typen, werden wir bei höheren Konst
 sondern nur Gleichheit.
 
 \begin{regeln}
-  Es gibt einen Typ $S^1:\mU$ den wir den (höheren induktiven) \begriff{(Einheits-)Kreis}\index{Kreis}\index{$S^1$} nennen.
+  Es gibt einen Typ $S^1:\mU$ den wir den (höheren induktiven) \begriff{Kreis}\index{Kreis}\index{$S^1$} nennen.
   $S^1$ ist der höhere induktive Typ mit den Konstruktoren:
   \begin{align*}
     \ast:S^1 \\
@@ -119,8 +119,53 @@ Wir wollen zunächst das Rekursionprinzip für den Kreis herleiten.
   Nach Definition gilt außerdem $\rec{S^1}(A,a,a_l)(\ast)\equiv a$.
 \end{beweis}
 
+Bevor wir den Kreis weiter kennenlernen, betrachten wir noch einen weiteren, sehr ähnlichen höheren induktiven Typ.
 
+\begin{regeln}
+  Es gibt einen Typ $I:\mU$, das \begriff{Intervall} mit den folgenden Konstruktoren:
+  \begin{align*}
+    0_I:I \\
+    1_I:I \\
+    s:0_I =_I 1_I
+  \end{align*}
+  Daraus ergibt sich das folgende Induktionsprinzip, die \begriff{Intervallinduktion}:
+  \begin{mathpar}
+    \ind{I}:\prod_{B:I\to\mU}\prod_{b_0:B(0_I)}\prod_{b_1:B(1_I)}b_0 =_s^B b_1 \to\prod_{x:I}B(x) 
+  \end{mathpar}
+  mit Berechnungsregeln:
+  \begin{align*}
+    \ind{I}(B,b_0,b_1,b_s)(0_I)\equiv b_0 \\
+    \ind{I}(B,b_0,b_1,b_s)(1_I)\equiv b_1 \\
+    \mathrm{apd}(\ind{I}(B,b_0,b_1,b_s),s)\equiv\ind{I}(B,b_0,b_1,b_s)(s) = b_s \\
+  \end{align*}
+\end{regeln}
 
+\begin{bemerkung}
+  Das Intervall $I$ ist kontrahierbar.
+\end{bemerkung}
+\begin{beweis}
+  Als Kontraktionszentrum wählen wir $0_I$. Nun wollen wir zeigen:
+  \begin{mathpar}
+    \prod_{x:I}0_I=x
+  \end{mathpar}
+  Mit Intervallinduktion reicht es dafür festzustellen, dass $\refl:0_I=0_I$ und $s:0_i=1_I$ gelten und zu zeigen:
+  \begin{mathpar}
+    \refl =_s s
+  \end{mathpar}
+  oder anders formuliert: $\transp_{0_I=\_}(s)(\refl)=s$. Das haben wir aber bereits allgemein geklärt in \cref{lem:transp-lpath}.
+\end{beweis}
+
+Trotzdem können wir mit dem Intervall etwas neues zeigen:
+
+\begin{theorem}[Abhängige Funktionsextensionalität]
+  Seien $A:\mU$ und $B:A\to\mU$. Dann ist für abhängige Funktionen $f,g:\prod_{x:A}B(x)$ die folgende Funktion eine Äquivalenz:
+  \begin{mathpar}
+    x\mapsto\mathrm{ap}(f\mapsto f(x),\_): f = g \to \prod_{x:A}f(x)=g(x)
+  \end{mathpar}
+\end{theorem}
+\begin{beweis}
+  
+\end{beweis}
 
 \subsection{n-Typen}
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
