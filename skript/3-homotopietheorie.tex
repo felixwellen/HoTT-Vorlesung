@@ -30,8 +30,34 @@ ist. Das werden wir jetzt als allgemeine Definition von Gleichheiten in abhängi
   \end{enumerate}
 \end{definition}
 
+Damit können wir die folgenden Regeln für den induktiven Einheitskreis leichter formulieren.
+Anders als bei den Konstruktoren induktiver Typen, werden wir bei höheren Konstruktoren keine urteilsmäßige Gleichheit für Berechnungen fordern,
+sondern nur Gleichheit.
 
-
+\begin{regeln}
+  Es gibt einen Typ $S^1:\mU$ den wir den (höheren induktiven) \begriff{(Einheits-)Kreis}\index{Kreis}\index{$S^1$} nennen.
+  $S^1$ ist der höhere induktive Typ mit den Konstruktoren:
+  \begin{align*}
+    \ast:S^1 \\
+    l:\ast =_{S^1}\ast
+  \end{align*}
+  Das heißt: Für jeden abhängigen Typ $B:S^1\to\mU$ reicht es, $b:B(\ast)$ und $b_l:b =_l^B b$ vorzugeben,
+  um eine abhängige Funktion $s:\prod_{x:S^1}B(x)$ zu definieren.
+  Es gibt also eine Funktion:
+  \begin{mathpar}
+    \ind{S^1}:\prod_{B:S^1\to\mU}\prod_{b:B(\ast)}\left((b =_l^B b)\to\prod_{x:S^1}B(x)\right)
+  \end{mathpar}
+  Es gelten folgende Berechnungsregeln:
+  \begin{align*}
+    \ind{S^1}(b,b_l)(\ast)\equiv b \\
+    \ind{S^1}(b,b_l)(l)=b_l
+  \end{align*}
+  Wir werden abhängige Funktionen $f:\prod_{x:S^1}B(x)$ auch durch Fallunterscheidung wie angeben:
+  \begin{align*}
+    f(\ast)\colonequiv b \\
+    f(l):= b_l
+  \end{align*}
+\end{regeln}
 
 \subsection{n-Typen}
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
