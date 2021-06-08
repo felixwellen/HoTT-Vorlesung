@@ -26,11 +26,25 @@ ist. Das werden wir jetzt als allgemeine Definition von Gleichheiten in abhängi
     \begin{mathpar}
       \mathrm{apd}(f):\prod_{p:x=_A y}f(x)=_p^B f(y)
     \end{mathpar}
-    und festgelegt durch $\mathrm{apd}(f,\refl_x)\colonequiv\refl_b$
+    und festgelegt durch $\mathrm{apd}(f,\refl_x)\colonequiv\refl_b$. Wir schreiben auch $f(p)$ für $\mathrm{apd}(f,p)$.
   \end{enumerate}
 \end{definition}
 
 Damit können wir die folgenden Regeln für den induktiven Einheitskreis leichter formulieren.
+Zunächst wollen wir noch die abhängige Variante mit der bekannten Anwendung von Funktionen auf Gleichheiten vergleichen:
+
+\begin{bemerkung}
+  Seien $A,B:\mU$. Dann gilt:
+  \begin{enumerate}
+  \item Für $x,y:A$, $p:x=_A y$ und alle $b:B$ gilt:
+    \begin{mathpar}
+      \transp_{\_\mapsto B}(p)(b)=b
+    \end{mathpar}
+  \item $\mathrm{apd}(f,p)=_t \mathrm{ap}(f,p)$
+  \end{enumerate}
+\end{bemerkung}
+
+
 Anders als bei den Konstruktoren induktiver Typen, werden wir bei höheren Konstruktoren keine urteilsmäßige Gleichheit für Berechnungen fordern,
 sondern nur Gleichheit.
 
@@ -47,10 +61,11 @@ sondern nur Gleichheit.
   \begin{mathpar}
     \ind{S^1}:\prod_{B:S^1\to\mU}\prod_{b:B(\ast)}\left((b =_l^B b)\to\prod_{x:S^1}B(x)\right)
   \end{mathpar}
+  die $\begriff{Kreisinduktion}$.
   Es gelten folgende Berechnungsregeln:
   \begin{align*}
-    \ind{S^1}(b,b_l)(\ast)\equiv b \\
-    \ind{S^1}(b,b_l)(l)=b_l
+    \ind{S^1}(B,b,b_l)(\ast)\equiv b \\
+    \mathrm{apd}(\ind{S^1}(B,b,b_l),l)\equiv \ind{S^1}(B,b,b_l)(l) =b_l
   \end{align*}
   Wir werden abhängige Funktionen $f:\prod_{x:S^1}B(x)$ auch durch Fallunterscheidung wie angeben:
   \begin{align*}
@@ -58,6 +73,28 @@ sondern nur Gleichheit.
     f(l):= b_l
   \end{align*}
 \end{regeln}
+
+Wir wollen zunächst das Rekursionprinzip für den Kreis herleiten.
+
+\begin{bemerkung}
+  Für $A:\mU$, $a:A$ und $a_l:a=_A a$ gibt es stets eine Funktion $\rec{S^1}(A,a,a_l):S^1\to A$ mit
+  \begin{align*}
+    \rec{S^1}(A,a,a_l)(\ast)\equiv a \\
+    \rec{S^1}(A,a,a_l)(l)=a_l
+  \end{align*}
+\end{bemerkung}
+\begin{beweis}
+  Wir verwenden Kreisinduktion für den konstanten abhängigen Typ $\_\mapsto A:S^1\to\mU$.
+  Dazu wollen wir einsehen, dass
+  \begin{mathpar}
+    (a =_A a) \simeq (a =_l a)
+  \end{mathpar}
+  gilt. Es ist aber, weil der abhängige Typ konstant ist:
+  \begin{mathpar}
+    \transp_{\_\mapsto A}(p)(a)=a
+  \end{mathpar}
+  per Gleichheitsinduktion über $p$. Also kommt die Äquivalenz oben durch linkkonkatenation mit dieser Gleichheit zustande.
+\end{beweis}
 
 \subsection{n-Typen}
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
