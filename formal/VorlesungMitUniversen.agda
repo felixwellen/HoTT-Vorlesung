@@ -159,6 +159,8 @@ infixl 10 _≡_
 data _≡_ {A : U} : A → A → U where
   refl : (x : A) → x ≡ x
 
+
+
 {-
   Beispiel 1.4.2
 -}
@@ -181,6 +183,19 @@ _⁻¹ : {A : U} {x y : A} → (x ≡ y) → (y ≡ x)
 
 _∙_ : {A : U} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 (refl x) ∙ p = p
+
+{-
+  Das folgende erlaubt es uns, Gleichungen in üblichem Stil
+  aufzubauen.
+-}
+infixr 4 _≡⟨_⟩_
+infixr 5 _≡∎
+
+_≡⟨_⟩_ : {A : U} {y z : A} (x : A) (p : x ≡ y) (q : y ≡ z) → x ≡ z
+x ≡⟨ p ⟩ q = p ∙ q
+
+_≡∎ : {A : U} (x : A) → x ≡ x
+x ≡∎ = refl x
 
 {-
   Beispiel 1.4.4
@@ -321,6 +336,9 @@ A × B = ∑[ x ∈ A ] B
 _inversZu_ : {A B : U} (f : A → B) (g : B → A) → U
 f inversZu g = (∏[ x ∈ _ ] g(f x) ≡ x) × (∏[ y ∈ _ ] f(g y) ≡ y)
 
+qinv : {A B : Set} (f : A → B) → Set
+qinv f = ∑[ g ∈ (_ → _) ] g inversZu f
+
 infix 6 _inversZu_
 
 _hatInverse : {A B : U} (f : A → B) → U
@@ -386,6 +404,12 @@ _∼_ {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
 
 infix 18 _∼_
 
+∼sym : {A B : Set} {f g : A → B} (H : f ∼ g) → (g ∼ f)
+∼sym H = λ x → (H x)⁻¹
+
+∼trans : {A B : Set} {f g h : A → B} (H : f ∼ g) (G : g ∼ h) → f ∼ h
+∼trans H G = λ x → (H x) ∙ (G x)
+
 {-
   1.6.2 Funktionsextensionalität
 -}
@@ -432,3 +456,85 @@ isU A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] 
 -}
 AisContr→≡isContr : ∀ {A : U} → isContr(A) → ∏[ x ∈ A ] ∏[ y ∈ A ] isContr(x ≡ y)
 AisContr→≡isContr c x y = ( ((π₂ c) x) ∙ ((π₂ c) y) ⁻¹ ) , λ {(refl z) → (⁻¹RInv ( (π₂ c) z))⁻¹}
+
+
+AisContr→AisProp : ∀ {A : U} → isContr(A) → isProp(A)
+AisContr→AisProp c = λ x y → ((π₂ c) x) ∙ ((π₂ c) y) ⁻¹
+
+{-
+  2.1.1
+-}
+pre-whisker : ∀ {A B A' : U} {f g : A → B} (φ : A' → A) (H : f ∼ g) → f ∘ φ ∼ g ∘ φ
+pre-whisker φ H = λ x → H (φ x)
+
+post-whisker : ∀ {A B B' : U} {f g : A → B} (ψ : B → B') (H : f ∼ g) → ψ ∘ f ∼ ψ ∘ g
+post-whisker ψ H = λ x → ap ψ (H x)
+
+{-
+  2.1.2
+-}
+id : (A : U) → A → A
+id A = λ a → a
+
+LInv : {A B : U} (f : A → B) → Set
+LInv {A} {B} f = ∑[ g ∈ (B → A) ] g ∘ f ∼ (id A)
+
+RInv : {A B : U} (f : A → B) → Set
+RInv {A} {B} f = ∑[ h ∈ (B → A) ] f ∘ h ∼ (id B)
+
+LRInv : {A B : U} (f : A → B) → Set
+LRInv f = (LInv f) × (RInv f)
+
+isEquiv : {A B : U} (f : A → B) → Set
+isEquiv f = LRInv f
+
+_equivalentTo_ : (A B : U) → Set
+A equivalentTo B = ∑[ f ∈ (A → B) ] isEquiv f
+
+-- Typ der Äquivalenzen (≃ – \simeq)
+_≃_ : (A B : U) → Set
+A ≃ B = ∑[ f ∈ (A → B) ] isEquiv f
+
+{-
+  2.1.3 – Logische Äquivalenz
+-}
+_↔_ : (A B : U) → Set
+A ↔ B = (∑[ f ∈ (A → B)] 𝟙) × (∑[ g ∈ (B → A) ] 𝟙)
+
+infixr 15 _↔_
+
+{-
+  Bemerkung 2.1.4: Seien A,B : 𝓤 und f : A → B. Die Typen LRInv(f) und qinv(f) sind logisch äquivalent
+-}
+bem-2-1-4 : {A B : U} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
+π₁ (bem-2-1-4 {A} {B} f) = (qinv-proof , ∗)
+  where
+    qinv-proof : LRInv f → qinv f
+    qinv-proof lrinv = g , ginvf
+      where
+        g : B → A
+        g = π₁ (π₁ lrinv)
+
+        h : B → A
+        h = π₁ (π₂ lrinv)
+
+        g∼h : g ∼ h
+        g∼h = ∼trans (post-whisker g (∼sym (π₂ (π₂ lrinv)))) (pre-whisker h (π₂ (π₁ lrinv)))
+        --             \--------- g ∼ g ∘ (f ∘ h) ---------/   \----- (g ∘ f) ∘ h ∼ h -----/
+
+        ginvf : g inversZu f
+        ginvf = ∼trans (post-whisker f g∼h) (π₂ (π₂ lrinv)) ,  π₂ (π₁ lrinv)
+
+π₂ (bem-2-1-4 {A} {B} f) = lrinv-proof , ∗
+  where
+    lrinv-proof : qinv f → LRInv f
+    lrinv-proof qinv = (g , H) , (g , K)
+      where
+        g : B → A
+        g = π₁ qinv
+
+        H : g ∘ f ∼ (id A)
+        H = π₂ (π₂ qinv)
+
+        K : f ∘ g ∼ (id B)
+        K = π₁ (π₂ qinv)
