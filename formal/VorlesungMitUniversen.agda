@@ -489,29 +489,29 @@ post-whisker ψ H = λ x → ap ψ (H x)
 id : (A : U) → A → A
 id A = λ a → a
 
-LInv : {A B : U} (f : A → B) → Set
+LInv : {A B : U} (f : A → B) → U
 LInv {A} {B} f = ∑[ g ∈ (B → A) ] g ∘ f ∼ (id A)
 
-RInv : {A B : U} (f : A → B) → Set
+RInv : {A B : U} (f : A → B) → U
 RInv {A} {B} f = ∑[ h ∈ (B → A) ] f ∘ h ∼ (id B)
 
-LRInv : {A B : U} (f : A → B) → Set
+LRInv : {A B : U} (f : A → B) → U
 LRInv f = (LInv f) × (RInv f)
 
-isEquiv : {A B : U} (f : A → B) → Set
+isEquiv : {A B : U} (f : A → B) → U
 isEquiv f = LRInv f
 
-_equivalentTo_ : (A B : U) → Set
+_equivalentTo_ : (A B : U) → U
 A equivalentTo B = ∑[ f ∈ (A → B) ] isEquiv f
 
 -- Typ der Äquivalenzen (≃ – \simeq)
-_≃_ : (A B : U) → Set
+_≃_ : (A B : U) → U
 A ≃ B = ∑[ f ∈ (A → B) ] isEquiv f
 
 {-
   2.1.3 – Logische Äquivalenz
 -}
-_↔_ : (A B : U) → Set
+_↔_ : (A B : U) → U
 A ↔ B = (∑[ f ∈ (A → B)] 𝟙) × (∑[ g ∈ (B → A) ] 𝟙)
 
 infixr 15 _↔_
