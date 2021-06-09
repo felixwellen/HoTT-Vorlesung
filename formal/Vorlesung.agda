@@ -132,7 +132,7 @@ data _∐_ (A B : Set) : Set where
   statt '((p ∙ q) ⁻¹) ≡ ((q ⁻¹) ∙ (p ⁻¹))' - vorausgesetzt für alle anderen operatoren
   werden auch sinnvolle Prioritäten gesetzt.
 -}
-infixl 10 _≡_
+infix 4 _≡_
 
 data _≡_ {A : Set} : A → A → Set where
   refl : (x : A) → x ≡ x
@@ -286,7 +286,8 @@ tr-x≡a : {A : Set} {a : A}
 tr-x≡a (refl _) = refl λ z → z
 
 -- Lemma 1.4.15
-tr-concat : {A : Set} {B : A → Set} {x y z : A} → ∏[ p ∈ x ≡ y ] ∏[ q ∈ y ≡ z ] tr B (q) ∘ tr B (p) ≡ tr B (p ∙ q)
+tr-concat : {A : Set} {B : A → Set} {x y z : A}
+  → ∏[ p ∈ x ≡ y ] ∏[ q ∈ y ≡ z ] tr B (q) ∘ tr B (p) ≡ tr B (p ∙ q)
 tr-concat {_} {B} (refl w) q = refl (tr B q)
 
 -- Lemma 1.5.9
@@ -506,3 +507,23 @@ bem-2-1-4 : {A B : Set} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
 
         K : f ∘ g ∼ (id B)
         K = π₁ (π₂ qinv)
+
+{- Definition 1.6.13: Fasern, Injektivität, Surjektivität, Äquivalenz -}
+fib⁻¹ : {A B : Set} (f : A → B) (b : B) → Set
+fib⁻¹ {A} f b = ∑[ x ∈ A ] f(x) ≡ b
+
+isInjective : {A B : Set} (f : A → B) → Set
+isInjective {_} {B} f = ∏[ y ∈ B ] isProp(fib⁻¹ f y)
+
+isSurjective : {A B : Set} (f : A → B) → Set
+isSurjective {_} {B} f = ∏[ y ∈ B ] fib⁻¹ f y
+
+isEquiv' : {A B : Set} (f : A → B) → Set
+isEquiv' {_} {B} f = ∏[ y ∈ B ] isContr(fib⁻¹ f y)
+
+{- Definition 2.3.3: Faserweise Abbildung induziert Abbildungen -}
+-- ∑ₘ : \sum\_m (ₘ für "maps")
+∑ₘ : {A : Set} {B B' : A → Set}
+  → (∏[ x ∈ A ] (B(x) → B'(x)))
+  → ((∑[ x ∈ A ] B(x)) → (∑[ x ∈ A ] B'(x)))
+∑ₘ f (x , bₓ) = x , f(x)(bₓ)

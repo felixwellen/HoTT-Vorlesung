@@ -154,7 +154,7 @@ data _∐_ (A B : U) : U where
   statt '((p ∙ q) ⁻¹) ≡ ((q ⁻¹) ∙ (p ⁻¹))' - vorausgesetzt für alle anderen operatoren
   werden auch sinnvolle Prioritäten gesetzt.
 -}
-infixl 10 _≡_
+infixl 4 _≡_
 
 data _≡_ {A : U} : A → A → U where
   refl : (x : A) → x ≡ x
@@ -551,3 +551,23 @@ bem-2-1-4 : {A B : U} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
 
         K : f ∘ g ∼ (id B)
         K = π₁ (π₂ qinv)
+
+{- Definition 1.6.13: Fasern, Injektivität, Surjektivität, Äquivalenz -}
+fib⁻¹ : {A B : U} (f : A → B) (b : B) → U
+fib⁻¹ {A} f b = ∑[ x ∈ A ] f(x) ≡ b
+
+isInjective : {A B : U} (f : A → B) → U
+isInjective {_} {B} f = ∏[ y ∈ B ] isProp(fib⁻¹ f y)
+
+isSurjective : {A B : U} (f : A → B) → U
+isSurjective {_} {B} f = ∏[ y ∈ B ] fib⁻¹ f y
+
+isEquiv' : {A B : U} (f : A → B) → U
+isEquiv' {_} {B} f = ∏[ y ∈ B ] isContr(fib⁻¹ f y)
+
+{- Definition 2.3.3: Faserweise Abbildung induziert Abbildungen -}
+-- ∑ₘ : \sum\_m (ₘ für "maps")
+∑ₘ : {A : U} {B B' : A → U}
+  → (∏[ x ∈ A ] (B(x) → B'(x)))
+  → ((∑[ x ∈ A ] B(x)) → (∑[ x ∈ A ] B'(x)))
+∑ₘ f (x , bₓ) = x , f(x)(bₓ)
