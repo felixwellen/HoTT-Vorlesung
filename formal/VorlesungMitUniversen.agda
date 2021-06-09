@@ -404,11 +404,24 @@ _∼_ {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
 
 infix 18 _∼_
 
-∼sym : {A B : Set} {f g : A → B} (H : f ∼ g) → (g ∼ f)
+∼sym : {A B : U} {f g : A → B} (H : f ∼ g) → (g ∼ f)
 ∼sym H = λ x → (H x)⁻¹
 
-∼trans : {A B : Set} {f g h : A → B} (H : f ∼ g) (G : g ∼ h) → f ∼ h
+∼trans : {A B : U} {f g h : A → B} (H : f ∼ g) (G : g ∼ h) → f ∼ h
 ∼trans H G = λ x → (H x) ∙ (G x)
+
+{-
+  Das folgende erlaubt es uns, Verkettung von Homotopien in üblichem Stil
+  aufzubauen.
+-}
+infixr 4 _∼⟨_⟩_
+infixr 5 _∼∎
+
+_∼⟨_⟩_ : {A B : U} {g h : A → B} (f : A → B) (H : f ∼ g) (K : g ∼ h) → f ∼ h
+f ∼⟨ H ⟩ K = ∼trans H K
+
+_∼∎ : {A B : U} (f : A → B) → f ∼ f
+f ∼∎ = λ x → refl (f x)
 
 {-
   1.6.2 Funktionsextensionalität
