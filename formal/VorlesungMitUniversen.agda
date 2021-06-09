@@ -532,11 +532,15 @@ bem-2-1-4 : {A B : U} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
         h = π₁ (π₂ lrinv)
 
         g∼h : g ∼ h
-        g∼h = ∼trans (post-whisker g (∼sym (π₂ (π₂ lrinv)))) (pre-whisker h (π₂ (π₁ lrinv)))
-        --             \--------- g ∼ g ∘ (f ∘ h) ---------/   \----- (g ∘ f) ∘ h ∼ h -----/
+        g∼h = g           ∼⟨ post-whisker g (∼sym (π₂ (π₂ lrinv))) ⟩
+              g ∘ (f ∘ h)  ∼⟨ pre-whisker h (π₂ (π₁ lrinv)) ⟩
+              h            ∼∎
 
         ginvf : g inversZu f
-        ginvf = ∼trans (post-whisker f g∼h) (π₂ (π₂ lrinv)) ,  π₂ (π₁ lrinv)
+        ginvf = (f ∘ g   ∼⟨ post-whisker f g∼h ⟩
+                 f ∘ h   ∼⟨ π₂ (π₂ lrinv) ⟩
+                 id _    ∼∎)
+                , π₂ (π₁ lrinv)
 
 π₂ (bem-2-1-4 {A} {B} f) = lrinv-proof , ∗
   where
