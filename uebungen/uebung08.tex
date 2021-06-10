@@ -32,7 +32,13 @@
 
 \begin{exercise}
   Sei $A$ ein Typ.
-  Zeige, dass $(S^1\to A) \simeq \sum_{x:A} x=x$.
+  \begin{enumerate}
+    \item Verwende Funktionsextensionalität um ein $\eta$-Reduktionsprinzip für $S^1 \to A$ zu zeigen:
+      $$
+      \prod_{f:S^1 \to A} f = \rec{S^1}(A, f(\ast), f(l))
+      $$
+    \item Folgere, dass $(S^1\to A) \simeq \sum_{x:A} x=x$.
+  \end{enumerate}
 \end{exercise}
 
 \end{document}
