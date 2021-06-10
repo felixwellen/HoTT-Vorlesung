@@ -30,6 +30,27 @@
   $$
 \end{exercise}
 
+\begin{exercise}[Transporte in Gleichheitstypen]
+  Sei $A:\mU$ ein Typ.
+  \begin{enumerate}
+    \item Zeige für den abhängigen Typen $C(x)\colonequiv x =_A x$:
+
+      $$
+      \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} p^{-1} \cdot q \cdot p
+      $$
+    \item Sei $B:\mU$ ein Typ und $f,g : A \to B$ Funktionen.
+      Zeige für den abhängigen Typen $C(x) \colonequiv f(x)=_{B} g(x)$:
+      $$
+      \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} \mathrm{ap}(f,p)^{-1} \cdot q \cdot \mathrm{ap}(g,p)
+      $$
+    \item Sei $B:A \to \mU$ ein abhängiger Typ über $A$ und $f,g:\prod_{x:A} B(x)$ abhängige Funktionen.
+      Zeige für den abhängigen Typen $C(x) \colonequiv f(x)=_{B(x)} g(x)$:
+      $$
+      \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} \mathrm{apd}(f,p)^{-1} \cdot \mathrm{ap}(\transp_B(p),q) \cdot \mathrm{apd}(g,p)
+      $$
+  \end{enumerate}
+\end{exercise}
+
 \begin{exercise}
   Sei $A$ ein Typ.
   \begin{enumerate}
