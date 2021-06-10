@@ -75,7 +75,7 @@ infixr 20 _∘_
 -}
 infix 2 ∏-syntax
 
-∏-syntax : (A : 𝒰₀) (B : A → 𝒰₀) → 𝒰₀
+∏-syntax : (A : 𝒰 ℓ) (B : A → 𝒰 ℓ′) → 𝒰 (ℓ-max ℓ ℓ′)
 ∏-syntax = ∏
 
 syntax ∏-syntax A (λ x → B) = ∏[ x ∈ A ] B
@@ -158,9 +158,9 @@ data _∐_ (A B : 𝒰₀) : 𝒰₀ where
   statt '((p ∙ q) ⁻¹) ≡ ((q ⁻¹) ∙ (p ⁻¹))' - vorausgesetzt für alle anderen operatoren
   werden auch sinnvolle Prioritäten gesetzt.
 -}
-infixl 10 _≡_
+infixl 4 _≡_
 
-data _≡_ {A : 𝒰₀} : A → A → 𝒰₀ where
+data _≡_ {A : 𝒰 ℓ} : A → A → 𝒰 ℓ where
   refl : (x : A) → x ≡ x
 
 
@@ -287,7 +287,7 @@ bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
   π₁ \pi\_1
 -}
 
-record ∑ (A : 𝒰₀) (B : A → 𝒰₀) : 𝒰₀ where
+record ∑ (A : 𝒰 ℓ) (B : A → 𝒰 ℓ) : 𝒰 ℓ where
   constructor _,_
   field
     π₁ : A
@@ -298,7 +298,7 @@ open ∑
 -}
 infix 2 ∑-syntax
 
-∑-syntax : (A : 𝒰₀) (B : A → 𝒰₀) → 𝒰₀
+∑-syntax : (A : 𝒰 ℓ) (B : A → 𝒰 ℓ) → 𝒰 ℓ
 ∑-syntax = ∑
 
 syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
@@ -559,3 +559,23 @@ bem-2-1-4 : {A B : 𝒰₀} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
 
         K : f ∘ g ∼ (id B)
         K = π₁ (π₂ qinv)
+
+{- Definition 1.6.13: Fasern, Injektivität, Surjektivität, Äquivalenz -}
+fib : {A B : 𝒰₀} (f : A → B) (b : B) → 𝒰₀
+fib {A} f b = ∑[ x ∈ A ] f(x) ≡ b
+
+isInjective : {A B : 𝒰₀} (f : A → B) → 𝒰₀
+isInjective {_} {B} f = ∏[ y ∈ B ] isProp(fib f y)
+
+isSurjective : {A B : 𝒰₀} (f : A → B) → 𝒰₀
+isSurjective {_} {B} f = ∏[ y ∈ B ] fib f y
+
+isEquiv' : {A B : 𝒰₀} (f : A → B) → 𝒰₀
+isEquiv' {_} {B} f = ∏[ y ∈ B ] isContr(fib f y)
+
+{- Definition 2.3.3: Faserweise Abbildung induziert Abbildungen -}
+-- ∑→ : \sum\to
+∑→ : {A : 𝒰₀} {B B' : A → 𝒰₀}
+  → (∏[ x ∈ A ] (B(x) → B'(x)))
+  → ((∑[ x ∈ A ] B(x)) → (∑[ x ∈ A ] B'(x)))
+∑→ f (x , bₓ) = x , f(x)(bₓ)
