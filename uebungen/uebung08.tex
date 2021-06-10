@@ -3,15 +3,17 @@
 \begin{document}
 \maketitle{8}
 
-\begin{exercise}[Äquivalente Basen induzieren äquivalente Summen]
-  Sei $f:A \to B$ eine Funktion und $C : B \to \mU$ ein abhängiger Typ.
+\begin{exercise}[Rückzug abhängiger Typen und deren Summen]
+  Sei $f:A \to B$ eine Funktion und $C : B \to \mU$ ein abhängiger Typ über $B$.
+  Dies induziert einen abhängigen Typen $C \circ f : A \to \mU$ über $A$.
   \begin{enumerate}
-    \item Finde eine kanonische Abbildung $\sum_{x:A} C(f(x)) \to \sum_{y:B} C(y)$.
     \item Sei $p:a=_A a'$. 
       Zeige $\transp_{C\circ f}(p) = \transp_C (f(p))$.
+    \item Finde eine kanonische Abbildung $\sum_{x:A} C(f(x)) \to \sum_{y:B} C(y)$.
     \item Sei $f$ eine Äquivalenz.
       Zeige $\sum_{x:A} C(f(x)) \simeq \sum_{y:B} C(y)$.
   \end{enumerate}
+  Folgere, dass $\transp_C(q) = \transp_{\id_\mU}(\mathrm{ap}(C,q))$ für $q:b =_B b'$.
 \end{exercise}
 
 \begin{exercise}[Gleichheit punktierter Typen]
