@@ -1,3 +1,194 @@
+\subsection{Höhere Induktive Typen}
+
+Höhere induktive Typen haben neben Konstruktoren der Bauart, die wir bereits von den Induktiven Typen kennen, sogenannte \begriff{höhere Konstruktoren},
+deren Werte in Gleichheitstypen des höheren induktiven Typs liegen.
+Später werden wir auch höhere induktive Typen mit höheren Konstruktoren, die in iterierten Gleichheitstypen liegen, sehen.
+Zunächst wird der Typ $S¹$ zentral sein. Dieser hat wie der Typ $\eins$ einen Punkt-Konstruktor $\ast:S^1$ und zusätzlich einen
+höheren Konstruktor $l:\ast =_{S^1}\ast$.
+
+Eine Rekursionsregel ist leicht formuliert: Um eine Funktion $f:S^1\to A$ zu definieren, muss man $f(\ast):A$ und $f(l):f(\ast)=_A f(\ast)$ vorgeben.
+Das Induktionsprinzip ist etwas unhandlicher und wir wollen zunächst ein paar Definition machen, die uns die Formulierung erleichtern und schließlich nach der Einführung der neuen Regeln
+das Rekursionsprinzip aus dem Induktionsprinzip folgern.
+
+In \cref{lem:gleichheit-summe} haben wir festgestellt, dass ein Teil einer Gleichheit in einer abhängigen Summe von der Form
+\begin{mathpar}
+  \transp_B(p)(b)=b'
+\end{mathpar}
+ist. Das werden wir jetzt als allgemeine Definition von Gleichheiten in abhängigen Typen verwenden.
+\begin{definition}[Abhängige Gleichheit]
+  Seien $A:\mU$, und $B:A\to \mU$. Seien weiter $x,y:A$, $b:B(x)$ und $b':B(y)$.
+  \begin{enumerate}
+  \item Sei $p:x=_A y$. Ein \begriff{abhängier Pfad} oder eine \begriff{abhängige Gleichheit} zwischen $b$ und $b'$ ist ein Element des Typs
+    \begin{mathpar}
+      \left(b =_p^B b'\right)\colonequiv \left(\transp_B(p)(b)=b'\right)
+    \end{mathpar}
+  \item Sei $s:\prod_{x:A}B(x)$ eine abhängige Funktion. Die folgende Funktion ist die Anwendung eine abhängigen Funktion auf eine Gleichheit:
+    \begin{mathpar}
+      \mathrm{apd}(f):\prod_{p:x=_A y}f(x)=_p^B f(y)
+    \end{mathpar}
+    und festgelegt durch $\mathrm{apd}(f,\refl_x)\colonequiv\refl_b$. Wir schreiben auch $f(p)$ für $\mathrm{apd}(f,p)$.
+  \end{enumerate}
+\end{definition}
+
+Damit können wir die folgenden Regeln für den induktiven Einheitskreis leichter formulieren.
+Zunächst wollen wir noch die abhängige Variante mit der bekannten Anwendung von Funktionen auf Gleichheiten vergleichen:
+
+\begin{bemerkung}
+  \label{bem:transpconst}
+  Seien $A,B:\mU$. Dann gilt:
+  \begin{enumerate}
+  \item Für $x,y:A$, $p:x=_A y$ und alle $b:B$ haben wir:
+    \begin{mathpar}
+      \transpconst_{p,b}:\transp_{\_\mapsto B}(p)(b)=b
+    \end{mathpar}
+    durch Induktion über $p$ und $\transpconst_{\refl_x,b}\colonequiv \refl_b$
+  \item Es gilt: $\mathrm{apd}(f,p)= \transpconst_{p,f(x)}\kon\mathrm{ap}(f,p)$
+  \end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+  \begin{enumerate}
+  \item Bereits erledigt.
+  \item Induktion über $p$.
+  \end{enumerate}
+\end{beweis}
+
+
+Anders als bei den Konstruktoren induktiver Typen, werden wir bei höheren Konstruktoren keine urteilsmäßige Gleichheit für Berechnungen fordern,
+sondern nur Gleichheit.
+
+\begin{regeln}
+  Es gibt einen Typ $S^1:\mU$ den wir den (höheren induktiven) \begriff{Kreis}\index{Kreis}\index{$S^1$} nennen.
+  $S^1$ ist der höhere induktive Typ mit den Konstruktoren:
+  \begin{align*}
+    \ast:S^1 \\
+    l:\ast =_{S^1}\ast
+  \end{align*}
+  Das heißt: Für jeden abhängigen Typ $B:S^1\to\mU$ reicht es, $b:B(\ast)$ und $b_l:b =_l^B b$ vorzugeben,
+  um eine abhängige Funktion $s:\prod_{x:S^1}B(x)$ zu definieren.
+  Es gibt also eine Funktion:
+  \begin{mathpar}
+    \ind{S^1}:\prod_{B:S^1\to\mU}\prod_{b:B(\ast)}\left((b =_l^B b)\to\prod_{x:S^1}B(x)\right)
+  \end{mathpar}
+  die $\begriff{Kreisinduktion}$.
+  Es gelten folgende Berechnungsregeln:
+  \begin{align*}
+    \ind{S^1}(B,b,b_l)(\ast)&\equiv b \\
+    \mathrm{apd}(\ind{S^1}(B,b,b_l),l)\equiv \ind{S^1}(B,b,b_l)(l)&=b_l
+  \end{align*}
+  Wir werden abhängige Funktionen $f:\prod_{x:S^1}B(x)$ auch durch Fallunterscheidung wie angeben:
+  \begin{align*}
+    f(\ast)\colonequiv b \\
+    f(l):= b_l
+  \end{align*}
+\end{regeln}
+
+\begin{bemerkung}
+  Wie bereits bei den induktiven Typen, werden wir auch hier darauf verzichten, ein allgemeines Schema anzugeben.
+  Unter Homotopietypentheorie versteht man eine Typentheorie wie soweit eingeführt, in der jeder sinnvolle höhere induktive Typ existiert.
+  Wir werden lediglich Beispiele von sinnvollen höheren induktiven Typen kennenlernen.
+\end{bemerkung}
+
+Wir wollen zunächst das Rekursionprinzip für den Kreis herleiten.
+
+\begin{bemerkung}
+  Für $A:\mU$, $a:A$ und $a_l:a=_A a$ gibt es stets eine Funktion $\rec{S^1}(A,a,a_l):S^1\to A$ mit
+  \begin{align*}
+    \rec{S^1}(A,a,a_l)(\ast)\equiv a \\
+    \rec{S^1}(A,a,a_l)(l)=a_l
+  \end{align*}
+\end{bemerkung}
+\begin{beweis}
+  Wir verwenden Kreisinduktion für den konstanten abhängigen Typ $\_\mapsto A:S^1\to\mU$.
+  Es gibt eine Äquivalenz
+  \begin{mathpar}
+    (a =_l a) \simeq (a =_A a)
+  \end{mathpar}
+  durch Linkskonkatenation mit $\transpconst_{l,a}^{-1}$.
+  Wir verwenden die Inverse, um aus $a_l:a=_A a$ die Gleichheit $\transpconst_{l,a}\kon a_l:a=_l a$ zu produzieren.
+  Damit gilt für
+  \begin{mathpar}
+    \rec{S^1}(A,a,a_l)\colonequiv \ind{S^1}(\_\mapsto A, a, \transpconst_{l,a}\kon a_l)
+  \end{mathpar}
+  nach \cref{bem:transpconst}:
+  \begin{align*}
+    \mathrm{ap}(\rec{S^1}(A,a,a_l),l)&\equiv \mathrm{ap}(\ind{S^1}(\_\mapsto A, a, \transpconst_{l,a}\kon a_l),l) \\
+                                     &=\transpconst_{l,a}^{-1}\kon\mathrm{apd}(\ind{S^1}(\_\mapsto A, a, \transpconst_{l,a}\kon a_l),l) \\
+                                     &=\transpconst_{l,a}^{-1}\kon\transpconst_{l,a}\kon a_l \\
+                                     &=a_l
+  \end{align*}
+  Nach Definition gilt außerdem $\rec{S^1}(A,a,a_l)(\ast)\equiv a$.
+\end{beweis}
+
+Bevor wir den Kreis weiter kennenlernen, betrachten wir noch einen weiteren, sehr ähnlichen höheren induktiven Typ.
+
+\begin{regeln}
+  Es gibt einen Typ $I:\mU$, das \begriff{Intervall} mit den folgenden Konstruktoren:
+  \begin{align*}
+    0_I:I \\
+    1_I:I \\
+    s:0_I =_I 1_I
+  \end{align*}
+  Daraus ergibt sich das folgende Induktionsprinzip, die \begriff{Intervallinduktion}:
+  \begin{mathpar}
+    \ind{I}:\prod_{B:I\to\mU}\prod_{b_0:B(0_I)}\prod_{b_1:B(1_I)}b_0 =_s^B b_1 \to\prod_{x:I}B(x) 
+  \end{mathpar}
+  mit Berechnungsregeln:
+  \begin{align*}
+    \ind{I}(B,b_0,b_1,b_s)(0_I)\equiv b_0 \\
+    \ind{I}(B,b_0,b_1,b_s)(1_I)\equiv b_1 \\
+    \mathrm{apd}(\ind{I}(B,b_0,b_1,b_s),s)\equiv\ind{I}(B,b_0,b_1,b_s)(s) = b_s \\
+  \end{align*}
+\end{regeln}
+
+\begin{bemerkung}
+  Das Intervall $I$ ist kontrahierbar.
+\end{bemerkung}
+\begin{beweis}
+  Als Kontraktionszentrum wählen wir $0_I$. Nun wollen wir zeigen:
+  \begin{mathpar}
+    \prod_{x:I}0_I=x
+  \end{mathpar}
+  Mit Intervallinduktion reicht es dafür festzustellen, dass $\refl:0_I=0_I$ und $s:0_i=1_I$ gelten und zu zeigen:
+  \begin{mathpar}
+    \refl =_s s
+  \end{mathpar}
+  oder anders formuliert: $\transp_{0_I=\_}(s)(\refl)=s$. Das haben wir aber bereits allgemein geklärt in \cref{lem:transp-lpath}.
+\end{beweis}
+
+Trotzdem können wir mit dem Intervall etwas neues zeigen.
+Davor brauchen wir noch das Rekursionsprinzip.
+\begin{lemma}[Intervallrekursion]
+  Für $A:\mU$, $a,a':A$ und $a_s:a=_A a'$ gibt es
+  \begin{mathpar}
+    \rec{I}(A,a,a',a_s):I\to A
+  \end{mathpar}
+  mit $\rec{I}(A,a,a',a_s)(0_I)\equiv a$, $\rec{I}(A,a,a',a_s)(1_I)\equiv a'$ und $\rec{I}(A,a,a',a_s)(s)\equiv a_s$.
+\end{lemma}
+\begin{beweis}
+  Wie bei der Kreisrekursion.
+\end{beweis}
+
+\begin{theorem}[Abhängige Funktionsextensionalität]
+  Seien $A:\mU$ und $B:A\to\mU$. Dann ist für abhängige Funktionen $f,g:\prod_{x:A}B(x)$ die folgende Funktion eine Äquivalenz:
+  \begin{mathpar}
+    x\mapsto\mathrm{ap}(f\mapsto f(x),\_): f = g \to \prod_{x:A}f(x)=g(x)
+  \end{mathpar}
+\end{theorem}
+\begin{beweis}
+  Zunächst konstruieren wir für $H:\prod_{x:A}f(x)=g(x)$ eine Gleichheit $p_H:f=g$.
+  Für $x:A$ können wir die Gleichheit $f(x)=g(x)$ durch eine Abbildung $I\to B(x)$ ersetzen
+  und damit $H$ durch die Abbildung
+  \begin{mathpar}
+    \tilde{H}\colonequiv (x:A)\mapsto \rec{I}(B(x),f(x),g(x),H_x) : \prod_{x:A}I\to B(x)
+  \end{mathpar}
+  Nun vertauschen wir $A$ und $I$:
+  \begin{mathpar}
+    \tilde{\tilde{H}}\colonequiv (i:I)\mapsto (x:A)\mapsto \tilde{H}(x)(i) : I\to\prod_{x:A}B(x)
+  \end{mathpar}
+  Und damit haben wir $p_H\colonequiv \tilde{\tilde{H}}(s) : f=g$.
+  Damit fehlt noch die Äquivalenz...
+\end{beweis}
+
 \subsection{n-Typen}
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
 Die Mengen haben den alternativen Namen $0$-Typen und zu Aussagen, kann man auch $-1$-Typen und zu kontrahierbaren Typen $-2$-Typen sagen.
@@ -20,14 +211,14 @@ Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
     \begin{mathpar}
       n\mathrm{-Type}\colonequiv \sum_{A:\mU} \isNType{n}
     \end{mathpar}
-    Diese Typ gibt es also für jeden Universenlevel.
+    Diesen Typ gibt es also für jeden Universenlevel.
   \end{enumerate}
 \end{definition}
 
 
 Wir wollen jetzt Regeln für n-Abschneidungen einführen, die wir teilweise bereits für die -1-Abschneidung gesehen hatten.
 
-\begin{regeln}
+\begin{regeln}[Nein.]
   Sei $n:\N_{-2}$ ein Homotopielevel und $A:\mU$.
   Es gibt einen Typ $\| A \|_{n}:\mU$, die \begriff{$n$-Abschneidung} von $A$.
   Es gilt $\isNType{n}(\| A\|_n)$ und für $a:A$ gibt es $|a|:\| A\|_n$.
@@ -66,7 +257,5 @@ Das stimmt auch allgemeiner für $\isNType{n}(A)$.
   \end{enumerate}
 \end{beweis}
 
-
-\subsection{Höhere Induktive Typen}
 \subsection{Überlagerungen}
 \subsection{Homotopiegruppen}

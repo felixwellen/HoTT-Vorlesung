@@ -23,9 +23,13 @@ open import Agda.Primitive public
   using    ( Level )
   renaming ( lzero to ℓ-zero
            ; lsuc  to ℓ-suc
-           ; _⊔_   to ℓ-max
-           ; Set   to U
-           ; Setω  to Uω )
+           ; _⊔_   to ℓ-max )
+
+𝒰 : (i : Level) → Set(ℓ-suc i)
+𝒰 i = Set i
+
+𝒰₀ : 𝒰 (ℓ-suc ℓ-zero)
+𝒰₀ = 𝒰 ℓ-zero
 
 {-
   Es ist gängige Praxis, Universenlevel in Agda mit ℓ (\ell) zu bezeichnen.
@@ -50,7 +54,7 @@ private
   Funktionsterme "x↦f(x)" werden in Agda "λ x → f(x)" geschrieben und Anwendungen "f x" statt "f(x)".
   Die Leerzeichen sind dabei wichtig.
 -}
-_∘_ : {A B C : U} → (B → C) → (A → B) → (A → C)
+_∘_ : {A B C : 𝒰₀} → (B → C) → (A → B) → (A → C)
 g ∘ f = λ x → g(f(x))
 
 infixr 20 _∘_
@@ -63,7 +67,7 @@ infixr 20 _∘_
   Das Ergebnis liegt dann im größeren der beiden Universen 'U ℓ' und 'U'
 -}
 
-∏ : (A : U ℓ) (B : A → U ℓ′) → U (ℓ-max ℓ ℓ′)
+∏ : (A : 𝒰 ℓ) (B : A → 𝒰 ℓ′) → 𝒰 (ℓ-max ℓ ℓ′)
 ∏ A B = (x : A) → B x
 
 {-
@@ -79,7 +83,7 @@ syntax ∏-syntax A (λ x → B) = ∏[ x ∈ A ] B
 {-
   Natürliche Zahlen...
 -}
-data ℕ : U where
+data ℕ : 𝒰₀ where
   0ℕ : ℕ
   succℕ : ℕ → ℕ
 {-
@@ -87,7 +91,7 @@ data ℕ : U where
   Das können wir nutzen, um den Induktionsterm aus der Vorlesung zu definieren.
 -}
 
-ind= : {P : ℕ → U} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → ∏[ n ∈ ℕ ] (P n)
+ind= : {P : ℕ → 𝒰₀} → (p₀ : P 0ℕ) → (pₛ : (n : ℕ) → P n → P (succℕ n)) → ∏[ n ∈ ℕ ] (P n)
 ind= p₀ pₛ 0ℕ = p₀
 ind= p₀ pₛ (succℕ n) = pₛ  n (ind= p₀ pₛ n)
 
@@ -113,21 +117,21 @@ succℕ n · k = (n · k) + k
   ∅ \0
 -}
 
-data ∅ : U where
+data ∅ : 𝒰₀ where
 
 {-
   1.3.1
   ∗ \ast
 -}
 
-data 𝟙 : U where
+data 𝟙 : 𝒰₀ where
   ∗ : 𝟙
 
 {-
   1.3.4
 -}
 
-data 𝟚 : U where
+data 𝟚 : 𝒰₀ where
   0₂ : 𝟚
   1₂ : 𝟚
 
@@ -137,7 +141,7 @@ data 𝟚 : U where
   Koprodukt, 1.3.5
 -}
 
-data _∐_ (A B : U) : U where
+data _∐_ (A B : 𝒰₀) : 𝒰₀ where
   ι₁ : A → A ∐ B
   ι₂ : B → A ∐ B
 
@@ -174,14 +178,14 @@ bsp1-4-2 ∗ = refl ∗
   mit der 'infixl' zeile legen wir fest, dass ⁻¹ links assoziativ ist und eine höhere Priorität als default (=20) hat
 -}
 infixl 21 _⁻¹
-_⁻¹ : {A : U} {x y : A} → (x ≡ y) → (y ≡ x)
+_⁻¹ : {A : 𝒰₀} {x y : A} → (x ≡ y) → (y ≡ x)
 (refl x) ⁻¹ = refl x
 
 {-
   ∙ \.
 -}
 
-_∙_ : {A : U} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
+_∙_ : {A : 𝒰₀} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 (refl x) ∙ p = p
 
 {-
@@ -191,10 +195,10 @@ _∙_ : {A : U} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 infixr 4 _≡⟨_⟩_
 infixr 5 _≡∎
 
-_≡⟨_⟩_ : {A : U} {y z : A} (x : A) (p : x ≡ y) (q : y ≡ z) → x ≡ z
+_≡⟨_⟩_ : {A : 𝒰₀} {y z : A} (x : A) (p : x ≡ y) (q : y ≡ z) → x ≡ z
 x ≡⟨ p ⟩ q = p ∙ q
 
-_≡∎ : {A : U} (x : A) → x ≡ x
+_≡∎ : {A : 𝒰₀} (x : A) → x ≡ x
 x ≡∎ = refl x
 
 {-
@@ -210,7 +214,7 @@ bsp1-4-4 x y = bsp1-4-2 x ∙ (bsp1-4-2 y) ⁻¹
   in dem alle Definitionen den Parameter '{A : U}' ohne diesen jedesmal erwähnen zu müssen.
 -}
 
-module _ {A : U} where
+module _ {A : 𝒰₀} where
   reflLNeutral : {x y : A}
                  → (p : x ≡ y)
                  → (refl x) ∙ p ≡ p
@@ -240,7 +244,7 @@ module _ {A : U} where
   1.4.11
 -}
 
-ap : {A B : U} {x y : A}
+ap : {A B : 𝒰₀} {x y : A}
      → (f : A → B)
      → (p : x ≡ y)
      → f x ≡ f y
@@ -250,7 +254,7 @@ ap f (refl x) = refl (f x)
   1.4.10
 -}
 
-module macLane {A : U} {x y z w u : A}
+module macLane {A : 𝒰₀} {x y z w u : A}
                (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u) where
 
        α₁ : ((p ∙ q) ∙ r) ∙ s ≡ (p ∙ (q ∙ r)) ∙ s
@@ -270,7 +274,7 @@ module macLane {A : U} {x y z w u : A}
 
 open macLane
 
-bem1-4-10 : {A : U} {x y z w u : A}
+bem1-4-10 : {A : 𝒰₀} {x y z w u : A}
             (p : x ≡ y) (q : y ≡ z) (r : z ≡ w) (s : w ≡ u)
             → ((α₁ p q r s) ∙ (α₂ p q r s)) ∙ (α₃ p q r s) ≡ (α₄ p q r s) ∙ (α₅ p q r s)
 bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
@@ -304,21 +308,21 @@ syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
   Transport (in B entlang von p)
 -}
 
-tr : {A : U} (B : A → U) {x y : A} (p : x ≡ y) → B(x) → B(y)
+tr : {A : 𝒰₀} (B : A → 𝒰₀) {x y : A} (p : x ≡ y) → B(x) → B(y)
 tr B (refl _) = λ z → z
 
 -- Lemma 1.4.14
-tr-x≡a : {A : U} {a : A}
+tr-x≡a : {A : 𝒰₀} {a : A}
   → {x x' : A} (p : x ≡ x')
   → (λ { q → p ⁻¹ ∙ q }) ≡ tr (λ x → x ≡ a) (p)
 tr-x≡a (refl _) = refl λ z → z
 
 -- Lemma 1.4.15
-tr-concat : {A : U} {B : A → U} {x y z : A} → ∏[ p ∈ x ≡ y ] ∏[ q ∈ y ≡ z ] tr B (q) ∘ tr B (p) ≡ tr B (p ∙ q)
+tr-concat : {A : 𝒰₀} {B : A → 𝒰₀} {x y z : A} → ∏[ p ∈ x ≡ y ] ∏[ q ∈ y ≡ z ] tr B (q) ∘ tr B (p) ≡ tr B (p ∙ q)
 tr-concat {_} {B} (refl w) q = refl (tr B q)
 
 -- Lemma 1.5.9
-∑= : ∀ {A : U} {x y : A} {B : A → U} {bx : B(x)} {by' : B(y)}
+∑= : ∀ {A : 𝒰₀} {x y : A} {B : A → 𝒰₀} {bx : B(x)} {by' : B(y)}
   → ∏[ p ∈ x ≡ y ] (  ( tr B (p)(bx) ≡ by' ) → ( (x , bx) ≡ (y , by') )  )
 ∑= (refl z) (refl w) = refl (z , w)
 
@@ -327,13 +331,13 @@ tr-concat {_} {B} (refl w) q = refl (tr B q)
   × \times
 -}
 
-_×_ : (A B : U) → U
+_×_ : (A B : 𝒰₀) → 𝒰₀
 A × B = ∑[ x ∈ A ] B
 
 {-
   1.5.4
 -}
-_inversZu_ : {A B : U} (f : A → B) (g : B → A) → U
+_inversZu_ : {A B : 𝒰₀} (f : A → B) (g : B → A) → 𝒰₀
 f inversZu g = (∏[ x ∈ _ ] g(f x) ≡ x) × (∏[ y ∈ _ ] f(g y) ≡ y)
 
 qinv : {A B : Set} (f : A → B) → Set
@@ -341,18 +345,18 @@ qinv f = ∑[ g ∈ (_ → _) ] g inversZu f
 
 infix 6 _inversZu_
 
-_hatInverse : {A B : U} (f : A → B) → U
+_hatInverse : {A B : 𝒰₀} (f : A → B) → 𝒰₀
 f hatInverse = ∑[ g ∈ (_ → _) ] g inversZu f
 
 {-
   1.5.5
 -}
 
-curry : {A B C : U}
+curry : {A B C : 𝒰₀}
         → ((A × B) → C) → (A → (B → C))
 curry f = λ a b → f (a , b)
 
-uncurry : {A B C : U}
+uncurry : {A B C : 𝒰₀}
           → (A → (B → C)) → ((A × B) → C)
 uncurry f = λ x → f (π₁ x) (π₂ x)
 
@@ -360,15 +364,15 @@ uncurry f = λ x → f (π₁ x) (π₂ x)
   1.5.7
 -}
 
-_teilt_ : (a b : ℕ) → U
+_teilt_ : (a b : ℕ) → 𝒰₀
 a teilt b = ∑[ d ∈ ℕ ]  d · a ≡ b
 
 {-
   1.5.8
 -}
 
-module lemma1-5-8 {A B : U} where
-  u : {A B : U} → (x : A × B) → x ≡ (π₁ x , π₂ x)
+module lemma1-5-8 {A B : 𝒰₀} where
+  u : {A B : 𝒰₀} → (x : A × B) → x ≡ (π₁ x , π₂ x)
   u (x , y) = refl (x , y)
 
   pair=⁻¹' : {x y : A × B}
@@ -399,15 +403,15 @@ module lemma1-5-8 {A B : U} where
   ∼ \sim
 -}
 
-_∼_ : {A B : U} (f : A → B) → (g : A → B) → U
+_∼_ : {A B : 𝒰₀} (f : A → B) → (g : A → B) → 𝒰₀
 _∼_ {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
 
 infix 18 _∼_
 
-∼sym : {A B : U} {f g : A → B} (H : f ∼ g) → (g ∼ f)
+∼sym : {A B : 𝒰₀} {f g : A → B} (H : f ∼ g) → (g ∼ f)
 ∼sym H = λ x → (H x)⁻¹
 
-∼trans : {A B : U} {f g h : A → B} (H : f ∼ g) (G : g ∼ h) → f ∼ h
+∼trans : {A B : 𝒰₀} {f g h : A → B} (H : f ∼ g) (G : g ∼ h) → f ∼ h
 ∼trans H G = λ x → (H x) ∙ (G x)
 
 {-
@@ -417,10 +421,10 @@ infix 18 _∼_
 infixr 4 _∼⟨_⟩_
 infixr 5 _∼∎
 
-_∼⟨_⟩_ : {A B : U} {g h : A → B} (f : A → B) (H : f ∼ g) (K : g ∼ h) → f ∼ h
+_∼⟨_⟩_ : {A B : 𝒰₀} {g h : A → B} (f : A → B) (H : f ∼ g) (K : g ∼ h) → f ∼ h
 f ∼⟨ H ⟩ K = ∼trans H K
 
-_∼∎ : {A B : U} (f : A → B) → f ∼ f
+_∼∎ : {A B : 𝒰₀} (f : A → B) → f ∼ f
 f ∼∎ = λ x → refl (f x)
 
 {-
@@ -428,21 +432,21 @@ f ∼∎ = λ x → refl (f x)
 -}
 
 postulate
-  FunExt : {A B : U} (f g : A → B) → (∏[ x ∈ A ] f(x) ≡ g(x)) → f ≡ g
+  FunExt : {A B : 𝒰₀} (f g : A → B) → (∏[ x ∈ A ] f(x) ≡ g(x)) → f ≡ g
 
 {-
   1.6.5
 -}
 -- A ist kontrahierbar / ein -2-Typ
-isContr : (A : U) → U
+isContr : (A : 𝒰₀) → 𝒰₀
 isContr A = ∑[ c ∈ A ] ∏[ x ∈ A ] x ≡ c
 
 -- A ist eine Aussage / ein -1-Typ
-isProp : (A : U) → U
+isProp : (A : 𝒰₀) → 𝒰₀
 isProp A = ∏[ x ∈ A ] ∏[ y ∈ A ] x ≡ y
 
 -- A ist eine Menge / ein 0-Typ
-isU : (A : U) → U
+isU : (A : 𝒰₀) → 𝒰₀
 isU A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] p ≡ q
 
 
@@ -467,51 +471,51 @@ isU A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] 
   Ergebnis von Blatt 3, Aufgabe 3:
   Kontrahierbare Typen haben kontrahierbare Gleichheitstypen
 -}
-AisContr→≡isContr : ∀ {A : U} → isContr(A) → ∏[ x ∈ A ] ∏[ y ∈ A ] isContr(x ≡ y)
+AisContr→≡isContr : ∀ {A : 𝒰₀} → isContr(A) → ∏[ x ∈ A ] ∏[ y ∈ A ] isContr(x ≡ y)
 AisContr→≡isContr c x y = ( ((π₂ c) x) ∙ ((π₂ c) y) ⁻¹ ) , λ {(refl z) → (⁻¹RInv ( (π₂ c) z))⁻¹}
 
 
-AisContr→AisProp : ∀ {A : U} → isContr(A) → isProp(A)
+AisContr→AisProp : ∀ {A : 𝒰₀} → isContr(A) → isProp(A)
 AisContr→AisProp c = λ x y → ((π₂ c) x) ∙ ((π₂ c) y) ⁻¹
 
 {-
   2.1.1
 -}
-pre-whisker : ∀ {A B A' : U} {f g : A → B} (φ : A' → A) (H : f ∼ g) → f ∘ φ ∼ g ∘ φ
+pre-whisker : ∀ {A B A' : 𝒰₀} {f g : A → B} (φ : A' → A) (H : f ∼ g) → f ∘ φ ∼ g ∘ φ
 pre-whisker φ H = λ x → H (φ x)
 
-post-whisker : ∀ {A B B' : U} {f g : A → B} (ψ : B → B') (H : f ∼ g) → ψ ∘ f ∼ ψ ∘ g
+post-whisker : ∀ {A B B' : 𝒰₀} {f g : A → B} (ψ : B → B') (H : f ∼ g) → ψ ∘ f ∼ ψ ∘ g
 post-whisker ψ H = λ x → ap ψ (H x)
 
 {-
   2.1.2
 -}
-id : (A : U) → A → A
+id : (A : 𝒰₀) → A → A
 id A = λ a → a
 
-LInv : {A B : U} (f : A → B) → U
+LInv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
 LInv {A} {B} f = ∑[ g ∈ (B → A) ] g ∘ f ∼ (id A)
 
-RInv : {A B : U} (f : A → B) → U
+RInv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
 RInv {A} {B} f = ∑[ h ∈ (B → A) ] f ∘ h ∼ (id B)
 
-LRInv : {A B : U} (f : A → B) → U
+LRInv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
 LRInv f = (LInv f) × (RInv f)
 
-isEquiv : {A B : U} (f : A → B) → U
+isEquiv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
 isEquiv f = LRInv f
 
-_equivalentTo_ : (A B : U) → U
+_equivalentTo_ : (A B : 𝒰₀) → 𝒰₀
 A equivalentTo B = ∑[ f ∈ (A → B) ] isEquiv f
 
 -- Typ der Äquivalenzen (≃ – \simeq)
-_≃_ : (A B : U) → U
+_≃_ : (A B : 𝒰₀) → 𝒰₀
 A ≃ B = ∑[ f ∈ (A → B) ] isEquiv f
 
 {-
   2.1.3 – Logische Äquivalenz
 -}
-_↔_ : (A B : U) → U
+_↔_ : (A B : 𝒰₀) → 𝒰₀
 A ↔ B = (∑[ f ∈ (A → B)] 𝟙) × (∑[ g ∈ (B → A) ] 𝟙)
 
 infixr 15 _↔_
@@ -519,7 +523,7 @@ infixr 15 _↔_
 {-
   Bemerkung 2.1.4: Seien A,B : 𝓤 und f : A → B. Die Typen LRInv(f) und qinv(f) sind logisch äquivalent
 -}
-bem-2-1-4 : {A B : U} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
+bem-2-1-4 : {A B : 𝒰₀} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
 π₁ (bem-2-1-4 {A} {B} f) = (qinv-proof , ∗)
   where
     qinv-proof : LRInv f → qinv f
@@ -532,11 +536,15 @@ bem-2-1-4 : {A B : U} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
         h = π₁ (π₂ lrinv)
 
         g∼h : g ∼ h
-        g∼h = ∼trans (post-whisker g (∼sym (π₂ (π₂ lrinv)))) (pre-whisker h (π₂ (π₁ lrinv)))
-        --             \--------- g ∼ g ∘ (f ∘ h) ---------/   \----- (g ∘ f) ∘ h ∼ h -----/
+        g∼h = g           ∼⟨ post-whisker g (∼sym (π₂ (π₂ lrinv))) ⟩
+              g ∘ (f ∘ h)  ∼⟨ pre-whisker h (π₂ (π₁ lrinv)) ⟩
+              h            ∼∎
 
         ginvf : g inversZu f
-        ginvf = ∼trans (post-whisker f g∼h) (π₂ (π₂ lrinv)) ,  π₂ (π₁ lrinv)
+        ginvf = (f ∘ g   ∼⟨ post-whisker f g∼h ⟩
+                 f ∘ h   ∼⟨ π₂ (π₂ lrinv) ⟩
+                 id _    ∼∎)
+                , π₂ (π₁ lrinv)
 
 π₂ (bem-2-1-4 {A} {B} f) = lrinv-proof , ∗
   where
