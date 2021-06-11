@@ -232,6 +232,30 @@ Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
   zu folgern. Diese gilt aber bereits urteilsmäßig, wenn wir die Berechnung des Transports einsetzen.
 \end{beweis}
 
+Nachdem wir nun die vermutlich einfachsten nicht-trivialen höheren induktiven Typen (HIT) kennen gelernt haben,
+wollen wir uns zum Abschluss des Abschnitts noch einem etwas komplizierteren HIT widmen,
+dem sogenannten Mengenquotient.
+
+\begin{regeln}
+  Seien $A:\mU$ und $R:A\to A\to \mU$. Dann ist $A / R:\mU$ der höhere induktive Typ mit den folgenden Konstruktoren:
+  \begin{align*}
+    [\_]&:A\to A / R \\
+    \mathrm{eq /}&:\prod_{x,y:A}R(x,y)\to [x] =_{A / R} [y] \\
+    \mathrm{set /}&:\prod_{x,y:A / R}\prod_{p,q : x=y}p=q
+  \end{align*}
+\end{regeln}
+
+\begin{bemerkung}
+  $A / R$ ist stets eine Menge.
+\end{bemerkung}
+\begin{beweis}
+  Das wird durch den dritten Konstruktor direkt so erzwungen.
+\end{beweis}
+
+\begin{beispiel}
+  $\Z\colonequiv \N\times\N / ((n,k) (n',k') \mapsto n+k'=n'+k)$
+\end{beispiel}
+
 \subsection{n-Typen}
 \ignore{
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
