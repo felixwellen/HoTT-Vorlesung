@@ -24,9 +24,9 @@ ist. Das werden wir jetzt als allgemeine Definition von Gleichheiten in abhängi
     \end{mathpar}
   \item Sei $s:\prod_{x:A}B(x)$ eine abhängige Funktion. Die folgende Funktion ist die Anwendung eine abhängigen Funktion auf eine Gleichheit:
     \begin{mathpar}
-      \mathrm{apd}(f):\prod_{p:x=_A y}f(x)=_p^B f(y)
+      \mathrm{apd}(s):\prod_{p:x=_A y}s(x)=_p^B s(y)
     \end{mathpar}
-    und festgelegt durch $\mathrm{apd}(f,\refl_x)\colonequiv\refl_b$. Wir schreiben auch $f(p)$ für $\mathrm{apd}(f,p)$.
+    und festgelegt durch $\mathrm{apd}(s,\refl_x)\colonequiv\refl_b$. Wir schreiben auch $s(p)$ für $\mathrm{apd}(s,p)$.
   \end{enumerate}
 \end{definition}
 
@@ -37,12 +37,12 @@ Zunächst wollen wir noch die abhängige Variante mit der bekannten Anwendung vo
   \label{bem:transpconst}
   Seien $A,B:\mU$. Dann gilt:
   \begin{enumerate}
-  \item Für $x,y:A$, $p:x=_A y$ und alle $b:B$ haben wir:
+  \item Für $x,y:A$, $p:x=_A y$ und alle $b:B$ erhalten wir eine abhängige Gleichheit
     \begin{mathpar}
       \transpconst_{p,b}:\transp_{\_\mapsto B}(p)(b)=b
     \end{mathpar}
-    durch Induktion über $p$ und $\transpconst_{\refl_x,b}\colonequiv \refl_b$
-  \item Es gilt: $\mathrm{apd}(f,p)= \transpconst_{p,f(x)}\kon\mathrm{ap}(f,p)$
+    durch Induktion über $p$ und $\transpconst_{\refl_x,b}\colonequiv \refl_b$.
+  \item Für $f:A \to B$ und $p:x =_A y$ gilt $\mathrm{apd}(f,p)= \transpconst_{p,f(x)}\kon\mathrm{ap}(f,p)$.
   \end{enumerate}
 \end{bemerkung}
 \begin{beweis}
@@ -63,7 +63,7 @@ sondern nur Gleichheit.
     \ast:S^1 \\
     l:\ast =_{S^1}\ast
   \end{align*}
-  Das heißt: Für jeden abhängigen Typ $B:S^1\to\mU$ reicht es, $b:B(\ast)$ und $b_l:b =_l^B b$ vorzugeben,
+  Das heißt für jeden abhängigen Typ $B:S^1\to\mU$ reicht es $b:B(\ast)$ und $b_l:b =_l^B b$ vorzugeben,
   um eine abhängige Funktion $s:\prod_{x:S^1}B(x)$ zu definieren.
   Es gibt also eine Funktion:
   \begin{mathpar}
@@ -75,10 +75,10 @@ sondern nur Gleichheit.
     \ind{S^1}(B,b,b_l)(\ast)&\equiv b \\
     \mathrm{apd}(\ind{S^1}(B,b,b_l),l)\equiv \ind{S^1}(B,b,b_l)(l)&=b_l
   \end{align*}
-  Wir werden abhängige Funktionen $f:\prod_{x:S^1}B(x)$ auch durch Fallunterscheidung wie angeben:
+  Wir werden abhängige Funktionen $s:\prod_{x:S^1}B(x)$ auch durch Fallunterscheidung wie folgt angeben:
   \begin{align*}
-    f(\ast)\colonequiv b \\
-    f(l):= b_l
+    s(\ast)\colonequiv b \\
+    s(l):= b_l
   \end{align*}
 \end{regeln}
 
