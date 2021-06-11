@@ -13,7 +13,6 @@
     \item Sei $f$ eine Äquivalenz.
       Zeige $\sum_{x:A} C(f(x)) \simeq \sum_{y:B} C(y)$.
   \end{enumerate}
-  Folgere, dass $\transp_C(q) = \transp_{\id_\mU}(\mathrm{ap}(C,q))$ für $q:b =_B b'$.
 \end{exercise}
 
 \begin{exercise}[Gleichheit punktierter Typen]
@@ -36,7 +35,6 @@
   Sei $A:\mU$ ein Typ.
   \begin{enumerate}
     \item Zeige für den abhängigen Typen $C(x)\colonequiv x =_A x$:
-
       $$
       \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} p^{-1} \cdot q \cdot p
       $$
@@ -45,22 +43,17 @@
       $$
       \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} \mathrm{ap}(f,p)^{-1} \cdot q \cdot \mathrm{ap}(g,p)
       $$
-    \item Sei $B:A \to \mU$ ein abhängiger Typ über $A$ und $f,g:\prod_{x:A} B(x)$ abhängige Funktionen.
-      Zeige für den abhängigen Typen $C(x) \colonequiv f(x)=_{B(x)} g(x)$:
-      $$
-      \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} \mathrm{apd}(f,p)^{-1} \cdot \mathrm{ap}(\transp_B(p),q) \cdot \mathrm{apd}(g,p)
-      $$
   \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
   Sei $A$ ein Typ.
   \begin{enumerate}
-    \item Verwende Funktionsextensionalität um ein $\eta$-Reduktionsprinzip für $S^1 \to A$ zu zeigen:
+    \item Verwende Funktionsextensionalität um das folgende Eindeutigkeitsprinzip für $S^1 \to A$ zu zeigen:
       $$
       \prod_{f:S^1 \to A} f = \rec{S^1}(A, f(\ast), f(l))
       $$
-    \item Folgere, dass $(S^1\to A) \simeq \sum_{x:A} x=x$.
+    \item Folgere, dass $(S^1\to A) \simeq \sum_{x:A} x=x$ gilt.
   \end{enumerate}
 \end{exercise}
 
