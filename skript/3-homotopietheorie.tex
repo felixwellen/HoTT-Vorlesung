@@ -252,9 +252,23 @@ dem sogenannten Mengenquotient.
   Das wird durch den dritten Konstruktor direkt so erzwungen.
 \end{beweis}
 
-\begin{beispiel}
-  $\Z\colonequiv \N\times\N / ((n,k) (n',k') \mapsto n+k'=n'+k)$
-\end{beispiel}
+Wir werden nun die Konstruktion von $\Z$ als Quotient der Menge der Paare in $\N\times \N$ mithilfe von Mengenquotienten nachbauen.
+Die Paare $(n,k):\N\times\N$ darf man sich als Differenz ``$n-k$'' vorstellen, was auch die folgende Relation erklärt.
+
+\begin{definition}
+  Sei für $(n,k),(n',k'):\N\times\N$:
+  \begin{mathpar}
+    (n,k) \sim_\Z (n',k')\colonequiv n+k'=_\N n'+k
+  \end{mathpar}
+  Die \begriff{Ganzen Zahlen}\index{$\Z$} sind wie folgt als Quotient gegeben:
+  \begin{mathpar}
+      \Z\colonequiv \N\times\N / {\sim_\Z}
+    \end{mathpar}
+\end{definition}
+
+\begin{definition}
+  
+\end{definition}
 
 \subsection{n-Typen}
 \ignore{
