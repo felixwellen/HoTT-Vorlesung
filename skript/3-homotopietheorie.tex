@@ -157,16 +157,38 @@ Bevor wir den Kreis weiter kennenlernen, betrachten wir noch einen weiteren, seh
 
 Trotzdem können wir mit dem Intervall etwas neues zeigen.
 Davor brauchen wir noch das Rekursionsprinzip.
-\begin{lemma}[Intervallrekursion]
-  Für $A:\mU$, $a,a':A$ und $a_s:a=_A a'$ gibt es
-  \begin{mathpar}
-    \rec{I}(A,a,a',a_s):I\to A
-  \end{mathpar}
-  mit $\rec{I}(A,a,a',a_s)(0_I)\equiv a$, $\rec{I}(A,a,a',a_s)(1_I)\equiv a'$ und $\rec{I}(A,a,a',a_s)(s)\equiv a_s$.
+\begin{lemma}[Intervallrekursion und ihre Eindeutigkeit]
+  Sei $A:\mU$.
+  \begin{enumerate}
+  \item Für $a,a':A$ und $a_s:a=_A a'$ gibt es
+    \begin{mathpar}
+      \rec{I}(A,a,a',a_s):I\to A
+    \end{mathpar}
+    mit $\rec{I}(A,a,a',a_s)(0_I)\equiv a$, $\rec{I}(A,a,a',a_s)(1_I)\equiv a'$ und $\rec{I}(A,a,a',a_s)(s)\equiv a_s$.
+  \item Für $f:I\to A$ gilt:
+    \begin{mathpar}
+      f=\rec{I}(A,f(0_I),f(1_I),f(s))
+    \end{mathpar}
+  \end{enumerate}
 \end{lemma}
 \begin{beweis}
-  Wie bei der Kreisrekursion.
+  \begin{enumerate}
+  \item Wie bei der Kreisrekursion.
+  \item Noch nicht entschieden, ob das eine Übungsaufgabe ist.
+  \end{enumerate}
 \end{beweis}
+
+Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
+\begin{definition}
+  Seien $A:\mU$, $B:A\to \mU$ und $f,g:\prod_{x:A}B(x)$. Eine \begriff{abhängige Homotopie}\index{$\sim$} von $f$ nach $g$ ist ein Term von
+  \begin{mathpar}
+    f\sim g\colonequiv \prod_{x:A}f(x)=g(x)
+  \end{mathpar}
+  Weiter verwenden wir in diesem Abschnitt die Funktion
+  \begin{mathpar}
+    \mathrm{hap}\colonequiv (p:f=g)\mapsto (x:A)\mapsto\mathrm{ap}(f\mapsto f(x),p) :f=g\to f\sim g
+  \end{mathpar}
+\end{definition}
 
 \begin{theorem}[Abhängige Funktionsextensionalität]
   Seien $A:\mU$ und $B:A\to\mU$. Dann ist für abhängige Funktionen $f,g:\prod_{x:A}B(x)$ die folgende Funktion eine Äquivalenz:
@@ -185,9 +207,65 @@ Davor brauchen wir noch das Rekursionsprinzip.
   \begin{mathpar}
     \tilde{\tilde{H}}\colonequiv (i:I)\mapsto (x:A)\mapsto \tilde{H}(x)(i) : I\to\prod_{x:A}B(x)
   \end{mathpar}
-  Und damit haben wir $p_H\colonequiv \tilde{\tilde{H}}(s) : f=g$.
-  Damit fehlt noch die Äquivalenz...
+  Und damit haben wir $p_H\colonequiv \tilde{\tilde{H}}(s) : f=g$. 
+  
+  Nun können wir den Gleichheitssatz verwenden, wenn wir es schaffen zu zeigen, dass
+  \begin{mathpar}
+    \sum_{g:\prod_{x:A}B(x)}f\sim g
+  \end{mathpar}
+  kontrahierbar ist. Dazu berechnen wir erstmal mit Gleichheitsinduktion über $p:g=g'$,
+  dass für den entsprechenden Transport und eine Homotopie $H:f\sim g$ gilt:
+  \begin{mathpar}
+    \transp_{g\mapsto f\sim g}(p)(H)=(x:A)\mapsto H_x\kon \mathrm{hap}(p)_x
+  \end{mathpar}
+  Sei $(f,x\mapsto \refl_{f(x)})$ unser Kontraktionszentrum.
+  Dann ist für jedes weitere $(g,H):\sum_{g:\prod_{x:A}B(x)}f\sim g$ durch die Konstruktion am Anfang des Beweises eine Gleichheit $p_H:f=g$ gegeben.
+  Um zu zeigen, dass $(f,x\mapsto \refl_{f(x)})=(g,H)$ gilt, müssen wir nach der Charakterisierung in \cref{lem:gleichheit-summe} also nur noch zeigen:
+  \begin{mathpar}
+    \transp_{g\mapsto f\sim g}(p_H)(x\mapsto\refl_{f(x)})=H
+  \end{mathpar}
+  Linke und rechte Seite dieser Gleichung sind abhängige Funktionen des Typs $\prod_{x:A}f(x)=g(x)$,
+  also können wir die Konstruktion ``$p_H$'' anwenden, um die benötigte Gleichheit aus einer Punktweisen Gleichheit, also aus 
+  \begin{mathpar}
+    \transp_{g\mapsto f\sim g}(p_H)(x\mapsto\refl_{f(x)})\sim H
+  \end{mathpar}
+  zu folgern. Diese gilt aber bereits urteilsmäßig, wenn wir die Berechnung des Transports einsetzen.
 \end{beweis}
+
+Nachdem wir nun die vermutlich einfachsten nicht-trivialen höheren induktiven Typen (HIT) kennen gelernt haben,
+wollen wir uns zum Abschluss des Abschnitts noch einem etwas komplizierteren HIT widmen,
+dem sogenannten Mengenquotient.
+
+\begin{regeln}
+  Seien $A:\mU$ und $R:A\to A\to \mU$. Dann ist $A / R:\mU$ der höhere induktive Typ mit den folgenden Konstruktoren:
+  \begin{align*}
+    [\_]&:A\to A / R \\
+    \mathrm{eq /}&:\prod_{x,y:A}R(x,y)\to [x] =_{A / R} [y] \\
+    \mathrm{set /}&:\prod_{x,y:A / R}\prod_{p,q : x=y}p=q
+  \end{align*}
+\end{regeln}
+
+\begin{bemerkung}
+  $A / R$ ist stets eine Menge.
+\end{bemerkung}
+\begin{beweis}
+  Das wird durch den dritten Konstruktor direkt so erzwungen.
+\end{beweis}
+
+Wir werden nun die Konstruktion von $\Z$ als Quotient der Menge der Paare in $\N\times \N$ mithilfe von Mengenquotienten nachbauen.
+Die Paare $(n,k):\N\times\N$ darf man sich als Differenz ``$n-k$'' vorstellen, was auch die folgende Relation erklärt.
+
+\begin{definition}
+  Sei für $(n,k),(n',k'):\N\times\N$:
+  \begin{mathpar}
+    (n,k) \sim_\Z (n',k')\colonequiv n+k'=_\N n'+k
+  \end{mathpar}
+  Die \begriff{Ganzen Zahlen}\index{$\Z$} sind wie folgt als Quotient gegeben:
+  \begin{mathpar}
+      \Z\colonequiv \N\times\N / {\sim_\Z}
+    \end{mathpar}
+\end{definition}
+
 
 \subsection{n-Typen}
 \ignore{
