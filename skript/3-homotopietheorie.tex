@@ -260,10 +260,19 @@ dem sogenannten Mengenquotient.
 \end{regeln}
 
 \begin{bemerkung}
-  $A / R$ ist stets eine Menge.
+  $A / R$ ist stets eine Menge. Und es gibt folgendes Rekursionsprinzip:
+  Für jede Menge $B$, Funktion $f:A\to B$ und Nachweis, dass die Relation respektiert wird,
+  also einen Term in
+  \begin{mathpar}
+    r:\prod_{x,y:A}R(x,y)\to f(x)=_B f(y)
+  \end{mathpar}
+  gibt es eine Funktion
+  \begin{mathpar}
+    \rec{A / R}(B,f,r) : A / R \to B
+  \end{mathpar}
 \end{bemerkung}
 \begin{beweis}
-  Das wird durch den dritten Konstruktor direkt so erzwungen.
+  Das wird durch den dritten Konstruktor direkt so erzwungen. Wir wollen hier darauf verzichten, das Rekursionsprinzip herzuleiten.
 \end{beweis}
 
 Wir werden nun die Konstruktion von $\Z$ als Quotient der Menge der Paare in $\N\times \N$ mithilfe von Mengenquotienten nachbauen.
@@ -274,15 +283,23 @@ Die Paare $(n,k):\N\times\N$ darf man sich als Differenz ``$n-k$'' vorstellen, w
   \begin{mathpar}
     (n,k) \sim_\Z (n',k')\colonequiv n+k'=_\N n'+k
   \end{mathpar}
-  Die \begriff{Ganzen Zahlen}\index{$\Z$} sind wie folgt als Quotient gegeben:
+  Die \begriff{Ganzen Zahlen}\index{$\Z$} sind wie folgt als Mengenquotient gegeben:
   \begin{mathpar}
-      \Z\colonequiv \N\times\N / {\sim_\Z}
-    \end{mathpar}
+    \Z\colonequiv \N\times\N / {\sim_\Z}
+  \end{mathpar}
 \end{definition}
 
+\begin{definition}
+  Die Funktion $\mathrm{succ}_\Z:\Z \to \Z$ sei durch Rekursion gegeben durch:
+  \begin{mathpar}
+    s(n,k)\colonequiv (\sucN(n),k) 
+  \end{mathpar}
+  und den Nachweis der Wohldefiniertheit:
+  Sei $(n,k)\sim_\Z (n',k')$, dann gilt $n+k'=n'+k$, also auch $\sucN(n+k')=\sucN(n'+k)$.
+  Letzteres ist nach der Definition der Addition $\sucN(n)+k'=\sucN(n')+k$, also gilt $s(n,k)\sim_\Z s(n',k')$.
+\end{definition}
 
 \subsection{n-Typen}
-\ignore{
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
 Die Mengen haben den alternativen Namen $0$-Typen und zu Aussagen, kann man auch $-1$-Typen und zu kontrahierbaren Typen $-2$-Typen sagen.
 Wir werden in diesem Abschnitt $n$-Typen definieren, für $n=-2,-1,0,1,\dots$.
@@ -298,17 +315,55 @@ Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
   \item Für jeden Typ $A$ sei der Typ $\isNType{n}$ wie folgt per Rekursion über $n:\N_{-2}$ definiert:
     \begin{align*}
       -2\mathrm{-Type}(A)&\colonequiv \isContr(A) \\
-      (n+1)\mathrm{-Type}(A)&\colonequiv \prod_{x,y:A}n\mathrm{-Type}(x=_A y)
+      \isNType{n}(A)&\colonequiv \prod_{x,y:A}\isNType{n}(x=_A y)
     \end{align*}
   \item Der \begriff{Typ der $n$-Typen} ist für $n:\N_{-2}$:
     \begin{mathpar}
-      n\mathrm{-Type}\colonequiv \sum_{A:\mU} \isNType{n}
+      n\mathrm{-Type}\colonequiv \sum_{A:\mU} \isNType{n}(A)
     \end{mathpar}
     Diesen Typ gibt es also für jeden Universenlevel.
   \end{enumerate}
 \end{definition}
 
+\begin{lemma}
+  Sind Typen $A,B:\mU$ äquivalent und ist $A$ ein $n$-Typ, dann ist auch $B$ ein $n$-Typ.
+\end{lemma}
+\begin{beweis}
+  Univalenz.
+\end{beweis}
 
+\begin{lemma}
+  Sei $A:\mU$ und $B:A\to\mU$ so, dass $B(x)$ für jedes $x:A$ ein $n$-Typ ist.
+  Dann ist $\prod_{x:A}B(x)$ ein $n$-Typ.
+\end{lemma}
+\begin{beweis}
+  Wir beweisen zunächst den Fall $n\equiv -2$. Seien also die $B(x)$ kontrahierbar.
+  Dann gibt es eine abhängige Funktion $z:\prod_{x:A}$, die jedes $x:A$ auf das Kontraktionszentrum von $B(x)$ abbildet.
+  Es reicht also zu zeigen, dass $\prod_{x:A}B(x)$ eine Aussage ist.
+  Seien dazu $f,g:\prod_{x:A}B(x)$. Wir wollen $f=g$ zeigen.
+  Mit abhängiger Funktionsextensionalität reicht es zu zeigen, dass $f\sim g$ gilt.
+  Wir wissen aber, dass für jedes $x:A$ bereits $f(x)=g(x)$ gilt, da $B(x)$ eine Aussage ist.
+
+  Wir zeigen nun die eigentliche Aussage per Induktion über den Homotopielevel.
+  Seien nun also die $B(x)$ $n+1$-Typen.
+  Für $f,g:\prod_{x:A}B(x)$ gilt $f=g \simeq f\sim g \equiv \prod_{x:A}f(x)=_{B(x)}g(x)$.
+  Letzteres ist ein Gleichheitstyp in einem $n+1$-Typ, also ein $n$-Typ.
+  Damit können wir die Induktionshypothese anwenden und sehen, dass auch $f=g$ ein $n$-Typ sein muss und damit dass $\prod_{x:A}B(x)$ ein $n+1$-Typ ist.
+\end{beweis}
+
+\begin{lemma}
+  \label{lem:isprop-hlevel}
+  Sei $A:\mU$. Für jedes $n:\N_{-2}$ gilt $\isProp(\isNType{n}(A))$.
+\end{lemma}
+\begin{beweis}
+  Induktion über den Homotopielevel.
+  Wir zeigen also zunächst: $\isProp(\isContr(A))$.
+  Seien also $(a,H),(a',H'):\isContr(A)$
+  Noch nicht fertig ...
+\end{beweis}
+
+
+\ignore{
 Wir wollen jetzt Regeln für n-Abschneidungen einführen, die wir teilweise bereits für die -1-Abschneidung gesehen hatten.
 
 \begin{regeln}[Nein.]
