@@ -1,0 +1,60 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{8}
+
+\begin{exercise}[Rückzug abhängiger Typen und deren Summen]
+  Sei $f:A \to B$ eine Funktion und $C : B \to \mU$ ein abhängiger Typ über $B$.
+  Dies induziert einen abhängigen Typen $C \circ f : A \to \mU$ über $A$.
+  \begin{enumerate}
+    \item Sei $p:a=_A a'$. 
+      Zeige $\transp_{C\circ f}(p) = \transp_C (f(p))$.
+    \item Finde eine kanonische Abbildung $\sum_{x:A} C(f(x)) \to \sum_{y:B} C(y)$.
+    \item Sei $f$ eine Äquivalenz.
+      Zeige $\sum_{x:A} C(f(x)) \simeq \sum_{y:B} C(y)$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Gleichheit punktierter Typen]
+  Ein \emph{punktierter Typ} ist ein Paar bestehend aus einem Typen $A$ und einem Term $a:A$.
+  Den Typ $\sum_{A:\mU}A$ aller punktierten Typen in einem Universum $\mU$ bezeichnen wir mit $\mU_*$.
+
+  Eine \emph{punktierte Äquivalenz} zwischen zwei punktierten Typen $(A,a)$, $(B,b)$ ist eine Äquivalenz $f:A\simeq B$ mit $f(a)=b$.
+  Den Typ aller punktierten Äquivalenzen zwischen $(A,a)$ und $(B,b)$ definieren wir als
+  $$
+  (A,a) \simeq_* (B,b) \colonequiv \sum_{f:A\simeq B} f(a) = b.
+  $$
+
+  Finde für je zwei punktierte Typen $(A,a), (B,b) : \mU_*$ eine Äquivalenz
+  $$
+  \left((A,a) =_{\mU_*} (B,b)\right) \simeq \left((A,a) \simeq_* (B,b)\right).
+  $$
+\end{exercise}
+
+\begin{exercise}[Transporte in Gleichheitstypen]
+  Sei $A:\mU$ ein Typ.
+  \begin{enumerate}
+    \item Zeige für den abhängigen Typen $C(x)\colonequiv x =_A x$:
+      $$
+      \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} p^{-1} \cdot q \cdot p
+      $$
+    \item Sei $B:\mU$ ein Typ und $f,g : A \to B$ Funktionen.
+      Zeige für den abhängigen Typen $C(x) \colonequiv f(x)=_{B} g(x)$:
+      $$
+      \prod_{a,a':A}\prod_{p:a =_A a'} \prod_{q:C(a)} \transp_C (p,q) =_{C(a')} \mathrm{ap}(f,p)^{-1} \cdot q \cdot \mathrm{ap}(g,p)
+      $$
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Funktionen aus $S^1$ sind Schleifen]
+  Sei $A$ ein Typ.
+  \begin{enumerate}
+    \item Verwende Funktionsextensionalität um das folgende Eindeutigkeitsprinzip für $S^1 \to A$ zu zeigen:
+      $$
+      \prod_{f:S^1 \to A} f = \rec{S^1}(A, f(\ast), f(l))
+      $$
+    \item Folgere, dass $(S^1\to A) \simeq \sum_{x:A} x=x$ gilt.
+  \end{enumerate}
+\end{exercise}
+
+\end{document}
