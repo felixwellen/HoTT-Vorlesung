@@ -191,13 +191,19 @@ Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
 \end{definition}
 
 \begin{theorem}[Abhängige Funktionsextensionalität]
-  Seien $A:\mU$ und $B:A\to\mU$. Dann ist für abhängige Funktionen $f,g:\prod_{x:A}B(x)$ die folgende Funktion eine Äquivalenz:
-  \begin{mathpar}
-    x\mapsto\mathrm{ap}(f\mapsto f(x),\_): f = g \to \prod_{x:A}f(x)=g(x)
-  \end{mathpar}
+  Seien $A:\mU$ und $B:A\to\mU$. Dann gilt für abhängige Funktionen $f,g:\prod_{x:A}B(x)$:
+  \begin{enumerate}
+  \item Es gibt eine Funktion $\varphi:f\sim g \to f = g$ und es gilt $\mathrm{hap}(\varphi(H))=H$ für jede abhängige Homotopie $H:f\sim g$.
+  \item Die Funktion
+    \begin{mathpar}
+      \mathrm{hap} :f=g\to f\sim g
+    \end{mathpar}
+    ist eine Äquivalenz.
+  \end{enumerate}
 \end{theorem}
 \begin{beweis}
-  Zunächst konstruieren wir für $H:\prod_{x:A}f(x)=g(x)$ eine Gleichheit $p_H:f=g$.
+  \begin{enumerate}
+  \item   Zunächst konstruieren wir für $H:\prod_{x:A}f(x)=g(x)$ eine Gleichheit $p_H:f=g$.
   Für $x:A$ können wir die Gleichheit $f(x)=g(x)$ durch eine Abbildung $I\to B(x)$ ersetzen
   und damit $H$ durch die Abbildung
   \begin{mathpar}
@@ -207,9 +213,16 @@ Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
   \begin{mathpar}
     \tilde{\tilde{H}}\colonequiv (i:I)\mapsto (x:A)\mapsto \tilde{H}(x)(i) : I\to\prod_{x:A}B(x)
   \end{mathpar}
-  Und damit haben wir $p_H\colonequiv \tilde{\tilde{H}}(s) : f=g$. 
-  
-  Nun können wir den Gleichheitssatz verwenden, wenn wir es schaffen zu zeigen, dass
+  Und damit haben wir $p_H\colonequiv \tilde{\tilde{H}}(s) : f=g$.
+
+  Nun können wir durch kommutieren von $\mathrm{ap}$ und $\circ$ sehen, dass gilt:
+  \begin{align*}
+    \mathrm{hap}(\varphi(H))&\equiv (x:A)\mapsto\mathrm{ap}(f\mapsto f(x),\varphi(H)) \\
+                            &\equiv (x:A)\mapsto\mathrm{ap}(f\mapsto f(x),\mathrm{ap}((i:I)\mapsto (y:A)\mapsto \tilde{H}(y)(i),s)) \\
+                            &= (x:A)\mapsto \mathrm{ap}((i:I)\mapsto \tilde{H}(x)(i),s) \\
+                            &= (x:A)\mapsto H_x
+  \end{align*}
+\item Nun können wir den Gleichheitssatz verwenden, wenn wir es schaffen zu zeigen, dass
   \begin{mathpar}
     \sum_{g:\prod_{x:A}B(x)}f\sim g
   \end{mathpar}
@@ -229,7 +242,8 @@ Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
   \begin{mathpar}
     \transp_{g\mapsto f\sim g}(p_H)(x\mapsto\refl_{f(x)})\sim H
   \end{mathpar}
-  zu folgern. Diese gilt aber bereits urteilsmäßig, wenn wir die Berechnung des Transports einsetzen.
+  zu folgern. Diese gilt aber bereits nach der Berechnung des Transports und (a).
+\end{enumerate}
 \end{beweis}
 
 Nachdem wir nun die vermutlich einfachsten nicht-trivialen höheren induktiven Typen (HIT) kennen gelernt haben,
