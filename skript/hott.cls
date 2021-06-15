@@ -46,6 +46,7 @@
     \newtheorem{axiom}[theorem]{Axiom}
     \newtheorem{fakt}[theorem]{Fakt}
     \newtheorem{beispiel}[theorem]{Beispiel}
+    \newtheorem{korollar}[theorem]{Korollar}
 
 \theoremstyle{nonumberplain}
 \theoremsymbol{\ensuremath{\Box}}

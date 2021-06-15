@@ -378,10 +378,10 @@ Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
   \end{mathpar}
   mit Gleichheitsinduktion zeigen. Damit ist also $\isContr(A)$ eine Aussage.
 
-  Jetzt nehmen wir also an, dass $\isNType{n}(A)$ eine Aussage ist und zeigen, dass $\isNType{n+1}(A)$ eine Aussage ist.
+  Jetzt nehmen wir also an, dass $\isNType{n}(A)$ eine Aussage ist und zeigen, dass $\isNType{(n+1)}(A)$ eine Aussage ist.
   Nach Definition gilt
   \begin{mathpar}
-    \isNType{n+1}(A)\equiv \prod_{x,y:A}\isNType{x=_A y}
+    \isNType{(n+1)}(A)\equiv \prod_{x,y:A}\isNType{x=_A y}
   \end{mathpar}
   Für festes $x:A$ ist also mit \cref{lem:pi-n-type} der Typ $\prod_{y:A}\isNType{x=_A y}$ eine Aussage.
   Mit erneutem Anwenden von \cref{lem:pi-n-type}, ist also auch $\prod_{x:A}\prod_{y:A}\isNType{x=_A y}$ eine Aussage.
@@ -389,6 +389,15 @@ Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
 
 
 \ignore{
+
+\begin{korollar}
+  Die logischen Äquivalenzen in \cref{thm:aequivalenzen} sind Äquivalenzen.
+\end{korollar}
+\begin{beweis}
+  Die 
+\end{beweis}
+
+  
 Wir wollen jetzt Regeln für n-Abschneidungen einführen, die wir teilweise bereits für die -1-Abschneidung gesehen hatten.
 
 \begin{regeln}[Nein.]
@@ -411,24 +420,7 @@ Wir wollen jetzt Regeln für n-Abschneidungen einführen, die wir teilweise bere
 
 Erst später: Wie bereits angekündigt, ist $\isContr(A)$ stets eine Aussage, egal was $A$ ist.
 Das stimmt auch allgemeiner für $\isNType{n}(A)$.
-
-\begin{lemma}
-  \label{lem:isprop-hlevel}
-  Sei $A:\mU$.
-  \begin{enumerate}
-  \item Für jedes $B:A\to\mU$ haben wir
-    \begin{mathpar}
-      \left(\prod_{x:A}\isProp(B(x))\right)\to \isProp\left(\prod_{x:A}B(x)\right)
-    \end{mathpar}
-  \item Es gilt $\isProp(\isContr(A))$.
-  \item Für jedes $n:\N_{-2}$ gilt $\isProp(\isNType{n}(A))$.
-  \end{enumerate}
-\end{lemma}
-\begin{beweis}
-  \begin{enumerate}
-  \item Für $x,y:\prod_{x:A}B(x)$ müssen wir $x=y$ zeigen.
-  \end{enumerate}
-\end{beweis}
 }
+
 \subsection{Überlagerungen}
 \subsection{Homotopiegruppen}
