@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 {-
   Hier kann man ganz unverfänglich Agda im Browser ausprobieren:
 
@@ -308,7 +309,7 @@ syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
   Transport (in B entlang von p)
 -}
 
-tr : {A : 𝒰₀} (B : A → 𝒰₀) {x y : A} (p : x ≡ y) → B(x) → B(y)
+tr : ∀ {i j} {A : 𝒰 i} (B : A → 𝒰 j) {x y : A} (p : x ≡ y) → B(x) → B(y)
 tr B (refl _) = λ z → z
 
 -- Lemma 1.4.14
