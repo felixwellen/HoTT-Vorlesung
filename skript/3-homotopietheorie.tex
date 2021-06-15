@@ -333,6 +333,7 @@ Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
 \end{beweis}
 
 \begin{lemma}
+  \label{lem:pi-n-type}
   Sei $A:\mU$ und $B:A\to\mU$ so, dass $B(x)$ für jedes $x:A$ ein $n$-Typ ist.
   Dann ist $\prod_{x:A}B(x)$ ein $n$-Typ.
 \end{lemma}
@@ -358,8 +359,32 @@ Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
 \begin{beweis}
   Induktion über den Homotopielevel.
   Wir zeigen also zunächst: $\isProp(\isContr(A))$.
-  Seien also $(a,H),(a',H'):\isContr(A)$
-  Noch nicht fertig ...
+  Seien also
+  \begin{mathpar}
+    (a,H),(a',H'):\isContr(A)\equiv\sum_{x:A}\prod_{y:A}x=y
+  \end{mathpar}
+  Mit \cref{lem:gleichheit-summe} müssen wir also zeigen:
+  \begin{mathpar}
+    \sum_{p:a=a'}\transp_{x\mapsto \prod_{y:A}x=y}(p)(H)=H'
+  \end{mathpar}
+  wobei der Transport die Linkskonkatenation mit $p^{-1}$ ist.
+  Wir wählen $p\colonequiv H_{a'}$. Dann ist noch zu zeigen:
+  \begin{mathpar}
+    \prod_{y:A}H_{a'}^{-1}\kon H_y=H'_y
+  \end{mathpar}
+  Das lässt sich etwas überraschend auf dem Umweg über die Verallgemeinerung
+  \begin{mathpar}
+    \prod_{q:x=y}H_{x}^{-1}\kon H_y=q
+  \end{mathpar}
+  mit Gleichheitsinduktion zeigen. Damit ist also $\isContr(A)$ eine Aussage.
+
+  Jetzt nehmen wir also an, dass $\isNType{n}(A)$ eine Aussage ist und zeigen, dass $\isNType{n+1}(A)$ eine Aussage ist.
+  Nach Definition gilt
+  \begin{mathpar}
+    \isNType{n+1}(A)\equiv \prod_{x,y:A}\isNType{x=_A y}
+  \end{mathpar}
+  Für festes $x:A$ ist also mit \cref{lem:pi-n-type} der Typ $\prod_{y:A}\isNType{x=_A y}$ eine Aussage.
+  Mit erneutem Anwenden von \cref{lem:pi-n-type}, ist also auch $\prod_{x:A}\prod_{y:A}\isNType{x=_A y}$ eine Aussage.
 \end{beweis}
 
 
