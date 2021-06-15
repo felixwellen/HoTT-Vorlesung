@@ -19,12 +19,6 @@ module _ where
   postulate
     seg : a ≡ b
   
-  I-recursion : ∀ {i} {A : 𝒰 i} 
-            → (a₀ : A) → (a₁ : A) → (aₛ : a₀ ≡ a₁) 
-            → (I → A)
-  I-recursion {i} {A} a₀ a₁ aₛ #zero = a₀
-  I-recursion {i} {A} a₀ a₁ aₛ #one = a₁
-
   I-induction : ∀ {i} {P : I → 𝒰 i} (zero* : P a) (one* : P b)
            (seg* : tr P seg zero* ≡ one*) → ((i : I) →  P i)
   I-induction zero* one* seg* #zero = zero*
