@@ -317,7 +317,7 @@ Damit können wir $n$-Typen für jeden Abschneidungslevel $n$ definieren:
   \begin{enumerate}
   \item Für jeden Typ $A$ sei der Typ $\isNType{n}$ wie folgt per Rekursion über $n:\N_{-2}$ definiert:
     \begin{align*}
-      -2\mathrm{-Type}(A)&\colonequiv \isContr(A) \\
+      \isNType{(-2)}(A)&\colonequiv \isContr(A) \\
       \isNType{n}(A)&\colonequiv \prod_{x,y:A}\isNType{n}(x=_A y)
     \end{align*}
   \item Der \begriff{Typ der $n$-Typen} ist für $n:\N_{-2}$:
