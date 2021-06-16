@@ -1,0 +1,23 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{9}
+
+\begin{exercise}[Intervallrekursion]
+  Sei $A:\mU$ ein Typ.
+  Zeige:
+  \begin{enumerate}
+  \item Für $a,a':A$ und $a_s:a=_A a'$ gibt es
+    \begin{mathpar}
+      \rec{I}(A,a,a',a_s):I\to A
+    \end{mathpar}
+    mit $\rec{I}(A,a,a',a_s)(0_I)\equiv a$, $\rec{I}(A,a,a',a_s)(1_I)\equiv a'$ und $\rec{I}(A,a,a',a_s)(s)\equiv a_s$.
+  \item Für Funktionen $I\to A$ gilt folgendes Eindeutigkeitsprinzip:
+    $$
+    \prod_{f:I\to A} f = \rec{I}(A,f(0_I),f(1_I),f(s))
+    $$
+  \item Es ist $(I \to A) \simeq \sum_{x,y:A} x =_A y$.
+  \end{enumerate}
+\end{exercise}
+
+\end{document}
