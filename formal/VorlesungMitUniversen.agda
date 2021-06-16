@@ -32,6 +32,9 @@ open import Agda.Primitive public
 𝒰₀ : 𝒰 (ℓ-suc ℓ-zero)
 𝒰₀ = 𝒰 ℓ-zero
 
+𝒰₁ : 𝒰 (ℓ-suc (ℓ-suc ℓ-zero))
+𝒰₁ = 𝒰 (ℓ-suc ℓ-zero)
+
 {-
   Es ist gängige Praxis, Universenlevel in Agda mit ℓ (\ell) zu bezeichnen.
   Wir werden dafür mit dem folgenden so etwas wie 'Hier seien stets ℓ, ℓ′ und ℓ″ Universenlevel':
@@ -55,7 +58,7 @@ private
   Funktionsterme "x↦f(x)" werden in Agda "λ x → f(x)" geschrieben und Anwendungen "f x" statt "f(x)".
   Die Leerzeichen sind dabei wichtig.
 -}
-_∘_ : {A B C : 𝒰₀} → (B → C) → (A → B) → (A → C)
+_∘_ : {A : 𝒰 ℓ} {B : 𝒰 ℓ′} {C : 𝒰 ℓ″} → (B → C) → (A → B) → (A → C)
 g ∘ f = λ x → g(f(x))
 
 infixr 20 _∘_
@@ -189,6 +192,8 @@ _⁻¹ : {A : 𝒰₀} {x y : A} → (x ≡ y) → (y ≡ x)
 _∙_ : {A : 𝒰₀} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 (refl x) ∙ p = p
 
+infixr 20 _∙_
+
 {-
   Das folgende erlaubt es uns, Gleichungen in üblichem Stil
   aufzubauen.
@@ -288,7 +293,7 @@ bem1-4-10 (refl x) (refl x) (refl x) (refl x) = refl (refl (refl x))
   π₁ \pi\_1
 -}
 
-record ∑ (A : 𝒰 ℓ) (B : A → 𝒰 ℓ) : 𝒰 ℓ where
+record ∑ (A : 𝒰 ℓ) (B : A → 𝒰 ℓ′) : 𝒰 (ℓ-max ℓ ℓ′) where
   constructor _,_
   field
     π₁ : A
@@ -299,7 +304,7 @@ open ∑
 -}
 infix 2 ∑-syntax
 
-∑-syntax : (A : 𝒰 ℓ) (B : A → 𝒰 ℓ) → 𝒰 ℓ
+∑-syntax : (A : 𝒰 ℓ) (B : A → 𝒰 ℓ′) → 𝒰 (ℓ-max ℓ ℓ′)
 ∑-syntax = ∑
 
 syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
@@ -309,7 +314,7 @@ syntax ∑-syntax A (λ x → B) = ∑[ x ∈ A ] B
   Transport (in B entlang von p)
 -}
 
-tr : ∀ {i j} {A : 𝒰 i} (B : A → 𝒰 j) {x y : A} (p : x ≡ y) → B(x) → B(y)
+tr : {A : 𝒰 ℓ} (B : A → 𝒰 ℓ′) {x y : A} (p : x ≡ y) → B(x) → B(y)
 tr B (refl _) = λ z → z
 
 -- Lemma 1.4.14
@@ -332,7 +337,7 @@ tr-concat {_} {B} (refl w) q = refl (tr B q)
   × \times
 -}
 
-_×_ : (A B : 𝒰₀) → 𝒰₀
+_×_ : (A B : 𝒰 ℓ) → 𝒰 ℓ
 A × B = ∑[ x ∈ A ] B
 
 {-
@@ -404,8 +409,8 @@ module lemma1-5-8 {A B : 𝒰₀} where
   ∼ \sim
 -}
 
-_∼_ : {A B : 𝒰₀} (f : A → B) → (g : A → B) → 𝒰₀
-_∼_ {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
+_∼_ : {A B : 𝒰 ℓ} (f : A → B) → (g : A → B) → 𝒰 ℓ
+_∼_ {ℓ} {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
 
 infix 18 _∼_
 
@@ -447,8 +452,8 @@ isProp : (A : 𝒰₀) → 𝒰₀
 isProp A = ∏[ x ∈ A ] ∏[ y ∈ A ] x ≡ y
 
 -- A ist eine Menge / ein 0-Typ
-isU : (A : 𝒰₀) → 𝒰₀
-isU A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] p ≡ q
+isSet : (A : 𝒰₀) → 𝒰₀
+isSet A = ∏[ x ∈ A ] ∏[ y ∈ A ] ∏[ p ∈ x ≡ y ] ∏[ q ∈ x ≡ y ] p ≡ q
 
 
 {-
@@ -491,32 +496,32 @@ post-whisker ψ H = λ x → ap ψ (H x)
 {-
   2.1.2
 -}
-id : (A : 𝒰₀) → A → A
+id : (A : 𝒰 ℓ) → A → A
 id A = λ a → a
 
-LInv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
-LInv {A} {B} f = ∑[ g ∈ (B → A) ] g ∘ f ∼ (id A)
+LInv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
+LInv {ℓ} {A} {B} f = ∑[ g ∈ (B → A) ] g ∘ f ∼ (id A)
 
-RInv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
-RInv {A} {B} f = ∑[ h ∈ (B → A) ] f ∘ h ∼ (id B)
+RInv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
+RInv {ℓ} {A} {B} f = ∑[ h ∈ (B → A) ] f ∘ h ∼ (id B)
 
-LRInv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
+LRInv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
 LRInv f = (LInv f) × (RInv f)
 
-isEquiv : {A B : 𝒰₀} (f : A → B) → 𝒰₀
+isEquiv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
 isEquiv f = LRInv f
 
-_equivalentTo_ : (A B : 𝒰₀) → 𝒰₀
+_equivalentTo_ : (A B : 𝒰 ℓ) → 𝒰 ℓ
 A equivalentTo B = ∑[ f ∈ (A → B) ] isEquiv f
 
 -- Typ der Äquivalenzen (≃ – \simeq)
-_≃_ : (A B : 𝒰₀) → 𝒰₀
+_≃_ : (A B : 𝒰 ℓ) → 𝒰 ℓ
 A ≃ B = ∑[ f ∈ (A → B) ] isEquiv f
 
 {-
   2.1.3 – Logische Äquivalenz
 -}
-_↔_ : (A B : 𝒰₀) → 𝒰₀
+_↔_ : (A B : 𝒰 ℓ) → 𝒰 ℓ
 A ↔ B = (∑[ f ∈ (A → B)] 𝟙) × (∑[ g ∈ (B → A) ] 𝟙)
 
 infixr 15 _↔_
