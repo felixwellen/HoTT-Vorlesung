@@ -191,13 +191,19 @@ Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
 \end{definition}
 
 \begin{theorem}[Abhängige Funktionsextensionalität]
-  Seien $A:\mU$ und $B:A\to\mU$. Dann ist für abhängige Funktionen $f,g:\prod_{x:A}B(x)$ die folgende Funktion eine Äquivalenz:
-  \begin{mathpar}
-    x\mapsto\mathrm{ap}(f\mapsto f(x),\_): f = g \to \prod_{x:A}f(x)=g(x)
-  \end{mathpar}
+  Seien $A:\mU$ und $B:A\to\mU$. Dann gilt für abhängige Funktionen $f,g:\prod_{x:A}B(x)$:
+  \begin{enumerate}
+  \item Es gibt eine Funktion $\varphi:f\sim g \to f = g$ und es gilt $\mathrm{hap}(\varphi(H))=H$ für jede abhängige Homotopie $H:f\sim g$.
+  \item Die Funktion
+    \begin{mathpar}
+      \mathrm{hap} :f=g\to f\sim g
+    \end{mathpar}
+    ist eine Äquivalenz.
+  \end{enumerate}
 \end{theorem}
 \begin{beweis}
-  Zunächst konstruieren wir für $H:\prod_{x:A}f(x)=g(x)$ eine Gleichheit $p_H:f=g$.
+  \begin{enumerate}
+  \item   Zunächst konstruieren wir für $H:\prod_{x:A}f(x)=g(x)$ eine Gleichheit $p_H:f=g$.
   Für $x:A$ können wir die Gleichheit $f(x)=g(x)$ durch eine Abbildung $I\to B(x)$ ersetzen
   und damit $H$ durch die Abbildung
   \begin{mathpar}
@@ -207,9 +213,16 @@ Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
   \begin{mathpar}
     \tilde{\tilde{H}}\colonequiv (i:I)\mapsto (x:A)\mapsto \tilde{H}(x)(i) : I\to\prod_{x:A}B(x)
   \end{mathpar}
-  Und damit haben wir $p_H\colonequiv \tilde{\tilde{H}}(s) : f=g$. 
-  
-  Nun können wir den Gleichheitssatz verwenden, wenn wir es schaffen zu zeigen, dass
+  Und damit haben wir $p_H\colonequiv \tilde{\tilde{H}}(s) : f=g$.
+
+  Nun können wir durch kommutieren von $\mathrm{ap}$ und $\circ$ sehen, dass gilt:
+  \begin{align*}
+    \mathrm{hap}(\varphi(H))&\equiv (x:A)\mapsto\mathrm{ap}(f\mapsto f(x),\varphi(H)) \\
+                            &\equiv (x:A)\mapsto\mathrm{ap}(f\mapsto f(x),\mathrm{ap}((i:I)\mapsto (y:A)\mapsto \tilde{H}(y)(i),s)) \\
+                            &= (x:A)\mapsto \mathrm{ap}((i:I)\mapsto \tilde{H}(x)(i),s) \\
+                            &= (x:A)\mapsto H_x
+  \end{align*}
+\item Nun können wir den Gleichheitssatz verwenden, wenn wir es schaffen zu zeigen, dass
   \begin{mathpar}
     \sum_{g:\prod_{x:A}B(x)}f\sim g
   \end{mathpar}
@@ -229,7 +242,8 @@ Zunächst erweitern wir die Definition von Homotopien auf abhängige Typen:
   \begin{mathpar}
     \transp_{g\mapsto f\sim g}(p_H)(x\mapsto\refl_{f(x)})\sim H
   \end{mathpar}
-  zu folgern. Diese gilt aber bereits urteilsmäßig, wenn wir die Berechnung des Transports einsetzen.
+  zu folgern. Diese gilt aber bereits nach der Berechnung des Transports und (a).
+\end{enumerate}
 \end{beweis}
 
 Nachdem wir nun die vermutlich einfachsten nicht-trivialen höheren induktiven Typen (HIT) kennen gelernt haben,
@@ -243,13 +257,25 @@ dem sogenannten Mengenquotient.
     \mathrm{eq /}&:\prod_{x,y:A}R(x,y)\to [x] =_{A / R} [y] \\
     \mathrm{set /}&:\prod_{x,y:A / R}\prod_{p,q : x=y}p=q
   \end{align*}
+  Der Typ $A / R$ heißt \begriff{Mengenquotient}.
 \end{regeln}
 
 \begin{bemerkung}
-  $A / R$ ist stets eine Menge.
+  $A / R$ ist stets eine Menge. Und es gibt folgendes Rekursionsprinzip:
+  Für jede Menge $B$, Funktion $f:A\to B$ und Nachweis, dass die Relation respektiert wird,
+  also einen Term in
+  \begin{mathpar}
+    r:\prod_{x,y:A}R(x,y)\to f(x)=_B f(y)
+  \end{mathpar}
+  gibt es eine Funktion
+  \begin{mathpar}
+    \rec{A / R}(B,f,r) : A / R \to B
+  \end{mathpar}
+  Analog gibt es ein vereinfachtes Induktionsprinzip.
+  Für jede Aussage $P:A / R \to \mU$ (also $P(x)$ Aussage für jedes $x:A / R$) reicht es $P([a])$ für alle $a:A$ zu zeigen, um $\prod_{x:A / R}P(x)$ zu zeigen.
 \end{bemerkung}
 \begin{beweis}
-  Das wird durch den dritten Konstruktor direkt so erzwungen.
+  Auf die Fälle für die höheren Konstruktoren kann jeweils verzichtet werden, da die entpsrechenden Gleichheiten in Mengen bzw. Aussagen stets existieren.
 \end{beweis}
 
 Wir werden nun die Konstruktion von $\Z$ als Quotient der Menge der Paare in $\N\times \N$ mithilfe von Mengenquotienten nachbauen.
@@ -260,15 +286,23 @@ Die Paare $(n,k):\N\times\N$ darf man sich als Differenz ``$n-k$'' vorstellen, w
   \begin{mathpar}
     (n,k) \sim_\Z (n',k')\colonequiv n+k'=_\N n'+k
   \end{mathpar}
-  Die \begriff{Ganzen Zahlen}\index{$\Z$} sind wie folgt als Quotient gegeben:
+  Die \begriff{Ganzen Zahlen}\index{$\Z$} sind wie folgt als Mengenquotient gegeben:
   \begin{mathpar}
-      \Z\colonequiv \N\times\N / {\sim_\Z}
-    \end{mathpar}
+    \Z\colonequiv \N\times\N / {\sim_\Z}
+  \end{mathpar}
 \end{definition}
 
+\begin{definition}
+  Die Funktion $\mathrm{succ}_\Z:\Z \to \Z$ sei durch Rekursion gegeben durch:
+  \begin{mathpar}
+    s(n,k)\colonequiv (\sucN(n),k) 
+  \end{mathpar}
+  und den Nachweis der Wohldefiniertheit:
+  Sei $(n,k)\sim_\Z (n',k')$, dann gilt $n+k'=n'+k$, also auch $\sucN(n+k')=\sucN(n'+k)$.
+  Letzteres ist nach der Definition der Addition $\sucN(n)+k'=\sucN(n')+k$, also gilt $s(n,k)\sim_\Z s(n',k')$.
+\end{definition}
 
 \subsection{n-Typen}
-\ignore{
 In \cref{def:kontr-aussage-menge} hatten wir bereits kontrahierbare Typen, Aussagen und Mengen definiert.
 Die Mengen haben den alternativen Namen $0$-Typen und zu Aussagen, kann man auch $-1$-Typen und zu kontrahierbaren Typen $-2$-Typen sagen.
 Wir werden in diesem Abschnitt $n$-Typen definieren, für $n=-2,-1,0,1,\dots$.
@@ -276,29 +310,101 @@ Dazu sei zunächst:
 \begin{definition}
   Es sei $\N_{-2}$ der induktive Typ mit Konstruktoren $-2:\N_{-2}$ und $\sucHL:\N_{-2}\to\N_{-2}$.
   Für $\sucHL(n)$ schreiben wir $n+1$.
-  Die Elemente von $\N_{-2}$ nennen wir auch \begriff{Homotopielevel}.
+  Die Elemente von $\N_{-2}$ nennen wir auch \begriff{Abschneidungslevel}.
 \end{definition}
-Damit können wir $n$-Typen für jeden Homotopielevel $n$ definieren:
+Damit können wir $n$-Typen für jeden Abschneidungslevel $n$ definieren:
 \begin{definition}
   \begin{enumerate}
   \item Für jeden Typ $A$ sei der Typ $\isNType{n}$ wie folgt per Rekursion über $n:\N_{-2}$ definiert:
     \begin{align*}
-      -2\mathrm{-Type}(A)&\colonequiv \isContr(A) \\
-      (n+1)\mathrm{-Type}(A)&\colonequiv \prod_{x,y:A}n\mathrm{-Type}(x=_A y)
+      \isNType{(-2)}(A)&\colonequiv \isContr(A) \\
+      \isNType{(n+1)}(A)&\colonequiv \prod_{x,y:A}\isNType{n}(x=_A y)
     \end{align*}
   \item Der \begriff{Typ der $n$-Typen} ist für $n:\N_{-2}$:
     \begin{mathpar}
-      n\mathrm{-Type}\colonequiv \sum_{A:\mU} \isNType{n}
+      n\mathrm{-Type}\colonequiv \sum_{A:\mU} \isNType{n}(A)
     \end{mathpar}
     Diesen Typ gibt es also für jeden Universenlevel.
   \end{enumerate}
 \end{definition}
 
+\begin{lemma}
+  Sind Typen $A,B:\mU$ äquivalent und ist $A$ ein $n$-Typ, dann ist auch $B$ ein $n$-Typ.
+\end{lemma}
+\begin{beweis}
+  Univalenz.
+\end{beweis}
 
+\begin{lemma}
+  \label{lem:pi-n-type}
+  Sei $A:\mU$ und $B:A\to\mU$ so, dass $B(x)$ für jedes $x:A$ ein $n$-Typ ist.
+  Dann ist $\prod_{x:A}B(x)$ ein $n$-Typ.
+\end{lemma}
+\begin{beweis}
+  Wir beweisen zunächst den Fall $n\equiv -2$. Seien also die $B(x)$ kontrahierbar.
+  Dann gibt es eine abhängige Funktion $z:\prod_{x:A}B(x)$, die jedes $x:A$ auf das Kontraktionszentrum von $B(x)$ abbildet.
+  Es reicht also zu zeigen, dass $\prod_{x:A}B(x)$ eine Aussage ist.
+  Seien dazu $f,g:\prod_{x:A}B(x)$. Wir wollen $f=g$ zeigen.
+  Mit abhängiger Funktionsextensionalität reicht es zu zeigen, dass $f\sim g$ gilt.
+  Wir wissen aber, dass für jedes $x:A$ bereits $f(x)=g(x)$ gilt, da $B(x)$ eine Aussage ist.
+
+  Wir zeigen nun die eigentliche Aussage per Induktion über den Abschneidungslevel.
+  Seien nun also die $B(x)$ $n+1$-Typen.
+  Für $f,g:\prod_{x:A}B(x)$ gilt $f=g \simeq f\sim g \equiv \prod_{x:A}f(x)=_{B(x)}g(x)$.
+  Letzteres ist ein Gleichheitstyp in einem $n+1$-Typ, also ein $n$-Typ.
+  Damit können wir die Induktionshypothese anwenden und sehen, dass auch $f=g$ ein $n$-Typ sein muss und damit dass $\prod_{x:A}B(x)$ ein $n+1$-Typ ist.
+\end{beweis}
+
+\begin{lemma}
+  \label{lem:isprop-hlevel}
+  Sei $A:\mU$. Für jedes $n:\N_{-2}$ gilt $\isProp(\isNType{n}(A))$.
+\end{lemma}
+\begin{beweis}
+  Induktion über den Abschneidungslevel.
+  Wir zeigen also zunächst: $\isProp(\isContr(A))$.
+  Seien also
+  \begin{mathpar}
+    (a,H),(a',H'):\isContr(A)\equiv\sum_{x:A}\prod_{y:A}x=y
+  \end{mathpar}
+  Mit \cref{lem:gleichheit-summe} müssen wir also zeigen:
+  \begin{mathpar}
+    \sum_{p:a=a'}\transp_{x\mapsto \prod_{y:A}x=y}(p)(H)=H'
+  \end{mathpar}
+  wobei der Transport die Linkskonkatenation mit $p^{-1}$ ist.
+  Wir wählen $p\colonequiv H_{a'}$. Dann ist noch zu zeigen:
+  \begin{mathpar}
+    \prod_{y:A}H_{a'}^{-1}\kon H_y=H'_y
+  \end{mathpar}
+  Das lässt sich etwas überraschend auf dem Umweg über die Verallgemeinerung
+  \begin{mathpar}
+    \prod_{q:x=y}H_{x}^{-1}\kon H_y=q
+  \end{mathpar}
+  mit Gleichheitsinduktion zeigen. Damit ist also $\isContr(A)$ eine Aussage.
+
+  Jetzt nehmen wir also an, dass $\isNType{n}(A)$ eine Aussage ist und zeigen, dass $\isNType{(n+1)}(A)$ eine Aussage ist.
+  Nach Definition gilt
+  \begin{mathpar}
+    \isNType{(n+1)}(A)\equiv \prod_{x,y:A}\isNType{n}(x=_A y)
+  \end{mathpar}
+  Für festes $x:A$ ist also mit \cref{lem:pi-n-type} der Typ $\prod_{y:A}\isNType{n}(x=_A y)$ eine Aussage.
+  Mit erneutem Anwenden von \cref{lem:pi-n-type}, ist also auch $\prod_{x:A}\prod_{y:A}\isNType{n}(x=_A y)$ eine Aussage.
+\end{beweis}
+
+
+\ignore{
+
+\begin{korollar}
+  Die logischen Äquivalenzen in \cref{thm:aequivalenzen} sind Äquivalenzen.
+\end{korollar}
+\begin{beweis}
+  Die 
+\end{beweis}
+
+  
 Wir wollen jetzt Regeln für n-Abschneidungen einführen, die wir teilweise bereits für die -1-Abschneidung gesehen hatten.
 
 \begin{regeln}[Nein.]
-  Sei $n:\N_{-2}$ ein Homotopielevel und $A:\mU$.
+  Sei $n:\N_{-2}$ ein Abschneidungslevel und $A:\mU$.
   Es gibt einen Typ $\| A \|_{n}:\mU$, die \begriff{$n$-Abschneidung} von $A$.
   Es gilt $\isNType{n}(\| A\|_n)$ und für $a:A$ gibt es $|a|:\| A\|_n$.
   Weiter ist für jeden abhängigen Typ $B:\| A \|_n\to\mU$, die Abbildung
@@ -317,24 +423,7 @@ Wir wollen jetzt Regeln für n-Abschneidungen einführen, die wir teilweise bere
 
 Erst später: Wie bereits angekündigt, ist $\isContr(A)$ stets eine Aussage, egal was $A$ ist.
 Das stimmt auch allgemeiner für $\isNType{n}(A)$.
-
-\begin{lemma}
-  \label{lem:isprop-hlevel}
-  Sei $A:\mU$.
-  \begin{enumerate}
-  \item Für jedes $B:A\to\mU$ haben wir
-    \begin{mathpar}
-      \left(\prod_{x:A}\isProp(B(x))\right)\to \isProp\left(\prod_{x:A}B(x)\right)
-    \end{mathpar}
-  \item Es gilt $\isProp(\isContr(A))$.
-  \item Für jedes $n:\N_{-2}$ gilt $\isProp(\isNType{n}(A))$.
-  \end{enumerate}
-\end{lemma}
-\begin{beweis}
-  \begin{enumerate}
-  \item Für $x,y:\prod_{x:A}B(x)$ müssen wir $x=y$ zeigen.
-  \end{enumerate}
-\end{beweis}
 }
+
 \subsection{Überlagerungen}
 \subsection{Homotopiegruppen}
