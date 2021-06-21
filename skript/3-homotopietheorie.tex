@@ -391,39 +391,20 @@ Damit können wir $n$-Typen für jeden Abschneidungslevel $n$ definieren:
 \end{beweis}
 
 
-\ignore{
+Damit können wir sofort einsehen:
 
 \begin{korollar}
-  Die logischen Äquivalenzen in \cref{thm:aequivalenzen} sind Äquivalenzen.
-\end{korollar}
-\begin{beweis}
-  Die 
-\end{beweis}
-
-  
-Wir wollen jetzt Regeln für n-Abschneidungen einführen, die wir teilweise bereits für die -1-Abschneidung gesehen hatten.
-
-\begin{regeln}[Nein.]
-  Sei $n:\N_{-2}$ ein Abschneidungslevel und $A:\mU$.
-  Es gibt einen Typ $\| A \|_{n}:\mU$, die \begriff{$n$-Abschneidung} von $A$.
-  Es gilt $\isNType{n}(\| A\|_n)$ und für $a:A$ gibt es $|a|:\| A\|_n$.
-  Weiter ist für jeden abhängigen Typ $B:\| A \|_n\to\mU$, die Abbildung
+  Seien $A,B:\mU$ und $f:A\to B$.
+  Die folgende Definition von $\isEquiv(f)$ ist eine Aussage:
   \begin{mathpar}
-    s\mapsto s\circ|\_|: \left(\prod_{x:\| A \|_n}\| B(x) \|_n\right)\to\left(\prod_{y:A}\| B(|y|)\|_n\right)
+    \prod_{y:B}\isContr(f^{-1}(y))
   \end{mathpar}
-  eine Äquivalenz. Diese Eigenschaft nennen wir die \begriff{universelle Eigenschaft von $\|\_\|_n$}.
-\end{regeln}
+\end{korollar}
 
-\begin{bemerkung}
-  Für $n:\N_{-2}$, $A,B:\mU$ und jede Funktion $f:A\to B$ gibt es eine Funktion $\| f\|_n:\| A\|_n\to \| B\|_n$.
-\end{bemerkung}
 \begin{beweis}
-  Universelle Eigenschaft anwenden auf den abhängigen Typ $\_\mapsto B$ und $x\mapsto |f(x)|:A\to \| B \|_n$, um ein Urbild $\| f \|_n:\| A \|_n\to \| B \|_n$ zu erhalten.
+  Zunächst wissen wir durch \cref{lem:isprop-hlevel}, dass $\isContr(f^{-1}(y))$ für jedes $y:B$ eine Aussage ist.
+  Mit \cref{lem:pi-n-type} wissen wir außerdem, dass das abhängige Produkt über Aussagen wieder eine Aussage ist.
 \end{beweis}
-
-Erst später: Wie bereits angekündigt, ist $\isContr(A)$ stets eine Aussage, egal was $A$ ist.
-Das stimmt auch allgemeiner für $\isNType{n}(A)$.
-}
 
 \subsection{Überlagerungen}
 \subsection{Homotopiegruppen}
