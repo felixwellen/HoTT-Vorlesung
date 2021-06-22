@@ -518,4 +518,122 @@ Letzterer könnte also bestenfalls noch ein $1$-Typ sein. Das ist tatsächlich s
 \end{beweis}
 
 \subsection{Überlagerungen}
+
+Bevor wir uns dem eigentlichen Thema zuwenden, brauchen wir noch eine Variante der ganzen Zahlen mit einem Rekursionsprinzip,
+das uns auch Abbildungen in nicht notwenidegerweise 0-abgeschnittene Typen erlaubt.
+
+\begin{regeln}
+  Zunächst sei $\N_1:\mU$\index{$\N_1$} der induktive Typ mit Konstruktoren $1_{\N_1}:\N_1$ und $\mathrm{succ}_{\N_1}:\N_1\to\N_1$.
+  Nun sei $\Z':\mU$ der induktive Typ mit Konstruktoren:
+  \begin{align*}
+    0_{\Z'}&:\Z' \\
+    \mathrm{pos}&:\N_1\to\Z' \\
+    \mathrm{neg}&:\N_1\to\Z'
+  \end{align*}
+  Wir nennen den Typ $\Z'$ die \begriff{(induktiven) ganzen Zahlen}\index{$\Z'$}\index{$\Z$} und werden auch später auf den Strich verzichten und einfach $\Z$ schreiben.
+  Als Induktionsprinzip ergibt sich also, dass wir Konstruktionen für die positiven Zahlen, die negativen Zahlen und die 0 ausführen müssen.
+\end{regeln}
+
+\begin{bemerkung}
+  Die Typen $\N_1$ und $\Z'$ sind Mengen.
+\end{bemerkung}
+\begin{beweis}
+  Nach \cref{thm:gleichheit-nat} ist der Typ $\N$ eine Menge und dieser ist äquivalent zu $\N_1$.
+  Für $\Z'$ führen wir einen Beweis mit der üblichen Methode. Sei dazu $\mathrm{Eq}_{\Z'}:\Z'\to\Z'\to\mU$ gegeben durch:
+  \begin{align*}
+    \mathrm{Eq}_{\Z'}(0_{\Z'},0_{\Z'})&\colonequiv \eins \\
+    \mathrm{Eq}_{\Z'}(\mathrm{pos}(n),\mathrm{pos}(k))&\colonequiv n=_{\N_1}k \\
+    \mathrm{Eq}_{\Z'}(\mathrm{neg}(n),\mathrm{neg}(k))&\colonequiv n=_{\N_1}k \\
+    \text{übrige Fälle }&\colonequiv \leer
+  \end{align*}
+  Den Reflexivitätsterm $r_{\Z'}:\prod_{x:\Z'}\mathrm{Eq}_{\Z'}(x,x)$ können wir definieren als $\ast$, im Fall $x\equiv 0$ und als $\refl_{n}$ in den Fällen $x\equiv \mathrm{pos}(n)$ und $x\equiv \mathrm{neg}(n)$.
+  Nun ist etwa für $x\equiv \mathrm{pos}(n)$ zu zeigen, dass
+  \begin{mathpar}
+    \sum_{x:\Z'}\mathrm{Eq}_{\Z'}(\mathrm{pos}(n),x)
+  \end{mathpar}
+  kontrahierbar ist. Per Induktion über $x$ ist das nur noch für $x\equiv \mathrm{pos}(k)$ zu zeigen, da in allen anderen Fällen nur etwas für alle Elemente des leeren Typs zu zeigen ist.
+  Im Fall $x\equiv \mathrm{pos}(k)$ müssen wir allerdings nur zeigen, dass ein Element $(k,p):\sum_{k:\N_1}n=k$ gleich $(n,\refl)$ ist - das können wir mit \cref{lem:pfade-kontrahierbar} zeigen.
+\end{beweis}
+
+\begin{bemerkung}
+  Es gilt $\Z\simeq \Z'$. Wir schreiben daher ab jetzt $\Z$ für beide.
+\end{bemerkung}
+\begin{beweis}
+  Übungsaufgabe.
+\end{beweis}
+
+Nun können wir uns den Überlagerungen zuwenden. Speziell werden wir mit der universellen Überlagerung des Kreises beginnen.
+In der Topologie wird diese als Kopie der reellen Gerade $\R$ konstruiert, die als Helix über dem topologischen Kreis $\mathbb{S}^1=\{(x,y)\in\R^2\vert x^2+y^2=1\}$ liegt.
+Als konkrete Projektion von $\R$ auf $\mathbb{S}^1$ kann etwa
+\begin{mathpar}
+  (t:\R) \mapsto (\cos(2\pi t),\sin(2\pi t))
+\end{mathpar}
+gewählt werden. Unser folgender abstrakter Nachbau dieser Situation handelt zwar nur von den Homotopietypen der beteiligten topologischen Räume, ist aber trotzdem überraschend ähnlich.
+So werden etwa die Fasern der abstrakten Projektion ebenfalls $\Z$ sein.
+Tatsächlich werden wir sogar genau damit beginnen.
+
+Unser Ziel wird zunächst sein, zu beweisen, dass der Gleichheitstyp $\ast=_{S^1}\ast$ äquivalent zu $\Z$ ist.
+Dazu geben wir diesen spezielleren Gleichheitstypen noch ihren üblichen Namen.
+
+\begin{definition}
+  \begin{enumerate}
+  \item Ein \begriff{punktierter Typ} ist ein Paar $(A,a):\sum_{A:\mU}A$. Wir werden oft von punktierten Typen $A:\mU$ sprechen und implizit den Punkt mit $\ast:A$ bezeichnen.
+  \item Der \begriff{Schleifenraum}\index{$\Omega$} eines punktierten Typs $(A,\ast)$ ist der Typ $\Omega(A,\ast)\colonequiv (\ast=_A\ast)$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Die \begriff{universelle Überlagerung} von $S^1$ ist der äbhängige Typ $\tilde{S^1}:S^1\to\mU$ gegeben durch
+  \begin{mathpar}
+    \tilde{S^1}\colonequiv \rec{S^1}(\mU, \Z, \ua({\mathrm{succ}}_\Z))
+  \end{mathpar}
+  Es gilt also $\tilde{S^1}(\ast)=\Z$ und $\mathrm{ap}(\tilde{S^1},l)=\ua(\mathrm{succ}_{\Z})$.
+\end{definition}
+
+Die letztere Gleichheit lässt sich etwas greifbarer machen und entspricht im topologischen Fall der Monodromieaktion eines Erzeugers der Fundamentalgruppe.
+
+
+\begin{bemerkung}
+  Es gilt $\transp_{\tilde{S^1}}(l)=_{\Z\to\Z}\mathrm{succ}_\Z$.
+\end{bemerkung}
+\begin{beweis}
+  Allgemein gilt für einen abhängigen Typ $B:A\to\mU$:
+  \begin{mathpar}
+    \prod_{x,y:A}\prod_{p:x=y}\ua(\transp_B(p))=\mathrm{ap}(B,p)
+  \end{mathpar}
+  was sich per Induktion über $p$ beweisen lässt, da $\ua(\id_{B(x)})=\refl_{B(x)}$ gilt.
+  Damit gilt also
+  \begin{mathpar}
+    \ua(\transp_{\tilde{S^1}}(l))=\mathrm{ap}(\tilde{S^1},l)=\ua(\mathrm{succ}_{\Z})
+  \end{mathpar}
+  womit die Behauptung folgt, weil $\ua$ eine Äquivalenz ist.
+\end{beweis}
+
+Das bedeutet, dass wir den Transport in $\tilde{S^1}$ benutzen können, um Gleichheiten der Form $\ast=_{S^1}\ast$, also Elemente des Schleifenraums $\Omega(S^1,\ast)$, mit $l$ zu vergleichen.
+Da $l$ einmal den Kreis durchläuft, kann man mit der folgenden Definition messen, wie oft eine Gleichheit in $\Omega(S^1,\ast)$ den Kreis $S^1$ durchläuft.
+
+\begin{definition}
+  Die \begriff{Windungszahl} einer Gleichheit in $\Omega(S^1,\ast)$ ist der Wert unter der Abbildung
+  \begin{align*}
+    w&:\Omega(S^1,\ast)\to \Z \\
+    w(p)&\colonequiv \transp_{\tilde{S^1}}(p)(0)
+  \end{align*}
+\end{definition}
+
+Die Windungszahl wird sich später als Äquivalenz herausstellen und hat die Eigenschaften eines Gruppenhomomorphismus.
+Wir zeigen das zunächst nur für Addition mit 1.
+
+\begin{bemerkung}
+  Für alle $p:\Omega(S^1,\ast)$ gilt $w(p\kon l)=\mathrm{succ}_{\Z}(w(p))$.
+\end{bemerkung}
+\begin{beweis}
+  Das ist durch die Verträglichkeit von Konkatenation und Komposition von Transporten gegeben:
+  \begin{align*}
+    w(p\kon l)&=\transp_{\tilde{S^1}}(p\kon l)(0) \\
+              &=(\transp_{\tilde{S^1}}(l)\circ\transp_{\tilde{S^1}}(p))(0) \\
+              &=\mathrm{succ}_\Z(\transp_{\tilde{S^1}}(p)(0)) \\
+    &=\mathrm{succ}_\Z(w(p)) 
+  \end{align*}
+\end{beweis}
+
 \subsection{Homotopiegruppen}
