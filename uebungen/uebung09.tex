@@ -1,0 +1,43 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{9}
+
+\begin{exercise}[Intervallrekursion]
+  Sei $A:\mU$ ein Typ.
+  Zeige:
+  \begin{enumerate}
+  \item Für $a,a':A$ und $a_s:a=_A a'$ gibt es
+    \begin{mathpar}
+      \rec{I}(A,a,a',a_s):I\to A
+    \end{mathpar}
+    mit $\rec{I}(A,a,a',a_s)(0_I)\equiv a$, $\rec{I}(A,a,a',a_s)(1_I)\equiv a'$ und $\rec{I}(A,a,a',a_s)(s) = a_s$.
+  \item Es ist $(I \to A) \simeq \sum_{x,y:A} x =_A y$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Projektionen auf Mengenquotienten sind surjektiv]
+  Seien $A:\mU$ und $R:A\to A\to \mU$.
+  Zeige, dass die Funktion $[\_]:A \to A/R$ surjektiv ist.
+\end{exercise}
+
+\begin{exercise}[Spaß mit ganzen Zahlen]
+  Sei die Funktion $i:\N\to\Z$ definiert durch $i(n) \colonequiv [(n,0)]$ und setze $0_\Z\colonequiv i(0_\N)$.
+  \begin{enumerate}
+    \item Zeige, dass $i\circ\sucN = \mathrm{succ}_{\Z}\circ i$.
+    \item Definiere eine Inverse $\mathrm{pred}_\Z : \Z \to \Z$ zur Nachfolgerfunktion $\mathrm{succ}_\Z:\Z\to\Z$.
+    
+    \item Definiere eine Funktion $+_\Z : \Z \to \Z \to \Z$, sodass $i(n) +_\Z i(m) = i(n +_\N m)$ für $n,m:\N$.
+    \item Definiere eine Funktion $-:\Z\to\Z$, sodass $z +_\Z (-z) = 0_\Z$ für $z:\Z$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Einbettungen in $n$-Typen]
+  Sei $f:A \to B$ eine \emph{Einbettung}, also eine Funktion $f:A \to B$, sodass für je zwei $x,y:A$ die Funktion
+  $$
+  \mathrm{ap}(f) : x=y \to f(x)=f(y)
+  $$
+  eine Äquivalenz ist.
+  Zeige für jedes Abschneidungslevel $n\geq -1$, dass $A$ ein $n$-Typ ist, falls $B$ ein $n$-Typ ist.
+\end{exercise}
+\end{document}
