@@ -620,4 +620,20 @@ Da $l$ einmal den Kreis durchläuft, kann man mit der folgenden Definition messe
   \end{align*}
 \end{definition}
 
+Die Windungszahl wird sich später als Äquivalenz herausstellen und hat die Eigenschaften eines Gruppenhomomorphismus.
+Wir zeigen das zunächst nur für Addition mit 1.
+
+\begin{bemerkung}
+  Für alle $p:\Omega(S^1,\ast)$ gilt $w(p\kon l)=\mathrm{succ}_{\Z}(w(p))$.
+\end{bemerkung}
+\begin{beweis}
+  Das ist durch die Verträglichkeit von Konkatenation und Komposition von Transporten gegeben:
+  \begin{align*}
+    w(p\kon l)&=\transp_{\tilde{S^1}}(p\kon l)(0) \\
+              &=(\transp_{\tilde{S^1}}(l)\circ\transp_{\tilde{S^1}}(p))(0) \\
+              &=\mathrm{succ}_\Z(\transp_{\tilde{S^1}}(p)(0)) \\
+    &=\mathrm{succ}_\Z(w(p)) 
+  \end{align*}
+\end{beweis}
+
 \subsection{Homotopiegruppen}
