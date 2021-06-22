@@ -636,4 +636,17 @@ Wir zeigen das zunächst nur für Addition mit 1.
   \end{align*}
 \end{beweis}
 
+Wenn die Windungszahl eine Äquivalenz ist, bedeutet das, dass jedes $p:\Omega(S^1,\ast)$ von der Form $l^k$ für $k:\Z$ ist.
+Also sollte die inverse von $w$ durch $k$-fache Konkatenation von $l:\Omega(S^1,\ast)$ gegeben sein.
+
+\begin{definition}
+  Die \begriff{k-fache Konkatenation}\index{$\_^k$} $\_^k:\Z\to\Omega(S^1,\ast)$ ist $\Z'$- und $\N_1$-rekursiv gegeben durch
+  \begin{align*}
+    l^0&\colonequiv \refl_\ast \\
+    l^{\mathrm{pos}(1)}&\colonequiv l \\
+    l^{\mathrm{pos}(n+1)}&\colonequiv l^{\mathrm{pos}(n)}\kon l \\
+    l^{\mathrm{neg}(1)}&\colonequiv l^{-1} \\
+    l^{\mathrm{neg}(n+1)}&\colonequiv l^{\mathrm{neg}(n)}\kon l^{-1}
+  \end{align*}
+\end{definition}
 \subsection{Homotopiegruppen}
