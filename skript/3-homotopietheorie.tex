@@ -624,6 +624,7 @@ Die Windungszahl wird sich später als Äquivalenz herausstellen und hat die Eig
 Wir zeigen das zunächst nur für Addition mit 1.
 
 \begin{bemerkung}
+  \label{bem:hom-windungszahl}
   Für alle $p:\Omega(S^1,\ast)$ gilt $w(p\kon l)=\mathrm{succ}_{\Z}(w(p))$.
 \end{bemerkung}
 \begin{beweis}
@@ -649,4 +650,23 @@ Also sollte die inverse von $w$ durch $k$-fache Konkatenation von $l:\Omega(S^1,
     l^{\mathrm{neg}(n+1)}&\colonequiv l^{\mathrm{neg}(n)}\kon l^{-1}
   \end{align*}
 \end{definition}
+
+Anstatt direkt zu zeigen, dass $\_^k$ und $w$ zueinander invers sind, werden wir eine faserweise Äquivalenz der Form
+\begin{mathpar}
+  \prod_{x:S^1}\ast=_{\tilde{S^1}}x\to \tilde{S^1}(x)
+\end{mathpar}
+konstruieren.
+
+\begin{definition}
+  Es sei eine faserweise Abbildung 
+  \begin{mathpar}
+    \Eq{S^1}(\ast,\_):\prod_{x:S^1}\ast=_{\tilde{S^1}}x\to \tilde{S^1}(x)
+  \end{mathpar}
+  durch:
+  \begin{align*}
+    \Eq{S^1}(\ast,\ast)&\colonequiv w : \ast=\ast\to\Z \\
+    \mathrm{apd}(\Eq{S^1}(\ast,\_),l)&:=\text{ Die Gleichheit aus \cref{bem:hom-windungszahl}}
+  \end{align*}
+\end{definition}
+
 \subsection{Homotopiegruppen}
