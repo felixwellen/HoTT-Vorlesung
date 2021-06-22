@@ -572,6 +572,16 @@ gewählt werden. Unser folgender abstrakter Nachbau dieser Situation handelt zwa
 So werden etwa die Fasern der abstrakten Projektion ebenfalls $\Z$ sein.
 Tatsächlich werden wir sogar genau damit beginnen.
 
+Unser Ziel wird zunächst sein, zu beweisen, dass der Gleichheitstyp $\ast=_{S^1}\ast$ äquivalent zu $\Z$ ist.
+Dazu geben wir diesen spezielleren Gleichheitstypen noch ihren üblichen Namen.
+
+\begin{definition}
+  \begin{enumerate}
+  \item Ein \begriff{punktierter Typ} ist ein Paar $(A,a):\sum_{A:\mU}A$. Wir werden oft von punktierten Typen $A:\mU$ sprechen und implizit den Punkt mit $\ast:A$ bezeichnen.
+  \item Der \begriff{Schleifenraum}\index{$\Omega$} eines punktierten Typs $(A,\ast)$ ist der Typ $\Omega(A,\ast)\colonequiv (\ast=_A\ast)$.
+  \end{enumerate}
+\end{definition}
+
 \begin{definition}
   Die \begriff{universelle Überlagerung} von $S^1$ ist der äbhängige Typ $\tilde{S^1}:S^1\to\mU$ gegeben durch
   \begin{mathpar}
@@ -599,13 +609,13 @@ Die letztere Gleichheit lässt sich etwas greifbarer machen und entspricht im to
   womit die Behauptung folgt, weil $\ua$ eine Äquivalenz ist.
 \end{beweis}
 
-Das bedeutet, dass wir den Transport in $\tilde{S^1}$ benutzen können, um Gleichheiten der Form $\ast=_{S^1}\ast$ mit $l$ zu vergleichen.
-Da $l$ einmal den Kreis durchläuft, kann man mit der folgenden Definition messen, wie oft eine Gleichheit in $\ast=_{S^1}\ast$ den Kreis $S^1$ durchläuft.
+Das bedeutet, dass wir den Transport in $\tilde{S^1}$ benutzen können, um Gleichheiten der Form $\ast=_{S^1}\ast$, also Elemente des Schleifenraums $\Omega(S^1,\ast)$, mit $l$ zu vergleichen.
+Da $l$ einmal den Kreis durchläuft, kann man mit der folgenden Definition messen, wie oft eine Gleichheit in $\Omega(S^1,\ast)$ den Kreis $S^1$ durchläuft.
 
 \begin{definition}
-  Die \begriff{Windungszahl} einer Gleichheit in $\ast=_{S^1}\ast$ ist der Wert unter der Abbildung
+  Die \begriff{Windungszahl} einer Gleichheit in $\Omega(S^1,\ast)$ ist der Wert unter der Abbildung
   \begin{align*}
-    w&:S^1\to \Z \\
+    w&:\Omega(S^1,\ast)\to \Z \\
     w(p)&\colonequiv \transp_{\tilde{S^1}}(p)(0)
   \end{align*}
 \end{definition}
