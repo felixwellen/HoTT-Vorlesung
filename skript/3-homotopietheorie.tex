@@ -657,7 +657,8 @@ Anstatt direkt zu zeigen, dass $\_^k$ und $w$ zueinander invers sind, werden wir
 \end{mathpar}
 konstruieren.
 
-\begin{bemerkung}
+\begin{lemma}
+  \label{lem:ext-windungszahl}
   Es gibt eine faserweise Abbildung 
   \begin{mathpar}
     W:\prod_{x:S^1}\ast=_{\tilde{S^1}}x\to \tilde{S^1}(x)
@@ -666,7 +667,7 @@ konstruieren.
   \begin{align*}
     W(\ast)\colonequiv w : \ast=\ast\to\Z 
   \end{align*}
-\end{bemerkung}
+\end{lemma}
 \begin{beweis}
   Um einzusehen, dass $W$ durch $S^1$-Induktion definiert werden kann, müssen wir berechnen, wie die Abbildung $w$ entlang von $l:\ast=\ast$ transportiert wird.
   Dazu überlegen wir zunächst, was der Transport in einer abstrakteren Situation wäre, nämlich in einem abhängigen Typ der Form:
@@ -693,7 +694,65 @@ konstruieren.
   \end{align*}
 \end{beweis}
 
+\begin{lemma}
+  Es gibt auch eine Fortsetzung der Potenzfunktion $k\mapsto l^{k}:\Z\to\Omega(S^1,\ast)$, also eine faserweise Abbildung
+  \begin{mathpar}
+    P:\prod_{x:S^1}\tilde{S^1}(x)\to \ast=x
+  \end{mathpar}
+  mit $P_\ast=k\mapsto l^k$
+\end{lemma}
+\begin{beweis}
+  Um $P$ induktiv definieren zu können, müssen wir zeigen:
+  \begin{mathpar}
+    \transp_{(x:S^1)\mapsto \tilde{S^1}(x)\to \ast=x}(l)(k\mapsto l^k)=(k\mapsto l^k)
+  \end{mathpar}
+  Analog zum beweis von \cref{lem:ext-windungszahl} ergibt sich:
+  \begin{align*}
+    \transp_{(x:S^1)\mapsto \tilde{S^1}(x)\to \ast=x}(l)(k\mapsto l^k) &=\transp_{\ast=\_}(l) \circ (k\mapsto l^k) \circ \transp_{\tilde{S^1}}(l^{-1}) \\
+                                                                          &=(p\mapsto p\kon l) \circ (k\mapsto l^k) \circ \transp_{\tilde{S^1}}(l^{-1}) \\
+                                                                          &=(k\mapsto l^{\mathrm{succ}_\Z(k)}) \circ \mathrm{succ}_\Z^{-1} \\
+                                                                       &=(k\mapsto l^k)
+  \end{align*}
+\end{beweis}
 
-
+\begin{theorem}
+  Es gilt:
+  \begin{enumerate}
+  \item $W$ und $P$ sind faserweise zueinander invers.
+  \item $w:\Omega(S^1,\ast)\to \Z$ ist eine Äquivalenz mit Inversem $k\mapsto l^{k}:\Z\to\Omega(S^1,\ast)$.
+  \end{enumerate}
+\end{theorem}
+\begin{beweis}
+  \begin{enumerate}
+  \item   Wir rechenen punktweise nach. Sei $x:S^1$, dann soll für alle $p:\ast=x$ gelten:
+  \begin{mathpar}
+    P_x(W_x(p))=p
+  \end{mathpar}
+  Dank Induktion mit Basispunkt müssen wir das nur für $p\equiv \refl$ berechnen:
+  \begin{mathpar}
+    P_\ast(W_\ast(\refl))=P_\ast(0)=\refl
+  \end{mathpar}
+  Für die andere Richtung müssen wir zeigen, dass für alle $x:S^1$ und $k:\tilde{S^1}(x)$ gilt:
+  \begin{mathpar}
+    W_x(P_x(y))=k
+  \end{mathpar}
+  Das wollen wir mit Kreisinduktion zeigen. Zunächst berechnen wir also:
+  \begin{mathpar}
+    W_\ast(P_\ast(k))=W_\ast(l^{k})
+  \end{mathpar}
+  Wir sind mit dem Induktionsangfang fertig, wenn $W_\ast(l^k)\equiv w(l^k)=k$ gilt. Das können wir mit $\Z'$-Induktion und $\N_1$-Induktion zeigen:
+  \begin{align*}
+    w(l^0)&=\transp_{\tilde{S^1}}(\refl)(0)=0 \\
+    w(l^{\mathrm{pos}(1)})&=w(l)=\mathrm{succ}_\Z(0)=\mathrm{pos}(1)  \\
+    w(l^{\mathrm{pos}(n+1)})&=w(l^{\mathrm{pos}(n)}\kon l)= \mathrm{succ}_\Z(w(l^{\mathrm{pos}(n)}))=\mathrm{pos}(n+1) \\
+    w(l^{\mathrm{neg}(1)})&=w(l^{-1})=\mathrm{succ}^{-1}(0)=\mathrm{neg}(1) \\
+    w(l^{\mathrm{neg}(n+1)})&=w(l^{\mathrm{neg}(n)}\kon l^{-1})=\mathrm{succ}^{-1}(w(l^{\mathrm{neg}(n)}))=\mathrm{neg}(n+1)
+  \end{align*}
+  Nun ist noch zu zeigen, dass Transport der soeben konstruierten Gleichheit entlang $l:\ast=\ast$, wieder diese Gleichheit ist.
+  Was auch immer wir genau konstruieren müssen, es ist auf jeden Fall eine Gleichheit zwischen Gleichheiten im Typ $\Z$.
+  Da letzterer Typ eine Menge ist, existieren also alle Gleichheiten dieser Art.
+\item In (a) für $x:S^1$ den Punkt $\ast$ einsetzen.
+  \end{enumerate}
+\end{beweis}
 
 \subsection{Homotopiegruppen}
