@@ -638,7 +638,7 @@ Wir zeigen das zunächst nur für Addition mit 1.
 \end{beweis}
 
 Wenn die Windungszahl eine Äquivalenz ist, bedeutet das, dass jedes $p:\Omega(S^1,\ast)$ von der Form $l^k$ für $k:\Z$ ist.
-Also sollte die inverse von $w$ durch $k$-fache Konkatenation von $l:\Omega(S^1,\ast)$ gegeben sein.
+Also sollte die Inverse von $w$ durch $k$-fache Konkatenation von $l:\Omega(S^1,\ast)$ gegeben sein.
 
 \begin{definition}
   Die \begriff{k-fache Konkatenation}\index{$\_^k$} $\_^k:\Z\to\Omega(S^1,\ast)$ ist $\Z'$- und $\N_1$-rekursiv gegeben durch
@@ -657,16 +657,43 @@ Anstatt direkt zu zeigen, dass $\_^k$ und $w$ zueinander invers sind, werden wir
 \end{mathpar}
 konstruieren.
 
-\begin{definition}
-  Es sei eine faserweise Abbildung 
+\begin{bemerkung}
+  Es gibt eine faserweise Abbildung 
   \begin{mathpar}
-    \Eq{S^1}(\ast,\_):\prod_{x:S^1}\ast=_{\tilde{S^1}}x\to \tilde{S^1}(x)
+    W:\prod_{x:S^1}\ast=_{\tilde{S^1}}x\to \tilde{S^1}(x)
   \end{mathpar}
-  durch:
+  mit:
   \begin{align*}
-    \Eq{S^1}(\ast,\ast)&\colonequiv w : \ast=\ast\to\Z \\
-    \mathrm{apd}(\Eq{S^1}(\ast,\_),l)&:=\text{ Die Gleichheit aus \cref{bem:hom-windungszahl}}
+    W(\ast)\colonequiv w : \ast=\ast\to\Z 
   \end{align*}
-\end{definition}
+\end{bemerkung}
+\begin{beweis}
+  Um einzusehen, dass $W$ durch $S^1$-Induktion definiert werden kann, müssen wir berechnen, wie die Abbildung $w$ entlang von $l:\ast=\ast$ transportiert wird.
+  Dazu überlegen wir zunächst, was der Transport in einer abstrakteren Situation wäre, nämlich in einem abhängigen Typ der Form:
+  \begin{mathpar}
+    (x:A) \mapsto B(x)\to C(x)
+  \end{mathpar}
+  für zwei abhängige Typen $B:A\to\mU$ und $C:A\to\mU$. Die naheliegende Vermutung ist, dass wir mit den Transporten in $B$ und $C$ prä- und postkomponieren müssen.
+  Es kann mit Induktion über $p$ geklärt werden, dass gilt:
+  \begin{mathpar}
+    \transp_{(x:A) \mapsto B(x)\to C(x)}(p)(f)=\transp_C(p) \circ f \circ \transp_B(p^{-1})
+  \end{mathpar}
+  Den Transport in $x\mapsto \ast=x$ kennen wir, das ist Rechtskonkatenation. Damit die induktive Definition von $W$ wie behauptet funktioniert,
+  müssen wir also verifizieren, dass gilt:
+  \begin{mathpar}
+    \transp_{\tilde{S^¹}}(l) \circ w \circ \transp_{\ast=\_}(l^{-1}) = w
+  \end{mathpar}
+  Das lässt sich wie folgt punktweise für $p:\ast=\ast$ berechnen:
+  \begin{align*}
+    \transp_{\tilde{S^¹}}(l) \circ w \circ \transp_{\ast=\_}(l^{-1})(p) &= \transp_{\tilde{S^¹}}(l) \circ w(p\kon l^{-1}) \\
+                                                                        &= \transp_{\tilde{S^¹}}(l) \circ \transp_{\tilde{S^1}}(p\kon l^{-1})(0) \\
+                                                                        &= \transp_{\tilde{S^¹}}(l) \circ \transp_{\tilde{S^1}}(l^{-1})\circ \transp_{\tilde{S^1}}(p)(0) \\
+                                                                        &=\transp_{\tilde{S^1}}(p)(0) \\
+                                                                        &=w(p)
+  \end{align*}
+\end{beweis}
+
+
+
 
 \subsection{Homotopiegruppen}
