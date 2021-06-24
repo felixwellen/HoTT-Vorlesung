@@ -21,27 +21,50 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[Diese anderen ganzen Zahlen]
-  Die ganzen Zahlen $\Z$ wurden als Mengenquotient von $\N\times\N$ nach der Relation $\sim_\Z$ eingeführt.
+\begin{bonus}[Diese anderen ganzen Zahlen]
+  Sei $A:\mU$ ein Typ und $R:A \to A \to \mU$ ein abhängiger Typ, den wir als Relation auf $A$ auffassen.
+  Wir nennen $R$ eine \emph{Äquivalenzrelation}, falls Terme der folgenden Form existieren:
+  \begin{align*}
+    \mathrm{refl}^R :   & \prod_{a:A} R(a,a)\\
+    \mathrm{sym}^R :    & \prod_{a,b:A} R(a,b) \to R(b,a)\\
+    \mathrm{trans}^R :  & \prod_{a,b,c:A} R(a,b) \to R(b,c) \to R(a,c)
+  \end{align*}
+  Ein \emph{Repräsentantensystem} einer Äquivalenzrelation $R$ ist eine Funktion $g:A \to A$ mit den folgenden Eigenschaften:
+  \begin{gather*}
+    \prod_{a:A} R(a,g(a))\\
+    \prod_{a,b:A} R(g(a),g(b)) \to g(a) = g(b)
+  \end{gather*}
+
   \begin{enumerate}
-    \item Zeige, dass $\sim_Z$ eine Äquivalenzrelation auf $\N$ ist.
-  \end{enumerate}
-  Im Folgenden konstruieren wir ein Repräsentantensystem für diese Äquivalenzrelation.
-  \begin{enumerate}[start=2]
-    \item Zeige, dass für je zwei natürliche Zahlen $n,k:\N$ eine natürliche Zahl $m:\N$ existiert, sodass $(n,k) \sim_\Z (m,0)$ oder $(n,k) \sim_\Z (0,m)$ gilt.
-    \item Zeige, dass für je zwei natürliche Zahlen $m,m':\N$ die folgenden Implikationen gelten:
+    \item Sei $R:A \to A \to\mU$ eine Äquivalenzrelation mit Repräsentantensystem $g:A \to A$ und sei $f:A \to B$ eine Funktion, sodass
+      $$
+      \prod_{a:A} f(g(a)) =_B f(a)
+      $$
+      gilt.
+      Zeige, dass $f$ die Relation respektiert, finde also einen Term des Typs
+      $$
+      r:\prod_{a,b:A} R(a,b) \to f(a) =_B g(a).
+      $$
+      Insbesondere existiert $\rec{A/R}(B,f,r):A/R\to B$, falls $B$ eine Menge ist.
+    \item Zeige, dass $\sim_Z$ eine Äquivalenzrelation auf $\N\times\N$ ist.
+    \item Zeige, dass folgende rekursiv definierte Funktion ein Repräsentantensystem von $\sim_\Z$ ist:
       \begin{align*}
-        (m,0) \sim_\Z (n,0) &\to m=n\\
-        (0,m) \sim_\Z (0,n) &\to m=n\\
-        (m,0) \sim_\Z (0,n) &\to m=n=0
+        g : \N\times\N &\to \N\times\N\\
+        g(n,0) &\colonequiv (n,0)\\
+        g(0,k) &\colonequiv (0,k)\\
+        g(\sucN(n),\sucN(k)) &\colonequiv g(n,k)
       \end{align*}
+    \item Zeige, dass folgende rekursiv definierte Funktion in die induktiven ganzen Zahlen die Eigenschaft $\prod_{x:\N\times \N} f(g(x)) =_{\Z'} f(x)$ erfüllt:
+      \begin{align*}
+        f:\N\times\N &\to \Z'\\
+        f(0,0)       &\colonequiv 0_{\Z'}\\
+        f(\sucN(n),0) &\colonequiv \mathrm{pos}(\sucN(n))\\
+        f(0,\sucN(k)) &\colonequiv \mathrm{neg}(\sucN(k))\\
+        f(\sucN(n),\sucN(k)) &\colonequiv f(n,k)
+      \end{align*}
+    \item Zeige, dass die von $f$ induzierte Funktion $\Z\to\Z'$ eine Äquivalenz ist.
   \end{enumerate}
-  Sei nun $\Z'$ der induktiv definierte Typ der ganzen Zahlen aus Abschnitt 3.3.
-  \begin{enumerate}[start=4]
-    \item Finde eine Funktion $\N\times\N\to\Z'$, welche eine Äquivalenz zwischen $\Z$ und $\Z'$ induziert.
-  \end{enumerate}
-  Ab sofort können wir also $\Z$ und $\Z'$ miteinander identifizieren.
-\end{exercise}
+\end{bonus}
 
 \begin{exercise}[Die Windungszahl ist ein Gruppenhomomorphismus]
 \end{exercise}
