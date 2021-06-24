@@ -9,7 +9,7 @@ Wir verwenden die Schreibweise ``$B(x)$'' um die Abhängigkeit klar zu machen --
 Ein Beispiel, das wir später mit unserer Typentheorie konstruieren könnten, ist der Typ der Listen der Länge $n$, wobei $n$ eine Variable des Typs $\mathbb N$ ist.
 
 Eine wichtige Besonderheit der abhängigen Typentheorie ist es, dass der Typ der Werte einer Funktion variieren darf.
-Diese allgemeineren Funktionen sind in sogenannten \begriff{abhängigen Produkten} oder \begriff{abhängigen Funktionstypen} enthalten.
+Diese allgemeineren Funktionen sind in sogenannten \begriff{abhängigen Produkten}\index{$\prod$} oder \begriff{abhängigen Funktionstypen} enthalten.
 Die folgende Regel erlaubt es uns, diesen Typ zu formen:
 \begin{mathpar}
   \inferrule{\Gamma,x : A \yields B(x)\text{ Typ}}{\Gamma\yields\prod_{x:A}B(x)\text{ Typ}}{\PiForm}
@@ -139,7 +139,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
 
 
 \subsection{Natürliche Zahlen}
-Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen} nicht von anderen Typen abhängig.
+Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen}\index{$\N$} nicht von anderen Typen abhängig.
 Dementsprechend ist die Formierungsregel etwas einfacher:
 \begin{mathpar}
   \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N}{\N\mathrm{F}}
@@ -281,7 +281,7 @@ Folgende Konvention werden wir ab jetzt verwenden:
 Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun die arithmetischen Operationen definieren:
 \begin{definition}
   \begin{enumerate}
-  \item Die Addition $+:\N\to\N\to\N$ ist gegeben durch die folgenden Urteilsgleichungen:
+  \item Die Addition $+:\N\to\N\to\N$\index{$+$} ist gegeben durch die folgenden Urteilsgleichungen:
     \begin{align*}
       0 + k &\colonequiv k \\
       \sucN(n) + k &\colonequiv \sucN(n + k)
@@ -290,7 +290,7 @@ Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun 
     \begin{mathpar}
       +\colonequiv\rec{\N}(\N\to\N, k\mapsto k, n \mapsto f \mapsto (k \mapsto \sucN(f(k))))
     \end{mathpar}
-  \item Die Multiplikation $\cdot:\N\to\N\to\N$ ist gegeben durch:
+  \item Die Multiplikation $\cdot:\N\to\N\to\N$\index{$\cdot$} ist gegeben durch:
     \begin{align*}
       0 \cdot k &\colonequiv 0  \\
       \sucN(n) \cdot k &\colonequiv (n \cdot k) + k
@@ -324,7 +324,7 @@ Im Fall der natürlichen Zahlen gab es die beiden Konstruktoren $0_{\N}:\N$ und 
 
 Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term hat.
 \begin{regeln}
-  Der \begriff{Einheitstyp} $\einheit$ ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
+  Der \begriff{Einheitstyp} $\einheit$\index{$\eins$} ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
   Dadurch ergibt sich der folgende Satz von Regeln:
   \begin{mathpar}
     \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit}{\einheit\mathrm{F}}
@@ -360,7 +360,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
   Später werden wir in der Lage sein (mittels Induktion) zu zeigen, dass  Objektgleichheit ``$=$'' zwischen diesen Funktionen gilt.
 \end{beispiel}
 \begin{regeln}
-  Der \begriff{leere Typ} $\leer$ ist der Induktive Typ ohne Konstruktur.
+  Der \begriff{leere Typ} $\leer$\index{$\leer$} ist der Induktive Typ ohne Konstruktur.
   Dadurch ergibt sich der folgende Satz von Regeln:
   \begin{mathpar}
     \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer}{\leer\mathrm{F}}
@@ -376,7 +376,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
 \end{regeln}
 
 \begin{regeln}
-  Der \begriff{zweielementige Typ} oder \begriff{Bool} $\zwei$ ist ein Induktiver Typ mit den zwei Konstruktoren
+  Der \begriff{zweielementige Typ} oder \begriff{Bool} $\zwei$\index{$\zwei$} ist ein Induktiver Typ mit den zwei Konstruktoren
   \begin{mathpar}
     0_{\zwei}:\zwei\quad\quad 1_{\zwei}:\zwei
   \end{mathpar}
@@ -423,7 +423,7 @@ Wir werden auch tatsächlich Beispiele von Typen sehen, deren Gleichheitstypen m
 Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten gleich sein können.
 \begin{regeln}
   Für zwei Elemente $x,y$ eines Typs $A$ können wir den Typ $x=_A y$ der \begriff{Gleichheiten} zwischen $x$ und $y$ formen.
-  Dieser wird auch \begriff{Identitätstyp} genannt und ist als induktiver Typ durch den Konstruktor
+  Dieser wird auch \begriff{Identitätstyp}\index{$=$} genannt und ist als induktiver Typ durch den Konstruktor
   \begin{mathpar}
     \refl:\prod_{x:A}x=_A x
   \end{mathpar}
@@ -722,7 +722,7 @@ verallgemeinert die abhängige Summe das kartesische Produkt $A\times B$, dadurc
 
 \begin{regeln}
   \begin{itemize}
-  \item Für einen Typ $A$ und $x:A\yields B(x)$, kann die \begriff{abhängige Summe} $\sum_{x:A}B(x)$ gebildet werden.
+  \item Für einen Typ $A$ und $x:A\yields B(x)$, kann die \begriff{abhängige Summe}\index{$\sum$} $\sum_{x:A}B(x)$ gebildet werden.
     Die abhängige Summe wird auch \begriff{abhängiger Paartyp} oder \begriff{Sigmatyp} genannt und alternativ mit $(x:A)\times B(x)$ bezeichnet.
   \item Für $x:A$ und $b(x):B(x)$ gibt es ein \begriff{Paar}, also ein Element $(x,b(x)) : \sum_{x:A}B(x)$.
   \item Für einen abhängigen Typ $y:\sum_{x:A}B(x)\yields C(y)$ und einen abhängigen Term $x:A,b(x):B\yields c((x,b(x))) : C((x,b(x)))$ gibt es eine abhängige Funktion
@@ -747,12 +747,12 @@ Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
 \begin{definition}
   Seien $A$ ein Typ und $x:A\yields B(x)$ abhängiger Typ über $A$.
   \begin{enumerate}
-  \item Die Funktion $\pi_1:\left(\sum_{x:A}B(x)\right)\to A$ gegeben durch
+  \item Die Funktion $\pi_1:\left(\sum_{x:A}B(x)\right)\to A$\index{$\pi_1$} gegeben durch
       \begin{mathpar}
         \pi_1(a,b)\colonequiv a
       \end{mathpar}
       heißt \begriff{Projektion} auf die Basis oder Projektion auf den ersten Faktor.
-    \item Die abhängige Funktion $\pi_2:\left(y:\sum_{x:A}B(x)\right)\to B(\pi_1(y))$ gegeben durch
+    \item Die abhängige Funktion $\pi_2:\left(y:\sum_{x:A}B(x)\right)\to B(\pi_1(y))$\index{$\pi_2$} gegeben durch
       \begin{mathpar}
                 \pi_2(a,b)\colonequiv b
       \end{mathpar}
@@ -762,7 +762,7 @@ Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
 
 Wie bereits bei den Funktionen verwenden wir auch hier die übliche Notation, wenn keine echte Abhängigkeit vorliegt:
 \begin{definition}
-  Für zwei Typen $A$ und $B$ schreiben wir auch $A\times B$ statt $\sum_{x:A}B(x)$ und
+  Für zwei Typen $A$ und $B$ schreiben wir auch $A\times B$\index{$\times$} statt $\sum_{x:A}B(x)$ und
   sprechen vom \begriff{Produkt}\footnote{Die übliche Terminologie ist hier leider etwas verwirrend...} von $A$ und $B$.
 \end{definition}
 
