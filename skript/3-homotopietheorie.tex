@@ -755,4 +755,25 @@ konstruieren.
   \end{enumerate}
 \end{beweis}
 
+
+\begin{definition}
+  Seien $(A,\ast_A)$ und $(B,\ast_B)$ punktierte Typen.
+  Eine \begriff{punktierte Abbildung} oder \begriff{Abbildung punktierter Typen} ist eine Funktion $f:A\to B$ zusammen mit einer Gleichheit $f(\ast_A)=\ast_B$.
+  Der Typ der punktierten Abbildungen ist:
+  \begin{mathpar}
+    (A,\ast_A)\to^\cdot (B,\ast_B)\colonequiv  \sum_{f:A\to B}f(\ast_A)=\ast_B
+  \end{mathpar}
+  Wir werden auch $A\to^\cdot B$ schreiben, wenn die Punktierung klar ist.
+\end{definition}
+
+\begin{korollar}
+  Es gilt:
+  \begin{mathpar}
+    (S^1\to^\cdot S^1)\simeq \Z
+  \end{mathpar}
+\end{korollar}
+\begin{beweis}
+  
+\end{beweis}
+
 \subsection{Homotopiegruppen}
