@@ -22,8 +22,28 @@
 \end{exercise}
 
 \begin{exercise}[Diese anderen ganzen Zahlen]
-  Sei $\Z'$ der induktiv definierte Typ der ganzen Zahlen aus Abschnitt 3.3.
-  Finde eine Funktion $\N\times \N\to\Z'$, welche eine Äquivalenz $\Z\to\Z'$ induziert.
+  Die ganzen Zahlen $\Z$ wurden als Mengenquotient von $\N\times\N$ nach der Relation $\sim_\Z$ eingeführt.
+  \begin{enumerate}
+    \item Zeige, dass $\sim_Z$ eine Äquivalenzrelation auf $\N$ ist.
+  \end{enumerate}
+  Im Folgenden konstruieren wir ein Repräsentantensystem für diese Äquivalenzrelation.
+  \begin{enumerate}[start=2]
+    \item Zeige, dass für je zwei natürliche Zahlen $n,k:\N$ eine natürliche Zahl $m:\N$ existiert, sodass $(n,k) \sim_\Z (m,0)$ oder $(n,k) \sim_\Z (0,m)$ gilt.
+    \item Zeige, dass für je zwei natürliche Zahlen $m,m':\N$ die folgenden Implikationen gelten:
+      \begin{align*}
+        (m,0) \sim_\Z (n,0) &\to m=n\\
+        (0,m) \sim_\Z (0,n) &\to m=n\\
+        (m,0) \sim_\Z (0,n) &\to m=n=0
+      \end{align*}
+  \end{enumerate}
+  Sei nun $\Z'$ der induktiv definierte Typ der ganzen Zahlen aus Abschnitt 3.3.
+  \begin{enumerate}[start=4]
+    \item Finde eine Funktion $\N\times\N\to\Z'$, welche eine Äquivalenz zwischen $\Z$ und $\Z'$ induziert.
+  \end{enumerate}
+  Ab sofort können wir also $\Z$ und $\Z'$ miteinander identifizieren.
+\end{exercise}
+
+\begin{exercise}[Die Windungszahl ist ein Gruppenhomomorphismus]
 \end{exercise}
 
 \end{document}
