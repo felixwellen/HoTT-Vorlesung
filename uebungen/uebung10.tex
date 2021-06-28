@@ -1,0 +1,77 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{10}
+
+\begin{exercise}[Koprodukte von kontrahierbaren Typen und Aussagen]
+  Seien $A,B:\mU$.
+  Zeige:
+  \begin{enumerate}
+    \item Sind $A$ und $B$ kontrahierbar, so ist $A \amalg B$ nicht kontrahierbar.
+    \item Sind $A$ und $B$ Aussagen, so ist $A \amalg B$ eine Aussage genau dann, wenn $A \to \neg B$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Retrakte von $n$-Typen]
+  Sei $r:A \to B$ eine \emph{Retraktion}, existiere also ein Rechtsinverses $s:B \to A$ zu $r$.
+  \begin{enumerate}
+    \item Finde eine Retraktion $s(x) =_A s(y) \to x=_B y$ für alle $x,y:B$.
+    \item Sei $n\geq -2$ ein Abschneidungslevel und $A$ ein $n$-Typ.
+      Zeige, dass $B$ ein $n$-Typ ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Vorgängerfunktion als Transport]
+  \begin{enumerate}
+    \item Konstruiere ein Inverses $\mathrm{pred}_{\Z'}:\Z'\to\Z'$ zur Nachfolgerfunktion $\mathrm{succ}_{\Z'}:\Z'\to\Z'$ durch Rekursion, ohne die Äquivalenz $\Z\simeq\Z'$ zu nutzen.
+    \item Zeige, dass $\transp_{\tilde{S^1}}(l^{-1})=\mathrm{pred}_{\Z'}$.
+    \item Folgere, dass für jedes $p:\Omega(S^1,\ast)$ gilt: $w(p\kon l^{-1})=\mathrm{pred}_{\Z'}(w(p))$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{bonus}[Diese anderen ganzen Zahlen]
+  Sei $A:\mU$ ein Typ und $R:A \to A \to \mU$ ein abhängiger Typ, den wir als Relation auf $A$ auffassen.
+  Wir nennen $R$ eine \emph{Äquivalenzrelation}, falls Terme der folgenden Form existieren:
+  \begin{align*}
+    \mathrm{refl}^R :   & \prod_{a:A} R(a,a)\\
+    \mathrm{sym}^R :    & \prod_{a,b:A} R(a,b) \to R(b,a)\\
+    \mathrm{trans}^R :  & \prod_{a,b,c:A} R(a,b) \to R(b,c) \to R(a,c)
+  \end{align*}
+  Ein \emph{Repräsentantensystem} einer Äquivalenzrelation $R$ ist eine Funktion $g:A \to A$ mit den folgenden Eigenschaften:
+  \begin{gather*}
+    \prod_{a:A} R(a,g(a))\\
+    \prod_{a,b:A} R(g(a),g(b)) \to g(a) = g(b)
+  \end{gather*}
+
+  \begin{enumerate}
+    \item Sei $R:A \to A \to\mU$ eine Äquivalenzrelation mit Repräsentantensystem $g:A \to A$ und sei $f:A \to B$ eine Funktion, sodass
+      $$
+      \prod_{a:A} f(g(a)) =_B f(a)
+      $$
+      gilt.
+      Zeige, dass $f$ die Relation respektiert, finde also einen Term des Typs
+      $$
+      r:\prod_{a,b:A} R(a,b) \to f(a) =_B f(b).
+      $$
+      Insbesondere existiert $\rec{A/R}(B,f,r):A/R\to B$, falls $B$ eine Menge ist.
+    \item Zeige, dass $\sim_Z$ eine Äquivalenzrelation auf $\N\times\N$ ist.
+    \item Zeige, dass folgende rekursiv definierte Funktion ein Repräsentantensystem von $\sim_\Z$ ist:
+      \begin{align*}
+        g : \N\times\N &\to \N\times\N\\
+        g(n,0) &\colonequiv (n,0)\\
+        g(0,k) &\colonequiv (0,k)\\
+        g(\sucN(n),\sucN(k)) &\colonequiv g(n,k)
+      \end{align*}
+    \item Zeige, dass folgende rekursiv definierte Funktion in die induktiven ganzen Zahlen die Eigenschaft $\prod_{x:\N\times \N} f(g(x)) =_{\Z'} f(x)$ erfüllt:
+      \begin{align*}
+        f:\N\times\N &\to \Z'\\
+        f(0,0)       &\colonequiv 0_{\Z'}\\
+        f(\sucN(n),0) &\colonequiv \mathrm{pos}(\sucN(n))\\
+        f(0,\sucN(k)) &\colonequiv \mathrm{neg}(\sucN(k))\\
+        f(\sucN(n),\sucN(k)) &\colonequiv f(n,k)
+      \end{align*}
+    \item Zeige, dass die von $f$ induzierte Funktion $\Z\to\Z'$ eine Äquivalenz ist.
+  \end{enumerate}
+\end{bonus}
+
+\end{document}
