@@ -768,7 +768,6 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   \end{enumerate}
 \end{definition}
 
-
 \subsection{Sphären, Homotopiegruppen und n-Abschneidungen}
 
 \begin{definition}
@@ -787,13 +786,10 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \item Den Schleifenraum $\Omega(A,\ast_A)$ werden wir nun auch als punktierten Raum mit dem Punkt $\refl_{\ast_A}$ auffassen.
 \item Für ein punktierte Abbildung $(f,p_f):(A,\ast_A)\to^\cdot (B,\ast_B)$ ist
   \begin{mathpar}
-    \Omega(f) \colonequiv (p:\ast_A =\ast_A) \mapsto p_f^{-1}\kon f(p) \kon p_f
+    \Omega(f,p_f) \colonequiv (p:\ast_A =\ast_A) \mapsto p_f^{-1}\kon f(p) \kon p_f
   \end{mathpar}
+\item Die Typen $\eins,\zwei,\N$ und $\Z$ sind jeweils durch $0$ punktiert. Alle Summen $\sum_{x:A}B(x)$ mit punktiertem $A$ und $B(\ast)$ sind punktiert und abhängige Produkte $\prod_{x:A}B(x)$ mit punktierten $B(x)$ sind punktiert.
   \end{enumerate}
-\end{definition}
-
-\begin{definition}[punktierte Homotopien]
-Seien $f,g:A\to^\cdot B$ punktierte Abbildungen. Eine \begriff{punktierte Homotopie} zwischen $f$ und $g$  
 \end{definition}
 
 \begin{definition}[n-facher Schleifenraum]
@@ -805,6 +801,33 @@ Seien $f,g:A\to^\cdot B$ punktierte Abbildungen. Eine \begriff{punktierte Homoto
   wobei wir Schleifenräume stets als punktiert auffassen.
 \end{definition}
 
+\begin{lemma}
+  Sei $A:\mU$, dann sind für $n\geq -1$ äquivalent:
+  \begin{enumerate}[label=\roman*)]
+  \item $A$ ist ein $(n+1)$-Typ.
+  \item Der Schleifenraum $\Omega(A,x)$ ist ein $n$-Typ für jedes $x:A$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+  Seien $A,B,C:\mU$ und $f:A\to C$, $g:B\to C$. Es ist also ein Winkel gegeben:
+  \begin{center}
+\ignore{    \begin{tikzcd}
+      A\arrow[rd]\arrow[r, "\phi"] & B \\& C
+    \end{tikzcd} }
+  \end{center}
+  \begin{enumerate}
+  \item Seien weiter $X:\mU$, $\varphi:X\to A$, $\psi:X\to B$, also:
+  \begin{center}
+    \ignore{    \begin{tikzcd}
+        X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
+        B\arrow[r,"g"] & C 
+      \end{tikzcd} }
+  \end{center}
+  Wir sagen die eingangs aufgeführten Daten bilden mit einer Homotopie $f\circ \varphi \sim g\circ \psi$ ein \begriff{Quadrat}.
+  \end{enumerate}
+\end{definition}
+
 \begin{regeln}[Suspension]
   Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
   Die Einhängung ist ein höherer induktiver Typ mit folgenden Konstruktoren:
@@ -813,8 +836,20 @@ Seien $f,g:A\to^\cdot B$ punktierte Abbildungen. Eine \begriff{punktierte Homoto
     S&:\Sigma A \\
     m&:A\to N=_{\Sigma A}S
   \end{align*}
-  
+  $\Sigma A$ ist durch $N$ punktiert.
 \end{regeln}
 
+\begin{bemerkung}
+  Wir werden noch sehen, dass gilt: $(\Sigma\zwei)\simeq S^1$
+\end{bemerkung}
+
+\begin{definition}
+  Die (induktive) \begriff{$n$-Sphäre}\index{$S^n$} ist rekursiv gegeben durch
+  \begin{align*}
+    S^0&\colonequiv \zwei \\
+    S^{n+1}&\colonequiv \Sigma S^n
+  \end{align*}
+  Da $\zwei$ punktiert ist und $\Sigma$ punktierte Typen erhält, können wir $S^n$ als punktierten Typen auffassen.
+\end{definition}
 
 \subsection{Überlagerungen II?}
