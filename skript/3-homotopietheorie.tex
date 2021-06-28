@@ -755,29 +755,66 @@ konstruieren.
   \end{enumerate}
 \end{beweis}
 
+Die Eigenschaft der abhängigen Typen $\tilde{S^1}$ und $(x:S^1)\mapsto \ast=x$, dass alle Werte Mengen sind, ist bereits die definierende Eigenschaft von Überlagerungen.
+Allerdings werden wir die Projektionen dieser abhängigen Typen Überlagerungen nennen.
+Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Überlagerungen handelt.
+
+\begin{definition}
+  Sei $A:\mU$ ein Typ.
+  \begin{enumerate}
+  \item Ein abhängiger Typ $B:A\to \mU$ heißt $n$-abgeschnitten, wenn jedes $B(x)$ ein $n$-Typ, also $n$-abgeschnitten ist.
+  \item Eine Abbildung heißt $n$-abgeschnitten, wenn alle ihre Fasern $n$-abgeschnitten sind.
+  \item Eine Abbildung $f:A\to B$ heißt \begriff{Überlagerung}, wenn sie $0$-abgeschnitten ist.
+  \end{enumerate}
+\end{definition}
 
 
-\subsection{Sphären, n-Abschneidungen und Homotopiegruppen}
+\subsection{Sphären, Homotopiegruppen und n-Abschneidungen}
 
 \begin{definition}
   Seien $(A,\ast_A)$ und $(B,\ast_B)$ punktierte Typen.
-  Eine \begriff{punktierte Abbildung} oder \begriff{Abbildung punktierter Typen} ist eine Funktion $f:A\to B$ zusammen mit einer Gleichheit $f(\ast_A)=\ast_B$.
+  \begin{enumerate}
+  \item Eine \begriff{punktierte Abbildung} oder \begriff{Abbildung punktierter Typen}\index{$\to^\cdot$} ist eine Funktion $f:A\to B$ zusammen mit einer Gleichheit $p_f:f(\ast_A)=\ast_B$.
   Der Typ der punktierten Abbildungen ist:
   \begin{mathpar}
     (A,\ast_A)\to^\cdot (B,\ast_B)\colonequiv  \sum_{f:A\to B}f(\ast_A)=\ast_B
   \end{mathpar}
-  Wir werden auch $A\to^\cdot B$ schreiben, wenn die Punktierung klar ist.
+  Wir werden auch $A\to^\cdot B$ schreiben, wenn die Punktierung klar ist und etwa $(f,p_f):(A,\ast_A)\to^\cdot (B,\ast_B)$, um der Gleichheit der punktierten Abbildung einen Namen zu geben.
+\item Der \begriff{Typ der punktierten Typen} ist
+  \begin{mathpar}
+    \mU^\cdot\colonequiv\sum_{A:\mU}A
+  \end{mathpar}
+\item Den Schleifenraum $\Omega(A,\ast_A)$ werden wir nun auch als punktierten Raum mit dem Punkt $\refl_{\ast_A}$ auffassen.
+\item Für ein punktierte Abbildung $(f,p_f):(A,\ast_A)\to^\cdot (B,\ast_B)$ ist
+  \begin{mathpar}
+    \Omega(f) \colonequiv (p:\ast_A =\ast_A) \mapsto p_f^{-1}\kon f(p) \kon p_f
+  \end{mathpar}
+  \end{enumerate}
 \end{definition}
 
-\begin{korollar}
-  Es gilt:
-  \begin{mathpar}
-    (S^1\to^\cdot S^1)\simeq \Z
-  \end{mathpar}
-\end{korollar}
-\begin{beweis}
+\begin{definition}[punktierte Homotopien]
+Seien $f,g:A\to^\cdot B$ punktierte Abbildungen. Eine \begriff{punktierte Homotopie} zwischen $f$ und $g$  
+\end{definition}
+
+\begin{definition}[n-facher Schleifenraum]
+  Für $n:\N$ und $(A,\ast_A)$ sei der \begriff{$n$-fache Schleifenraum} $\Omega^n(A,\ast_A)$ rekursiv gegeben durch:
+  \begin{align*}
+    \Omega^0&\colonequiv (A,\ast_A) \\
+    \Omega^{n+1}&\colonequiv \Omega(\Omega^n(A,\ast_A))
+  \end{align*}
+  wobei wir Schleifenräume stets als punktiert auffassen.
+\end{definition}
+
+\begin{regeln}[Suspension]
+  Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
+  Die Einhängung ist ein höherer induktiver Typ mit folgenden Konstruktoren:
+  \begin{align*}
+    N&:\Sigma A \\
+    S&:\Sigma A \\
+    m&:A\to N=_{\Sigma A}S
+  \end{align*}
   
-\end{beweis}
+\end{regeln}
 
 
-\subsection{Überlagerungen II}
+\subsection{Überlagerungen II?}
