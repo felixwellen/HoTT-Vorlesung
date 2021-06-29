@@ -871,9 +871,25 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
         \eins\ar[r, "\ast", swap] & B
       \end{tikzcd}
     \end{center}
-  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter ersetzen von Typen mit äquivalenten Typen und ersetzen von Abbildungen durch homotope Abbildungen.
+  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter ersetzen von Typen mit äquivalenten Typen und Abbildungen durch homotope Abbildungen.
   \end{enumerate}
 \end{bemerkung}
+
+\begin{lemma}
+  Sei
+  \begin{center}
+    \begin{tikzcd}
+      X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
+      B\arrow[r,"g",swap] & C 
+    \end{tikzcd}
+  \end{center}
+  ein Quadrat mit Homotopie $H$, dann sind äquivalent:
+  \begin{enumerate}
+  \item Das Quadrat ist ein Pullbackquadrat, bzw. die Vergleichsabbildung $V(X,\varphi,\psi,H):\mathrm{PB}(f,g)\to X$ ist eine Äquivalenz.
+  \item Für jedes $Y$ ist der Typ der $Y$-Kegel durch bilden von Vergleichsabbildungen äquivalent zum Typ $(Y\to X)$.
+  \item Jeder $Y$-Kegel $(\varphi',\psi',H')$ faktorisiert eindeutig über $X$. Das heißt, dass der Typ der Abbildungen $h:Y\to X$ zusammen mit Homotopien $\varphi\circ h\sim\varphi'$, $\psi\circ h\sim\psi'$ kontrahierbar ist.
+  \end{enumerate}
+\end{lemma}
 
 \begin{regeln}[Suspension]
   Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
