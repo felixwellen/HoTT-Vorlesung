@@ -517,7 +517,7 @@ Letzterer könnte also bestenfalls noch ein $1$-Typ sein. Das ist tatsächlich s
   Letzteres ist ein Untertyp von $A\to B$, was nach \cref{lem:pi-n-type} ein $n$-Typ ist.
 \end{beweis}
 
-\subsection{Überlagerungen}
+\subsection{Überlagerungen I}
 
 Bevor wir uns dem eigentlichen Thema zuwenden, brauchen wir noch eine Variante der ganzen Zahlen mit einem Rekursionsprinzip,
 das uns auch Abbildungen in nicht notwendigerweise 0-abgeschnittene Typen erlaubt.
@@ -755,4 +755,151 @@ konstruieren.
   \end{enumerate}
 \end{beweis}
 
-\subsection{Homotopiegruppen}
+Die Eigenschaft der abhängigen Typen $\tilde{S^1}$ und $(x:S^1)\mapsto \ast=x$, dass alle Werte Mengen sind, ist bereits die definierende Eigenschaft von Überlagerungen.
+Allerdings werden wir die Projektionen dieser abhängigen Typen Überlagerungen nennen.
+Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Überlagerungen handelt.
+
+\begin{definition}
+  Sei $A:\mU$ ein Typ.
+  \begin{enumerate}
+  \item Ein abhängiger Typ $B:A\to \mU$ heißt $n$-abgeschnitten, wenn jedes $B(x)$ ein $n$-Typ, also $n$-abgeschnitten ist.
+  \item Eine Abbildung heißt $n$-abgeschnitten, wenn alle ihre Fasern $n$-abgeschnitten sind.
+  \item Eine Abbildung $f:A\to B$ heißt \begriff{Überlagerung}, wenn sie $0$-abgeschnitten ist.
+  \end{enumerate}
+\end{definition}
+
+\subsection{Sphären, Homotopiegruppen und n-Abschneidungen}
+
+\begin{definition}
+  Seien $(A,\ast_A)$ und $(B,\ast_B)$ punktierte Typen.
+  \begin{enumerate}
+  \item Eine \begriff{punktierte Abbildung} oder \begriff{Abbildung punktierter Typen}\index{$\to^\ast$} ist eine Funktion $f:A\to B$ zusammen mit einer Gleichheit $p_f:f(\ast_A)=\ast_B$.
+  Der Typ der punktierten Abbildungen ist:
+  \begin{mathpar}
+    (A,\ast_A)\to^\ast (B,\ast_B)\colonequiv  \sum_{f:A\to B}f(\ast_A)=\ast_B
+  \end{mathpar}
+  Wir werden auch $A\to^\ast B$ schreiben, wenn die Punktierung klar ist und etwa $(f,p_f):(A,\ast_A)\to^\ast (B,\ast_B)$, um der Gleichheit der punktierten Abbildung einen Namen zu geben.
+\item Der \begriff{Typ der punktierten Typen} ist
+  \begin{mathpar}
+    \mU^\ast\colonequiv\sum_{A:\mU}A
+  \end{mathpar}
+\item Den Schleifenraum $\Omega(A,\ast_A)$ werden wir nun auch als punktierten Raum mit dem Punkt $\refl_{\ast_A}$ auffassen.
+\item Für ein punktierte Abbildung $(f,p_f):(A,\ast_A)\to^\ast (B,\ast_B)$ ist
+  \begin{mathpar}
+    \Omega(f,p_f) \colonequiv (p:\ast_A =\ast_A) \mapsto p_f^{-1}\kon f(p) \kon p_f
+  \end{mathpar}
+\item Die Typen $\eins,\zwei,\N$ und $\Z$ sind jeweils durch $0$ punktiert. Alle Summen $\sum_{x:A}B(x)$ mit punktiertem $A$ und $B(\ast)$ sind punktiert und abhängige Produkte $\prod_{x:A}B(x)$ mit punktierten $B(x)$ sind punktiert.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}[n-facher Schleifenraum]
+  Für $n:\N$ und $(A,\ast_A)$ sei der \begriff{$n$-fache Schleifenraum} $\Omega^n(A,\ast_A)$ rekursiv gegeben durch:
+  \begin{align*}
+    \Omega^0&\colonequiv (A,\ast_A) \\
+    \Omega^{n+1}&\colonequiv \Omega(\Omega^n(A,\ast_A))
+  \end{align*}
+  wobei wir Schleifenräume stets als punktiert auffassen.
+\end{definition}
+
+\begin{lemma}
+  Sei $A:\mU$, dann sind für $n\geq -1$ äquivalent:
+  \begin{enumerate}[label=\roman*)]
+  \item $A$ ist ein $(n+1)$-Typ.
+  \item Der Schleifenraum $\Omega(A,x)$ ist ein $n$-Typ für jedes $x:A$.
+  \end{enumerate}
+\end{lemma}
+\begin{beweis}[Idee]
+  Jeder Gleichheitstyp $x=_A y$ ist äquivalent zum Schleifenraum $\Omega(A,x)$, wenn es ein $p:x=_A y$ gibt.
+  Tatsächlich reicht diese Aussage schon, denn für $n\geq -1$ und jedes $X$ gilt:
+  \begin{mathpar}
+    (X\to \isNType{n}(X))\to \isNType{n}(X)
+  \end{mathpar}
+\end{beweis}
+
+\begin{definition}
+  Seien $A,B,C:\mU$ und $f:A\to C$, $g:B\to C$. Es ist also ein Winkel gegeben:
+  \begin{center}
+    \begin{tikzcd}
+      & A\arrow[d, "f"] \\
+      B\arrow[r, "g", swap] & C
+    \end{tikzcd}
+  \end{center}
+  \begin{enumerate}
+  \item Sei $X:\mU$. Ein \begriff{$X$-Kegel}\index{Kegel} besteht aus Abbildungen $\varphi:X\to A$ und $\psi:X\to B$ zusammen mit einer Homotopie $H:f\circ \varphi \sim g\circ \psi$.
+    Einen Kegel zusammen mit dem Winkel nennt man \begriff{Quadrat}:
+    \begin{center}
+      \begin{tikzcd}
+        X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
+        B\arrow[r,"g",swap] & C 
+      \end{tikzcd}
+    \end{center}
+  \item Der Kegel mit Spitze
+    \begin{mathpar}
+      \mathrm{PB}(f,g)\colonequiv \sum_{x:A}\sum_{y:A}f(x)=g(y)
+    \end{mathpar}
+    und Projektionen $\pi_1\mathrm{PB}(f,g)\to A$, $\pi_1\colonequiv \pi_1\circ \pi_2:\mathrm{PB}(f,g)\to B$ und der Homotopie $\pi_2\circ\pi_2:f\circ \pi_1 \sim g\circ \pi_2$ heißt \begriff{Pullback} von $f$ entlang $g$.
+  \item Für einen $X$-Kegel $(\varphi,\psi,H)$ heißt die Abbildung
+    \begin{mathpar}
+      V(X,\varphi,\psi,H)\colonequiv (x:X)\mapsto (\varphi(x),\psi(x),H_x) : X \to \mathrm{PB}(f,g)
+    \end{mathpar}
+    \begriff{Vergleichsabbildung} und der $X$-Kegel zusammen mit dem Winkel heißt \begriff{Pullbackquadrat}, wenn $V(X,\varphi,\psi,H)$ eine Äquivalenz ist.
+  \end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+  Sei 
+  \begin{center}
+    \begin{tikzcd}
+      & A\arrow[d, "f"] \\
+      B\arrow[r, "g", swap] & C
+    \end{tikzcd}
+  \end{center}
+  ein Winkel.
+  \begin{enumerate}
+  \item Der Pullback von $f$ und $g$ vervollständigt den Winkel zu einem Pullbackquadrat.
+  \item Sei $A$ punktiert, dann ist der Schleifenraum wie folgt ein Pullback:
+    \begin{center}
+      \begin{tikzcd}
+        \Omega(A,\ast)\ar[r]\ar[d] & \eins\ar[d, "\ast"] \\
+        \eins\ar[r, "\ast", swap] & A
+      \end{tikzcd}
+    \end{center}
+  \item Wenn $f$ punktiert ist, dann ist die Faser von $f$ wie folgt ein Pullback:
+    \begin{center}
+      \begin{tikzcd}
+        f^{-1}(\ast)\ar[r]\ar[d] & A\ar[d, "f"] \\
+        \eins\ar[r, "\ast", swap] & B
+      \end{tikzcd}
+    \end{center}
+  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter ersetzen von Typen mit äquivalenten Typen und ersetzen von Abbildungen durch homotope Abbildungen.
+  \end{enumerate}
+\end{bemerkung}
+
+\begin{regeln}[Suspension]
+  Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
+  Die Einhängung ist ein höherer induktiver Typ mit folgenden Konstruktoren:
+  \begin{align*}
+    N&:\Sigma A \\
+    S&:\Sigma A \\
+    m&:A\to N=_{\Sigma A}S
+  \end{align*}
+  $\Sigma A$ ist durch $N$ punktiert.
+\end{regeln}
+
+\begin{bemerkung}
+  Wir werden noch sehen, dass gilt: $(\Sigma\zwei)\simeq S^1$
+\end{bemerkung}
+
+\begin{definition}
+  Die (induktive) \begriff{$n$-Sphäre}\index{$S^n$} ist rekursiv gegeben durch
+  \begin{align*}
+    S^0&\colonequiv \zwei \\
+    S^{n+1}&\colonequiv \Sigma S^n
+  \end{align*}
+  Da $\zwei$ punktiert ist und $\Sigma$ punktierte Typen erhält, können wir $S^n$ als punktierten Typen auffassen.
+\end{definition}
+
+\subsection{Überlagerungen II?}
+\subsection{Eilenberg-MacLane Räume?}
+\subsection{Kohomologie?}
+\subsection{Cubical Type Theory?}
