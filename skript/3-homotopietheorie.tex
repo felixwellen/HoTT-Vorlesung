@@ -916,6 +916,16 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Man benutzt die Äquivalenz zu faserweisen Äquivalenzen. Dann ergibt sich die Aussage durch punktweises Anwenden von 2-aus-3 für Äquivalenzen.
 \end{beweis}
 
+\begin{theorem}[Faser-Sequenz]
+  Sei $f:A\to B$ eine punktierte Abbildung. Dann gibt es eine Sequenz:
+  \begin{center}
+    \begin{tikzcd}
+      \Omega A \ar[r,"-\Omega f"] & \Omega B \ar[r] & f^{-1}(\ast) \ar[r] & A \ar[r] & B
+    \end{tikzcd}
+  \end{center}
+  wobei bei aufeinanderfolgenden Abbildungen stets die linke die Faser der rechten ist - bis auf Äquivalenz.
+\end{theorem}
+
 \begin{regeln}[Suspension]
   Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
   Die Einhängung ist ein höherer induktiver Typ mit folgenden Konstruktoren:
