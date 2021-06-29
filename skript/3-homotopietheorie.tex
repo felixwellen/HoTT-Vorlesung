@@ -835,9 +835,9 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
     \end{center}
   \item Der Kegel mit Spitze
     \begin{mathpar}
-      \mathrm{PB}(f,g)\colonequiv \sum_{x:A}\sum_{y:A}f(x)=g(y)
+      \mathrm{PB}(f,g)\colonequiv \sum_{x:A}\sum_{y:B}f(x)=g(y)
     \end{mathpar}
-    und Projektionen $\pi_1\mathrm{PB}(f,g)\to A$, $\pi_1\colonequiv \pi_1\circ \pi_2:\mathrm{PB}(f,g)\to B$ und der Homotopie $\pi_2\circ\pi_2:f\circ \pi_1 \sim g\circ \pi_2$ heißt \begriff{Pullback} von $f$ entlang $g$.
+    und Projektionen $\pi_1:\mathrm{PB}(f,g)\to A$, $\pi_2\colonequiv \pi_1\circ \pi_2:\mathrm{PB}(f,g)\to B$ und der Homotopie $\pi_2\circ\pi_2:f\circ \pi_1 \sim g\circ \pi_2$ heißt \begriff{Pullback} von $f$ entlang $g$.
   \item Für einen $X$-Kegel $(\varphi,\psi,H)$ heißt die Abbildung
     \begin{mathpar}
       V(X,\varphi,\psi,H)\colonequiv (x:X)\mapsto (\varphi(x),\psi(x),H_x) : X \to \mathrm{PB}(f,g)
@@ -885,8 +885,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   \end{center}
   ein Quadrat mit Homotopie $H$, dann sind äquivalent:
   \begin{enumerate}
-  \item Das Quadrat ist ein Pullbackquadrat, bzw. die Vergleichsabbildung $V(X,\varphi,\psi,H):\mathrm{PB}(f,g)\to X$ ist eine Äquivalenz.
-  \item Für jedes $Y$ ist der Typ der $Y$-Kegel durch bilden von Vergleichsabbildungen äquivalent zum Typ $(Y\to X)$.
+  \item Das Quadrat ist ein Pullbackquadrat, bzw. die Vergleichsabbildung $V(X,\varphi,\psi,H):X\to\mathrm{PB}(f,g)$ ist eine Äquivalenz.
+  \item Für jedes $Y$ ist der Typ der $Y$-Kegel durch Bilden von Vergleichsabbildungen äquivalent zum Typ $(Y\to X)$.
   \item Jeder $Y$-Kegel $(\varphi',\psi',H')$ faktorisiert eindeutig über $X$. Das heißt, dass der Typ der Abbildungen $h:Y\to X$ zusammen mit Homotopien $\varphi\circ h\sim\varphi'$, $\psi\circ h\sim\psi'$ kontrahierbar ist.
   \item Die induzierte faserweise Abbildung $\prod_{x:B}\psi^{-1}(x)\to f^{-1}(g(x))$ ist eine faserweise Äquivalenz.
   \end{enumerate}
