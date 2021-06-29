@@ -826,6 +826,16 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
         B\arrow[r,"g",swap] & C 
       \end{tikzcd}
     \end{center}
+  \item Der Kegel mit Spitze
+    \begin{mathpar}
+      \mathrm{PB}(f,g)\colonequiv \sum_{x:A}\sum_{y:A}f(x)=g(y)
+    \end{mathpar}
+    und Projektionen $\pi_1\mathrm{PB}(f,g)\to A$, $\pi_1\colonequiv \pi_1\circ \pi_2:\mathrm{PB}(f,g)\to B$ und der Homotopie $\pi_2\circ\pi_2:f\circ \pi_1 \sim g\circ \pi_2$ heißt \begriff{Pullback} von $f$ entlang $g$.
+  \item Für einen $X$-Kegel $(\varphi,\psi,H)$ heißt die Abbildung
+    \begin{mathpar}
+      V(X,\varphi,\psi,H)\colonequiv (x:X)\mapsto (\varphi(x),\psi(x),H_x) : X \to \mathrm{PB}(f,g)
+    \end{mathpar}
+    \begriff{Vergleichsabbildung} und der $X$-Kegel zusammen mit dem Winkel heißt \begriff{Pullbackquadrat}, wenn $V(X,\varphi,\psi,H)$ eine Äquivalenz ist.
   \end{enumerate}
 \end{definition}
 
@@ -854,3 +864,6 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \end{definition}
 
 \subsection{Überlagerungen II?}
+\subsection{Eilenberg-MacLane Räume?}
+\subsection{Kohomologie?}
+\subsection{Cubical Type Theory?}
