@@ -808,6 +808,13 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   \item Der Schleifenraum $\Omega(A,x)$ ist ein $n$-Typ für jedes $x:A$.
   \end{enumerate}
 \end{lemma}
+\begin{beweis}[Idee]
+  Jeder Gleichheitstyp $x=_A y$ ist äquivalent zum Schleifenraum $\Omega(A,x)$, wenn es ein $p:x=_A y$ gibt.
+  Tatsächlich reicht diese Aussage schon, denn für $n\geq -1$ und jedes $X$ gilt:
+  \begin{mathpar}
+    (X\to \isNType{n}(X))\to \isNType{n}(X)
+  \end{mathpar}
+\end{beweis}
 
 \begin{definition}
   Seien $A,B,C:\mU$ und $f:A\to C$, $g:B\to C$. Es ist also ein Winkel gegeben:
@@ -857,6 +864,14 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
         \eins\ar[r, "\ast", swap] & A
       \end{tikzcd}
     \end{center}
+  \item Wenn $f$ punktiert ist, dann ist die Faser von $f$ wie folgt ein Pullback:
+    \begin{center}
+      \begin{tikzcd}
+        f^{-1}(\ast)\ar[r]\ar[d] & A\ar[d, "f"] \\
+        \eins\ar[r, "\ast", swap] & B
+      \end{tikzcd}
+    \end{center}
+  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter ersetzen von Typen mit äquivalenten Typen und ersetzen von Abbildungen durch homotope Abbildungen.
   \end{enumerate}
 \end{bemerkung}
 
