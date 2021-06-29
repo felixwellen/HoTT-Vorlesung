@@ -920,11 +920,31 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Sei $f:A\to B$ eine punktierte Abbildung. Dann gibt es eine Sequenz:
   \begin{center}
     \begin{tikzcd}
-      \Omega A \ar[r,"-\Omega f"] & \Omega B \ar[r] & f^{-1}(\ast) \ar[r] & A \ar[r] & B
+      \Omega A \ar[r,"-\Omega f"] & \Omega B \ar[r] & f^{-1}(\ast) \ar[r,"\pi"] & A \ar[r,"f"] & B
     \end{tikzcd}
   \end{center}
   wobei bei aufeinanderfolgenden Abbildungen stets die linke die Faser der rechten ist - bis auf Äquivalenz.
 \end{theorem}
+\begin{beweis}
+  Betrache:
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{PB}(\ast,\pi)\ar[r]\ar[d] & \eins\ar[d,"\ast"] \\
+      f^{-1}(\ast) \ar[r,"\pi"]\ar[d] & A \ar[d,"f"] \\
+      \eins\ar[r,"\ast",swap] & B
+    \end{tikzcd}
+  \end{center}
+  Durch Pullback-Pasting wissen wir, $\mathrm{PB}(\ast,\pi)$ auch Pullback des zusammengesetzen Quadrats ist.
+  Aber auch $\Omega B$, oder etwas genauer $f(\ast)=\ast$ ist Pullback des zusammengesetzen Quadrats, also können wir $\mathrm{PB}(\ast,\pi)$ äquivalent ersetzen durch $\Omega B$.
+  Im so entstandenen Diagram, nehmen wir gleich wieder einen Pullback:
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{PB}(\dots,\ast)\ar[r]\ar[d] & \Omega B\ar[r]\ar[d] & \eins\ar[d,"\ast"] \\
+      \eins\ar[r] &f^{-1}(\ast) \ar[r,"\pi"]\ar[d] & A \ar[d,"f"] \\
+      & \eins\ar[r,"\ast",swap] & B
+    \end{tikzcd}
+  \end{center}
+\end{beweis}
 
 \begin{regeln}[Suspension]
   Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
@@ -951,6 +971,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \end{definition}
 
 \subsection{Überlagerungen II?}
+\subsection{Homotopiegruppen von Sphären?}
+\subsection{Hopf-Faserung?}
 \subsection{Eilenberg-MacLane Räume?}
 \subsection{Kohomologie?}
 \subsection{Cubical Type Theory?}
