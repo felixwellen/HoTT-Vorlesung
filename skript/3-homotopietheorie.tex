@@ -871,7 +871,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
         \eins\ar[r, "\ast", swap] & B
       \end{tikzcd}
     \end{center}
-  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter ersetzen von Typen mit äquivalenten Typen und Abbildungen durch homotope Abbildungen.
+  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter Ersetzen von äquivalenten Typen und homotopen Abbildungen.
   \end{enumerate}
 \end{bemerkung}
 
@@ -888,8 +888,33 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   \item Das Quadrat ist ein Pullbackquadrat, bzw. die Vergleichsabbildung $V(X,\varphi,\psi,H):\mathrm{PB}(f,g)\to X$ ist eine Äquivalenz.
   \item Für jedes $Y$ ist der Typ der $Y$-Kegel durch bilden von Vergleichsabbildungen äquivalent zum Typ $(Y\to X)$.
   \item Jeder $Y$-Kegel $(\varphi',\psi',H')$ faktorisiert eindeutig über $X$. Das heißt, dass der Typ der Abbildungen $h:Y\to X$ zusammen mit Homotopien $\varphi\circ h\sim\varphi'$, $\psi\circ h\sim\psi'$ kontrahierbar ist.
+  \item Die induzierte faserweise Abbildung $\prod_{x:B}\psi^{-1}(x)\to f^{-1}(g(x))$ ist eine faserweise Äquivalenz.
   \end{enumerate}
 \end{lemma}
+
+\begin{theorem}[Pullback-Pasting]
+  Seien
+  \begin{center}
+    \begin{tikzcd}
+      Y\ar[r]\ar[d] & X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
+      D\ar[r] & B\arrow[r,"g",swap] & C 
+    \end{tikzcd}
+  \end{center}
+  jeweils Quadrate, es gebe also entsprechende Homotopien.
+  \begin{enumerate}
+  \item  Durch Komposition der Homotopien gibt es auch ein drittes Quadrat der Gestalt:
+    \begin{center}
+      \begin{tikzcd}
+        Y\ar[rr]\ar[d] &  & A\arrow[d,"f"] \\
+        D\ar[rr] &  & C 
+      \end{tikzcd}
+    \end{center}
+  \item Das dritte Quadrat ist genau dann ein Pullback, wenn die beiden kleinen Quadrate Pullbacks sind.
+  \end{enumerate}
+\end{theorem}
+\begin{beweis}
+  Man benutzt die Äquivalenz zu faserweisen Äquivalenzen. Dann ergibt sich die Aussage durch punktweises Anwenden von 2-aus-3 für Äquivalenzen.
+\end{beweis}
 
 \begin{regeln}[Suspension]
   Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
