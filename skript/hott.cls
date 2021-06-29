@@ -25,7 +25,7 @@
 
 % Grafiken
 \RequirePackage{tikz}
-\usetikzlibrary{arrows, cd}
+\usetikzlibrary{arrows, cd, babel}
 
 % Inferenzregeln
 \RequirePackage{mathpartir}
