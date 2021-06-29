@@ -773,18 +773,18 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \begin{definition}
   Seien $(A,\ast_A)$ und $(B,\ast_B)$ punktierte Typen.
   \begin{enumerate}
-  \item Eine \begriff{punktierte Abbildung} oder \begriff{Abbildung punktierter Typen}\index{$\to^\cdot$} ist eine Funktion $f:A\to B$ zusammen mit einer Gleichheit $p_f:f(\ast_A)=\ast_B$.
+  \item Eine \begriff{punktierte Abbildung} oder \begriff{Abbildung punktierter Typen}\index{$\to^\ast$} ist eine Funktion $f:A\to B$ zusammen mit einer Gleichheit $p_f:f(\ast_A)=\ast_B$.
   Der Typ der punktierten Abbildungen ist:
   \begin{mathpar}
-    (A,\ast_A)\to^\cdot (B,\ast_B)\colonequiv  \sum_{f:A\to B}f(\ast_A)=\ast_B
+    (A,\ast_A)\to^\ast (B,\ast_B)\colonequiv  \sum_{f:A\to B}f(\ast_A)=\ast_B
   \end{mathpar}
-  Wir werden auch $A\to^\cdot B$ schreiben, wenn die Punktierung klar ist und etwa $(f,p_f):(A,\ast_A)\to^\cdot (B,\ast_B)$, um der Gleichheit der punktierten Abbildung einen Namen zu geben.
+  Wir werden auch $A\to^\ast B$ schreiben, wenn die Punktierung klar ist und etwa $(f,p_f):(A,\ast_A)\to^\ast (B,\ast_B)$, um der Gleichheit der punktierten Abbildung einen Namen zu geben.
 \item Der \begriff{Typ der punktierten Typen} ist
   \begin{mathpar}
-    \mU^\cdot\colonequiv\sum_{A:\mU}A
+    \mU^\ast\colonequiv\sum_{A:\mU}A
   \end{mathpar}
 \item Den Schleifenraum $\Omega(A,\ast_A)$ werden wir nun auch als punktierten Raum mit dem Punkt $\refl_{\ast_A}$ auffassen.
-\item Für ein punktierte Abbildung $(f,p_f):(A,\ast_A)\to^\cdot (B,\ast_B)$ ist
+\item Für ein punktierte Abbildung $(f,p_f):(A,\ast_A)\to^\ast (B,\ast_B)$ ist
   \begin{mathpar}
     \Omega(f,p_f) \colonequiv (p:\ast_A =\ast_A) \mapsto p_f^{-1}\kon f(p) \kon p_f
   \end{mathpar}
@@ -838,6 +838,27 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
     \begriff{Vergleichsabbildung} und der $X$-Kegel zusammen mit dem Winkel heißt \begriff{Pullbackquadrat}, wenn $V(X,\varphi,\psi,H)$ eine Äquivalenz ist.
   \end{enumerate}
 \end{definition}
+
+\begin{bemerkung}
+  Sei 
+  \begin{center}
+    \begin{tikzcd}
+      & A\arrow[d, "f"] \\
+      B\arrow[r, "g", swap] & C
+    \end{tikzcd}
+  \end{center}
+  ein Winkel.
+  \begin{enumerate}
+  \item Der Pullback von $f$ und $g$ vervollständigt den Winkel zu einem Pullbackquadrat.
+  \item Sei $A$ punktiert, dann ist der Schleifenraum wie folgt ein Pullback:
+    \begin{center}
+      \begin{tikzcd}
+        \Omega(A,\ast)\ar[r]\ar[d] & \eins\ar[d, "\ast"] \\
+        \eins\ar[r, "\ast", swap] & A
+      \end{tikzcd}
+    \end{center}
+  \end{enumerate}
+\end{bemerkung}
 
 \begin{regeln}[Suspension]
   Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
