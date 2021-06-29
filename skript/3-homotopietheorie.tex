@@ -813,18 +813,19 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Seien $A,B,C:\mU$ und $f:A\to C$, $g:B\to C$. Es ist also ein Winkel gegeben:
   \begin{center}
     \begin{tikzcd}
-      A\arrow[rd]\arrow[r, "\phi"] & B \\& C
+      & A\arrow[d, "f"] \\
+      B\arrow[r, "g", swap] & C
     \end{tikzcd}
   \end{center}
   \begin{enumerate}
-  \item Seien weiter $X:\mU$, $\varphi:X\to A$, $\psi:X\to B$, also:
+  \item Sei $X:\mU$. Ein \begriff{$X$-Kegel}\index{Kegel} besteht aus Abbildungen $\varphi:X\to A$ und $\psi:X\to B$ zusammen mit einer Homotopie $H:f\circ \varphi \sim g\circ \psi$.
+    Einen Kegel zusammen mit dem Winkel nennt man \begriff{Quadrat}:
     \begin{center}
       \begin{tikzcd}
         X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
         B\arrow[r,"g",swap] & C 
       \end{tikzcd}
-  \end{center}
-  Wir sagen die eingangs aufgeführten Daten bilden mit einer Homotopie $f\circ \varphi \sim g\circ \psi$ ein \begriff{Quadrat}.
+    \end{center}
   \end{enumerate}
 \end{definition}
 
