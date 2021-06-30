@@ -829,8 +829,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
     Einen Kegel zusammen mit dem Winkel nennt man \begriff{Quadrat}:
     \begin{center}
       \begin{tikzcd}
-        X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
-        B\arrow[r,"g",swap] & C 
+        X\arrow[d,"\varphi"]\arrow[r,"\psi",swap] & B\arrow[d,"g"] \\
+        A\arrow[r,"f",swap] & C 
       \end{tikzcd}
     \end{center}
   \item Der Kegel mit Spitze
@@ -850,8 +850,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Sei 
   \begin{center}
     \begin{tikzcd}
-      & A\arrow[d, "f"] \\
-      B\arrow[r, "g", swap] & C
+      & B\arrow[d, "g"] \\
+      A\arrow[r, "f", swap] & C
     \end{tikzcd}
   \end{center}
   ein Winkel.
@@ -879,8 +879,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Sei
   \begin{center}
     \begin{tikzcd}
-      X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
-      B\arrow[r,"g",swap] & C 
+      X\arrow[d,"\varphi"]\arrow[r,"\psi",swap] & B\arrow[d,"g"] \\
+      A\arrow[r,"f",swap] & C 
     \end{tikzcd}
   \end{center}
   ein Quadrat mit Homotopie $H$, dann sind äquivalent:
@@ -916,7 +916,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Man benutzt die Äquivalenz zu faserweisen Äquivalenzen. Dann ergibt sich die Aussage durch punktweises Anwenden von 2-aus-3 für Äquivalenzen.
 \end{beweis}
 
-\begin{theorem}[Faser-Sequenz]
+\begin{theorem}[Fasersequenz]
   Sei $(f,p_f):(A,\ast)\to^\ast (B,\ast)$ eine punktierte Abbildung.
   Wir verzichten hier auf Angabe der Punktierung und verwenden die Schreibweise $-\Omega f\colonequiv p\mapsto f(p^{-1})$.
   Dann gibt es eine Sequenz:
@@ -938,15 +938,15 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
     \end{tikzcd}
   \end{center}
   Durch Pullback-Pasting wissen wir, $\mathrm{PB}(\ast,\pi)$ auch Pullback des zusammengesetzen Quadrats ist.
-  Aber auch $\Omega B$, oder etwas genauer $f(\ast)=\ast$ ist Pullback des zusammengesetzen Quadrats, also können wir $\mathrm{PB}(\ast,\pi)$ äquivalent ersetzen durch $\Omega B$.
+  Aber auch $\Omega B$, oder etwas genauer $\ast=f(\ast)$ ist Pullback des zusammengesetzen Quadrats, also können wir $\mathrm{PB}(\ast,\pi)$ äquivalent ersetzen durch $\Omega B$.
   Wir müssen allerdings etwas genauer hinschauen, um zu sehen, was für eine Abbildung $\Omega B\to f^{-1}(\ast)$ wir bekommen.
   Zunächst ist der Pullback:
   \begin{mathpar}
-    \mathrm{PB}(\ast,\pi_1)\equiv \left(\sum_{z:\eins}\sum_{y:\sum_{x:A}f(x)=\ast}\ast=\pi_1(y)\right)\simeq \sum_{x:A} (f(x)=\ast)\times (\ast=x)
+    \mathrm{PB}(\ast,\pi_1)\equiv \left(\sum_{y:\sum_{x:A}f(x)=\ast}\pi_1(y)=\ast\right)\simeq \sum_{x:A} (f(x)=\ast)\times (x=\ast)
   \end{mathpar}
-  Letzterer Typ ist nun äquivalent zu $f(\ast)=\ast$ durch: $(x,p,q)\mapsto f(q)\kon p$, da $f(q)\kon p$ der Wert der zusammengesetzten Homotopie im großen Quadrat ist.
-  Die Projektion von $f(\ast)=\ast$ nach $f^{-1}(\ast)$ muss also $(r:f(\ast)=\ast)\mapsto (\ast,r)$ sein. Die Äquivalenz zu $\ast=\ast$ bzw. $\Omega B$ ist durch die Punktierung $p_f:f(\ast)=\ast$ von $f$ gegeben.
-  Die gesuchte Abbildung ist also $(p:\Omega B)\mapsto (\ast,p_f\kon p)$.
+  Letzterer Typ ist nun äquivalent zu $\ast=f(\ast)$ durch: $(x,p,q)\mapsto p^{-1}\kon f(q)$, da $p^{-1}\kon f(q)$ der Wert der zusammengesetzten Homotopie im großen Quadrat ist.
+  Die Projektion von $\ast=f(\ast)$ nach $f^{-1}(\ast)$ muss also $(r:\ast=f(\ast))\mapsto (\ast,r^{-1})$ sein. Die Äquivalenz zu $\ast=\ast$ bzw. $\Omega B$ ist durch die Punktierung $p_f:f(\ast)=\ast$ von $f$ gegeben.
+  Die gesuchte Abbildung ist also $(p:\Omega B)\mapsto (\ast,p\kon p_f^{-1})$.
   
   Im so bestimmten Diagram nehmen wir wieder einen Pullback:
   \begin{center}
@@ -957,6 +957,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
     \end{tikzcd}
   \end{center}
   Genauer ist der neue Pullback: $\mathrm{PB}((\ast,p_f\kon\_),\ast)\equiv\sum_{p:\Omega B}(\ast,p_f\kon p)=(\ast,p_f)$.
+  Durch waagrechtes Pullback-Pasting muss dieser Pullback allerdings äquivalent zu $\Omega A$ sein.
 \end{beweis}
 
 \begin{regeln}[Einhängung]
@@ -971,8 +972,11 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \end{regeln}
 
 \begin{bemerkung}
-  Wir werden noch sehen, dass gilt: $(\Sigma\zwei)\simeq S^1$
+  Es gilt: $(\Sigma\zwei)\simeq S^1$
 \end{bemerkung}
+\begin{beweis}
+  Wird noch nachgetragen.
+\end{beweis}
 
 \begin{definition}
   Die (induktive) \begriff{$n$-Sphäre}\index{$S^n$} ist rekursiv gegeben durch
