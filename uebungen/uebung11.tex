@@ -13,4 +13,40 @@
   \end{enumerate}
 \end{exercise}
 
+\begin{exercise}
+  Sei $(A,a)$ ein punktierter Typ.
+  Laut Bemerkung 3.4.5 ist der Schleifenraum von $(A,a)$ die Spitze eines Pullback-Quadrates:
+  \begin{center}
+    \begin{tikzcd}
+      \Omega(A,a)
+      \arrow[r]
+      \arrow[d]
+      & \einheit
+      \arrow[d, "a"]
+      \\
+      \einheit
+      \arrow[r, "a"]
+      & A
+    \end{tikzcd}
+  \end{center}
+  Hier fassen wir den Basispunkt $a:A$ als die Abbildung $\rec\einheit(A,a):\einheit \to A$ auf.
+  Sei nun $(f,p_f):(A,a)\to (B,b)$ eine punktierte Abbildung.
+  Finde ein kommutatives Quadrat der Form
+  \begin{center}
+    \begin{tikzcd}
+      \Omega(A,a)
+      \arrow[r, "{\Omega(f,p_f)}"]
+      \arrow[d,"\sim" sloped]
+      & \Omega(B,b)
+      \arrow[d,"\sim" sloped]
+      \\
+      \mathrm{PB}(a,a)
+      \arrow[r]
+      &
+      \mathrm{PB}(b,b)
+    \end{tikzcd}
+    .
+  \end{center}
+\end{exercise}
+
 \end{document}
