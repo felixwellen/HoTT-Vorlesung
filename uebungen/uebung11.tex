@@ -58,4 +58,76 @@
   Zeige, dass $g:B \to C$ genau dann eine Äquivalenz ist, wenn $j(g)$ eine faserweise Äquivalenz ist.
 \end{exercise}
 
+\begin{exercise}[Universelle Eigenschaft von Pullbacks I]
+  Sei
+  \begin{tikzcd}
+    A \arrow[r,"f"] &B \arrow[r,leftarrow,"g"] &C
+  \end{tikzcd}
+  ein Winkel.
+  Der Typ der Kegel über dem diesem Winkel ist
+  $$
+  \mathrm{Cone}(f,g) \colonequiv \sum_{X:\mU}\sum_{\varphi:X\to A}\sum_{\psi:X\to B} f\circ\varphi \sim g\circ\psi.
+  $$
+  Ist $(X,\varphi,\psi,H)$ ein solcher Kegel, so erhalten wir für jedes $Y:\mU$ eine kanonische Abbildung
+  \begin{align*}
+    &\Phi:(Y \to X) \to \mathrm{Cone}(f,g,Y)\\
+    &\Phi(\vartheta)\colonequiv (\varphi\circ\vartheta,\psi\circ\vartheta,H_\vartheta).
+  \end{align*}
+  Zeige:
+  \begin{enumerate}
+    \item Falls $(X,\varphi,\psi,H)\equiv(\mathrm{PB}(f,g),\pi_1,\pi_2,\pi_3)$, so ist $\Phi$ invers zur Vergleichsabbildung
+      $$
+      V(Y):\mathrm{Cone}(f,g,Y)\to (Y\to\mathrm{PB}(f,g)).
+      $$
+    \item Das Quadrat
+      \begin{center}
+        \begin{tikzcd}
+          X
+          \arrow[d,"\varphi"']
+          \arrow[r,"\psi"]
+          & B
+          \arrow[d,"g"]
+          \arrow[dl, phantom, "H" font=\small]
+          \\
+          A
+          \arrow[r,"f"']
+          & C
+        \end{tikzcd}
+      \end{center}
+      ist genau dann ein Pullback-Quadrat, wenn $\Phi$ für jedes $Y$ eine Äquivalenz ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Universelle Eigenschaft von Pullbacks II]
+  Sei
+  \begin{tikzcd}
+    A \arrow[r,"f"] &B \arrow[r,leftarrow,"g"] &C
+  \end{tikzcd}
+  ein Winkel und seien $(X,\varphi,\psi,H)$, $(Y,\varphi',\psi',H')$ Kegel darüber.
+  Der Typ der \emph{Kegelmorphismen} $(Y,\varphi',\psi',H')\to (X,\varphi,\psi,H)$ sei definiert als
+  $$
+  \sum_{\vartheta:Y \to X}
+  \sum_{h:\varphi\circ\vartheta\sim\varphi'}
+  \sum_{k:\psi\circ\vartheta\sim\psi'}
+  h^{-1} \kon H_\vartheta \kon k = H'.
+  $$
+  Ist dieser Typ für jeden Kegel $(Y,\varphi',\psi',H')$ kontrahierbar, so nennen wir $(X,\varphi,\psi,H)$ einen \emph{terminalen Kegel}.
+  Zeige, dass das Quadrat
+  \begin{center}
+    \begin{tikzcd}
+      X
+      \arrow[d,"\varphi"']
+      \arrow[r,"\psi"]
+      & B
+      \arrow[d,"g"]
+      \arrow[dl, phantom, "H" font=\small]
+      \\
+      A
+      \arrow[r,"f"']
+      & C
+    \end{tikzcd}
+  \end{center}
+  genau dann ein Pullbackquadrat ist, wenn $(X,\varphi,\psi,H)$ ein \emph{terminaler} Kegel ist.
+\end{exercise}
+
 \end{document}
