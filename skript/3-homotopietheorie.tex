@@ -886,8 +886,15 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   ein Quadrat mit Homotopie $H$, dann sind äquivalent:
   \begin{enumerate}
   \item Das Quadrat ist ein Pullbackquadrat, bzw. die Vergleichsabbildung $V(X,\varphi,\psi,H):X\to\mathrm{PB}(f,g)$ ist eine Äquivalenz.
-  \item Für jedes $Y$ ist die Abbildung, die jeden $Y$-Kegel $(\varphi',\psi',H')$ auf die Vergleichsabbildung $V(Y,\varphi',\psi',H'):Y\to X$ abbildet, eine Äquivalenz.
   \item Jeder $Y$-Kegel $(\varphi',\psi',H')$ faktorisiert eindeutig über $X$. Das heißt, dass der Typ der Abbildungen $h:Y\to X$ zusammen mit Homotopien $\varphi\circ h\sim\varphi'$, $\psi\circ h\sim\psi'$ kontrahierbar ist.
+  \item Für jedes $Y$ ist die Abbildung, die eine Funktion $h:Y\to X$ abbildet auf den $Y$-Kegel
+    \begin{center}
+    \begin{tikzcd}
+      Y\arrow[d,"\varphi\circ h"']\arrow[r,"\psi\circ h"] & B\arrow[d,"g"] \\
+      A\arrow[r,"f",swap] & C 
+    \end{tikzcd}
+    \end{center}
+    mit Homotopie $H_h$, eine Äquivalenz.
   \item Die induzierte faserweise Abbildung $\prod_{x:B}\psi^{-1}(x)\to f^{-1}(g(x))$ ist eine faserweise Äquivalenz.
   \end{enumerate}
 \end{lemma}
