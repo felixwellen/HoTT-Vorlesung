@@ -994,6 +994,24 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Da $\zwei$ punktiert ist und $\Sigma$ punktierte Typen erhält, können wir $S^n$ als punktierten Typen auffassen.
 \end{definition}
 
+\begin{regeln}
+  Sei $n\geq -1$.
+  Die $n$-Abschneidung eines Typen $A$ ist ein höherer induktiver Typ $\|A\|_n:\mU$ gegen durch die folgenden Konstruktoren:
+  \begin{align*}
+    |\_|_n&:A\to \|A\|_n \\
+    \mathrm{Narbe}&:(S^{n+1}\to \|A\|_n)\to \|A\|_n \\
+    \mathrm{Speiche}&:\prod_ {s:S^{n+1}\to \|A\|_n}\prod_{x:S^{n+1}} \mathrm{Narbe}(s)=s(x)
+  \end{align*}
+\end{regeln}
+
+\begin{theorem}
+  Sei $A:\mU$, dann gilt:
+  \begin{enumerate}
+  \item $\|A\|_n$ ist ein $n$-Typ.
+  \item Für $n$-abgeschnittenes $B:\|A\|_n\to\mU$ und $s_0:\prod_{a:A}B(|a|_n)$ gibt es $s:\prod_{x:\|A\|_n}B(x)$ mit $s(|a|_n)\equiv s_0(a)$.
+  \end{enumerate}
+\end{theorem}
+
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
 
 \begin{regeln}[Pushout]
