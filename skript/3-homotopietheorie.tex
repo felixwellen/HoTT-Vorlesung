@@ -886,7 +886,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   ein Quadrat mit Homotopie $H$, dann sind äquivalent:
   \begin{enumerate}
   \item Das Quadrat ist ein Pullbackquadrat, bzw. die Vergleichsabbildung $V(X,\varphi,\psi,H):X\to\mathrm{PB}(f,g)$ ist eine Äquivalenz.
-  \item Für jedes $Y$ ist der Typ der $Y$-Kegel durch Bilden von Vergleichsabbildungen äquivalent zum Typ $(Y\to X)$.
+  \item Für jedes $Y$ ist die Abbildung, die jeden $Y$-Kegel $(\varphi',\psi',H')$ auf die Vergleichsabbildung $V(Y,\varphi',\psi',H'):Y\to X$ abbildet, eine Äquivalenz.
   \item Jeder $Y$-Kegel $(\varphi',\psi',H')$ faktorisiert eindeutig über $X$. Das heißt, dass der Typ der Abbildungen $h:Y\to X$ zusammen mit Homotopien $\varphi\circ h\sim\varphi'$, $\psi\circ h\sim\psi'$ kontrahierbar ist.
   \item Die induzierte faserweise Abbildung $\prod_{x:B}\psi^{-1}(x)\to f^{-1}(g(x))$ ist eine faserweise Äquivalenz.
   \end{enumerate}
@@ -896,8 +896,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Seien
   \begin{center}
     \begin{tikzcd}
-      Y\ar[r]\ar[d] & X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
-      D\ar[r] & B\arrow[r,"g",swap] & C 
+      Y\ar[r]\ar[d] & X\arrow[r]\arrow[d] & A\arrow[d] \\
+      D\ar[r] & B\arrow[r] & C 
     \end{tikzcd}
   \end{center}
   jeweils Quadrate, es gebe also entsprechende Homotopien.
@@ -905,7 +905,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   \item  Durch Komposition der Homotopien gibt es auch ein drittes Quadrat der Gestalt:
     \begin{center}
       \begin{tikzcd}
-        Y\ar[rr]\ar[d] &  & A\arrow[d,"f"] \\
+        Y\ar[rr]\ar[d] &  & A\arrow[d] \\
         D\ar[rr] &  & C 
       \end{tikzcd}
     \end{center}
@@ -920,7 +920,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Sei $f:A\to B$ eine punktierte Abbildung. Dann gibt es eine Sequenz:
   \begin{center}
     \begin{tikzcd}
-      \Omega A \ar[r,"-\Omega f"] & \Omega B \ar[r] & f^{-1}(\ast) \ar[r,"\pi"] & A \ar[r,"f"] & B
+      \Omega A \ar[r,"-\Omega f"] & \Omega B \ar[r] & f^{-1}(\ast) \ar[r,"\pi_1"] & A \ar[r,"f"] & B
     \end{tikzcd}
   \end{center}
   wobei bei aufeinanderfolgenden Abbildungen stets die linke die Faser der rechten ist - bis auf Äquivalenz.
@@ -934,13 +934,20 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
       \eins\ar[r,"\ast",swap] & B
     \end{tikzcd}
   \end{center}
-  Durch Pullback-Pasting wissen wir, dass $\mathrm{PB}(\ast,\pi)$ auch Pullback des zusammengesetzen Quadrats ist.
+  Durch Pullback-Pasting wissen wir, $\mathrm{PB}(\ast,\pi)$ auch Pullback des zusammengesetzen Quadrats ist.
   Aber auch $\Omega B$, oder etwas genauer $f(\ast)=\ast$ ist Pullback des zusammengesetzen Quadrats, also können wir $\mathrm{PB}(\ast,\pi)$ äquivalent ersetzen durch $\Omega B$.
+  Wir müssen allerdings etwas genauer hinschauen, um zu sehen, was für eine Abbildung $\Omega B\to f^{-1}(\ast)$ wir bekommen.
+  Zunächst ist der Pullback:
+  \begin{mathpar}
+    \mathrm{PB}(\ast,\pi_1)\equiv \left(\sum_{z:\eins}\sum_{y:\sum_{x:A}f(x)=\ast}\ast=\pi_1(y)\right)\simeq \sum_{x:A} (f(x)=\ast)\times (\ast=x)
+  \end{mathpar}
+  Letzterer Typ ist nun äquivalent zu $f(\ast)=\ast$ durch: $(x,p,q)\mapsto $
+  
   Im so entstandenen Diagram, nehmen wir gleich wieder einen Pullback:
   \begin{center}
     \begin{tikzcd}
       \mathrm{PB}(\dots,\ast)\ar[r]\ar[d] & \Omega B\ar[r]\ar[d] & \eins\ar[d,"\ast"] \\
-      \eins\ar[r] &f^{-1}(\ast) \ar[r,"\pi"]\ar[d] & A \ar[d,"f"] \\
+      \eins\ar[r] &f^{-1}(\ast) \ar[r,"\pi_1"]\ar[d] & A \ar[d,"f"] \\
       & \eins\ar[r,"\ast",swap] & B
     \end{tikzcd}
   \end{center}
