@@ -724,7 +724,7 @@ konstruieren.
 \end{theorem}
 \begin{beweis}
   \begin{enumerate}
-  \item   Wir rechenen punktweise nach. Sei $x:S^1$, dann soll für alle $p:\ast=x$ gelten:
+  \item   Wir rechnen punktweise nach. Sei $x:S^1$, dann soll für alle $p:\ast=x$ gelten:
   \begin{mathpar}
     P_x(W_x(p))=p
   \end{mathpar}
@@ -820,8 +820,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Seien $A,B,C:\mU$ und $f:A\to C$, $g:B\to C$. Es ist also ein Winkel gegeben:
   \begin{center}
     \begin{tikzcd}
-      & A\arrow[d, "f"] \\
-      B\arrow[r, "g", swap] & C
+      & B\arrow[d, "g"] \\
+      A\arrow[r, "f", swap] & C
     \end{tikzcd}
   \end{center}
   \begin{enumerate}
@@ -829,15 +829,16 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
     Einen Kegel zusammen mit dem Winkel nennt man \begriff{Quadrat}:
     \begin{center}
       \begin{tikzcd}
-        X\arrow[r,"\varphi"]\arrow[d,"\psi",swap] & A\arrow[d,"f"] \\
-        B\arrow[r,"g",swap] & C 
+        X\arrow[d,"\varphi"]\arrow[r,"\psi",swap] & B\arrow[d,"g"] \\
+        A\arrow[r,"f",swap] & C 
       \end{tikzcd}
     \end{center}
+      Wir schreiben $\mathrm{Cone(f,g,X)}\colonequiv\sum_{\varphi:X \to A}\sum_{\psi:X \to B}f\circ\varphi \sim g\circ\psi$ für den Typ der $X$-Kegel über dem gegebenen Winkel.
   \item Der Kegel mit Spitze
     \begin{mathpar}
-      \mathrm{PB}(f,g)\colonequiv \sum_{x:A}\sum_{y:A}f(x)=g(y)
+      \mathrm{PB}(f,g)\colonequiv \sum_{x:A}\sum_{y:B}f(x)=g(y)
     \end{mathpar}
-    und Projektionen $\pi_1\mathrm{PB}(f,g)\to A$, $\pi_1\colonequiv \pi_1\circ \pi_2:\mathrm{PB}(f,g)\to B$ und der Homotopie $\pi_2\circ\pi_2:f\circ \pi_1 \sim g\circ \pi_2$ heißt \begriff{Pullback} von $f$ entlang $g$.
+    und Projektionen $\pi_1:\mathrm{PB}(f,g)\to A$, $\pi_2\colonequiv \pi_1\circ \pi_2:\mathrm{PB}(f,g)\to B$ und der Homotopie $\pi_2\circ\pi_2:f\circ \pi_1 \sim g\circ \pi_2$ heißt \begriff{Pullback} von $f$ entlang $g$.
   \item Für einen $X$-Kegel $(\varphi,\psi,H)$ heißt die Abbildung
     \begin{mathpar}
       V(X,\varphi,\psi,H)\colonequiv (x:X)\mapsto (\varphi(x),\psi(x),H_x) : X \to \mathrm{PB}(f,g)
@@ -850,8 +851,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Sei 
   \begin{center}
     \begin{tikzcd}
-      & A\arrow[d, "f"] \\
-      B\arrow[r, "g", swap] & C
+      & B\arrow[d, "g"] \\
+      A\arrow[r, "f", swap] & C
     \end{tikzcd}
   \end{center}
   ein Winkel.
@@ -871,11 +872,103 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
         \eins\ar[r, "\ast", swap] & B
       \end{tikzcd}
     \end{center}
-  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter ersetzen von Typen mit äquivalenten Typen und ersetzen von Abbildungen durch homotope Abbildungen.
+  \item Die Begriffe Quadrat und Pullbackquadrat sind invariant unter Ersetzen von äquivalenten Typen und homotopen Abbildungen.
   \end{enumerate}
 \end{bemerkung}
 
-\begin{regeln}[Suspension]
+\begin{lemma}
+  Sei
+  \begin{center}
+    \begin{tikzcd}
+      X\arrow[d,"\varphi"]\arrow[r,"\psi",swap] & B\arrow[d,"g"] \\
+      A\arrow[r,"f",swap] & C 
+    \end{tikzcd}
+  \end{center}
+  ein Quadrat mit Homotopie $H$, dann sind äquivalent:
+  \begin{enumerate}
+  \item Das Quadrat ist ein Pullbackquadrat, bzw. die Vergleichsabbildung $V(X,\varphi,\psi,H):X\to\mathrm{PB}(f,g)$ ist eine Äquivalenz.
+  \item Für jedes $Y$ ist die Abbildung, die eine Funktion $\vartheta:Y\to X$ abbildet auf den $Y$-Kegel
+    \begin{center}
+    \begin{tikzcd}
+      Y\arrow[d,"\varphi\circ \vartheta"']\arrow[r,"\psi\circ \vartheta"] & B\arrow[d,"g"] \\
+      A\arrow[r,"f",swap] & C 
+    \end{tikzcd}
+    \end{center}
+    mit Homotopie $H_\vartheta$, eine Äquivalenz.
+  \item Jeder $Y$-Kegel $(\varphi',\psi',H')$ faktorisiert eindeutig über $X$. Das heißt, dass der Typ der Abbildungen $\vartheta:Y\to X$ zusammen mit Homotopien $h:\varphi\circ \vartheta\sim\varphi'$, $k:\psi\circ \vartheta\sim\psi'$ sowie $h^{-1}\kon H_\vartheta\kon k = H'$ kontrahierbar ist.
+  \item Die induzierte faserweise Abbildung $\prod_{x:A}\varphi^{-1}(x)\to g^{-1}(f(x))$ ist eine faserweise Äquivalenz.
+  \end{enumerate}
+\end{lemma}
+
+\begin{theorem}[Pullback-Pasting Teil 1]
+  Seien
+  \begin{center}
+    \begin{tikzcd}
+      Y\ar[r]\ar[d] & X\arrow[r]\arrow[d] & A\arrow[d] \\
+      D\ar[r] & B\arrow[r] & C 
+    \end{tikzcd}
+  \end{center}
+  jeweils Quadrate, es gebe also entsprechende Homotopien.
+  \begin{enumerate}
+  \item  Durch Komposition der Homotopien gibt es auch ein drittes Quadrat der Gestalt:
+    \begin{center}
+      \begin{tikzcd}
+        Y\ar[rr]\ar[d] &  & A\arrow[d] \\
+        D\ar[rr] &  & C 
+      \end{tikzcd}
+    \end{center}
+  \item Wenn die beiden kleinen Quadrate Pullbacks sind, dann ist auch das dritte, zusammengesetzte ``Quadrat'' ein Pullback.
+  \end{enumerate}
+\end{theorem}
+\begin{beweis}
+  Man benutzt die Äquivalenz zu faserweisen Äquivalenzen. Dann ergibt sich die Aussage durch punktweises Anwenden von 2-aus-3 für Äquivalenzen.
+\end{beweis}
+
+\begin{theorem}[Fasersequenz]
+  Sei $(f,p_f):(A,\ast)\to^\ast (B,\ast)$ eine punktierte Abbildung.
+  Wir verzichten hier auf Angabe der Punktierung und verwenden die Schreibweise $-\Omega f\colonequiv p\mapsto f(p^{-1})$.
+  Dann gibt es eine Sequenz:
+  \begin{center}
+    \begin{tikzcd}
+      \Omega A \ar[r,"-\Omega f"] & \Omega B \ar[r] & f^{-1}(\ast) \ar[r,"\pi_1"] & A \ar[r,"f"] & B
+    \end{tikzcd}
+  \end{center}
+  wobei bei aufeinanderfolgenden Abbildungen stets die linke die Faser der rechten ist - bis auf Äquivalenz.
+  Weiter ist die Abbildung $\Omega B\to f^{-1}(\ast)$ gegen durch: $(\ast,p_f\kon\_)$.
+\end{theorem}
+\begin{beweis}
+  Betrache:
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{PB}(\ast,\pi)\ar[r]\ar[d] & \eins\ar[d,"\ast"] \\
+      f^{-1}(\ast) \ar[r,"\pi"]\ar[d] & A \ar[d,"f"] \\
+      \eins\ar[r,"\ast",swap] & B
+    \end{tikzcd}
+  \end{center}
+  Durch Pullback-Pasting wissen wir, $\mathrm{PB}(\ast,\pi)$ auch Pullback des zusammengesetzen Quadrats ist.
+  Aber auch $\Omega B$, oder etwas genauer $\ast=f(\ast)$ ist Pullback des zusammengesetzen Quadrats, also können wir $\mathrm{PB}(\ast,\pi)$ äquivalent ersetzen durch $\Omega B$.
+  Wir müssen allerdings etwas genauer hinschauen, um zu sehen, was für eine Abbildung $\Omega B\to f^{-1}(\ast)$ wir bekommen.
+  Zunächst ist der Pullback:
+  \begin{mathpar}
+    \mathrm{PB}(\ast,\pi_1)\equiv \left(\sum_{y:\sum_{x:A}f(x)=\ast}\pi_1(y)=\ast\right)\simeq \sum_{x:A} (f(x)=\ast)\times (x=\ast)
+  \end{mathpar}
+  Letzterer Typ ist nun äquivalent zu $\ast=f(\ast)$ durch: $(x,p,q)\mapsto p^{-1}\kon f(q)$, da $p^{-1}\kon f(q)$ der Wert der zusammengesetzten Homotopie im großen Quadrat ist.
+  Die Projektion von $\ast=f(\ast)$ nach $f^{-1}(\ast)$ muss also $(r:\ast=f(\ast))\mapsto (\ast,r^{-1})$ sein. Die Äquivalenz zu $\ast=\ast$ bzw. $\Omega B$ ist durch die Punktierung $p_f:f(\ast)=\ast$ von $f$ gegeben.
+  Die gesuchte Abbildung ist also $(p:\Omega B)\mapsto (\ast,p\kon p_f^{-1})$.
+  
+  Im so bestimmten Diagram nehmen wir wieder einen Pullback:
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{PB}(\dots,\ast)\ar[r]\ar[d] & \Omega B\ar[r]\ar[d] & \eins\ar[d,"\ast"] \\
+      \eins\ar[r] &f^{-1}(\ast) \ar[r,"\pi_1"]\ar[d] & A \ar[d,"f"] \\
+      & \eins\ar[r,"\ast",swap] & B
+    \end{tikzcd}
+  \end{center}
+  Genauer ist der neue Pullback: $\mathrm{PB}((\ast,p_f\kon\_),\ast)\equiv\sum_{p:\Omega B}(\ast,p_f\kon p)=(\ast,p_f)$.
+  Durch waagrechtes Pullback-Pasting muss dieser Pullback allerdings äquivalent zu $\Omega A$ sein.
+\end{beweis}
+
+\begin{regeln}[Einhängung]
   Zu jedem Typ $A:\mU$ gibt es einen Typen $\Sigma A:\mU$, die \begriff{Suspension}\index{Sigma} oder \begriff{Einhängung} von $A$.
   Die Einhängung ist ein höherer induktiver Typ mit folgenden Konstruktoren:
   \begin{align*}
@@ -887,8 +980,11 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \end{regeln}
 
 \begin{bemerkung}
-  Wir werden noch sehen, dass gilt: $(\Sigma\zwei)\simeq S^1$
+  Es gilt: $(\Sigma\zwei)\simeq S^1$
 \end{bemerkung}
+\begin{beweis}
+  Wird noch nachgetragen.
+\end{beweis}
 
 \begin{definition}
   Die (induktive) \begriff{$n$-Sphäre}\index{$S^n$} ist rekursiv gegeben durch
@@ -899,7 +995,48 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Da $\zwei$ punktiert ist und $\Sigma$ punktierte Typen erhält, können wir $S^n$ als punktierten Typen auffassen.
 \end{definition}
 
+\begin{regeln}
+  Sei $n\geq -1$.
+  Die $n$-Abschneidung eines Typen $A$ ist ein höherer induktiver Typ $\|A\|_n:\mU$ gegen durch die folgenden Konstruktoren:
+  \begin{align*}
+    |\_|_n&:A\to \|A\|_n \\
+    \mathrm{Narbe}&:(S^{n+1}\to \|A\|_n)\to \|A\|_n \\
+    \mathrm{Speiche}&:\prod_ {s:S^{n+1}\to \|A\|_n}\prod_{x:S^{n+1}} \mathrm{Narbe}(s)=s(x)
+  \end{align*}
+\end{regeln}
+
+\begin{theorem}
+  Sei $A:\mU$, dann gilt:
+  \begin{enumerate}
+  \item $\|A\|_n$ ist ein $n$-Typ.
+  \item Für $n$-abgeschnittenes $B:\|A\|_n\to\mU$ und $s_0:\prod_{a:A}B(|a|_n)$ gibt es $s:\prod_{x:\|A\|_n}B(x)$ mit $s(|a|_n)\equiv s_0(a)$.
+  \end{enumerate}
+\end{theorem}
+
+Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
+
+\begin{regeln}[Pushout]
+  Seien $A,B,C:\mU$ und $f:C\to A$, $g:C\to B$, also folgenden Situation gegeben:
+  \begin{center}
+    \begin{tikzcd}
+      C\ar[r,"f"]\ar[d,"g"] & A \\
+      B & 
+    \end{tikzcd}
+  \end{center}
+  Dann gibt es einen Typen $A\amalg_C B\colonequiv \mathrm{PO}(f,g):\mU$, den Pushout von $f$ und $g$, der der höhere induktive Typ mit folgenden Konstruktoren ist:
+  \begin{align*}
+    \iota_1&:A\to \mathrm{PO}(f,g) \\
+    \iota_2&:B\to \mathrm{PO}(f,g) \\
+    \mathrm{glue}&:\prod_{c:C}\iota_1(f(c))=\iota_2(g(c))
+  \end{align*}
+\end{regeln}
+
+\begin{bemerkung}
+  Sei $A:\mU$, dann gilt: $\Sigma A\simeq \mathrm{PO}((a:A)\mapsto \ast, (a:A)\mapsto \ast)$.
+\end{bemerkung}
 \subsection{Überlagerungen II?}
+\subsection{Homotopiegruppen von Sphären?}
+\subsection{Hopf-Faserung?}
 \subsection{Eilenberg-MacLane Räume?}
 \subsection{Kohomologie?}
 \subsection{Cubical Type Theory?}
