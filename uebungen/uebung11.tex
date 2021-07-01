@@ -63,19 +63,19 @@
   \begin{tikzcd}
     A \arrow[r,"f"] &B \arrow[r,leftarrow,"g"] &C
   \end{tikzcd}
-  ein Winkel.
-  Der Typ der Kegel über dem diesem Winkel ist
+  ein Winkel und $X:\mU$ ein Typ.
+  Der Typ der $X$-Kegel über diesem Winkel ist definiert als
   $$
-  \mathrm{Cone}(f,g) \colonequiv \sum_{X:\mU}\sum_{\varphi:X\to A}\sum_{\psi:X\to B} f\circ\varphi \sim g\circ\psi.
+  \mathrm{Cone}(f,g,X) \colonequiv \sum_{\varphi:X\to A}\sum_{\psi:X\to B} f\circ\varphi \sim g\circ\psi.
   $$
-  Ist $(X,\varphi,\psi,H)$ ein solcher Kegel, so erhalten wir für jedes $Y:\mU$ eine kanonische Abbildung
+  Ist $(\varphi,\psi,H)$ ein solcher $X$-Kegel, so erhalten wir für jedes $Y:\mU$ eine kanonische Abbildung
   \begin{align*}
     &\Phi:(Y \to X) \to \mathrm{Cone}(f,g,Y)\\
     &\Phi(\vartheta)\colonequiv (\varphi\circ\vartheta,\psi\circ\vartheta,H_\vartheta).
   \end{align*}
   Zeige:
   \begin{enumerate}
-    \item Falls $(X,\varphi,\psi,H)\equiv(\mathrm{PB}(f,g),\pi_1,\pi_2,\pi_3)$, so ist $\Phi$ invers zur Vergleichsabbildung
+    \item Falls $X\equiv\mathrm{PB}(f,g)$ und $(\varphi,\psi,H)\equiv(\pi_1,\pi_2,\pi_3)$ der kanonische $X$-Kegel, so ist $\Phi$ invers zur Vergleichsabbildung
       $$
       V(Y):\mathrm{Cone}(f,g,Y)\to (Y\to\mathrm{PB}(f,g)).
       $$
@@ -127,7 +127,10 @@
       & C
     \end{tikzcd}
   \end{center}
-  genau dann ein Pullbackquadrat ist, wenn $(X,\varphi,\psi,H)$ ein \emph{terminaler} Kegel ist.
+  genau dann ein Pullbackquadrat ist, wenn $(X,\varphi,\psi,H)$ ein terminaler Kegel ist.
+\end{exercise}
+
+\begin{exercise}
 \end{exercise}
 
 \end{document}
