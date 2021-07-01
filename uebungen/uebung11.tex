@@ -70,14 +70,14 @@
   $$
   Ist $(\varphi,\psi,H)$ ein solcher $X$-Kegel, so erhalten wir für jedes $Y:\mU$ eine kanonische Abbildung
   \begin{align*}
-    &\Phi:(Y \to X) \to \mathrm{Cone}(f,g,Y)\\
+    &\Phi\colonequiv\Phi_{X,\varphi,\psi,H}(Y):(Y \to X) \to \mathrm{Cone}(f,g,Y)\\
     &\Phi(\vartheta)\colonequiv (\varphi\circ\vartheta,\psi\circ\vartheta,H_\vartheta).
   \end{align*}
   Zeige:
   \begin{enumerate}
-    \item Falls $X\equiv\mathrm{PB}(f,g)$ und $(\varphi,\psi,H)\equiv(\pi_1,\pi_2,\pi_3)$ der kanonische $X$-Kegel, so ist $\Phi$ invers zur Vergleichsabbildung
+    \item Falls $X\equiv\mathrm{PB}(f,g)$ und $(\varphi,\psi,H)\equiv(\pi_1,\pi_2,\pi_3)$ der kanonische $X$-Kegel, so ist $\Phi$ invers zur Vergleichsabbildung aus der Vorlesung
       $$
-      V(Y):\mathrm{Cone}(f,g,Y)\to (Y\to\mathrm{PB}(f,g)).
+      V(Y,\_,\_,\_):\mathrm{Cone}(f,g,Y)\to (Y\to\mathrm{PB}(f,g)).
       $$
     \item Das Quadrat
       \begin{center}
@@ -103,31 +103,34 @@
   \begin{tikzcd}
     A \arrow[r,"f"] &B \arrow[r,leftarrow,"g"] &C
   \end{tikzcd}
-  ein Winkel und seien $(X,\varphi,\psi,H)$, $(Y,\varphi',\psi',H')$ Kegel darüber.
-  Der Typ der \emph{Kegelmorphismen} $(Y,\varphi',\psi',H')\to (X,\varphi,\psi,H)$ sei definiert als
+  ein Winkel und seien $(\varphi,\psi,H):\mathrm{Cone}(f,g,X)$ sowie $(\varphi',\psi',H'):\mathrm{Cone}(f,g,Y)$ Kegel darüber.
+  Der Typ der \emph{Kegelmorphismen} $(\varphi',\psi',H')\to (\varphi,\psi,H)$ sei definiert als
   $$
   \sum_{\vartheta:Y \to X}
   \sum_{h:\varphi\circ\vartheta\sim\varphi'}
   \sum_{k:\psi\circ\vartheta\sim\psi'}
   h^{-1} \kon H_\vartheta \kon k = H'.
   $$
-  Ist dieser Typ für jeden Kegel $(Y,\varphi',\psi',H')$ kontrahierbar, so nennen wir $(X,\varphi,\psi,H)$ einen \emph{terminalen Kegel}.
-  Zeige, dass das Quadrat
-  \begin{center}
-    \begin{tikzcd}
-      X
-      \arrow[d,"\varphi"']
-      \arrow[r,"\psi"]
-      & B
-      \arrow[d,"g"]
-      \arrow[dl, phantom, "H" font=\small]
-      \\
-      A
-      \arrow[r,"f"']
-      & C
-    \end{tikzcd}
-  \end{center}
-  genau dann ein Pullbackquadrat ist, wenn $(X,\varphi,\psi,H)$ ein terminaler Kegel ist.
+  Ist dieser Typ für alle $Y:\mU$ und jeden $Y$-Kegel $(\varphi',\psi',H')$ kontrahierbar, so nennen wir $(\varphi,\psi,H)$ einen \emph{terminalen Kegel}.
+  \begin{enumerate}
+    \item Zeige, dass der Typ $(\varphi',\psi',H')\to (\varphi,\psi,H)$ äquivalent zur Faser der Abbildung $\Phi_{X,\varphi,\psi,H}(Y)$ über $(\varphi',\psi',H')$ ist.
+    \item Zeige, dass das Quadrat
+      \begin{center}
+        \begin{tikzcd}
+          X
+          \arrow[d,"\varphi"']
+          \arrow[r,"\psi"]
+          & B
+          \arrow[d,"g"]
+          \arrow[dl, phantom, "H" font=\small]
+          \\
+          A
+          \arrow[r,"f"']
+          & C
+        \end{tikzcd}
+      \end{center}
+      genau dann ein Pullbackquadrat ist, wenn $(\varphi,\psi,H)$ ein terminaler Kegel mit Spitze $X$ ist.
+  \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
