@@ -802,6 +802,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \end{definition}
 
 \begin{lemma}
+  \label{lem:schleifenraum-n-typ}
   Sei $A:\mU$, dann sind für $n\geq -1$ äquivalent:
   \begin{enumerate}[label=\roman*)]
   \item $A$ ist ein $(n+1)$-Typ.
@@ -1076,6 +1077,27 @@ Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als ite
     &\simeq (S^n\to^\ast \Omega A) \\
     &\simeq \Omega^n(\Omega A)
   \end{align*}
+\end{beweis}
+
+
+In \cref{lem:schleifenraum-n-typ} hatten wir gesehen, dass $n+1$-Typen genau die Typen mit $n$-Typen $\Omega(A,x)$.
+Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
+\begin{lemma}
+  Sei $n\geq -1$. Ein punktierter Typ $A$ ist ein $n$-Typ, wenn für alle $x:A$ der Typ $\Omega^{n+1}(A,x)$ kontrahierbar ist.
+\end{lemma}
+\begin{beweis}
+  Sei $n\equiv -1$. Dann ist zu zeigen: $A$ ist eine Aussage, wenn $A$ kontrahierbar ist.
+  Für den Induktionsschritt müssen wir zeigen: $A$ ist ein $(n+1)$-Typ, wenn $\Omega^{n+2}(A,x)$ für alle $x:A$ kontrahierbar ist.
+  Nach \cref{lem:schleifenraum-n-typ} reicht es zu zeigen, dass $\Omega(A,x)$ ein $n$ Typ ist. Nach der Induktionshypothese ist dieser Typ ein $n$-Typ, wenn
+  $\Omega^{n+1}(\Omega(A,x),p)$ für jedes $p:\Omega(A,x)$ kontrahierbar ist.
+
+  Wir sind also fertig, wenn wir zeigen können: $\Omega^{n+1}(\Omega(A,x),p)\simeq \Omega^{n+2}(A,x)$.
+  Es sollen also die Schleifen $p=p$ äquivalent sein zu den Schleifen $\refl_\ast=\refl_\ast$.
+  Nun ist $\_\kon p^{-1}$ eine Äquivalenz und damit auch:
+  \begin{mathpar}
+    \mathrm{ap}(\_\kon p^{-1},\_):p=p\to p\kon p^{-1} = p\kon p^{-1}
+  \end{mathpar}
+  Letzteres ist durch Einsatz der Gruppoidgesetze äquivalent zu $\refl_\ast=\refl_\ast$.
 \end{beweis}
 
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
