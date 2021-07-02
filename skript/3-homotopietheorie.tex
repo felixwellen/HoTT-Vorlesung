@@ -1013,6 +1013,46 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   \end{enumerate}
 \end{theorem}
 
+Wir werden den Beweis in mehreren Schritten führen, die auch für sich genommen interessante Aussagen sind.
+Zentral für viele Dinge, ist dabei der folgende Satz:
+\begin{theorem}
+  Seien $X$ und $Y$ punktierte Typen, dann gibt es eine Äquivalenz:
+  \begin{mathpar}
+    (\Sigma X \to^\ast Y) \simeq (X \to^\ast \Omega Y)
+  \end{mathpar}
+\end{theorem}
+\begin{beweis}
+  Die Äquivalenz lässt sich, unter anderem durch $\Sigma$-Rekursion auf die folgende Lücke ``??'' reduzieren:
+  \begin{align*}
+    &\Sigma X \to^\ast Y \\
+    \equiv& \sum_{f:\Sigma X\to Y}f(N) = \ast \\
+    \simeq & \sum_{\sum_{y_N,y_S:Y}X\to (y_N=y_S)} y_N=\ast \\
+    \simeq & \sum_{y_N,y_S:Y}(X\to (y_N=y_S))\times (y_N=\ast) \\
+    \simeq & \sum_{\tilde{y}:\left(\sum_{y_N:Y}y_N=\ast\right)}\sum_{y_S:Y}(X\to (\pi(\tilde{y})=y_S)) \\
+    \simeq & \sum_{y_S:Y}(X\to (\ast=y_S)) \\
+    ?? &  \\
+    \simeq & \sum_{f:X\to \ast=_Y \ast}f(\ast)=\refl_\ast \\
+    \simeq & \sum_{f:X\to \Omega Y}f(\ast)=\refl_\ast \\
+    \simeq & X\to^\ast \Omega Y
+  \end{align*}
+  Nun schließen wir die Lücke. Seien also $y_S:Y$ und $f:X\to \ast=y_S$.
+  Dann ist
+  \begin{mathpar}
+    \tilde{f}\colonequiv (x:X)\mapsto f(x) \kon f(\ast)^{-1} : X\to \ast=_Y \ast
+  \end{mathpar}
+  und es gilt $\tilde{f}(\ast)=\refl_\ast$. Wir haben also eine Abbildung gefunden.
+  Sei nun $f:X\to \ast=_Y \ast$ mit $f(\ast)=\refl$. Dann ist
+  \begin{mathpar}
+    (\ast,f): \sum_{y_S:Y}(X\to (\ast=y_S))
+  \end{mathpar}
+  Um zu sehen, dass die Abbildungen invers zueinander sind, müssen wir also noch zeigen:
+  \begin{mathpar}
+    (y_S,f)=(\ast,\tilde{f})
+  \end{mathpar}
+  Dazu stellen wir fest, dass der Transport entlang $f(\ast)$ in $X\to(\ast=\_)$ punktweise Konkatenation mit $f(\ast)^{-1}$ ist.
+  Wegen $\transp_{X\to(\ast=\_)}(f(\ast))(f)=\tilde{f}$ sind wir also fertig.
+\end{beweis}
+
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
 
 \begin{regeln}[Pushout]
