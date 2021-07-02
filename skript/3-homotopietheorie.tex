@@ -1006,6 +1006,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 \end{regeln}
 
 \begin{theorem}
+  \label{thm:n-truncation}
   Sei $A:\mU$, dann gilt:
   \begin{enumerate}
   \item $\|A\|_n$ ist ein $n$-Typ.
@@ -1016,6 +1017,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 Wir werden den Beweis in mehreren Schritten führen, die auch für sich genommen interessante Aussagen sind.
 Zentral für viele Dinge, ist dabei der folgende Satz:
 \begin{theorem}
+  \label{thm:adjunktion-schleifenraum}
   Seien $X$ und $Y$ punktierte Typen, dann gibt es eine Äquivalenz:
   \begin{mathpar}
     (\Sigma X \to^\ast Y) \simeq (X \to^\ast \Omega Y)
@@ -1051,6 +1053,29 @@ Zentral für viele Dinge, ist dabei der folgende Satz:
   \end{mathpar}
   Dazu stellen wir fest, dass der Transport entlang $f(\ast)$ in $X\to(\ast=\_)$ punktweise Konkatenation mit $f(\ast)^{-1}$ ist.
   Wegen $\transp_{X\to(\ast=\_)}(f(\ast))(f)=\tilde{f}$ sind wir also fertig.
+\end{beweis}
+
+Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als iterierte Schleifen:
+
+\begin{korollar}
+  Für punktiertes $A$ und jedes $n:\N$ gilt:
+  \begin{mathpar}
+    (S^n\to^\ast A)\simeq \Omega^n A
+  \end{mathpar}
+\end{korollar}
+\begin{beweis}
+  Wir beweisen per Induktion über $n$.
+  Für $n\equiv 0$ müssen wir folgende Äquivalenz zeigen:
+  \begin{mathpar}
+    (\zwei\to^\ast A)\simeq A
+  \end{mathpar}
+  Da es sich um punktierte Abbildunge handelt, ist die linke Seite nichts anderes als $(\eins\to A)\simeq A$.
+  Für den Induktionsschritt verwenden wir \cref{thm:adjunktion-schleifenraum}:
+  \begin{align*}
+    (S^{n+1}\to^\ast A)&\equiv (\Sigma S^n\to^\ast A) \\
+    &\simeq (S^n\to^\ast \Omega A) \\
+    &\simeq \Omega^n(\Omega A)
+  \end{align*}
 \end{beweis}
 
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
