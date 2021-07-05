@@ -1084,12 +1084,14 @@ Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als ite
 In \cref{lem:schleifenraum-n-typ} hatten wir gesehen, dass $n+1$-Typen genau die Typen mit $n$-Typen $\Omega(A,x)$.
 Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
 \begin{lemma}
-  Sei $n\geq -1$. Ein punktierter Typ $A$ ist ein $n$-Typ, wenn für alle $x:A$ der Typ $\Omega^{n+1}(A,x)$ kontrahierbar ist.
+  Sei $n\geq -1$. Ein punktierter Typ $A$ ist genau dann ein $n$-Typ, wenn für alle $x:A$ der Typ $\Omega^{n+1}(A,x)$ kontrahierbar ist.
 \end{lemma}
 \begin{beweis}
-  Sei $n\equiv -1$. Dann ist zu zeigen: $A$ ist eine Aussage, wenn $A$ kontrahierbar ist.
-  Für den Induktionsschritt müssen wir zeigen: $A$ ist ein $(n+1)$-Typ, wenn $\Omega^{n+2}(A,x)$ für alle $x:A$ kontrahierbar ist.
-  Nach \cref{lem:schleifenraum-n-typ} reicht es zu zeigen, dass $\Omega(A,x)$ ein $n$ Typ ist. Nach der Induktionshypothese ist dieser Typ ein $n$-Typ, wenn
+  Sei $n\equiv -1$. Dann ist zu zeigen: $A$ ist eine Aussage, wenn $A$ kontrahierbar ist. Andererseits kann mit $x:A$ gezeigt werden, dass die Aussage $A$ auch kontrahierbar ist.
+  
+  Für den Induktionsschritt müssen wir zeigen: $A$ ist genau dann ein $(n+1)$-Typ, wenn $\Omega^{n+2}(A,x)$ für alle $x:A$ kontrahierbar ist.
+  Nach \cref{lem:schleifenraum-n-typ} reicht es zu zeigen, dass die Kontrahierbarkeit der $\Omega^{n+2}(A,x)$ äquivalent dazu ist, dass jedes $\Omega(A,x)$ ein $n+1$ Typ ist.
+  Nach der Induktionshypothese ist dieser Typ genau dann ein $(n+1)$-Typ, wenn
   $\Omega^{n+1}(\Omega(A,x),p)$ für jedes $p:\Omega(A,x)$ kontrahierbar ist.
 
   Wir sind also fertig, wenn wir zeigen können: $\Omega^{n+1}(\Omega(A,x),p)\simeq \Omega^{n+2}(A,x)$.
@@ -1101,26 +1103,36 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   Letzteres ist durch Einsatz der Gruppoidgesetze äquivalent zu $\refl_\ast=\refl_\ast$.
 \end{beweis}
 \begin{korollar}
-  Sei $n\geq -1$. Ein Typ $A$ ist ein $n$-Typ, wenn für alle $x:A$, der Typ $(S^{n+1},\ast)\to^\ast(A,x)$ kontrahierbar ist.
+  \label{kor:n-abgeschnitten-kontrahierbarkeit}
+  Sei $n\geq -1$. Ein Typ $A$ ist genau dann ein $n$-Typ, wenn für alle $x:A$, der Typ $(S^{n+1},\ast)\to^\ast(A,x)$ kontrahierbar ist.
 \end{korollar}
 \begin{beweis}
   Folgt aus dem Lemma und \cref{kor:schleifenraum-abbildungen}.
 \end{beweis}
 
 \begin{beweis}[\cref{thm:n-truncation}]
-  Per Konstruktion ist der Raum der punktierten Abbildungen $S^{n+1}\to^\ast\|A\|_n$ kontrahierbar: Als Kontraktionszentrum wählen wir die konstante Abbildung $c_\ast\colonequiv x\mapsto \ast $, die durch $\refl_\ast$ punktiert ist.
-  Für eine punktierte Abbildung $(r,p_r):(S^{n+1})\to^{\ast}(\|A\|_n,\ast)$ müssen wir zunächst eine Homotopie $r\sim c_\ast$ finden.
-  Für $x:S^{n+1}$ sei diese Homotopie gegeben durch
-  \begin{mathpar}
-    \mathrm{Speiche}(x)\kon \mathrm{Speiche}(\ast)^{-1}\kon p_r : r(x)=c_\ast(x)
-  \end{mathpar}
-  Für eine Gleichheit von punktierten Abbildungen müssen wir nun noch feststellen:
-  \begin{mathpar}
-    (\mathrm{Speiche}(\ast)\kon \mathrm{Speiche}(\ast)^{-1}\kon p_r)^{-1}\kon p_r=\refl_\ast
-  \end{mathpar}
+  \begin{enumerate}
+  \item Per Konstruktion ist der Raum der punktierten Abbildungen $S^{n+1}\to^\ast\|A\|_n$ kontrahierbar: Als Kontraktionszentrum wählen wir die konstante Abbildung $c_\ast\colonequiv x\mapsto \ast $, die durch $\refl_\ast$ punktiert ist.
+    Für eine punktierte Abbildung $(r,p_r):(S^{n+1})\to^{\ast}(\|A\|_n,\ast)$ müssen wir zunächst eine Homotopie $r\sim c_\ast$ finden.
+    Für $x:S^{n+1}$ sei diese Homotopie gegeben durch
+    \begin{mathpar}
+      \mathrm{Speiche}(x)\kon \mathrm{Speiche}(\ast)^{-1}\kon p_r : r(x)=c_\ast(x)
+    \end{mathpar}
+    Für eine Gleichheit von punktierten Abbildungen müssen wir nun noch feststellen:
+    \begin{mathpar}
+      (\mathrm{Speiche}(\ast)\kon \mathrm{Speiche}(\ast)^{-1}\kon p_r)^{-1}\kon p_r=\refl_\ast
+    \end{mathpar}
+  \item Zunächst betrachten wir das Induktionsprinzip für $ \|A\|_n$. Sei also $B:\|A\|_n\to \mU$. Um $s:\prod_{x:\|A\|_n}B(x)$ induktiv zu konstruieren, brauchen wir folgende Daten:
+    \begin{itemize}
+    \item $s_0:\prod_{a:A}B(|a|_n)$ 
+    \item Für alle $r:S^{n+1}\to \|A\|_n$ und $r':\prod_{x:S^{n+1}}B(r(x))$ ein $N_{r,r'}:B(\mathrm{Narbe(r)})$.
+    \item Für alle $r:S^{n+1}\to \|A\|_n$, $r':\prod_{x:S^{n+1}}B(r(x))$ und jedes $x:S^{n+1}$ eine abhängige Gleichheit $r(x)=_{\mathrm{Speiche}(x)}^B N_{r,r'}$.
+    \end{itemize}
+    Die Daten für Narben und Speichen müssen wir also aus der $n$-Abgeschnittenheit von $B$ herleiten, um das gewünschte Induktionprinzip zu erhalten.
+    Narbe und Speichen in $B(x)$  erhalten wir aber genau aus der $n$-Abgeschnittenheit der $B(x)$ und \cref{kor:n-abgeschnitten-kontrahierbarkeit}.
+    
+  \end{enumerate}
 \end{beweis}
-
-
 
 
 \ignore{
