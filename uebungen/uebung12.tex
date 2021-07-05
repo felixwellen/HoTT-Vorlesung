@@ -1,0 +1,30 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{12}
+
+\begin{exercise}[Die universelle Eigenschaft der Abschneidung]
+  Sei $n:\N_{-2}$ ein Abschneidungslevel und $A:\mU$ ein Typ.
+  \begin{enumerate}
+    \item Konstruiere das Rekursionsprinzip für für die $n$-Abschneidung $\|A\|_n$ , finde also einen Term
+      $$
+      \rec{\|A\|_n}:\prod_{B:\nType{n}}(A \to B) \to (\|A\|_n \to B),
+      $$
+      sodass $\rec{\|A\|_n}(B,f)(|a|_n) \equiv f(a)$ für jedes $a:A$.
+    \item Konstruiere das Eindeutigkeitsprinzip für für die $n$-Abschneidung $\|A\|_n$:
+      $$
+      \mathrm{uniq}_{\|A\|_n}:\prod_{B:\nType{n}}\prod_{g,g':\|A\|_n \to B} \left((g\circ |\_|_n) \sim (g'\circ |\_|_n)\right) \to g \sim g'
+      $$
+    \item Zeige, dass $\rec{\|A\|_n}$ faserweise invers ist zu folgender Abbildung:
+      \begin{align*}
+        &|\_|_n^*:\prod_{B:\nType{n}}(\|A\|_n \to B) \to (A \to B)\\
+        &|\_|_n^*(B,g) \colonequiv g \circ |\_|_n
+      \end{align*}
+    \item Folgere, dass $A$ genau dann ein $n$-Typ ist, wenn $|\_|_n:A\to \|A\|_n$ eine Äquivalenz ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Funktorialität der Abschneidung]
+\end{exercise}
+
+\end{document}
