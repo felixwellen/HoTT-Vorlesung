@@ -1,0 +1,145 @@
+\documentclass{uebung}
+
+\begin{document}
+\maketitle{11}
+
+\begin{exercise}[Schnitte von $\tilde{S^1}$]
+  Finde Terme der folgenden Typen:
+  \begin{enumerate}
+    \item $\prod_{x:S^1}\|\ast =_{S^1} x\|$
+    \item $\neg\left(\prod_{x:S^1}\ast =_{S^1} x\right)$
+      {\tiny Tipp: Sonst ließe sich folgern, dass jeder Typ eine Menge ist, sogar $\mU$. Warum ist das unmöglich?}
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Funktorialität der Verschleifung]
+  Seien $(f,p_f):(A,a)\to (B,b)$ und $(g,p_g):(B,b)\to (C,c)$ punktierte Abbildungen.
+  \begin{enumerate}
+    \item Finde eine Gleichheit $p_{g\circ f}:(g\circ f)(a)=c$, sodass $(g\circ f,p_{g\circ f})$ eine punktierte Abbildung $(A,a)\to (C,c)$ wird.
+    \item Zeige, dass $\Omega(g,p_g)\circ\Omega(f,p_f) \sim \Omega(g\circ f,p_{g\circ f})$ als Abbildungen $\Omega(A,a)\to \Omega(C,c)$.
+    \item \textbf{Bonus.} Mit Funktionsextensionalität sind die beiden Abbildungen sogar gleich.
+      Sind sie aber auch gleich als punktierte Abbildungen?
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[$\Omega f$ ist eine Vergleichsabbildung]
+  Sei $(A,a)$ ein punktierter Typ.
+  Laut Bemerkung 3.4.5 ist der Schleifenraum von $(A,a)$ die Spitze eines Pullback-Quadrates:
+  \begin{center}
+    \begin{tikzcd}
+      \Omega(A,a)
+      \arrow[r]
+      \arrow[d]
+      & \einheit
+      \arrow[d, "a"]
+      \\
+      \einheit
+      \arrow[r, "a"]
+      & A
+    \end{tikzcd}
+  \end{center}
+  Hier fassen wir den Basispunkt $a:A$ als die Abbildung $\rec\einheit(A,a):\einheit \to A$ auf.
+  Sei nun $(f,p_f):(A,a)\to (B,b)$ eine punktierte Abbildung.
+  Finde ein kommutatives Quadrat der Form
+  \begin{center}
+    \begin{tikzcd}
+      \Omega(A,a)
+      \arrow[r, "{\Omega(f,p_f)}"]
+      \arrow[d,"\sim" sloped]
+      & \Omega(B,b)
+      \arrow[d,"\sim" sloped]
+      \\
+      \mathrm{PB}(a,a)
+      \arrow[r]
+      &
+      \mathrm{PB}(b,b)
+    \end{tikzcd}
+    .
+  \end{center}
+\end{exercise}
+
+\begin{exercise}[Die Yoneda-Einbettung erhält und reflektiert Äquivalenzen]
+  Für beliebige $B,C:\mU$ sei folgende Abbildung gegeben:
+  \begin{align*}
+    \mathrm{y}:(B\to C) &\to \prod_{A:\mU} (A \to B) \to (A \to C)\\
+    \mathrm{y}(g)_A &\colonequiv (f \mapsto g\circ f)
+  \end{align*}
+  Zeige, dass $g:B \to C$ genau dann eine Äquivalenz ist, wenn $\mathrm{y}(g)$ eine faserweise Äquivalenz ist.
+\end{exercise}
+
+\begin{bonus}[Universelle Eigenschaft von Pullbacks I]
+  Sei
+  \begin{tikzcd}
+    A \arrow[r,"f"] &B \arrow[r,leftarrow,"g"] &C
+  \end{tikzcd}
+  ein Winkel und $X:\mU$ ein Typ.
+  Der Typ der $X$-Kegel über diesem Winkel ist definiert als
+  $$
+  \mathrm{Cone}(f,g,X) \colonequiv \sum_{\varphi:X\to A}\sum_{\psi:X\to B} f\circ\varphi \sim g\circ\psi.
+  $$
+  Ist $(\varphi,\psi,H)$ ein solcher $X$-Kegel, so erhalten wir für jedes $Y:\mU$ eine kanonische Abbildung
+  \begin{align*}
+    &\Phi\colonequiv\Phi_{X,\varphi,\psi,H}(Y):(Y \to X) \to \mathrm{Cone}(f,g,Y)\\
+    &\Phi(\vartheta)\colonequiv (\varphi\circ\vartheta,\psi\circ\vartheta,H_\vartheta).
+  \end{align*}
+  Zeige:
+  \begin{enumerate}
+    \item Falls $X\equiv\mathrm{PB}(f,g)$ und $(\varphi,\psi,H)\equiv(\pi_1,\pi_2,\pi_3)$ der kanonische $X$-Kegel, so ist $\Phi$ invers zur Vergleichsabbildung aus der Vorlesung
+      $$
+      V(Y,\_,\_,\_):\mathrm{Cone}(f,g,Y)\to (Y\to\mathrm{PB}(f,g)).
+      $$
+    \item Das Quadrat
+      \begin{center}
+        \begin{tikzcd}
+          X
+          \arrow[d,"\varphi"']
+          \arrow[r,"\psi"]
+          & B
+          \arrow[d,"g"]
+          \arrow[dl, phantom, "H" font=\small]
+          \\
+          A
+          \arrow[r,"f"']
+          & C
+        \end{tikzcd}
+      \end{center}
+      ist genau dann ein Pullback-Quadrat, wenn $\Phi$ für jedes $Y$ eine Äquivalenz ist.
+  \end{enumerate}
+\end{bonus}
+
+\begin{bonus}[Universelle Eigenschaft von Pullbacks II]
+  Sei
+  \begin{tikzcd}
+    A \arrow[r,"f"] &B \arrow[r,leftarrow,"g"] &C
+  \end{tikzcd}
+  ein Winkel und seien $(\varphi,\psi,H):\mathrm{Cone}(f,g,X)$ sowie $(\varphi',\psi',H'):\mathrm{Cone}(f,g,Y)$ Kegel darüber.
+  Der Typ der \emph{Kegelmorphismen} $(\varphi',\psi',H')\to (\varphi,\psi,H)$ sei definiert als
+  $$
+  \sum_{\vartheta:Y \to X}
+  \sum_{h:\varphi\circ\vartheta\sim\varphi'}
+  \sum_{k:\psi\circ\vartheta\sim\psi'}
+  h^{-1} \kon H_\vartheta \kon k = H'.
+  $$
+  Ist dieser Typ für alle $Y:\mU$ und jeden $Y$-Kegel $(\varphi',\psi',H')$ kontrahierbar, so nennen wir $(\varphi,\psi,H)$ einen \emph{terminalen Kegel}.
+  \begin{enumerate}
+    \item Zeige, dass der Typ $(\varphi',\psi',H')\to (\varphi,\psi,H)$ äquivalent zur Faser der Abbildung $\Phi_{X,\varphi,\psi,H}(Y)$ über $(\varphi',\psi',H')$ ist.
+    \item Folgere, dass das Quadrat
+      \begin{center}
+        \begin{tikzcd}
+          X
+          \arrow[d,"\varphi"']
+          \arrow[r,"\psi"]
+          & B
+          \arrow[d,"g"]
+          \arrow[dl, phantom, "H" font=\small]
+          \\
+          A
+          \arrow[r,"f"']
+          & C
+        \end{tikzcd}
+      \end{center}
+      genau dann ein Pullbackquadrat ist, wenn $(\varphi,\psi,H)$ ein terminaler Kegel mit Spitze $X$ ist.
+  \end{enumerate}
+\end{bonus}
+
+\end{document}
