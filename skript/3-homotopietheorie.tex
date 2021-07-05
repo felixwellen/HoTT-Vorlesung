@@ -1059,6 +1059,7 @@ Zentral für viele Dinge, ist dabei der folgende Satz:
 Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als iterierte Schleifen:
 
 \begin{korollar}
+  \label{kor:schleifenraum-abbildungen}
   Für punktiertes $A$ und jedes $n:\N$ gilt:
   \begin{mathpar}
     (S^n\to^\ast A)\simeq \Omega^n A
@@ -1099,10 +1100,30 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   \end{mathpar}
   Letzteres ist durch Einsatz der Gruppoidgesetze äquivalent zu $\refl_\ast=\refl_\ast$.
 \end{beweis}
+\begin{korollar}
+  Sei $n\geq -1$. Ein Typ $A$ ist ein $n$-Typ, wenn für alle $x:A$, der Typ $(S^{n+1},\ast)\to^\ast(A,x)$ kontrahierbar ist.
+\end{korollar}
+\begin{beweis}
+  Folgt aus dem Lemma und \cref{kor:schleifenraum-abbildungen}.
+\end{beweis}
 
 \begin{beweis}[\cref{thm:n-truncation}]
-  Per Konstruktion ist der Raum der Abbildungen $S^{n+1}\to\|A\|_n$ kontrahierbar: Als Kontraktions
+  Per Konstruktion ist der Raum der punktierten Abbildungen $S^{n+1}\to^\ast\|A\|_n$ kontrahierbar: Als Kontraktionszentrum wählen wir die konstante Abbildung $c_\ast\colonequiv x\mapsto \ast $, die durch $\refl_\ast$ punktiert ist.
+  Für eine punktierte Abbildung $(r,p_r):(S^{n+1})\to^{\ast}(\|A\|_n,\ast)$ müssen wir zunächst eine Homotopie $r\sim c_\ast$ finden.
+  Für $x:S^{n+1}$ sei diese Homotopie gegeben durch
+  \begin{mathpar}
+    \mathrm{Speiche}(x)\kon \mathrm{Speiche}(\ast)^{-1}\kon p_r : r(x)=c_\ast(x)
+  \end{mathpar}
+  Für eine Gleichheit von punktierten Abbildungen müssen wir nun noch feststellen:
+  \begin{mathpar}
+    (\mathrm{Speiche}(\ast)\kon \mathrm{Speiche}(\ast)^{-1}\kon p_r)^{-1}\kon p_r=\refl_\ast
+  \end{mathpar}
 \end{beweis}
+
+
+
+
+\ignore{
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
 
 \begin{regeln}[Pushout]
@@ -1124,9 +1145,12 @@ Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte
 \begin{bemerkung}
   Sei $A:\mU$, dann gilt: $\Sigma A\simeq \mathrm{PO}((a:A)\mapsto \ast, (a:A)\mapsto \ast)$.
 \end{bemerkung}
-\subsection{Überlagerungen II?}
-\subsection{Homotopiegruppen von Sphären?}
+}
+
+
 \subsection{Hopf-Faserung?}
 \subsection{Eilenberg-MacLane Räume?}
+\subsection{Überlagerungen II?}
+\subsection{Homotopiegruppen von Sphären?}
 \subsection{Kohomologie?}
 \subsection{Cubical Type Theory?}
