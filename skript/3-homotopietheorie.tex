@@ -1054,6 +1054,32 @@ Zentral für viele Dinge, ist dabei der folgende Satz:
   \end{mathpar}
   Dazu stellen wir fest, dass der Transport entlang $f(\ast)$ in $X\to(\ast=\_)$ punktweise Konkatenation mit $f(\ast)^{-1}$ ist.
   Wegen $\transp_{X\to(\ast=\_)}(f(\ast))(f)=\tilde{f}$ sind wir also fertig.
+
+  Um den Beweis abzuschließen, bleibt also noch zu zeigen, dass für jedes $f:X\to\ast=\ast$ und $q:f(\ast)=\refl_\ast$ gilt:
+  \begin{mathpar}
+    (f,q)=(\tilde{f},\dots)
+  \end{mathpar}
+  wobei ``$\dots$'' eine Gleichheit ist, die durch Gruppoidrechengesetze gegeben ist.
+  Zunächst können wir $q$ benutzen, um eine Homotopie zwischen $f$ und $\tilde{f}$:
+  \begin{mathpar}
+    \mathrm{ap}(f(x)\kon \_^{-1}, q) : f(x)\kon f(\ast)^{-1}=f(x)\kon \refl_\ast
+  \end{mathpar}
+  Bis auf Gruppoidrechengesetze liefert das die benötigte Homotopie.
+  Mit dieser Homotopie haben wir auch eine Gleichheit $s:\tilde{f}=f$.
+  Entlang dieser können wir im abhängigen Typ $g\mapsto g(\ast)=\refl_\ast$ transportieren.
+  Als Transport erhalten wir:
+  \begin{mathpar}
+    \transp_{\_(\ast)=\refl_\ast}(s)=\mathrm{ap}(\_(\ast),s)^{-1}\kon\_
+  \end{mathpar}
+  Damit die Paare oben gleich sind, muss also gelten: $(\mathrm{ap}(\_(\ast),s)^{-1}\kon\_)(\dots)=q$
+
+  Zunächst bekommen wir: $\mathrm{ap}(\_(\ast),s)=\mathrm{ap}(f(\ast)\kon\_^{-1},q)\kon\dots$, wobei wir wieder ``$\dots$'' für Gruppoidgesetze schreiben.
+  Um Induktion über $q$ anwenden zu können, abstrahieren wir die Situation leicht und verwenden statt $f(\ast)$ ein beliebiges $p:\ast=\ast$.
+  Dafür ergibt sich:
+  \begin{mathpar}
+    \dots\kon\mathrm{ap}(p\kon \_^{-1},q)\kon\dots=q^{-1}
+  \end{mathpar}
+  In der Situation oben berechnet sich der Wert des Transports entlang $s$ also wie gewünscht zu $q$.
 \end{beweis}
 
 Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als iterierte Schleifen:
