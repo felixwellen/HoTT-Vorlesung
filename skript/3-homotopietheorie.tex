@@ -1160,6 +1160,32 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   \end{enumerate}
 \end{beweis}
 
+\begin{bemerkung}
+  Wenn $A$ ein $n$-Typ ist, dann ist $|\_|_n:A\to \|A\|_n$ eine Äquivalenz.
+\end{bemerkung}
+\begin{beweis}
+  Übungsblatt 12.
+\end{beweis}
+
+\begin{definition}
+  Sei $(A,\ast)$ punktiert und $n:\N$. Die $n$-te \begriff{Homotopiegruppe} von $A$ ist der Typ
+  \begin{mathpar}
+    \pi_n(A,\ast)\colonequiv \|\Omega^n(A,\ast)\|_0
+  \end{mathpar}
+  Für einen weiteren punktierten Typen $(B,\ast)$ und $(f,p_f):(A,\ast)\to^\ast(B,\ast)$ ist
+  \begin{mathpar}
+    \pi_n(f,p_f)\colonequiv \|\Omega^n(f,p_f)\|_0
+  \end{mathpar}
+\end{definition}
+
+\begin{beispiel}
+  Wir wissen: $\pi_1(S^1)\simeq \Z$.
+\end{beispiel}
+
+\begin{bemerkung}
+  Für einen punktierten Typ $(A,\ast)$ und $n\geq 1$ ist $\pi_n(A,\ast)$ stets eine Gruppe.
+  Für einen weiteren punktierten Typen $(B,\ast)$ und $(f,p_f):(A,\ast)\to^\ast(B,\ast)$ ist $\pi_n(f,p_f)$ ein Gruppenhomomorphismus.
+\end{bemerkung}
 
 \ignore{
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
