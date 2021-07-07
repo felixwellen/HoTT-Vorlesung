@@ -28,21 +28,25 @@
 
 \begin{exercise}[Universelle Eigenschaft der Abschneidung]
   Sei $n:\N_{-2}$ ein Abschneidungslevel, $A:\mU$, $B:\nType{n}$ und $f:A\to B$.
-  Betrachte folgende Abbildung:
+  Wir definieren
   \begin{align*}
-    &f^*:\prod_{C:\nType{n}}(B \to C) \to (A \to C)\\
-    &f^*(g:B\to C)\colonequiv g\circ f
+    &f^*:\prod_{C:\nType{n}}(B \to C) \to (A \to C),\\
+    &f^*(g)\colonequiv f^*(C,g)\colonequiv g\circ f.
   \end{align*}
   \begin{enumerate}
     \item Zeige, dass $\rec{\|A\|_n}(B,f):\|A\|_n\to B$ genau dann eine Äquivalenz ist, wenn $f^*$ eine faserweise Äquivalenz ist.
+    %\item Folgere, dass Präkomposition mit $|\_|_n$ eine Äquivalenz $(\|A\|_n \to C) \to (A \to C)$ für jeden $n$-Typen $C:\nType{n}$ induziert.
+    \item Folgere, dass $A$ genau dann ein $n$-Typ ist, wenn $|\_|_n:A\to \|A\|_n$ eine Äquivalenz ist.
+    \item Folgere, dass $S^1$ zusammenhängend ist.
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[Charakterisierung von Abschneidungen]
-  \begin{enumerate}
-    \item Zeige, dass $A$ genau dann ein $n$-Typ ist, wenn $|\_|_n:A\to \|A\|_n$ eine Äquivalenz ist.
-    \item
-  \end{enumerate}
+\begin{exercise}[Eckmann-Hilton und H-Gruppen]
+  Sei $A:\mU$ ein Typ, $a,b,c:A$.
+  Für $p:a=b$ definieren wir \emph{whiskering von links}
+  \begin{align*}
+    \prod_{p:a=b}\prod_{r,s:b=c}r=s\to p\kon r=p\kon s\\
+  \end{align*}
 \end{exercise}
 
 \end{document}
