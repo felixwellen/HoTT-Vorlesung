@@ -504,6 +504,7 @@ wieder ein $n$-Typ ist. Ein Gegenbeispiel ist durch $(\zwei=\zwei)\simeq \zwei$ 
 Letzterer könnte also bestenfalls noch ein $1$-Typ sein. Das ist tatsächlich so:
 
 \begin{bemerkung}
+  \label{bem:level-of-n-typ}
   Der Typ der $n$-Typen ist ein $(n+1)$-Typ.
 \end{bemerkung}
 \begin{beweis}
@@ -1208,6 +1209,7 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
       \dots\ar[r] & \pi_{n+1}(F)\ar[r] & \pi_{n+1}(A)\ar[r,"\pi_{n+1}(f)"] & \pi_{n+1}(B)\ar[r] & \pi_n(F)\ar[r] & \pi_n(A)\ar[r,"\pi_n(f)"] & \pi_n(B)\ar[r] & \dots
     \end{tikzcd}
   \end{center}
+  
 \end{theorem}
 \begin{beweis}
   Lassen wir hier aus. 
@@ -1216,6 +1218,67 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   Man kann auch zeigen, dass es sich für $n\geq 2$ um eine lange exakte Sequenz von abelschen Gruppen handelt.
   Im Abschnitt mit $n=1$ ist es eine exakte Sequenz von Gruppen, allerdings im Allgemeinen auch mit Antihomomorphismen.
 \end{bemerkung}
+
+
+\subsection{Hopf-Faserung}
+
+\begin{definition}
+  Ein Typ $A$ heißt \begriff{$n$-zusammenhängend}, wenn $\|A\|_n$ kontrahierbar ist.
+  Im Fall $n=0$ sagt man auch nur zusammenhängend.
+\end{definition}
+
+\begin{bemerkung}
+  $S^1$ ist $0$-zusammenhängend und allgemeiner kann man zeigen: $S^{n+1}$ ist $n$-zusammenhängend.
+\end{bemerkung}
+\begin{beweis}
+  Übungsblatt 12.
+\end{beweis}
+
+Wir werden sehen+glauben: Es gibt eine Abbildung $S^3\to S^2$ mit Faser $S^1$.
+Daraus kann man mit der Fasersequen interessante Schlüsse ziehen.
+
+\begin{definition}
+  Ein \begriff{H-Raum} ist ist ein punktierter Typ $A$ mit
+  \begin{itemize}
+  \item einer Operation $\mu:A\to A\to A$
+  \item Homotopien $\mu(\ast,\_)\sim \id$ und $\mu(\_,\ast)\sim\id$
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}
+  Sei $A$ ein zusammenhängender H-Raum. Dann sind die Abbildungen $\mu(x,\_)$ und $\mu(\_,x)$ für alle $x:A$ Äquivalenzen.
+\end{lemma}
+\begin{beweis}
+  Da wir zeigen wollen, dass etwas eine Äquivalenz für alle $x:A$ ist, wollen wir ein abhängige Funktion in einem $-1$-abgeschnittenen abhängigen Typen $P:A\to\mU$ konstruieren.
+  Äquivalen können wir also auch $P:A\to (-1)\hbox{-}\mathrm{Type}$ konstruieren.
+  Da $(-1)\hbox{-}\mathrm{Type}$ nach \cref{bem:level-of-n-typ} ein $0$-Typ ist, faktorisiert $P$ über den kontrahierbaren Typ $\|A\|_0$,
+  d.h. wir haben $P':\|A\|_0\to (-1)\hbox{-}\mathrm{Type}$ mit $P'\circ |\_|_0=P$.
+  Um $P'$ zu zeigen, reicht es das etwa für $|\ast|_0$ zu machen. Aber $P'(|\ast|_0)$ ist einfach die Aussage, dass $\mu(\ast,\_)$ und $\mu(\_,\ast)$ Äquivalenzen sind und das stimmt, weil sie homotop zur Identität sind.
+\end{beweis}
+
+\begin{definition}
+  Für einen zusammenhängenden H-Raum $A$ ist die \begriff{Hopf-Konstruktion} gegeben als der abhängige Typ $H:\Sigma A\to\mU$ mit:
+  \begin{align*}
+    H(N)&\colonequiv A \\
+    H(S)&\colonequiv A \\
+    H(m(a))&:= \ua(\mu(a,\_))
+  \end{align*}
+\end{definition}
+
+\begin{beispiel}
+  Auf $S^1$ gibt es eine Gleichheit $p:\id=\id$, gegeben durch eine Homotopie $H$ festgelegt durch $H(\ast)&\colonequiv l$ und Nachrechnen des entsprechenden Transports.
+  Auf $S^1$ können wir eine H-Raum-Struktur rekursiv definieren:
+  \begin{align*}
+    \mu(\ast,\_)&\colonequiv \id \\
+    \mu(l,\_)&:=  p
+  \end{align*}
+  Das entspricht der komplexen Multiplikation auf $S^1$ und definiert eine H-Raum Struktur auf $S^1$.
+  Der zugehörige abhängige Typ $H_{S^1}:\Sigma S^1\to\mU$ heißt \begriff{Hopf-Faserung}.
+\end{beispiel}
+
+\begin{fakt}
+  Es gilt $\sum_{x:\Sigma S^1}H_{S^1}(x)\simeq S^3$.
+\end{fakt}
 
 \ignore{
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
@@ -1242,7 +1305,6 @@ Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte
 }
 
 
-\subsection{Hopf-Faserung?}
 \subsection{Eilenberg-MacLane Räume?}
 \subsection{Überlagerungen II?}
 \subsection{Homotopiegruppen von Sphären?}
