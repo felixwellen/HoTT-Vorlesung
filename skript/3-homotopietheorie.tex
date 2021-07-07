@@ -1111,7 +1111,7 @@ Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als ite
 In \cref{lem:schleifenraum-n-typ} hatten wir gesehen, dass $n+1$-Typen genau die Typen mit $n$-Typen $\Omega(A,x)$.
 Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
 \begin{lemma}
-  Sei $n\geq -1$. Ein punktierter Typ $A$ ist genau dann ein $n$-Typ, wenn für alle $x:A$ der Typ $\Omega^{n+1}(A,x)$ kontrahierbar ist.
+  Sei $n\geq -1$. Ein Typ $A$ ist genau dann ein $n$-Typ, wenn für alle $x:A$ der Typ $\Omega^{n+1}(A,x)$ kontrahierbar ist.
 \end{lemma}
 \begin{beweis}
   Sei $n\equiv -1$. Dann ist zu zeigen: $A$ ist eine Aussage, wenn $A$ kontrahierbar ist. Andererseits kann mit $x:A$ gezeigt werden, dass die Aussage $A$ auch kontrahierbar ist.
@@ -1206,7 +1206,7 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   Sei $f:A\to^{\ast}B$ eine punktierte Abbildung. Dann gibt es eine lange exakte Sequenz von punktierten $0$-Typen:
   \begin{center}
     \begin{tikzcd}
-      \dots\ar[r] & \pi_{n+1}(F)\ar[r] & \pi_{n+1}(A)\ar[r,"\pi_{n+1}(f)"] & \pi_{n+1}(B)\ar[r] & \pi_n(F)\ar[r] & \pi_n(A)\ar[r,"\pi_n(f)"] & \pi_n(B)\ar[r] & \dots
+      \dots\ar[r] & \pi_{n+1}(F)\ar[r] & \pi_{n+1}(A)\ar[r,"(-1)^{n+1}\pi_{n+1}(f)"] & \pi_{n+1}(B)\ar[r] & \pi_n(F)\ar[r] & \pi_n(A)\ar[r,"(-1)^n\pi_n(f)"] & \pi_n(B)\ar[r] & \dots
     \end{tikzcd}
   \end{center}
   
@@ -1235,7 +1235,7 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
 \end{beweis}
 
 Wir werden sehen+glauben: Es gibt eine Abbildung $S^3\to S^2$ mit Faser $S^1$.
-Daraus kann man mit der Fasersequen interessante Schlüsse ziehen.
+Daraus kann man mit der Fasersequenz interessante Schlüsse ziehen.
 
 \begin{definition}
   Ein \begriff{H-Raum} ist ist ein punktierter Typ $A$ mit
@@ -1266,7 +1266,7 @@ Daraus kann man mit der Fasersequen interessante Schlüsse ziehen.
 \end{definition}
 
 \begin{beispiel}
-  Auf $S^1$ gibt es eine Gleichheit $p:\id=\id$, gegeben durch eine Homotopie $H$ festgelegt durch $H(\ast)&\colonequiv l$ und Nachrechnen des entsprechenden Transports.
+  Auf $S^1$ gibt es eine Gleichheit $p:\id=\id$, gegeben durch eine Homotopie $H$ festgelegt durch $H(\ast)\colonequiv l$ und Nachrechnen des entsprechenden Transports.
   Auf $S^1$ können wir eine H-Raum-Struktur rekursiv definieren:
   \begin{align*}
     \mu(\ast,\_)&\colonequiv \id \\
