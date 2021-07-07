@@ -504,6 +504,7 @@ wieder ein $n$-Typ ist. Ein Gegenbeispiel ist durch $(\zwei=\zwei)\simeq \zwei$ 
 Letzterer könnte also bestenfalls noch ein $1$-Typ sein. Das ist tatsächlich so:
 
 \begin{bemerkung}
+  \label{bem:level-of-n-typ}
   Der Typ der $n$-Typen ist ein $(n+1)$-Typ.
 \end{bemerkung}
 \begin{beweis}
@@ -1054,6 +1055,32 @@ Zentral für viele Dinge, ist dabei der folgende Satz:
   \end{mathpar}
   Dazu stellen wir fest, dass der Transport entlang $f(\ast)$ in $X\to(\ast=\_)$ punktweise Konkatenation mit $f(\ast)^{-1}$ ist.
   Wegen $\transp_{X\to(\ast=\_)}(f(\ast))(f)=\tilde{f}$ sind wir also fertig.
+
+  Um den Beweis abzuschließen, bleibt also noch zu zeigen, dass für jedes $f:X\to\ast=\ast$ und $q:f(\ast)=\refl_\ast$ gilt:
+  \begin{mathpar}
+    (f,q)=(\tilde{f},\dots)
+  \end{mathpar}
+  wobei ``$\dots$'' eine Gleichheit ist, die durch Gruppoidrechengesetze gegeben ist.
+  Zunächst können wir $q$ benutzen, um eine Homotopie zwischen $f$ und $\tilde{f}$:
+  \begin{mathpar}
+    \mathrm{ap}(f(x)\kon \_^{-1}, q) : f(x)\kon f(\ast)^{-1}=f(x)\kon \refl_\ast
+  \end{mathpar}
+  Bis auf Gruppoidrechengesetze liefert das die benötigte Homotopie.
+  Mit dieser Homotopie haben wir auch eine Gleichheit $s:\tilde{f}=f$.
+  Entlang dieser können wir im abhängigen Typ $g\mapsto g(\ast)=\refl_\ast$ transportieren.
+  Als Transport erhalten wir:
+  \begin{mathpar}
+    \transp_{\_(\ast)=\refl_\ast}(s)=\mathrm{ap}(\_(\ast),s)^{-1}\kon\_
+  \end{mathpar}
+  Damit die Paare oben gleich sind, muss also gelten: $(\mathrm{ap}(\_(\ast),s)^{-1}\kon\_)(\dots)=q$
+
+  Zunächst bekommen wir: $\mathrm{ap}(\_(\ast),s)=\mathrm{ap}(f(\ast)\kon\_^{-1},q)\kon\dots$, wobei wir wieder ``$\dots$'' für Gruppoidgesetze schreiben.
+  Um Induktion über $q$ anwenden zu können, abstrahieren wir die Situation leicht und verwenden statt $f(\ast)$ ein beliebiges $p:\ast=\ast$.
+  Dafür ergibt sich:
+  \begin{mathpar}
+    \dots\kon\mathrm{ap}(p\kon \_^{-1},q)\kon\dots=q^{-1}
+  \end{mathpar}
+  In der Situation oben berechnet sich der Wert des Transports entlang $s$ also wie gewünscht zu $q$.
 \end{beweis}
 
 Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als iterierte Schleifen:
@@ -1084,7 +1111,7 @@ Damit können wir sehen, dass Abbildungen $S^n\to A$ nichts anderes sind als ite
 In \cref{lem:schleifenraum-n-typ} hatten wir gesehen, dass $n+1$-Typen genau die Typen mit $n$-Typen $\Omega(A,x)$.
 Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
 \begin{lemma}
-  Sei $n\geq -1$. Ein punktierter Typ $A$ ist genau dann ein $n$-Typ, wenn für alle $x:A$ der Typ $\Omega^{n+1}(A,x)$ kontrahierbar ist.
+  Sei $n\geq -1$. Ein Typ $A$ ist genau dann ein $n$-Typ, wenn für alle $x:A$ der Typ $\Omega^{n+1}(A,x)$ kontrahierbar ist.
 \end{lemma}
 \begin{beweis}
   Sei $n\equiv -1$. Dann ist zu zeigen: $A$ ist eine Aussage, wenn $A$ kontrahierbar ist. Andererseits kann mit $x:A$ gezeigt werden, dass die Aussage $A$ auch kontrahierbar ist.
@@ -1134,6 +1161,124 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   \end{enumerate}
 \end{beweis}
 
+\begin{bemerkung}
+  Wenn $A$ ein $n$-Typ ist, dann ist $|\_|_n:A\to \|A\|_n$ eine Äquivalenz.
+\end{bemerkung}
+\begin{beweis}
+  Übungsblatt 12.
+\end{beweis}
+
+\begin{definition}
+  Sei $(A,\ast)$ punktiert und $n:\N$. Die $n$-te \begriff{Homotopiegruppe} von $A$ ist der Typ
+  \begin{mathpar}
+    \pi_n(A,\ast)\colonequiv \|\Omega^n(A,\ast)\|_0
+  \end{mathpar}
+  Für einen weiteren punktierten Typen $(B,\ast)$ und $(f,p_f):(A,\ast)\to^\ast(B,\ast)$ ist
+  \begin{mathpar}
+    \pi_n(f,p_f)\colonequiv \|\Omega^n(f,p_f)\|_0
+  \end{mathpar}
+\end{definition}
+
+\begin{beispiel}
+  Wir wissen: $\pi_1(S^1)\simeq \Z$.
+\end{beispiel}
+
+\begin{bemerkung}
+  Für einen punktierten Typ $(A,\ast)$ und $n\geq 1$ ist $\pi_n(A,\ast)$ stets eine Gruppe.
+  Für einen weiteren punktierten Typen $(B,\ast)$ und $(f,p_f):(A,\ast)\to^\ast(B,\ast)$ ist $\pi_n(f,p_f)$ ein Gruppenhomomorphismus.
+\end{bemerkung}
+
+\begin{definition}
+  Seien $A,B$ punktiert und $f:A\to B$ eine punktierte Abbildung.
+  \begin{enumerate}
+  \item Das \begriff{Bild} von $f$ ist der folgende Typ:
+    \begin{mathpar}
+      \mathrm{im}(f)\colonequiv \sum_{b:B}\|\sum_{x:A}f(x)=b\|
+    \end{mathpar}
+  \item Der \begriff{Kern} von $f$ ist der folgende Typ:
+    \begin{mathpar}
+      \mathrm{Kern}(f)\colonequiv \sum_{x:A}f(x)=\ast
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+  Sei $f:A\to^{\ast}B$ eine punktierte Abbildung. Dann gibt es eine lange exakte Sequenz von punktierten $0$-Typen:
+  \begin{center}
+    \begin{tikzcd}
+      \dots\ar[r] & \pi_{n+1}(F)\ar[r] & \pi_{n+1}(A)\ar[r,"(-1)^{n+1}\pi_{n+1}(f)"] & \pi_{n+1}(B)\ar[r] & \pi_n(F)\ar[r] & \pi_n(A)\ar[r,"(-1)^n\pi_n(f)"] & \pi_n(B)\ar[r] & \dots
+    \end{tikzcd}
+  \end{center}
+  
+\end{theorem}
+\begin{beweis}
+  Lassen wir hier aus. 
+\end{beweis}
+\begin{bemerkung}
+  Man kann auch zeigen, dass es sich für $n\geq 2$ um eine lange exakte Sequenz von abelschen Gruppen handelt.
+  Im Abschnitt mit $n=1$ ist es eine exakte Sequenz von Gruppen, allerdings im Allgemeinen auch mit Antihomomorphismen.
+\end{bemerkung}
+
+
+\subsection{Hopf-Faserung}
+
+\begin{definition}
+  Ein Typ $A$ heißt \begriff{$n$-zusammenhängend}, wenn $\|A\|_n$ kontrahierbar ist.
+  Im Fall $n=0$ sagt man auch nur zusammenhängend.
+\end{definition}
+
+\begin{bemerkung}
+  $S^1$ ist $0$-zusammenhängend und allgemeiner kann man zeigen: $S^{n+1}$ ist $n$-zusammenhängend.
+\end{bemerkung}
+\begin{beweis}
+  Übungsblatt 12.
+\end{beweis}
+
+Wir werden sehen+glauben: Es gibt eine Abbildung $S^3\to S^2$ mit Faser $S^1$.
+Daraus kann man mit der Fasersequenz interessante Schlüsse ziehen.
+
+\begin{definition}
+  Ein \begriff{H-Raum} ist ist ein punktierter Typ $A$ mit
+  \begin{itemize}
+  \item einer Operation $\mu:A\to A\to A$
+  \item Homotopien $\mu(\ast,\_)\sim \id$ und $\mu(\_,\ast)\sim\id$
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}
+  Sei $A$ ein zusammenhängender H-Raum. Dann sind die Abbildungen $\mu(x,\_)$ und $\mu(\_,x)$ für alle $x:A$ Äquivalenzen.
+\end{lemma}
+\begin{beweis}
+  Da wir zeigen wollen, dass etwas eine Äquivalenz für alle $x:A$ ist, wollen wir ein abhängige Funktion in einem $-1$-abgeschnittenen abhängigen Typen $P:A\to\mU$ konstruieren.
+  Äquivalen können wir also auch $P:A\to (-1)\hbox{-}\mathrm{Type}$ konstruieren.
+  Da $(-1)\hbox{-}\mathrm{Type}$ nach \cref{bem:level-of-n-typ} ein $0$-Typ ist, faktorisiert $P$ über den kontrahierbaren Typ $\|A\|_0$,
+  d.h. wir haben $P':\|A\|_0\to (-1)\hbox{-}\mathrm{Type}$ mit $P'\circ |\_|_0=P$.
+  Um $P'$ zu zeigen, reicht es das etwa für $|\ast|_0$ zu machen. Aber $P'(|\ast|_0)$ ist einfach die Aussage, dass $\mu(\ast,\_)$ und $\mu(\_,\ast)$ Äquivalenzen sind und das stimmt, weil sie homotop zur Identität sind.
+\end{beweis}
+
+\begin{definition}
+  Für einen zusammenhängenden H-Raum $A$ ist die \begriff{Hopf-Konstruktion} gegeben als der abhängige Typ $H:\Sigma A\to\mU$ mit:
+  \begin{align*}
+    H(N)&\colonequiv A \\
+    H(S)&\colonequiv A \\
+    H(m(a))&:= \ua(\mu(a,\_))
+  \end{align*}
+\end{definition}
+
+\begin{beispiel}
+  Auf $S^1$ gibt es eine Gleichheit $p:\id=\id$, gegeben durch eine Homotopie $H$ festgelegt durch $H(\ast)\colonequiv l$ und Nachrechnen des entsprechenden Transports.
+  Auf $S^1$ können wir eine H-Raum-Struktur rekursiv definieren:
+  \begin{align*}
+    \mu(\ast,\_)&\colonequiv \id \\
+    \mu(l,\_)&:=  p
+  \end{align*}
+  Das entspricht der komplexen Multiplikation auf $S^1$ und definiert eine H-Raum Struktur auf $S^1$.
+  Der zugehörige abhängige Typ $H_{S^1}:\Sigma S^1\to\mU$ heißt \begriff{Hopf-Faserung}.
+\end{beispiel}
+
+\begin{fakt}
+  Es gilt $\sum_{x:\Sigma S^1}H_{S^1}(x)\simeq S^3$.
+\end{fakt}
 
 \ignore{
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
@@ -1160,7 +1305,6 @@ Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte
 }
 
 
-\subsection{Hopf-Faserung?}
 \subsection{Eilenberg-MacLane Räume?}
 \subsection{Überlagerungen II?}
 \subsection{Homotopiegruppen von Sphären?}
