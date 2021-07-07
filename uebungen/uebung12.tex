@@ -3,7 +3,7 @@
 \begin{document}
 \maketitle{12}
 
-\begin{exercise}[Die universelle Eigenschaft der Abschneidung]
+\begin{exercise}[Funktorialität der Abschneidung]
   Sei $n:\N_{-2}$ ein Abschneidungslevel und $A:\mU$ ein Typ.
   \begin{enumerate}
     \item Konstruiere das Rekursionsprinzip für für die $n$-Abschneidung $\|A\|_n$ , finde also einen Term
@@ -15,16 +15,34 @@
       $$
       \mathrm{uniq}_{\|A\|_n}:\prod_{B:\nType{n}}\prod_{g,g':\|A\|_n \to B} \left((g\circ |\_|_n) \sim (g'\circ |\_|_n)\right) \to g \sim g'
       $$
-    \item Zeige, dass $\rec{\|A\|_n}$ faserweise invers ist zu folgender Abbildung:
-      \begin{align*}
-        &|\_|_n^*:\prod_{B:\nType{n}}(\|A\|_n \to B) \to (A \to B)\\
-        &|\_|_n^*(B,g) \colonequiv g \circ |\_|_n
-      \end{align*}
-    \item Folgere, dass $A$ genau dann ein $n$-Typ ist, wenn $|\_|_n:A\to \|A\|_n$ eine Äquivalenz ist.
+    \item
+  Für $f:A\to B$ definieren wir $\|f\|_n\colonequiv \rec{\|A\|_n}(\|B\|_n,|\_|_n\circ f):\|A\|_n\to\|B\|_n$.
+  Zeige:
+  \begin{enumerate}
+    \item $\|\id_A\|_n\sim \id_{\|A\|_n}$
+    \item $\|g\|_n\circ\|f\|_n\sim\|g \circ f\|_n$.
+  \end{enumerate}
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[Funktorialität der Abschneidung]
+
+\begin{exercise}[Universelle Eigenschaft der Abschneidung]
+  Sei $n:\N_{-2}$ ein Abschneidungslevel, $A:\mU$, $B:\nType{n}$ und $f:A\to B$.
+  Betrachte folgende Abbildung:
+  \begin{align*}
+    &f^*:\prod_{C:\nType{n}}(B \to C) \to (A \to C)\\
+    &f^*(g:B\to C)\colonequiv g\circ f
+  \end{align*}
+  \begin{enumerate}
+    \item Zeige, dass $\rec{\|A\|_n}(B,f):\|A\|_n\to B$ genau dann eine Äquivalenz ist, wenn $f^*$ eine faserweise Äquivalenz ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Charakterisierung von Abschneidungen]
+  \begin{enumerate}
+    \item Zeige, dass $A$ genau dann ein $n$-Typ ist, wenn $|\_|_n:A\to \|A\|_n$ eine Äquivalenz ist.
+    \item
+  \end{enumerate}
 \end{exercise}
 
 \end{document}
