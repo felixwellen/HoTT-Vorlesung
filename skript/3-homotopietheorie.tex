@@ -1187,18 +1187,35 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   Für einen weiteren punktierten Typen $(B,\ast)$ und $(f,p_f):(A,\ast)\to^\ast(B,\ast)$ ist $\pi_n(f,p_f)$ ein Gruppenhomomorphismus.
 \end{bemerkung}
 
+\begin{definition}
+  Seien $A,B$ punktiert und $f:A\to B$ eine punktierte Abbildung.
+  \begin{enumerate}
+  \item Das \begriff{Bild} von $f$ ist der folgende Typ:
+    \begin{mathpar}
+      \mathrm{im}(f)\colonequiv \sum_{b:B}\|\sum_{x:A}f(x)=b\|
+    \end{mathpar}
+  \item Der \begriff{Kern} von $f$ ist der folgende Typ:
+    \begin{mathpar}
+      \mathrm{Kern}(f)\colonequiv \sum_{x:A}f(x)=\ast
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
 \begin{theorem}
-  Sei $f:A\to^{\ast}B$ eine punktierte Abbildung. Dann gibt es eine lange exakte Sequenz:
+  Sei $f:A\to^{\ast}B$ eine punktierte Abbildung. Dann gibt es eine lange exakte Sequenz von punktierten $0$-Typen:
   \begin{center}
     \begin{tikzcd}
       \dots\ar[r] & \pi_{n+1}(F)\ar[r] & \pi_{n+1}(A)\ar[r,"\pi_{n+1}(f)"] & \pi_{n+1}(B)\ar[r] & \pi_n(F)\ar[r] & \pi_n(A)\ar[r,"\pi_n(f)"] & \pi_n(B)\ar[r] & \dots
     \end{tikzcd}
   \end{center}
-  Die bei $n=0$ mit 
 \end{theorem}
 \begin{beweis}
-  
+  Lassen wir hier aus. 
 \end{beweis}
+\begin{bemerkung}
+  Man kann auch zeigen, dass es sich für $n\geq 2$ um eine lange exakte Sequenz von abelschen Gruppen handelt.
+  Im Abschnitt mit $n=1$ ist es eine exakte Sequenz von Gruppen, allerdings im Allgemeinen auch mit Antihomomorphismen.
+\end{bemerkung}
 
 \ignore{
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
