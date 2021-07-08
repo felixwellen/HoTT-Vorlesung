@@ -1,5 +1,7 @@
 \documentclass{uebung}
 
+\DeclareMathOperator*{\whisk}{\ast}
+
 \begin{document}
 \maketitle{12}
 
@@ -66,12 +68,56 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[Eckmann-Hilton und H-Gruppen]
-  Sei $A:\mU$ ein Typ, $a,b,c:A$.
-  Für $p:a=b$ definieren wir \emph{whiskering von links}
+\begin{exercise}[Das Eckmann--Hilton Argument]
+  Sei $A:\mU$ ein Typ und $a,b,c:A$.
+  Wir erinnern an die Gruppoidgesetze für Komposition mit $\refl$
   \begin{align*}
-    \prod_{p:a=b}\prod_{r,s:b=c}r=s\to p\kon r=p\kon s\\
+    \rho:\prod_{p:a=b}p\kon\refl_b = p,\\
+    \lambda:\prod_{r:b=c}\refl_b\kon r= r,
   \end{align*}
+  welche sich per $=$-Induktion durch $\rho_{\refl_b} \colonequiv \lambda_{\refl_b} \colonequiv \refl_{\refl_b}$ definieren lassen.
+
+  Wir definieren \emph{whiskering von links} als Operation vom Typ%
+  \footnote{Die geschweiften Klammern deuten implizite Argumente an, die wir in der Notation der Operation nicht berücksichtigen.}
+  $$
+  \_\whisk_l\_:\prod_{\{a,b:A\}}\prod_{p:a=b}\prod_{\{c:A\}}\prod_{\{r,s:b=c\}}r=s\to p\kon r=p\kon s
+  $$
+  per $=$-Induktion über $p:a=b$ durch $\refl_b\whisk_l\beta \colonequiv\lambda_r\kon\beta\kon\lambda_s^{-1}$ für $\beta:r=s$.
+  Analog definieren wir \emph{whiskering von rechts}
+  $$
+  \_\whisk_r\_:\prod_{\{a:A\}}\prod_{\{p,q:a=b\}}\prod_{\{b,c:A\}}\prod_{r:b=c}p=q\to p\kon r=q\kon r
+  $$
+  per $=$-Induktion über $r:b=c$ durch $\alpha\whisk_r\refl_b \colonequiv \rho_p\kon\alpha\kon\rho_q^{-1}$ für $\alpha:p=q$.
+
+  Seien nun $a,b,c:A$, $p,q:a=b$, $r,s:b=c$ und $\alpha:p=q$, $\beta:r=s$ wie in folgendem Diagram veranschaulicht:
+  \begin{center}
+    \begin{tikzcd}[sep=large]
+      a
+        \arrow[r,equal,bend left,shift left=3,"p"{name=p}]
+        \arrow[r,equal,bend right,shift right=3,"q"'{name=q}]
+        \arrow[from=p,to=q,equal,shorten=6,"\alpha"]
+      & b
+        \arrow[r,equal,bend left,shift left=3,"r"{name=tikzsucks}]
+        \arrow[r,equal,bend right,shift right=3,"s"'{name=s}]
+        \arrow[from=tikzsucks,to=s,equal,shorten=6,"\beta"]
+      & c
+    \end{tikzcd}
+  \end{center}
+  Wir definieren die \emph{horizontale Konkatenation} von $\alpha$ und $\beta$ als den ersten der beiden Terme
+  \begin{align*}
+    \alpha\whisk\beta &\colonequiv (\alpha \whisk_r r) \cdot (q \whisk_l \beta),\\
+    \alpha\whisk'\beta &\colonequiv (p \whisk_l \beta) \cdot (\alpha \whisk_r s).
+  \end{align*}
+  \begin{enumerate}
+    \item Zeige, dass $\alpha\whisk\beta = \alpha\whisk'\beta$.
+    \item Angenommen $a\equiv b\equiv c$ und $p\equiv q\equiv r\equiv s\equiv \refl_a$.
+      Zeige, dass
+      \begin{enumerate}
+        \item $\alpha\whisk\beta = \alpha\kon\beta$,
+        \item $\alpha\whisk'\beta = \beta\kon\alpha$.
+      \end{enumerate}
+    \item \textbf{Bonus.} Folgere, dass die Homotopiegruppe $\pi_k(A,a)$ für $k\geq 2$ abelsch ist.
+  \end{enumerate}
 \end{exercise}
 
 \end{document}
