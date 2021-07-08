@@ -1393,4 +1393,32 @@ Wir geben direkt einen höheren induktiven Typen an, der das Problem weitgehend 
 \end{beweis}
 
 \subsection{Kohomologie}
+Für jede ablesche Gruppe $A$ gibt es eine Folge von punktierten, Typen
+\begin{mathpar}
+  A, BA, B^2A, B^3A, \dots
+\end{mathpar}
+sodass $\Omega^n B^nA=A$ gilt und $B^nA$ $(n-1)$-zusammenhängend ist.
+\begin{definition}
+  Für einen Typ $X$ und eine abelsche Gruppe $A$ ist die n-te \begriff{Kohomologiegruppe} von $X$ mit Koeffizienten in $A$ gegeben als:
+  \begin{mathpar}
+    H^n(X,A)\colonequiv \| X\to B^n A\|_0
+  \end{mathpar}
+\end{definition}
+\begin{beispiel}
+  Für $A\equiv \Z$ und $X\equiv S^1$ gilt: $H^1(S^1,\Z)=\Z$ (mit etwas Rechnen).
+\end{beispiel}
+
+\begin{bemerkung}
+  Sei $f:X\to Y$.
+  Für festes $n:\N$ ist $H^n$ funktoriell, es gibt also
+  \begin{mathpar}
+    f^\ast:H^n(Y,A)\to H^n(X,A)
+  \end{mathpar}
+  und für $g:Y\to Z$ gilt:
+  \begin{mathpar}
+    f^\ast \circ g^\ast = (g\circ f)^\ast
+  \end{mathpar}
+\end{bemerkung}
+
+
 \subsection{Cubical Type Theory}
