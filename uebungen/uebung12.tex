@@ -3,6 +3,31 @@
 \begin{document}
 \maketitle{12}
 
+\begin{exercise}[Pullbacks von Äquivalenzen sind Äquivalenzen]
+  Betrachte ein Pullback-Quadrat der folgenden Form:
+  \begin{center}
+    \begin{tikzcd}
+      X
+      \arrow[r,"\varphi"]
+      \arrow[d,"\psi"']
+      & A
+      \arrow[d,"f"]
+      \arrow[dl, phantom, "H" font=\small]
+      \\
+      Y
+      \arrow[r,"g"']
+      & B
+    \end{tikzcd}
+  \end{center}
+  \begin{enumerate}
+    \item Sei $Y\equiv\einheit$.
+      Zeige, dass $X\simeq\mathrm{fib}_f(g(\ast))$.
+    \item Sei $f$ eine Äquivalenz.
+      Zeige, dass $\psi$ eine Äquivalenz ist.
+      {\tiny Tipp: Pullback-Pasting!}
+  \end{enumerate}
+\end{exercise}
+
 \begin{exercise}[Funktorialität der Abschneidung]
   Sei $n:\N_{-2}$ ein Abschneidungslevel und $A:\mU$ ein Typ.
   \begin{enumerate}
