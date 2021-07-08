@@ -1315,8 +1315,45 @@ Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte
   Das lässt sich anhand der Fasersequenz für die Hopf-Faserung $S^1\to S^3\to S^2$ erkennen.
 \end{beweis}
 
-\subsection{Eilenberg-MacLane Räume?}
+\subsection{Eilenberg-MacLane Räume}
+Das Thema dieses Abschnitts wird im HoTT-Buch nur sehr knapp erwähnt und kann im Artikel ``Eilenberg-MacLane Spaces in Homotopy Type Theory'' von Dan Licata und Eric Finster nachgelesen werden.
+
+Zu einem punktierten Typ $A$ gibt es eine Sequenz von Gruppen, die Homotopiegruppen $\pi_n(A,\ast)$ für $n\geq 1$.
+Damit liegt die Frage nahe, ob es auch für jede Sequenz von Gruppen $(G_i)_{i\geq 1}$ einen punktierten Typen $A$ mit $\pi_i(A)\simeq G_i$ gibt.
+Mit der verständlichen Einschränkung, dass alle $G_i$ für $i\geq 2$ abelsch sind, lässt sich diese Frage positiv beantworten.
+Wir werden hier zumindest sehen, dass es für jede Gruppe $G$ einen Typ $K(G,1)$ gibt, für den gilt:
+\begin{align*}
+  \pi_0(K(G,1))&\simeq \eins \\
+  \pi_1(K(G,1))&\simeq G \\
+  \pi_n(K(G,1))&\simeq \eins\quad\text{ für $n\geq 2$}
+\end{align*}
+Wir geben direkt einen höheren induktiven Typen an, der das Problem weitgehend löst:
+\begin{regeln}
+  Sei $G$ eine Gruppe. Dann ist $\widetilde{K(G,1)}$ der höhere induktive Typ mit Konstruktoren:
+  \begin{align*}
+    \ast&:\widetilde{K(G,1)} \\
+    \mathrm{eq}&:\prod_{g:G}\ast=_{\widetilde{K(G,1)}}\ast \\
+    \mathrm{comp}&:\prod_{g,h:G} \mathrm{eq}(g\cdot h)=\mathrm{eq}(g)\kon \mathrm{eq}(h)
+  \end{align*}
+\end{regeln}
+
+\begin{definition}
+  Der (erste) \begriff{Eilenberg-MacLane Raum}\index{$K(G,1)$} zu einer Gruppe $G$ ist der punktierte Typ
+  \begin{mathpar}
+    K(G,1)\colonequiv \|\widetilde{K(G,1)}\|_1
+  \end{mathpar}
+\end{definition}
+
+\begin{bemerkung}
+  Es gibt eine Abbildung
+  \begin{mathpar}
+    \rho:\Omega K(G,1) \to G
+  \end{mathpar}
+  mit $\rho(|\mathrm{eq}(g)|_1)=g$ für alle $g:G$.
+\end{bemerkung}
+
+\subsection{Kohomologie}
+\subsection{Cubical Type Theory}
+
 \subsection{Überlagerungen II?}
 \subsection{Homotopiegruppen von Sphären?}
-\subsection{Kohomologie?}
-\subsection{Cubical Type Theory?}
