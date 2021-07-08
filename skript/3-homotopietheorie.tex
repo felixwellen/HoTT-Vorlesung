@@ -1169,6 +1169,28 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
 \end{beweis}
 
 \begin{definition}
+  \begin{enumerate}
+  \item Eine \begriff{Gruppe} ist ein 0-Typ $G$ zusammen mit:
+    \begin{itemize}
+    \item $\_\cdot\_:G\to G\to G$
+    \item $\_^{-1}:G\to G$
+    \item $e:G$
+    \end{itemize}
+    und Gleichheiten:
+    \begin{itemize}
+    \item $\prod_{x,y,z:G}(x\cdot y)\cdot z=x\cdot (y\cdot z)$
+    \item $\prod_{x:G}x\cdot x^{-1}=e=x^{-1}\cdot x$
+    \item $\prod_{x:G}x\cdot e =x=e\cdot x$
+    \end{itemize}
+  \item Seien $G$ und $H$ Gruppen mit Verknüpfungen $\_\cdot_G\_$ und  $\_\cdot_H\_$. Eine Abbildung $f:G\to H$ ist ein \begriff{Gruppenhomomorphismus}, wenn es
+    \begin{mathpar}
+      \prod_{x,y:G}f(x\cdot_G y)=f(x)\cdot_H f(y)
+    \end{mathpar}
+    gibt. 
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
   Sei $(A,\ast)$ punktiert und $n:\N$. Die $n$-te \begriff{Homotopiegruppe} von $A$ ist der Typ
   \begin{mathpar}
     \pi_n(A,\ast)\colonequiv \|\Omega^n(A,\ast)\|_0
