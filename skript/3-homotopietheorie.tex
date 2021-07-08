@@ -1302,30 +1302,6 @@ Daraus kann man mit der Fasersequenz interessante Schlüsse ziehen.
   Es gilt $\sum_{x:\Sigma S^1}H_{S^1}(x)\simeq S^3$.
 \end{fakt}
 
-\ignore{
-Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
-
-\begin{regeln}[Pushout]
-  Seien $A,B,C:\mU$ und $f:C\to A$, $g:C\to B$, also folgenden Situation gegeben:
-  \begin{center}
-    \begin{tikzcd}
-      C\ar[r,"f"]\ar[d,"g"] & A \\
-      B & 
-    \end{tikzcd}
-  \end{center}
-  Dann gibt es einen Typen $A\amalg_C B\colonequiv \mathrm{PO}(f,g):\mU$, den Pushout von $f$ und $g$, der der höhere induktive Typ mit folgenden Konstruktoren ist:
-  \begin{align*}
-    \iota_1&:A\to \mathrm{PO}(f,g) \\
-    \iota_2&:B\to \mathrm{PO}(f,g) \\
-    \mathrm{glue}&:\prod_{c:C}\iota_1(f(c))=\iota_2(g(c))
-  \end{align*}
-\end{regeln}
-
-\begin{bemerkung}
-  Sei $A:\mU$, dann gilt: $\Sigma A\simeq \mathrm{PO}((a:A)\mapsto \ast, (a:A)\mapsto \ast)$.
-\end{bemerkung}
-}
-
 \begin{theorem}
   Es gilt:
   \begin{enumerate}
@@ -1419,6 +1395,37 @@ sodass $\Omega^n B^nA=A$ gilt und $B^nA$ $(n-1)$-zusammenhängend ist.
     f^\ast \circ g^\ast = (g\circ f)^\ast
   \end{mathpar}
 \end{bemerkung}
+
+\begin{bemerkung}
+  Alle Kohomologiegruppen sind abelsch.
+\end{bemerkung}
+\begin{beweis}
+  $H^n(X,A)=\|X\to B^nA\|_0=\|X\to \Omega^2 B^{n+2}A\|_0=\|\Omega^2 (X\to  B^{n+2}A)\|_0$
+\end{beweis}
+
+
+Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
+
+\begin{regeln}[Pushout]
+  Seien $A,B,C:\mU$ und $f:C\to A$, $g:C\to B$, also folgenden Situation gegeben:
+  \begin{center}
+    \begin{tikzcd}
+      C\ar[r,"f"]\ar[d,"g"] & A \\
+      B & 
+    \end{tikzcd}
+  \end{center}
+  Dann gibt es einen Typen $A\amalg_C B\colonequiv \mathrm{PO}(f,g):\mU$, den Pushout von $f$ und $g$, der der höhere induktive Typ mit folgenden Konstruktoren ist:
+  \begin{align*}
+    \iota_1&:A\to \mathrm{PO}(f,g) \\
+    \iota_2&:B\to \mathrm{PO}(f,g) \\
+    \mathrm{glue}&:\prod_{c:C}\iota_1(f(c))=\iota_2(g(c))
+  \end{align*}
+\end{regeln}
+
+\begin{bemerkung}
+  Sei $A:\mU$, dann gilt: $\Sigma A\simeq \mathrm{PO}((a:A)\mapsto \ast, (a:A)\mapsto \ast)$.
+\end{bemerkung}
+
 
 
 \subsection{Cubical Type Theory}
