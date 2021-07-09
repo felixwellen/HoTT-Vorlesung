@@ -89,7 +89,7 @@
   $$
   per $=$-Induktion über $r:b=c$ durch $\alpha\whisk_r\refl_b \colonequiv \rho_p\kon\alpha\kon\rho_q^{-1}$ für $\alpha:p=q$.
 
-  Seien nun $a,b,c:A$, $p,q:a=b$, $r,s:b=c$ und $\alpha:p=q$, $\beta:r=s$ wie in folgendem Diagram veranschaulicht:
+  Seien nun $a,b,c:A$, $p,q:a=b$, $r,s:b=c$ und $\alpha:p=q$, $\beta:r=s$ wie in folgendem Diagramm veranschaulicht:
   \begin{center}
     \begin{tikzcd}[sep=large]
       a
@@ -105,8 +105,8 @@
   \end{center}
   Wir definieren die \emph{horizontale Konkatenation} von $\alpha$ und $\beta$ als den ersten der beiden Terme
   \begin{align*}
-    \alpha\whisk\beta &\colonequiv (\alpha \whisk_r r) \cdot (q \whisk_l \beta),\\
-    \alpha\whisk'\beta &\colonequiv (p \whisk_l \beta) \cdot (\alpha \whisk_r s).
+    \alpha\whisk\beta &\colonequiv (\alpha \whisk_r r) \cdot (q \whisk_l \beta) : p\kon r = q\kon s,\\
+    \alpha\whisk'\beta &\colonequiv (p \whisk_l \beta) \cdot (\alpha \whisk_r s) : p\kon r = q\kon s.
   \end{align*}
   \begin{enumerate}
     \item Zeige, dass $\alpha\whisk\beta = \alpha\whisk'\beta$.
