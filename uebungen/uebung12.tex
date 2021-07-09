@@ -1,0 +1,132 @@
+\documentclass{uebung}
+
+\DeclareMathOperator*{\whisk}{\ast}
+
+\begin{document}
+\maketitle{12}
+
+\begin{exercise}[Pullbacks von Äquivalenzen sind Äquivalenzen]
+  Betrachte ein Pullback-Quadrat der folgenden Form:
+  \begin{center}
+    \begin{tikzcd}
+      X
+      \arrow[r,"\varphi"]
+      \arrow[d,"\psi"']
+      & A
+      \arrow[d,"f"]
+      \arrow[dl, phantom, "H" font=\small]
+      \\
+      Y
+      \arrow[r,"g"']
+      & B
+    \end{tikzcd}
+  \end{center}
+  \begin{enumerate}
+    \item Sei $Y\equiv\einheit$.
+      Zeige, dass $X\simeq\mathrm{fib}_f(g(\ast))$.
+    \item Sei $f$ eine Äquivalenz.
+      Zeige, dass $\psi$ eine Äquivalenz ist.
+      {\tiny Tipp: Pullback-Pasting!}
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Funktorialität der Abschneidung]
+  Sei $n:\N_{-2}$ ein Abschneidungslevel und $A:\mU$ ein Typ.
+  \begin{enumerate}
+    \item Konstruiere das Rekursionsprinzip für für die $n$-Abschneidung $\|A\|_n$ , finde also einen Term
+      $$
+      \rec{\|A\|_n}:\prod_{B:\nType{n}}(A \to B) \to (\|A\|_n \to B),
+      $$
+      sodass $\rec{\|A\|_n}(B,f)(|a|_n) \equiv f(a)$ für jedes $a:A$.
+    \item Konstruiere das Eindeutigkeitsprinzip für für die $n$-Abschneidung $\|A\|_n$:
+      $$
+      \mathrm{uniq}_{\|A\|_n}:\prod_{B:\nType{n}}\prod_{g,g':\|A\|_n \to B} \left((g\circ |\_|_n) \sim (g'\circ |\_|_n)\right) \to g \sim g'
+      $$
+    \item
+  Für $f:A\to B$ definieren wir $\|f\|_n\colonequiv \rec{\|A\|_n}(\|B\|_n,|\_|_n\circ f):\|A\|_n\to\|B\|_n$.
+  Zeige:
+  \begin{enumerate}
+    \item $\|\id_A\|_n\sim \id_{\|A\|_n}$
+    \item $\|g\|_n\circ\|f\|_n\sim\|g \circ f\|_n$.
+  \end{enumerate}
+  \end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}[Universelle Eigenschaft der Abschneidung]
+  Sei $n:\N_{-2}$ ein Abschneidungslevel, $A:\mU$, $B:\nType{n}$ und $f:A\to B$.
+  Wir definieren
+  \begin{align*}
+    &f^*:\prod_{C:\nType{n}}(B \to C) \to (A \to C),\\
+    &f^*(g)\colonequiv f^*(C,g)\colonequiv g\circ f.
+  \end{align*}
+  \begin{enumerate}
+    \item Zeige, dass $\rec{\|A\|_n}(B,f):\|A\|_n\to B$ genau dann eine Äquivalenz ist, wenn $f^*$ eine faserweise Äquivalenz ist.
+    \item Folgere, dass Präkomposition mit $|\_|_n$ eine Äquivalenz $(\|A\|_n \to C) \to (A \to C)$ für jeden $n$-Typen $C:\nType{n}$ induziert.
+  \end{enumerate}
+\end{exercise}
+
+\newpage
+\begin{exercise}[Konsequenzen aus der universellen Eigenschaft]
+  Seien $A,B:\mU$.
+  Zeige:
+  \begin{enumerate}
+    \item $A$ ist genau dann ein $n$-Typ, wenn $|\_|_n:A\to \|A\|_n$ eine Äquivalenz ist.
+    \item $S^1$ ist zusammenhängend.
+    \item \textbf{Bonus.} $\|A\times B\|_n \simeq \|A\|_n\times \|B\|_n$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Das Eckmann--Hilton Argument]
+  Sei $A:\mU$ ein Typ und $a,b,c:A$.
+  Wir erinnern an die Gruppoidgesetze für Komposition mit $\refl$
+  \begin{align*}
+    \rho:\prod_{p:a=b}p\kon\refl_b = p,\\
+    \lambda:\prod_{r:b=c}\refl_b\kon r= r,
+  \end{align*}
+  welche sich per $=$-Induktion durch $\rho_{\refl_b} \colonequiv \lambda_{\refl_b} \colonequiv \refl_{\refl_b}$ definieren lassen.
+
+  Wir definieren \emph{whiskering von links} als Operation vom Typ%
+  \footnote{Die geschweiften Klammern deuten implizite Argumente an, die wir in der Notation der Operation nicht berücksichtigen.}
+  $$
+  \_\whisk_l\_:\prod_{\{a,b:A\}}\prod_{p:a=b}\prod_{\{c:A\}}\prod_{\{r,s:b=c\}}r=s\to p\kon r=p\kon s
+  $$
+  per $=$-Induktion über $p:a=b$ durch $\refl_b\whisk_l\beta \colonequiv\lambda_r\kon\beta\kon\lambda_s^{-1}$ für $\beta:r=s$.
+  Analog definieren wir \emph{whiskering von rechts}
+  $$
+  \_\whisk_r\_:\prod_{\{a:A\}}\prod_{\{p,q:a=b\}}\prod_{\{b,c:A\}}\prod_{r:b=c}p=q\to p\kon r=q\kon r
+  $$
+  per $=$-Induktion über $r:b=c$ durch $\alpha\whisk_r\refl_b \colonequiv \rho_p\kon\alpha\kon\rho_q^{-1}$ für $\alpha:p=q$.
+
+  Seien nun $a,b,c:A$, $p,q:a=b$, $r,s:b=c$ und $\alpha:p=q$, $\beta:r=s$ wie in folgendem Diagramm veranschaulicht:
+  \begin{center}
+    \begin{tikzcd}[sep=large]
+      a
+        \arrow[r,equal,bend left,shift left=3,"p"{name=p}]
+        \arrow[r,equal,bend right,shift right=3,"q"'{name=q}]
+        \arrow[from=p,to=q,equal,shorten=6,"\alpha"]
+      & b
+        \arrow[r,equal,bend left,shift left=3,"r"{name=tikzsucks}]
+        \arrow[r,equal,bend right,shift right=3,"s"'{name=s}]
+        \arrow[from=tikzsucks,to=s,equal,shorten=6,"\beta"]
+      & c
+    \end{tikzcd}
+  \end{center}
+  Wir definieren die \emph{horizontale Konkatenation} von $\alpha$ und $\beta$ als den ersten der beiden Terme
+  \begin{align*}
+    \alpha\whisk\beta &\colonequiv (\alpha \whisk_r r) \cdot (q \whisk_l \beta) : p\kon r = q\kon s,\\
+    \alpha\whisk'\beta &\colonequiv (p \whisk_l \beta) \cdot (\alpha \whisk_r s) : p\kon r = q\kon s.
+  \end{align*}
+  \begin{enumerate}
+    \item Zeige, dass $\alpha\whisk\beta = \alpha\whisk'\beta$.
+    \item Angenommen $a\equiv b\equiv c$ und $p\equiv q\equiv r\equiv s\equiv \refl_a$.
+      Zeige, dass
+      \begin{enumerate}
+        \item $\alpha\whisk\beta = \alpha\kon\beta$,
+        \item $\alpha\whisk'\beta = \beta\kon\alpha$.
+      \end{enumerate}
+    \item \textbf{Bonus.} Folgere, dass die Homotopiegruppe $\pi_k(A,a)$ für $k\geq 2$ abelsch ist.
+  \end{enumerate}
+\end{exercise}
+
+\end{document}
