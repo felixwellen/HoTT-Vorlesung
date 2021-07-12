@@ -1424,7 +1424,6 @@ sodass $\Omega (B^{n+1}A)=B^nA$ gilt und $B^{n+1}A$ $n$-zusammenhängend ist.
   $H^n(X,A)=\|X\to B^nA\|_0=\|X\to \Omega^2 B^{n+2}A\|_0=\|\Omega^2 (X\to  B^{n+2}A)\|_0$
 \end{beweis}
 
-
 Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte Pushout:
 
 \begin{regeln}[Pushout]
@@ -1449,8 +1448,55 @@ Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte
 
 Durch die Rekursion vom Pushout erhält man folgendes:
 \begin{mathpar}
-  H^1(U\amalg_{U\cap V} V,A)=\| \sum_{f:U\to BA}\sum_{g:V\to BA} \prod_{x:U\cap V}f(x)=_{BA}g(x) \|_0
+  H^1(U\amalg_{U\cap V} V,A)=\left\| \sum_{f:U\to BA}\sum_{g:V\to BA} \prod_{x:U\cap V}f(x)=_{BA}g(x) \right\|_0
 \end{mathpar}
 
 Das hilft allerdings noch nicht wirklich beim Berechnen von Kohomologiegruppen.
+Eine hilfreiche Aussage über Kohomologie von Pushouts ist die Mayer-Vietoris-Sequenz.
+Auf diese werden wir jetzt zum Abschluss hinarbeiten.
+
+\begin{lemma}
+  Wenn
+  \begin{center}
+    \begin{tikzcd}
+      X\ar[r]\ar[d] & B\ar[d] \\
+      A\ar[r] & C
+    \end{tikzcd}
+  \end{center}
+  ein Pullback ist, dann auch
+  \begin{center}
+    \begin{tikzcd}
+      X\ar[r,"f\circ\pi_1"]\ar[d] & C\ar[d,"\Delta"] \\
+      A\times B\ar[r,"f\times g"] & C\times C
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+\begin{beweis}[Idee]
+  Die Kegeltypen sind auf hinreichend gutmütige Art äquivalent: \\
+  Die rechte Abbildung im zweiten Pullback lässt sich äquivalent ersetzen durch:
+  \begin{mathpar}
+    (x,y,p)\mapsto p: \sum_{x,y:C}x=y\to C\times C
+  \end{mathpar}
+  Damit entspricht ein $Z$-Kegel auf dem zweiten Winkel einer Auswahl eines Paars von Abbildungen $\phi:Z\to A$ und $\psi:Z\to B$ zusammen mit einer abhängigen Abbildung, die für jedes $z:Z$ eine Gleichheit $f(\phi(z))=g(\psi(z))$ auswählt (bis auf Gleichheit). Das sind dieselben Daten wie für einen $Z$-Kegel auf dem ersten Winkel.
+\end{beweis}
+
+\begin{lemma}
+  Sei $A$ punktiert, dann gibt es einein Pullback
+  \begin{center}
+    \begin{tikzcd}
+      \Omega A \ar[r]\ar[d] & \eins\ar[d] \\
+      \Omega A \times \Omega A\ar[r,"d"] & \Omega A
+    \end{tikzcd}
+  \end{center}
+  Mit $d(p,q)\equiv q\kon p^{-1}$.
+\end{lemma}
+\begin{beweis}
+  Es reicht, das für den kanonischen Pullback nachzurechnen:
+  \begin{align*}
+    &\sum_{(p,q):\Omega A\times \Omega A}\sum_{\ast:\eins} q\kon p^{-1}=\refl_\ast\\
+    \simeq & \sum_{p:\Omega A}\sum_{q:\Omega A}q=p \\
+    \simeq & \sum_{p:\Omega A}\eins \\
+    \simeq & \Omega A
+  \end{align*}
+\end{beweis}
 \subsection{Cubical Type Theory}
