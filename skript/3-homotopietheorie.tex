@@ -1373,7 +1373,7 @@ Für jede ablesche Gruppe $A$ gibt es eine Folge von punktierten, Typen
 \begin{mathpar}
   A, BA, B^2A, B^3A, \dots
 \end{mathpar}
-sodass $\Omega^n B^nA=A$ gilt und $B^nA$ $(n-1)$-zusammenhängend ist.
+sodass $\Omega (B^{n+1}A)=B^nA$ gilt und $B^{n+1}A$ $n$-zusammenhängend ist.
 \begin{definition}
   Für einen Typ $X$ und eine abelsche Gruppe $A$ ist die n-te \begriff{Kohomologiegruppe} von $X$ mit Koeffizienten in $A$ gegeben als:
   \begin{mathpar}
@@ -1381,7 +1381,10 @@ sodass $\Omega^n B^nA=A$ gilt und $B^nA$ $(n-1)$-zusammenhängend ist.
   \end{mathpar}
 \end{definition}
 \begin{beispiel}
-  Für $A\equiv \Z$ und $X\equiv S^1$ gilt: $H^1(S^1,\Z)=\Z$ (mit etwas Rechnen).
+  \begin{enumerate}
+  \item Für den Typ $\eins$ gilt: $H^0(\eins,A)\simeq A$ und $H^{n+1}(\eins,A)=\|B^{n+1}A\|_0\simeq\eins$, da $B^{n+1}A$ stets 0-zusammenhängend ist.
+  \item Für $A\equiv \Z$ und $X\equiv S^1$ gilt: $H^1(S^1,\Z)=\Z$ (mit etwas Rechnen).
+  \end{enumerate}
 \end{beispiel}
 
 \begin{bemerkung}
@@ -1395,6 +1398,23 @@ sodass $\Omega^n B^nA=A$ gilt und $B^nA$ $(n-1)$-zusammenhängend ist.
     f^\ast \circ g^\ast = (g\circ f)^\ast
   \end{mathpar}
 \end{bemerkung}
+
+\begin{lemma}
+  Für punktierte Typen $A$ und $B$ gilt:
+  \begin{mathpar}
+    (A\to \Omega B)\simeq \Omega (A \to B)
+  \end{mathpar}
+  wobei $A\to B$ durch die Abbildung $\_\mapsto \ast$ punktiert ist.
+\end{lemma}
+\begin{beweis}
+  \begin{align*}
+    (A\to \Omega B) &\simeq (A\to \ast=_B \ast)\\
+                    &\simeq (\_\mapsto \ast)\sim (\_\mapsto \ast) \\
+                    &\simeq (\_\mapsto \ast) = (\_\mapsto \ast)\\
+                    &\simeq \Omega (A\to B)
+  \end{align*}
+\end{beweis}
+
 
 \begin{bemerkung}
   Alle Kohomologiegruppen sind abelsch.
@@ -1431,4 +1451,5 @@ Durch die Rekursion vom Pushout erhält man folgendes:
   H^1(U\amalg_{U\cap V} V,A)=\| \sum_{f:U\to BA}\sum_{g:V\to BA} \prod_{x:U\cap V}f(x)=_{BA}g(x) \|_0
 \end{mathpar}
 
+Das hilft allerdings noch nicht wirklich beim Berechnen von Kohomologiegruppen.
 \subsection{Cubical Type Theory}
