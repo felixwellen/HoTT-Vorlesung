@@ -1499,4 +1499,81 @@ Auf diese werden wir jetzt zum Abschluss hinarbeiten.
     \simeq & \Omega A
   \end{align*}
 \end{beweis}
+
+\begin{lemma}
+  Sei $S$ ein Typ und
+  \begin{center}
+    \begin{tikzcd}
+      C\ar[r,"g"]\ar[d,"f",swap] & B\ar[d,"\iota_2"] \\
+      A\ar[r,"\iota_1",swap] & X
+    \end{tikzcd}
+  \end{center}
+  ein Pushout. Dann ist
+  \begin{center}
+    \begin{tikzcd}
+      (X\to S)\ar[r,"\_\circ\iota_2"]\ar[d,,"\_\circ\iota_1",swap] & (B\to S)\ar[d,"\_\circ g"] \\
+      (A\to S)\ar[r,"\_\circ f",swap] & (C\to S)
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+\begin{beweis}
+  \begin{align*}
+    &(X\to S) \\
+    \simeq &\sum_{\phi:A\to S}\sum_{\psi:B\to S}\prod_{c:C}\phi(f(c))=\psi(g(c)) \\
+    \simeq &\sum_{\phi:A\to S}\sum_{\psi:B\to S}\phi \circ f=\psi \circ g \\
+    \simeq &\sum_{\phi:A\to S}\sum_{\psi:B\to S}(\_\circ f)(\phi)=(\_ \circ g)(\psi) \\
+    \simeq &\mathrm{PB}(\_\circ f,\_ \circ g)
+  \end{align*}
+\end{beweis}
+
+\begin{theorem}
+  Für jeden Pushout
+  \begin{center}
+    \begin{tikzcd}
+      C\ar[r,"g"]\ar[d,"f",swap] & B\ar[d,"\iota_2"] \\
+      A\ar[r,"\iota_1",swap] & X
+    \end{tikzcd}
+  \end{center}
+  gibt es für jede abelsche Gruppe $K$ eine lange exakte Sequenz von abelschen Gruppen:
+  \begin{center}
+    \begin{tikzcd}
+      & & \dots\ar[r] & H^{n-1}(C,K)\ar[dll] \\
+      & H^n(X,K)\ar[r] & H^n(A,K)\times H^n(B,K)\ar[r,"g^\ast-f^\ast"] & H^n(C,K)\ar[dll] \\
+      & H^{n+1}(X,K)\ar[r] & H^{n+1}(A,K)\times H^{n+1}(B,K)\ar[r] & \dots
+    \end{tikzcd}
+  \end{center}
+\end{theorem}
+\begin{beweis}
+  Zunächst verwandeln wir den gegebenen Pushout für jedes $n:\N$ in einen Pullback:
+  \begin{center}
+    \begin{tikzcd}
+      (X\to B^nK)\ar[r,"\_\circ\iota_2"]\ar[d,"\_\circ\iota_1",swap] & (B\to B^nK)\ar[d,"\_\circ g"] \\
+      (A\to B^nK)\ar[r,"\_\circ f",swap] & (C\to B^nK)
+    \end{tikzcd}
+  \end{center}
+  Nun die beiden Lemmata davor anwenden, um per Pullback-Pasting ein großes Faserquadrat zu erhalten:
+  \begin{center}
+    \begin{tikzcd}
+      (X\to B^nK)\ar[r]\ar[d,swap,"\_\circ\iota_1 \iota_2"] &(C\to B^nK)\ar[d]\ar[r] & \eins\ar[d]  \\
+      (A\to B^nK)\times (B\to B^nK)\ar[r,"\_\circ f g"] & (C\to B^nK)\times (C\to B^nK)\ar[r,"d"] & (C\to B^nK)
+    \end{tikzcd}
+  \end{center}
+  Darauf können wir die lange exakte Fasersequenz anwenden, um das gewünschte Resultat zu erhalten.
+\end{beweis}
+
+\begin{korollar}
+  Für $n>0$ und $k>0$ gilt $H^n(S^k,\Z)\simeq \Z$ genau dann, wenn $k=n$ und sonst gilt $H^n(S^k,\Z)\simeq \eins$.
+\end{korollar}
+\begin{beweis}[Idee]
+  Einsetzen:
+  \begin{center}
+    \begin{tikzcd}
+      & & \dots\ar[r] & H^{n-1}(S^k,\Z)\ar[dll] \\
+      & H^n(S^{k+1},\Z)\ar[r] & H^n(1,\Z)\times H^n(1,\Z)\ar[r,"-"] & H^n(S^k,\Z)\ar[dll] \\
+      & H^{n+1}(S^{k+1},\Z)\ar[r] & H^{n+1}(1,\Z)\times H^{n+1}(1,\Z)\ar[r] & \dots
+    \end{tikzcd}
+  \end{center}
+  \dots und alles nachrechnen.
+\end{beweis}
+
 \subsection{Cubical Type Theory}
