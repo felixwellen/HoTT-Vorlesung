@@ -89,12 +89,12 @@
   Wir definieren \emph{whiskering von links} als Operation vom Typ%
   \footnote{Die geschweiften Klammern deuten implizite Argumente an, die wir in der Notation der Operation nicht berücksichtigen.}
   $$
-  \_\whisk_l\_:\prod_{\{a,b:A\}}\prod_{p:a=b}\prod_{\{c:A\}}\prod_{\{r,s:b=c\}}r=s\to p\kon r=p\kon s
+  \whisk_l:\prod_{\{a,b:A\}}\prod_{p:a=b}\prod_{\{c:A\}}\prod_{\{r,s:b=c\}}r=s\to p\kon r=p\kon s
   $$
   per $=$-Induktion über $p:a=b$ durch $\refl_b\whisk_l\beta \colonequiv\lambda_r\kon\beta\kon\lambda_s^{-1}$ für $\beta:r=s$.
   Analog definieren wir \emph{whiskering von rechts}
   $$
-  \_\whisk_r\_:\prod_{\{a:A\}}\prod_{\{p,q:a=b\}}\prod_{\{b,c:A\}}\prod_{r:b=c}p=q\to p\kon r=q\kon r
+  \whisk_r:\prod_{\{b,c:A\}}\prod_{r:b=c}\prod_{\{a:A\}}\prod_{\{p,q:a=b\}}p=q\to p\kon r=q\kon r
   $$
   per $=$-Induktion über $r:b=c$ durch $\alpha\whisk_r\refl_b \colonequiv \rho_p\kon\alpha\kon\rho_q^{-1}$ für $\alpha:p=q$.
 
