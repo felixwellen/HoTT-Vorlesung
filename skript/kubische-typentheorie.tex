@@ -1,6 +1,9 @@
 Es gibt viele unterschiedliche Typentheorien.
 Wir beschäftigen uns hier hauptsächlich mit der Variante CCHM, zu der man im Artikel ``Cubical Type Theory: A constructive interpretation of the univalence axiom'' von Cohen, Coquand, Huber und Mörtberg mehr nachlesen kann. Wichtig ist auch die Weiterentwicklung CHM.
 Diese Typentheorie ist ein Vorfahre der kubischen Elementen der Programmiersprache Agda.
+In Agda stehen die kubischen Elemente zur Verfügung, wenn es mit ``--cubical'' ausgeführt wird.
+Unter ``cubical Agda'' versteht man nicht etwa eine separate Software, sondern diesen, durch ``--cubical'' aktivierten, Modus von Agda.
+Wie dieser verwendet werden kann, kann man sich in der Library ``cubical'' anschauen, die ausschließlich für diesen Modus von Agda geschrieben wurde.
 
 Eine Warnung vorweg: Die Notation in CCHM und allgemeiner in kubischen Typentheorien weicht teils stark von HoTT ab und ist teilweise gerade für Mathematiker sehr gewöhnungsbedürfitg. Im Folgenden wird zwar größtenteils die Notation der Vorlesung soweit wie möglich verwendet, aber gelegentlich die übliche kubische Notation erwähnt. Zur Übersicht hilft vielleicht auch in Zukunft die folgende Tabelle:
 
@@ -79,4 +82,49 @@ Dazu brauchen wir eine sogenannte Komposition.
 Terme und Typen die von $n$ Intervallvariablen abhängen, stellt man sich als auf einem $n$-dimensionalen Würfel definiert vor.
 Komposition und andere Operationen erlauben es, aus Termen und Typen, die auf speziellen Teilen des Rands eines $n$-Würfels gegeben sind, Terme und Typen auf dem ganzen Würfel zu konstruieren.
 
-Um über Ränder von $n$-Würfeln zu reden, verwenden wir \begriff{Randformeln} oder einfach \begriff{Ränder}. 
+Um über Ränder von $n$-Würfeln zu reden, verwenden wir \begriff{Randformeln} oder einfach \begriff{Ränder}. Für eine Intervallvariable $i:\I$ gibt es die Ränder
+\begin{mathpar}
+  (i=0)\quad\text{ und }\quad (i=1)
+\end{mathpar}
+Für Ränder gibt es wie für Intervallvariablen die Operationen $\vee$ und $\wedge$, die hier Vereinigung und Schnitt bedeuten. Weiter gibt es Konstanten $0_{\mathbf{F}}$ und $1_{\mathbf{F}}$. Das ``$\mathbf{F}$'' steht dabei für Face-Lattice. Es gelten naheliegende Gleichungen, wie zum Beispiel $(i=0)\wedge(i=1)=0_{\mathbf{F}}$.
+
+Damit können Unterpolyeder des Randes eines $n$-Würfels beschrieben werden, zum Beispiel
+\begin{mathpar}
+  (i=0)\vee (i=1) \vee (j=0)
+\end{mathpar}
+Für den Rand eines Quadrats ohne ``Deckel'', also eines ``offenen Quadrats'':
+\begin{center}
+  \begin{tikzcd}
+    \bullet  & \bullet \\
+    \bullet\ar[u]\ar[r] & \bullet\ar[u]
+  \end{tikzcd}
+  \quad\quad\quad
+  \begin{tikzcd}
+    \   & \  \\
+    \ \ar[u,"j"]\ar[r,"i"] & \ 
+  \end{tikzcd}
+\end{center}
+
+Randformeln darf man in den Kontext aufnehmen, was dann bedeutet, dass die Formeln ``gelten''.
+Für zwei Pfade $p:\Path\ A\ t\ u$ und $q:\Path\ A\ u\ v$ ist es möglich, die folgenden Urteile zu fällen:
+\begin{align*}
+  i:\I,j:\I,(j=0)&\yields p(i) : A \\
+  i:\I,j:\I,(i=1)&\yields q(j) : A \\
+  i:\I,j:\I,(i=0)&\yields t   : A
+\end{align*}
+Die Ränder aus diesen Urteilen können geschnitten werden, es gibt also etwa den Rand $(i=1)\wedge(j=0)$ der in den beiden Rändern, $(i=1)$ und $(j=0)$ enthalten ist. Wir müssen nun Prüfen, dass die Urteile oben einen wohldefinierten Term auf dem gesamten Rand ergeben. Tatsächlich ist das der Fall:
+\begin{align*}
+  i:\I,j:\I,(j=0)\wedge(i=1)&\yields p(1)\equiv q(0) : A \\
+  i:\I,j:\I,(j=0)\wedge(i=0)&\yields p(0)\equiv t : A
+\end{align*}
+Das bedeutet, dass wir einen Term auf dem offenen Quadrat von oben gefunden haben:
+\begin{center}
+  \begin{tikzcd}
+    t  &  v \\
+    t\ar[u,"\refl_t"]\ar[r,"p(i)",swap] & u\ar[u,"q(j)",swap]
+  \end{tikzcd}
+\end{center}
+In CCHM bzw Agda gibt es in dieser Situation einen Term
+\begin{mathpar}
+  i\mapsto \mathrm{hcomp}^j\ [(i=0)\mapsto t, (i=1)\mapsto q(j)]\ (p(i)) : \Path\ A\ t\ v
+\end{mathpar}
