@@ -1,9 +1,82 @@
 Es gibt viele unterschiedliche Typentheorien.
-Wir beschäftigen uns hier hauptsächlich mit der Variante CCHM, zu der man im Artikel ``Cubical Type Theory: A constructive interpretation of the univalence axiom'' von Cohen, Coquand, Huber und Mörtberg mehr nachlesen kann.
-Diese Typentheorie ist recht nah an den kubischen Elementen der Programmiersprache Agda.
+Wir beschäftigen uns hier hauptsächlich mit der Variante CCHM, zu der man im Artikel ``Cubical Type Theory: A constructive interpretation of the univalence axiom'' von Cohen, Coquand, Huber und Mörtberg mehr nachlesen kann. Wichtig ist auch die Weiterentwicklung CHM.
+Diese Typentheorie ist ein Vorfahre der kubischen Elementen der Programmiersprache Agda.
+
+Eine Warnung vorweg: Die Notation in CCHM und allgemeiner in kubischen Typentheorien weicht teils stark von HoTT ab und ist teilweise gerade für Mathematiker sehr gewöhnungsbedürfitg. Im Folgenden wird zwar größtenteils die Notation der Vorlesung soweit wie möglich verwendet, aber gelegentlich die übliche kubische Notation erwähnt. Zur Übersicht hilft vielleicht auch in Zukunft die folgende Tabelle:
+
+\begin{table}
+  \centering
+  \begin{tabular}{p{4cm}p{10cm}}
+    Kubische Typentheorie         & Book-HoTT oder Erklärung \\
+    \hline
+    $\Path\ A\ u\ t$              & kubischer Gleichheitstyp \\
+    $u\equiv t$                   & \\
+    $\mathrm{cong}\ f\ p$         & $\mathrm{ap}(f,p)$ \\
+    $\mathrm{sym}\ p$             & $p^{-1}$ \\
+    $\mathrm{transp}$             & Etwas anderes als Transport \\
+    $\mathrm{subst}$              & Ähnliche Operation wie Transport \\
+    $a:A[\varphi\mapsto u]$       & Die Einschränkung von $a$ auf den Rand $\varphi$ ist urteilsgleich $u$
+  \end{tabular}
+  \caption{Notation}
+  \label{tab:notation-ctt}
+\end{table}
+
 
 Kubische Typentheorien (cubical type theories) wurden entwickelt,
 um die typentheoretischen Mängel der Homotopietypentheorie zu beheben.
 Zentral ist dabei die Idee, Gleichheiten durch Abbildungen zu modellieren.
-Allerdings ist das Interval, die Quelle dieser Abbildunge typischerweise kein Typ und daher sind Typen von Gleichheiten auch nicht die Funktionstypen, die wir bisher gesehen haben.
+Allerdings ist das Interval, die Quelle dieser Abbildungen typischerweise kein Typ und daher sind Typen von Gleichheiten auch nicht die Funktionstypen, die wir bisher gesehen haben.
 
+Wohlwissend, dass wir das nicht in der üblichen Art und Weise verwenden dürfen,
+schreiben wir für Intervallvariablen nun etwa ``$i : \I$''. Es gibt die folgenden Konstanten und Operationen für Intervallvariablen:
+\begin{align*}
+  &0:\I \\
+  &1:\I \\
+  &1-\varphi :\I \\
+  &\varphi\vee\psi: \I \\
+  &\varphi\wedge\psi: \I
+\end{align*}
+Für diese gelten naheliegende Urteilsgleichheiten, wenn man $\vee$ als Maximum und $\wedge$ als Minimum interpretiert.
+
+Es ist in Ordnung, Intervallvariablen im Kontext zu haben.
+Der Gleichheitstyp in CCHM wird mit ``$\Path$'' bezeichnet und hat ähnliche Regeln wie ein Funktionstyps mit der Einschränkung, dass die Quelle stets das Intervall ist und die Bilder der Endpunkte im Typ mit festgehalten sind:
+\begin{align*}
+  \inferrule{\Gamma\yields A\and \Gamma\yields u:A\and \Gamma\yields t:A}{\Gamma\yields \Path\ A\  u\ t}{}
+  &\quad\inferrule{\Gamma\yields A\and \Gamma,i:\I\yields p(i):A}{\Gamma \yields i\mapsto p(i):\Path\ A\ p(0)\ p(1)}{} \\
+  \inferrule{\Gamma\yields p:\Path\ A\ u\ t\and \Gamma\yields r:\I}{\Gamma\yields p(r) : A}{}
+  &\quad
+    \inferrule{\Gamma\yields A\and \Gamma,i:\I\yields p(i):A\and\Gamma\yields r:\I}{\Gamma\yields (i\mapsto p(i))(r)\equiv p(r):A}{} \\
+  \inferrule{\Gamma,i:\I\yields t(i)\equiv u(i):A}{\Gamma\yields t\equiv u:\Path\ A\ u(0)\ u(1)}{}
+  &\quad
+    \inferrule{\Gamma\yields p: \Path\ A\ t\ u}{\Gamma\yields p(0)\equiv t:A}{}
+  \quad
+    \inferrule{\Gamma\yields p: \Path\ A\ t\ u}{\Gamma\yields p(1)\equiv u:A}{}
+\end{align*}
+Im Gegensatz zur induktiven Gleichheit, gibt es hier auch eine Variante namens ``$\PathP$'', deren ``$A$'' mit der Intervallvariable variiert. Das entspricht den abhängigen Gleichheiten aus \cref{subsec:HITs}.
+
+Damit können wir bereits ein paar einfache Konstruktionen durchführen.
+Wegen der üblichen Notation und Sprechweise, wollen wir die Elemente von $\Path$-Typen ausnamsweise Pfade nennen.
+
+\begin{definition}
+  \begin{enumerate}
+  \item Für $a:A$ ist
+    \begin{mathpar}
+      \refl_a\colonequiv \mathrm{idp}\ a\colonequiv i\mapsto a: \Path\ A\ a\ a
+    \end{mathpar}
+  \item Für einen Pfad $p:\Path\ A\ t\ u$ gibt es einen \begriff{inversen Pfad}:
+    \begin{mathpar}
+       p^{-1}\colonequiv \mathrm{sym}\ p\colonequiv i\mapsto p(1-i) : \Path\ A\ u\ t
+    \end{mathpar}
+  \item Wenn $f:A\to B$ eine Funktion ist und $p:\Path\ A\ t\ u$ ein Pfad, dann ist
+    \begin{mathpar}
+      f(p)\colonequiv \mathrm{cong}\ f\ p\colonequiv i\mapsto f(p(i))
+    \end{mathpar}
+  \end{enumerate}
+\end{definition}
+
+Die Konkatenation fehlt hier, weil sie soweit noch nicht definiert werden kann.
+Dazu brauchen wir eine sogenannte Komposition.
+Terme und Typen die von $n$ Intervallvariablen abhängen, stellt man sich als auf einem $n$-dimensionalen Würfel definiert vor.
+Komposition und andere Operationen erlauben es, aus Termen und Typen, die auf speziellen Teilen des Rands eines $n$-Würfels gegeben sind, Terme und Typen auf dem ganzen Würfel zu konstruieren.
+
+Um über Ränder von $n$-Würfeln zu reden, verwenden wir \begriff{Randformeln} oder einfach \begriff{Ränder}. 
