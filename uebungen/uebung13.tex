@@ -1,0 +1,36 @@
+\documentclass{uebung}
+
+\DeclareMathOperator*{\whisk}{\ast}
+
+\begin{document}
+\maketitle{13}
+
+\begin{exercise}[Die Windungszahl ist ein Gruppenhomomorphismus]
+\end{exercise}
+
+\begin{exercise}[Kohomologie des Kreises I]
+  \begin{enumerate}
+    \item Zeige, dass $H^1(S^1,\Z) = \|\sum_{x:S^1} x=x\|_0$.
+  \end{enumerate}
+  Wir wollen nun verstehen, warum $\|\sum_{x:S^1} x=x\|_0$ äquivalent zu $\|\ast = \ast\|_0$ ist.
+  \begin{enumerate}[start=2]
+    \item Konstruiere eine faserweise Abbildung $\prod_{x:S^1} (x = x) \to (\ast = \ast)$, sodass $F_\ast\equiv\id_{\ast = \ast}$.
+    \item Zeige, dass die induktiv definierte Abbildung
+      \begin{align*}
+        f:\left(\sum_{x:S^1} x=x\right) &\to (\ast=\ast)\\
+        (x,p)&\mapsto F_xp
+      \end{align*}
+      eine Retraktion ist, also ein Rechtsinverses $g$ besitzt.
+    \item Finde einen Term des folgenden Typs:
+      $$
+      \prod_{x:S^1} \ast=x \to \prod_{p:x=x} (g\circ f)(x,p) = (x,p).
+      $$
+    \item Zeige, dass $\|f\|_0$ invers zu $\|g\|_0$ ist. {\tiny Tipp: Blatt 11 Aufgabe 1.}
+    \item Folgere schließlich, dass $H^1(S^1,\Z) = \Z$ ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Kohomologie des Kreises II]
+\end{exercise}
+
+\end{document}
