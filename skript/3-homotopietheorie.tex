@@ -936,7 +936,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
     \end{tikzcd}
   \end{center}
   wobei bei aufeinanderfolgenden Abbildungen stets die linke die Faser der rechten ist - bis auf Äquivalenz.
-  Weiter ist die Abbildung $\Omega B\to f^{-1}(\ast)$ gegen durch: $(\ast,p_f\kon\_)$.
+  Weiter ist die Abbildung $\Omega B\to f^{-1}(\ast)$ gegeben durch: $(\ast,p_f\kon\_)$.
 \end{theorem}
 \begin{beweis}
   Betrache:
@@ -999,7 +999,7 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
 
 \begin{regeln}
   Sei $n\geq -1$.
-  Die $n$-Abschneidung eines Typen $A$ ist ein höherer induktiver Typ $\|A\|_n:\mU$ gegen durch die folgenden Konstruktoren:
+  Die $n$-Abschneidung eines Typen $A$ ist ein höherer induktiver Typ $\|A\|_n:\mU$ gegeben durch die folgenden Konstruktoren:
   \begin{align*}
     |\_|_n&:A\to \|A\|_n \\
     \mathrm{Narbe}&:(S^{n+1}\to \|A\|_n)\to \|A\|_n \\
@@ -1505,6 +1505,7 @@ Auf diese werden wir jetzt zum Abschluss hinarbeiten.
       (A\to S)\ar[r,"\_\circ f",swap] & (C\to S)
     \end{tikzcd}
   \end{center}
+  ein Pullback.
 \end{lemma}
 \begin{beweis}
   \begin{align*}
@@ -1543,9 +1544,9 @@ Auf diese werden wir jetzt zum Abschluss hinarbeiten.
   \end{center}
   Nun die beiden Lemmata davor anwenden, um per Pullback-Pasting ein großes Faserquadrat zu erhalten:
   \begin{center}
-    \begin{tikzcd}
-      (X\to B^nK)\ar[r]\ar[d,swap,"\_\circ\iota_1 \iota_2"] &(C\to B^nK)\ar[d]\ar[r] & \eins\ar[d]  \\
-      (A\to B^nK)\times (B\to B^nK)\ar[r,"\_\circ f g"] & (C\to B^nK)\times (C\to B^nK)\ar[r,"d"] & (C\to B^nK)
+    \begin{tikzcd}[column sep=2cm,row sep=large]
+      (X\to B^nK)\ar[r]\ar[d,swap,"{(\_\circ\iota_1,\_ \circ \iota_2)}"] &(C\to B^nK)\ar[d]\ar[r] & \eins\ar[d]  \\
+      (A\to B^nK)\times (B\to B^nK)\ar[r,"(\_\circ f) \times (\_ \circ g)"] & (C\to B^nK)\times (C\to B^nK)\ar[r,"d"] & (C\to B^nK)
     \end{tikzcd}
   \end{center}
   Darauf können wir die lange exakte Fasersequenz anwenden, um das gewünschte Resultat zu erhalten.
