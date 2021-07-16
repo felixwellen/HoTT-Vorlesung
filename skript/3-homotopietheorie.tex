@@ -1544,9 +1544,9 @@ Auf diese werden wir jetzt zum Abschluss hinarbeiten.
   \end{center}
   Nun die beiden Lemmata davor anwenden, um per Pullback-Pasting ein großes Faserquadrat zu erhalten:
   \begin{center}
-    \begin{tikzcd}
-      (X\to B^nK)\ar[r]\ar[d,swap,"\_\circ\iota_1 \iota_2"] &(C\to B^nK)\ar[d]\ar[r] & \eins\ar[d]  \\
-      (A\to B^nK)\times (B\to B^nK)\ar[r,"\_\circ f g"] & (C\to B^nK)\times (C\to B^nK)\ar[r,"d"] & (C\to B^nK)
+    \begin{tikzcd}[column sep=2cm,row sep=large]
+      (X\to B^nK)\ar[r]\ar[d,swap,"{(\_\circ\iota_1,\_ \circ \iota_2)}"] &(C\to B^nK)\ar[d]\ar[r] & \eins\ar[d]  \\
+      (A\to B^nK)\times (B\to B^nK)\ar[r,"(\_\circ f) \times (\_ \circ g)"] & (C\to B^nK)\times (C\to B^nK)\ar[r,"d"] & (C\to B^nK)
     \end{tikzcd}
   \end{center}
   Darauf können wir die lange exakte Fasersequenz anwenden, um das gewünschte Resultat zu erhalten.
