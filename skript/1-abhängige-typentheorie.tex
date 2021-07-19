@@ -142,7 +142,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
 Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen}\index{$\N$} nicht von anderen Typen abhängig.
 Dementsprechend ist die Formierungsregel etwas einfacher:
 \begin{mathpar}
-  \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N}{\N\mathrm{F}}
+  \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N\text{ Typ}}{\N\mathrm{F}}
 \end{mathpar}
 Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Termen gibt:
 \begin{mathpar}
@@ -327,7 +327,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
   Der \begriff{Einheitstyp} $\einheit$\index{$\eins$} ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
   Dadurch ergibt sich der folgende Satz von Regeln:
   \begin{mathpar}
-    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit}{\einheit\mathrm{F}}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit\text{ Typ}}{\einheit\mathrm{F}}
     \quad\quad
     \inferrule{
       \Gamma\text{ Kontext}
@@ -363,7 +363,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
   Der \begriff{leere Typ} $\leer$\index{$\leer$} ist der Induktive Typ ohne Konstruktur.
   Dadurch ergibt sich der folgende Satz von Regeln:
   \begin{mathpar}
-    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer}{\leer\mathrm{F}}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer\text{ Typ}}{\leer\mathrm{F}}
     \quad\quad
     \inferrule{
       \Gamma,x:\leer\yields P(x)\text{ Typ}
