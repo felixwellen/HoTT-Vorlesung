@@ -98,6 +98,16 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
     \begin{mathpar}
       \inferrule{
         \inferrule{
+          \Gamma\yields g:B\to C\and \Gamma\yields A\text{ Typ}
+        }{
+          \Gamma, x:A\yields g:B\to C
+        }{
+          \Weak
+        }
+        \and
+        \inferrule{
+          \Gamma\yields f:A\to B
+          \and
           \inferrule{
             \inferrule{
               \Gamma\yields f:A\to B
@@ -110,17 +120,10 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
             \Gamma,x:A\yields x:A
           }{
             \Weak,\Var
-          } \and \Gamma\yields f:A\to B}{
+          }}{
           \Gamma, x:A\yields f(x):B
         }{
-          \PiElim} \and
-        \inferrule{
-          \Gamma\yields g:B\to C\and \Gamma\yields A\text{ Typ}
-        }{
-          \Gamma, x:A\yields g:B\to C
-        }{
-          \Weak
-        }
+          \PiElim}
       }{
         \inferrule{
           \Gamma, x : A\yields g(f(x)) : C
