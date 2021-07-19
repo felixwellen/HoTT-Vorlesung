@@ -29,6 +29,8 @@
 
 % Inferenzregeln
 \RequirePackage{mathpartir}
+\let\oldinferrule\inferrule
+\renewcommand{\inferrule}[3]{\oldinferrule{#1}{#2}\quad(#3)}
 
 % 
 \setitemize{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
