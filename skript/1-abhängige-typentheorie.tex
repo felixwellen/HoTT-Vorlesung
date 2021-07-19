@@ -95,6 +95,8 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
     Zusammengefasst: $\id_A\colonequiv (x : A)\mapsto x$.
   \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}\index{$\circ$}.
     Ganz genau ist die Komposition der durch die folgende Herleitung gegebene Term:
+    \makebox[\textwidth][c]{
+      \hspace{-10em}%
     \begin{mathpar}
       \inferrule{
         \inferrule{
@@ -136,6 +138,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
         \PiElim
       }
     \end{mathpar}
+    }
     In Zukunft werden wir solche Sachverhalte auch einfach durch ``$f\circ g\colonequiv x\mapsto f(g(x))$'' ausdrücken.
   \end{enumerate}
 \end{definition}
