@@ -175,10 +175,10 @@ Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natür
 \begin{mathpar}
   \inferrule{
     \Gamma,n:\N \yields P(n)\text{ Typ}
-    \and \Gamma\yields \mathrm{IA} : P(0)
-    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
+    \and \Gamma\yields \mathrm{\textbf{IA}} : P(0)
+    \and \Gamma,n:\N,\mathrm{\textbf{IH}}:P(n)\yields \mathrm{\textbf{IS}}(n,\mathrm{\textbf{IH}}):P(\mathrm{succ}(n))
   }{
-    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IS}) : \prod_{n:\N}P(n)
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{\textbf{IA}},\mathrm{\textbf{IS}}) : \prod_{n:\N}P(n)
   }{
     \N\mathrm{E}
   }
