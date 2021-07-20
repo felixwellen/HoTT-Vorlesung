@@ -95,9 +95,21 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
     Zusammengefasst: $\id_A\colonequiv (x : A)\mapsto x$.
   \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}\index{$\circ$}.
     Ganz genau ist die Komposition der durch die folgende Herleitung gegebene Term:
+    \makebox[\textwidth][c]{
+      \hspace{-10em}%
     \begin{mathpar}
       \inferrule{
         \inferrule{
+          \Gamma\yields g:B\to C\and \Gamma\yields A\text{ Typ}
+        }{
+          \Gamma, x:A\yields g:B\to C
+        }{
+          \Weak
+        }
+        \and
+        \inferrule{
+          \Gamma\yields f:A\to B
+          \and
           \inferrule{
             \inferrule{
               \Gamma\yields f:A\to B
@@ -110,17 +122,10 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
             \Gamma,x:A\yields x:A
           }{
             \Weak,\Var
-          } \and \Gamma\yields f:A\to B}{
+          }}{
           \Gamma, x:A\yields f(x):B
         }{
-          \PiElim} \and
-        \inferrule{
-          \Gamma\yields g:B\to C\and \Gamma\yields A\text{ Typ}
-        }{
-          \Gamma, x:A\yields g:B\to C
-        }{
-          \Weak
-        }
+          \PiElim}
       }{
         \inferrule{
           \Gamma, x : A\yields g(f(x)) : C
@@ -133,6 +138,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
         \PiElim
       }
     \end{mathpar}
+    }
     In Zukunft werden wir solche Sachverhalte auch einfach durch ``$f\circ g\colonequiv x\mapsto f(g(x))$'' ausdrücken.
   \end{enumerate}
 \end{definition}
@@ -142,7 +148,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
 Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen}\index{$\N$} nicht von anderen Typen abhängig.
 Dementsprechend ist die Formierungsregel etwas einfacher:
 \begin{mathpar}
-  \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N}{\N\mathrm{F}}
+  \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N\text{ Typ}}{\N\mathrm{F}}
 \end{mathpar}
 Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Termen gibt:
 \begin{mathpar}
@@ -172,10 +178,10 @@ Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natür
 \begin{mathpar}
   \inferrule{
     \Gamma,n:\N \yields P(n)\text{ Typ}
-    \and \Gamma\yields \mathrm{IA} : P(0)
-    \and \Gamma,n:\N,\mathrm{IH}:P(n)\yields \mathrm{IS}(n,\mathrm{IH}):P(\mathrm{succ}(n))
+    \and \Gamma\yields \mathrm{\textbf{IA}} : P(0)
+    \and \Gamma,n:\N,\mathrm{\textbf{IH}}:P(n)\yields \mathrm{\textbf{IS}}(n,\mathrm{\textbf{IH}}):P(\mathrm{succ}(n))
   }{
-    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{IA},\mathrm{IS}) : \prod_{n:\N}P(n)
+    \Gamma\yields\mathrm{ind}_{\N} (P,\mathrm{\textbf{IA}},\mathrm{\textbf{IS}}) : \prod_{n:\N}P(n)
   }{
     \N\mathrm{E}
   }
@@ -189,7 +195,7 @@ Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend b
 \begin{bemerkung}
   Wir werden später die Möglichkeit haben, mittels abhängigen Typen Aussagen über natürliche Zahlen zu konstruieren, wie z.B.
   \begin{mathpar}
-    P(n)\colonequiv\text{ ``$n(n+1)=2\cdot (n + (n-1) + \dots + 1)$'' }
+    P(n)\colonequiv\text{ ``$n \cdot (n+1) = 2 \cdot (n + (n-1) + \dots + 1)$'' }
   \end{mathpar}
   Dazu fehlen uns momentan allerdings noch Typen für die zweite Art von Gleichheit ``$=$''.
   Bis wir diese einführen können, müssen wir uns noch mit konstanter Abhängigkeit begnügen.
@@ -199,7 +205,7 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
   \label{def:rekursion}
   Sei $A$ ein Typ. Dann ist für $f_0:A$ und $f_s:\N\to(A\to A)$ durch $\N\mathrm{E}$ eine Funktion
   \begin{mathpar}
-    \ind{\N}(n:\N\yields A,f_0,f_s)\colonequiv\rec{\N}(A,f_0,f_s):\N\to A
+    \rec{\N}(A,f_0,f_s)\colonequiv\ind{\N}(n:\N\yields A,f_0,f_s):\N\to A
   \end{mathpar}
   gegeben. Diese Art Funktionen (auf $\N$) zu definieren nennt man ($\N$-)\begriff{Rekursion}.
 \end{definition}
@@ -327,7 +333,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
   Der \begriff{Einheitstyp} $\einheit$\index{$\eins$} ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
   Dadurch ergibt sich der folgende Satz von Regeln:
   \begin{mathpar}
-    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit}{\einheit\mathrm{F}}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit\text{ Typ}}{\einheit\mathrm{F}}
     \quad\quad
     \inferrule{
       \Gamma\text{ Kontext}
@@ -363,7 +369,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
   Der \begriff{leere Typ} $\leer$\index{$\leer$} ist der Induktive Typ ohne Konstruktur.
   Dadurch ergibt sich der folgende Satz von Regeln:
   \begin{mathpar}
-    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer}{\leer\mathrm{F}}
+    \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer\text{ Typ}}{\leer\mathrm{F}}
     \quad\quad
     \inferrule{
       \Gamma,x:\leer\yields P(x)\text{ Typ}
