@@ -44,16 +44,16 @@ Für diese gelten naheliegende Urteilsgleichheiten, wenn man $\vee$ als Maximum 
 Es ist in Ordnung, Intervallvariablen im Kontext zu haben.
 Der Gleichheitstyp in CCHM wird mit ``$\Path$'' bezeichnet und hat ähnliche Regeln wie ein Funktionstyps mit der Einschränkung, dass die Quelle stets das Intervall ist und die Bilder der Endpunkte im Typ mit festgehalten sind:
 \begin{align*}
-  \inferrule{\Gamma\yields A\and \Gamma\yields u:A\and \Gamma\yields t:A}{\Gamma\yields \Path\ A\  u\ t}{}
-  &\quad\inferrule{\Gamma\yields A\and \Gamma,i:\I\yields p(i):A}{\Gamma \yields i\mapsto p(i):\Path\ A\ p(0)\ p(1)}{} \\
-  \inferrule{\Gamma\yields p:\Path\ A\ u\ t\and \Gamma\yields r:\I}{\Gamma\yields p(r) : A}{}
+  \oldinferrule{\Gamma\yields A\and \Gamma\yields u:A\and \Gamma\yields t:A}{\Gamma\yields \Path\ A\  u\ t}
+  &\quad\oldinferrule{\Gamma\yields A\and \Gamma,i:\I\yields p(i):A}{\Gamma \yields i\mapsto p(i):\Path\ A\ p(0)\ p(1)} \\
+  \oldinferrule{\Gamma\yields p:\Path\ A\ u\ t\and \Gamma\yields r:\I}{\Gamma\yields p(r) : A}
   &\quad
-    \inferrule{\Gamma\yields A\and \Gamma,i:\I\yields p(i):A\and\Gamma\yields r:\I}{\Gamma\yields (i\mapsto p(i))(r)\equiv p(r):A}{} \\
-  \inferrule{\Gamma,i:\I\yields t(i)\equiv u(i):A}{\Gamma\yields t\equiv u:\Path\ A\ u(0)\ u(1)}{}
+    \oldinferrule{\Gamma\yields A\and \Gamma,i:\I\yields p(i):A\and\Gamma\yields r:\I}{\Gamma\yields (i\mapsto p(i))(r)\equiv p(r):A} \\
+  \oldinferrule{\Gamma,i:\I\yields t(i)\equiv u(i):A}{\Gamma\yields t\equiv u:\Path\ A\ u(0)\ u(1)}
   &\quad
-    \inferrule{\Gamma\yields p: \Path\ A\ t\ u}{\Gamma\yields p(0)\equiv t:A}{}
+    \oldinferrule{\Gamma\yields p: \Path\ A\ t\ u}{\Gamma\yields p(0)\equiv t:A}
   \quad
-    \inferrule{\Gamma\yields p: \Path\ A\ t\ u}{\Gamma\yields p(1)\equiv u:A}{}
+    \oldinferrule{\Gamma\yields p: \Path\ A\ t\ u}{\Gamma\yields p(1)\equiv u:A}
 \end{align*}
 Im Gegensatz zur induktiven Gleichheit, gibt es hier auch eine Variante namens ``$\PathP$'', deren ``$A$'' mit der Intervallvariable variiert. Das entspricht den abhängigen Gleichheiten aus \cref{subsec:HITs}.
 
