@@ -635,8 +635,8 @@ Ein Beispiel für eine Kohärenz, ein Level über der Assoziativität, ist das \
   Seien $A$ ein Typ, $x,y,z,w,u:A$.
   Dann gibt es für $p:x=y,q:y=z,r:z=w,s:w=u$ in $((p\kon q)\kon r)\kon s = p \kon (q\kon (r\kon s))$ zwei verschiedene natürliche Terme,
   zwischen denen sich eine Gleichheit konstruieren lässt.
-  \begin{figure}
-    \begin{equation}
+  \begin{figure}[h!]
+    \begin{equation*}
       \begin{tikzcd}[column sep={between origins,1.5cm},row sep={between origins,2.2cm}]
         & (p \kon (q \kon r)) \kon s
           \arrow[rr,equal]
@@ -653,7 +653,7 @@ Ein Beispiel für eine Kohärenz, ein Level über der Assoziativität, ist das \
           \arrow[urr,equal]
         &&
       \end{tikzcd}
-    \end{equation}
+    \end{equation*}
     \caption{MacLane-Pentagon}
   \end{figure}
 \end{bemerkung}
