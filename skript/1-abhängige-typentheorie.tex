@@ -1163,12 +1163,12 @@ Wir verwenden also in Zukunft ``$A:\mU_i$'' synonym mit ``$A$ ist ein Typ''.
   \end{mathpar}
   Insbesondere können wir nun abhängige Typen auch immer äquivalent als Funktionen in ein Universum ausdrücken:
   \begin{mathpar}
-    \inferrule*{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):U_i}{\Gamma\yields x\mapsto B(x):A\to \mU_i}
+    \oldinferrule{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):U_i}{\Gamma\yields x\mapsto B(x):A\to \mU_i}
   \end{mathpar}
   Grundsätzlich kann es vorkommen, dass wir auch mal Typen aus Bestandteilen konstruieren wollen, die in unterschiedlichen Universen liegen.
   Dazu können wir mit der folgenden Regel alles in ein passendes Universum schieben:
   \begin{mathpar}
-    \inferrule*{\Gamma\yields A:\mU_i}{\Gamma\yields A:\mU_{i+1}}
+    \oldinferrule{\Gamma\yields A:\mU_i}{\Gamma\yields A:\mU_{i+1}}
   \end{mathpar}
 \end{regeln}
 Den Rest dieses Abschnitts verbringen wir damit, Neuerungen zu erwähnen, die sich durch die Verwendung von Universen ergeben.
