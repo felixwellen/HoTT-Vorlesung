@@ -458,16 +458,16 @@ Es liegt also Nahe, für abhängige Summen auch Bedingungen an die Basis zu stel
 \end{bemerkung}
 \begin{beweis}
   Seien $A,B:\mU$ und $(n+1)\geq -1$ ein Abschneidungslevel.
-  Wir zeigen, dass $A\amalg B$ ein $(n+1)$-Typ ist, indem wir zeigen, dass alle Gleichheitstypen von $A\amalg B$ $n$-Typen sind.
-  Nach Übungsaufgabe 3 von Blatt 7, ist der Gleichheitsyp des Koprodukts $A\amalg B$ faserweise äquivalent zu:
+  Wir zeigen, dass $A\sqcup B$ ein $(n+1)$-Typ ist, indem wir zeigen, dass alle Gleichheitstypen von $A\sqcup B$ $n$-Typen sind.
+  Nach Übungsaufgabe 3 von Blatt 7, ist der Gleichheitsyp des Koprodukts $A\sqcup B$ faserweise äquivalent zu:
   \begin{align*}
-    \Eq{\amalg}(\iota_1(a),\iota_1(a'))&\colonequiv (a=_A a') \\
-    \Eq{\amalg}(\iota_1(a),\iota_2(b))&\colonequiv \leer \\
-    \Eq{\amalg}(\iota_2(b),\iota_1(a))&\colonequiv \leer \\
-    \Eq{\amalg}(\iota_2(b),\iota_2(b'))&\colonequiv (b=_B b')
+    \Eq{\sqcup}(\iota_1(a),\iota_1(a'))&\colonequiv (a=_A a') \\
+    \Eq{\sqcup}(\iota_1(a),\iota_2(b))&\colonequiv \leer \\
+    \Eq{\sqcup}(\iota_2(b),\iota_1(a))&\colonequiv \leer \\
+    \Eq{\sqcup}(\iota_2(b),\iota_2(b'))&\colonequiv (b=_B b')
   \end{align*}
   Der Typ $\leer$ ist eine Aussage. Da $n\geq -1$ ist, ist also $\leer$ mit \Cref{bem:n-type-cumulative} auch ein $n$-Typ.
-  Die Typen $a=a'$ und $b=b'$ sind auch jeweils $n$-Typen, also sind alle Gleichheitstypen von $A\amalg B$ $n$-Typen.
+  Die Typen $a=a'$ und $b=b'$ sind auch jeweils $n$-Typen, also sind alle Gleichheitstypen von $A\sqcup B$ $n$-Typen.
 \end{beweis}
 
 \begin{bemerkung}
@@ -518,7 +518,7 @@ Letzterer könnte also bestenfalls noch ein $1$-Typ sein. Das ist tatsächlich s
   Letzteres ist ein Untertyp von $A\to B$, was nach \cref{lem:pi-n-type} ein $n$-Typ ist.
 \end{beweis}
 
-\subsection{Überlagerungen I}
+\subsection{Überlagerungen und $\Omega(S^1)$}
 
 Bevor wir uns dem eigentlichen Thema zuwenden, brauchen wir noch eine Variante der ganzen Zahlen mit einem Rekursionsprinzip,
 das uns auch Abbildungen in nicht notwendigerweise 0-abgeschnittene Typen erlaubt.
@@ -1250,10 +1250,12 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
 \end{definition}
 
 \begin{bemerkung}
+  \label{bem:Sn-zsh}
   $S^1$ ist $0$-zusammenhängend und allgemeiner kann man zeigen: $S^{n+1}$ ist $n$-zusammenhängend.
 \end{bemerkung}
 \begin{beweis}
-  Übungsblatt 12.
+  Übungsblatt 12: $S^1$ ist $0$-zusammenhängend. \\
+  Die Verallgemeinerung auf $S^{n+1}$ lässt sich ähnlich zeigen.
 \end{beweis}
 
 Wir werden sehen+glauben: Es gibt eine Abbildung $S^3\to S^2$ mit Faser $S^1$.
@@ -1363,7 +1365,7 @@ Für jede abelsche Gruppe $A$ gibt es eine Folge von punktierten Typen
 \begin{mathpar}
   A, BA, B^2A, B^3A, \dots
 \end{mathpar}
-sodass $\Omega (B^{n+1}A)=B^nA$ gilt und $B^{n+1}A$ $n$-zusammenhängend ist.
+sodass $\Omega (B^{n+1}A)=B^nA$ (mit $B^0A\equiv A$) gilt und $B^{n+1}A$ $n$-zusammenhängend ist.
 \begin{definition}
   Für einen Typ $X$ und eine abelsche Gruppe $A$ ist die n-te \begriff{Kohomologiegruppe} von $X$ mit Koeffizienten in $A$ gegeben als:
   \begin{mathpar}
@@ -1371,10 +1373,11 @@ sodass $\Omega (B^{n+1}A)=B^nA$ gilt und $B^{n+1}A$ $n$-zusammenhängend ist.
   \end{mathpar}
 \end{definition}
 \begin{beispiel}
+  \label{bsp:kohom}
   \begin{enumerate}
   \item Für den Typ $\eins$ gilt: $H^0(\eins,A)\simeq A$ und $H^{n+1}(\eins,A)=\|B^{n+1}A\|_0\simeq\eins$, da $B^{n+1}A$ stets 0-zusammenhängend ist.
   \item Für $\zwei$ gilt: $H^0(\zwei,A)\simeq A\times A$ und $H^{n+1}(\zwei,A)=\|B^{n+1}A\|_0\times \|B^{n+1}A\|_0\simeq\eins$
-  \item Für $A\equiv \Z$ und $X\equiv S^1$ gilt: $H^1(S^1,\Z)=\Z$ (mit etwas Rechnen).
+  \item Für $A\equiv \Z$ und $X\equiv S^1$ gilt: $H^1(S^1,\Z)=\Z$ (mit etwas Rechnen, siehe Übungsblatt 13).
   \end{enumerate}
 \end{beispiel}
 
@@ -1424,7 +1427,7 @@ Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte
       B & 
     \end{tikzcd}
   \end{center}
-  Dann gibt es einen Typen $A\amalg_C B\colonequiv \mathrm{PO}(f,g):\mU$, den Pushout von $f$ und $g$, der der höhere induktive Typ mit folgenden Konstruktoren ist:
+  Dann gibt es einen Typen $A\sqcup_C B\colonequiv \mathrm{PO}(f,g):\mU$, den Pushout von $f$ und $g$, der der höhere induktive Typ mit folgenden Konstruktoren ist:
   \begin{align*}
     \iota_1&:A\to \mathrm{PO}(f,g) \\
     \iota_2&:B\to \mathrm{PO}(f,g) \\
@@ -1438,7 +1441,7 @@ Auch hinter der Einhängung steht eine allgemeinere Konstruktion, der sogenannte
 
 Durch die Rekursion vom Pushout erhält man folgendes:
 \begin{mathpar}
-  H^1(U\amalg_{U\cap V} V,A)=\left\| \sum_{f:U\to BA}\sum_{g:V\to BA} \prod_{x:U\cap V}f(x)=_{BA}g(x) \right\|_0
+  H^1(U\sqcup_{U\cap V} V,A)=\left\| \sum_{f:U\to BA}\sum_{g:V\to BA} \prod_{x:U\cap V}f(x)=_{BA}g(x) \right\|_0
 \end{mathpar}
 
 Das hilft allerdings noch nicht wirklich beim Berechnen von Kohomologiegruppen.
@@ -1474,7 +1477,7 @@ Auf diese werden wir jetzt zum Abschluss hinarbeiten.
   Sei $A$ punktiert, dann gibt es ein Pullbackquadrat
   \begin{center}
     \begin{tikzcd}
-      \Omega A \ar[r]\ar[d] & \eins\ar[d] \\
+      \Omega A \ar[r]\ar[d,"\Delta"] & \eins\ar[d] \\
       \Omega A \times \Omega A\ar[r,"d"] & \Omega A
     \end{tikzcd}
   \end{center}
@@ -1556,7 +1559,7 @@ Auf diese werden wir jetzt zum Abschluss hinarbeiten.
   Für $n>0$ und $k>0$ gilt $H^n(S^k,\Z)\simeq \Z$ genau dann, wenn $k=n$ und sonst gilt $H^n(S^k,\Z)\simeq \eins$.
 \end{korollar}
 \begin{beweis}[Idee]
-  Einsetzen:
+  Einsetzen liefert eine lange exakte Sequenz:
   \begin{center}
     \begin{tikzcd}
       & & \dots\ar[r] & H^{n-1}(S^k,\Z)\ar[dll] \\
@@ -1564,5 +1567,23 @@ Auf diese werden wir jetzt zum Abschluss hinarbeiten.
       & H^{n+1}(S^{k+1},\Z)\ar[r] & H^{n+1}(1,\Z)\times H^{n+1}(1,\Z)\ar[r] & \dots
     \end{tikzcd}
   \end{center}
-  \dots und alles nachrechnen.
+  Nun gilt für $n>0$ stets $H^n(1,\Z)\times H^n(1,\Z)\simeq \eins\times\eins\simeq \eins$, also sind die diagonalen Abbildungen $H^n(S^k,\Z)\to H^{n+1}(S^{k+1},\Z)$ jeweils Äquivalenzen.
+  Damit folgt die Aussage aus:
+  \begin{enumerate}
+  \item $H^1(S^1,\Z)\simeq \Z$
+  \item $H^n(S^1,\Z)\simeq \eins$
+  \item $H^1(S^k,\Z)\simeq \eins$, $k>1$
+  \end{enumerate}
+  (a) ist \Cref{bsp:kohom} (c).
+
+  Für $k\equiv 0$ ergibt sich $H^n(S^0,\Z)\to H^{n+1}(S^{1},\Z)$. Für $n>0$ ist aber $H^n(S^0,\Z)\equiv H^n(\zwei,\Z)\simeq\eins$ nach \Cref{bsp:kohom} (b), was (b) zeigt.
+
+  Schließlich folgt (c) aus \Cref{bem:Sn-zsh}, also daraus, dass $S^{k}$ $1$-zusammenhängend und $S^1$ $1$-abgeschnitten ist:
+  \begin{align*}
+    H^1(S^k,\Z)&\simeq\|S^k\to S^1\|_0 \\
+               &\simeq \|\|S^k\|_1\to S^1  \|_0 \\
+               &\simeq \|\eins\to S^1\|_0\\
+               &\simeq \|S^1\|_0\\
+               &\simeq\eins
+  \end{align*}
 \end{beweis}

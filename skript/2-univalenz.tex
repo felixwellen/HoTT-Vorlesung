@@ -340,11 +340,11 @@ Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivale
   \end{mathpar}
   Aus Beispiel \labelcref{bsp:einheit-kontrahierbar} wissen wir, dass:
   \begin{mathpar}
-    t:\prod_{x:\zwei}(x=0_\zwei)\amalg(x=1_\zwei)
+    t:\prod_{x:\zwei}(x=0_\zwei)\sqcup(x=1_\zwei)
   \end{mathpar}
   womit wir die Fallunterscheidung ``$f(0)$ ist $1_\zwei$ oder $0_\zwei$'' umsetzen können:
   \begin{mathpar}
-    f\mapsto x\mapsto t_{f(0_\zwei)} : \prod_{f:\zwei\simeq\zwei}\prod_{x:\zwei}(f(0_\zwei)=0_\zwei)\amalg(f(0_\zwei)=1_\zwei)
+    f\mapsto x\mapsto t_{f(0_\zwei)} : \prod_{f:\zwei\simeq\zwei}\prod_{x:\zwei}(f(0_\zwei)=0_\zwei)\sqcup(f(0_\zwei)=1_\zwei)
   \end{mathpar}
   Die beiden Fälle können wir abarbeiten, indem wir Funktionen auf den einzelnen Faktoren, in unseren Zieltyp angeben, wobei wir gleichzeitig mit $\ind{\zwei}$ eine Fallunterscheidung über $x$ machen.
   Insgesamt müssen wir also noch konstruieren:
@@ -356,13 +356,13 @@ Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivale
   \end{align*}
   Denn damit haben wir dann:
   \begin{mathpar}
-    f\mapsto \ind{\zwei}(\dots,\ind{\amalg}(\dots,F_{00},F_{10})(t_{f(0_\zwei)}),\ind{\amalg}(\dots,F_{01},F_{11})(t_{f(0_\zwei)})): \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
+    f\mapsto \ind{\zwei}(\dots,\ind{\sqcup}(\dots,F_{00},F_{10})(t_{f(0_\zwei)}),\ind{\sqcup}(\dots,F_{01},F_{11})(t_{f(0_\zwei)})): \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
   \end{mathpar}
   Die Funktionen $F_{00}$ und $F_{10}$ können mit Gruppoidgestzen konstruiert werden.
   Für die übrigen müssen wir verwenden, dass $0_\zwei\not=1_\zwei$.
   Etwa für $F_{01}$ nehmen wir also $p:f(0_\zwei)=0_\zwei$ an und verwenden wieder die Fallunterscheidung für die Gleichheit in $\zwei$:
   \begin{mathpar}
-    (f(1_\zwei)=0_\zwei)\amalg(f(1_\zwei)=1_\zwei)
+    (f(1_\zwei)=0_\zwei)\sqcup(f(1_\zwei)=1_\zwei)
   \end{mathpar}
   Es geht also wieder darum, zwei Funktionen zu konstruieren. Für $f(1_\zwei)=1_\zwei)$ geht das wieder mit den üblichen Methoden, für die andere Gleichheit, können wir zusammen mit $p$ zeigen:
   \begin{mathpar}

@@ -1,7 +1,7 @@
 Wir werden zunächst nur Regeln kennenlernen, die Teil einer abhängigen Typentheorie sind.
 Regeln einer (abhängigen) Typentheorie können etwa so aussehen:
 \begin{mathpar}
-\inferrule*{\Gamma \yields f : A\to B \and \Gamma \yields t : A}{\Gamma \yields f(t) : B}
+\inferrule{\Gamma \yields f : A\to B \and \Gamma \yields t : A}{\Gamma \yields f(t) : B}{\mathrm{Beispiel}}
 \end{mathpar}
 Über dem waagrechten Strich stehen die Voraussetzungen und darunter, was aus den Voraussetzungen geschlossen werden darf.
 Dabei kann man zum Beispiel ``$\Gamma \yields t : A$'' lesen als ``Im Kontext $\Gamma$ gibt es einen Term $t$ des Typs $A$''.
@@ -12,7 +12,7 @@ etwa so
   Für $f : A\to B$ und $t : A$ gibt es ein $f(t) : B$.
 \end{center}
 Wie wir später sehen werden, können diese Regeln zu Herleitungsbäumen kombiniert werden.
-Dieses Kombinieren ist der vollständig formale Weg Beweise in der Homotopietypentheorie zu führen.
+Dieses Kombinieren ist der vollständig formale Weg, Beweise in der Homotopietypentheorie zu führen.
 
 Ein Kontext wie ``$\Gamma$'' darf man sich als Liste von Variablen zusammen mit ihren Typen vorstellen. Also etwa so:
 \begin{mathpar}
