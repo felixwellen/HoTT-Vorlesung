@@ -1,0 +1,56 @@
+\documentclass{uebung}
+
+\DeclareMathOperator*{\whisk}{\ast}
+
+\begin{document}
+\maketitle{13}
+
+\begin{exercise}[Potenzieren und Windungszahl sind Gruppenhomomorphismen]
+  Erinnere Dich an die zueinander inversen Funktionen aus Abschnitt 3.3
+  \begin{align*}
+    (k\mapsto l^k) &: \Z \to \Omega(S^1,\ast),\\
+    w&:\Omega(S^1,\ast) \to \Z.
+  \end{align*}
+  \begin{enumerate}
+    \item Zeige, dass $l^{n + m} = l^n \cdot l^m$ für alle $n,m:\Z$.
+    \item Folgere, dass $w(p\kon q)=w(p)+w(q)$ für alle $p,q:\Omega(S^1,\ast)$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Kohomologie des Kreises I]
+  \begin{enumerate}
+    \item Zeige, dass $H^1(S^1,\Z) = \|\sum_{x:S^1} x=x\|_0$.
+  \end{enumerate}
+  Wir wollen nun verstehen, warum $\|\sum_{x:S^1} x=x\|_0$ äquivalent zu $\|\ast = \ast\|_0$ ist.
+  \begin{enumerate}[start=2]
+    \item Konstruiere eine faserweise Abbildung $F:\prod_{x:S^1} (x = x) \to (\ast = \ast)$, sodass $F_\ast\equiv\id_{\ast = \ast}$.
+    \item Zeige, dass die induktiv definierte Abbildung
+      \begin{align*}
+        f:\left(\sum_{x:S^1} x=x\right) &\to (\ast=\ast)\\
+        (x,p)&\mapsto F_xp
+      \end{align*}
+      eine Retraktion ist mit Rechtsinversem
+      \begin{align*}
+        g:(\ast=\ast) &\to \left(\sum_{x:S^1} x=x\right)\\
+        q &\mapsto (\ast,q)
+      \end{align*}
+    \item Finde einen Term des folgenden Typs:
+      $$
+      \prod_{x:S^1} \ast=x \to \prod_{p:x=x} (g\circ f)(x,p) = (x,p).
+      $$
+    \item Konstruiere daraus einen Term des Typs
+      $$
+      \prod_{x:S^1} \|\ast=x\|_{-1} \to \prod_{p:x=x} |(g\circ f)(x,p)|_0 = |(x,p)|_0.
+      $$
+    \item Folgere schließlich, dass $H^1(S^1,\Z) = \Z$ ist.
+      {\tiny Tipp: Blatt 11 Aufgabe 1.}
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Kohomologie des Kreises II]
+  Verwende die Mayer-Vietoris Sequenz aus Theorem 3.7.11 um $H^1(S^1,\Z)$ zu berechnen.
+  Du darfst dabei den Isomorphiesatz $A/\ker(f)\simeq \mathrm{im}(f)$ für jeden Morphismus abelscher Gruppen $f:A\to B$ ohne Beweis voraussetzen.
+  {\tiny Und auch sonstige hilfreiche Aussagen über abelsche Gruppen.}
+\end{exercise}
+
+\end{document}
