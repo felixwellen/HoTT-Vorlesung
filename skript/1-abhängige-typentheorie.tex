@@ -422,13 +422,13 @@ Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typent
 \subsection{Gleichheit}
 Da wir uns im Folgenden der Situation nähern die Typentheorie einsetzen zu können, um über mathematische Objekte zu reden,
 wollen wir auch weniger syntaktische Sprechweisen bevorzugen und etwa eher von \begriff{Elementen eines Typs} statt Termen sprechen.
-Außerdem wollen wir es uns nun erlauben, Verschachtelte $\prod$-Ausdrücke über den gleichen Typen wie folgt abzukürzen:
+Außerdem wollen wir es uns nun erlauben, verschachtelte $\prod$-Ausdrücke über den gleichen Typen wie folgt abzukürzen:
 \begin{mathpar}
   \prod_{x:A}\prod_{y:A}\dots \colonequiv\prod_{x,y:A}\dots
 \end{mathpar}
 
 In diesem Abschnitt werden wir die \begriff{Gleichheit von Objekten} $x=y$ einführen.
-Diese wollen wir im folgenden auch einfach nur \begriff{Gleichheit} nennen.
+Diese wollen wir im Folgenden auch einfach nur \begriff{Gleichheit} nennen.
 Im Gegensatz zur klassischen Mathematik ist die Gleichheit zwischen zwei Elementen $x,y:A$ eines Typs
 selbst wieder ein vollwertiger Typ $x=_A y$.
 Wir werden auch tatsächlich Beispiele von Typen sehen, deren Gleichheitstypen mehrere verschiedene Elemente enthalten.
@@ -440,7 +440,7 @@ Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten glei
     \refl:\prod_{x:A}x=_A x
   \end{mathpar}
   festgelegt. 
-  Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im folgenden diskutieren werden.
+  Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im Folgenden diskutieren werden.
 \end{regeln}
 Als Formierungs und Einführungsregeln ergeben sich:
 \begin{mathpar}
@@ -519,7 +519,7 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
 \end{beispiel}
 
 Nach diesen Konstruktionen wirkt die Induktionsregel für Gleichheit vielleicht etwas zu stark.
-Tatsächlich wenden wir die nötige Arbeit um zu Beweisen zu kommen etwas versteckt beim definieren der abhängigen Typen auf,
+Tatsächlich wenden wir die nötige Arbeit, um zu Beweisen zu kommen, etwas versteckt beim Definieren der abhängigen Typen auf,
 auf die wir die Induktionsregel anwenden.
 Dass es dabei etwas zu beachten gibt, sieht man an den Grenzen der Induktionsregel:
 \begin{bemerkung}
@@ -604,7 +604,7 @@ Als letzte elementare Gleichung für das Rechnen mit Gleichheiten, zeigen wir di
   \end{mathpar}
 \end{bemerkung}
 \begin{beweis}
-  Durch umsortieren der Abhängigkeiten, was wir nach den Strukturregeln dürfen, können wir Induktion auf den folgenden abhänigen Typen anwenden:
+  Durch Umsortieren der Abhängigkeiten, was wir nach den Strukturregeln dürfen, können wir Induktion auf den folgenden abhängigen Typen anwenden:
   \begin{mathpar}
     x:A,y:A,p:x=_A y\yields \prod_{z,w:A}\prod_{q:y=z}\prod_{r:z=w}(p\kon q)\kon r = p \kon (q\kon r)
   \end{mathpar}
