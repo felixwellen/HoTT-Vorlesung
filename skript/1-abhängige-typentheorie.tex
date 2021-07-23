@@ -143,6 +143,12 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
   \end{enumerate}
 \end{definition}
 
+\begin{bemerkung} % Vorlesung 2, ab ~45 Minuten in Aufzeichnung.
+  \begin{enumerate}
+    \item Für jeden Typ $A$ und $x : A$ gilt $\id_A(x) \equiv x$.
+    \item Für Typen $A, B$ und $f : A \to B$ gilt: $f \circ \id_A \equiv f$ und $\id_B \circ f \equiv f$.
+  \end{enumerate}
+\end{bemerkung}
 
 \subsection{Natürliche Zahlen}
 Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen}\index{$\N$} nicht von anderen Typen abhängig.
@@ -629,8 +635,8 @@ Ein Beispiel für eine Kohärenz, ein Level über der Assoziativität, ist das \
   Seien $A$ ein Typ, $x,y,z,w,u:A$.
   Dann gibt es für $p:x=y,q:y=z,r:z=w,s:w=u$ in $((p\kon q)\kon r)\kon s = p \kon (q\kon (r\kon s))$ zwei verschiedene natürliche Terme,
   zwischen denen sich eine Gleichheit konstruieren lässt.
-  \begin{figure}
-    \begin{equation}
+  \begin{figure}[h!]
+    \begin{equation*}
       \begin{tikzcd}[column sep={between origins,1.5cm},row sep={between origins,2.2cm}]
         & (p \kon (q \kon r)) \kon s
           \arrow[rr,equal]
@@ -647,7 +653,7 @@ Ein Beispiel für eine Kohärenz, ein Level über der Assoziativität, ist das \
           \arrow[urr,equal]
         &&
       \end{tikzcd}
-    \end{equation}
+    \end{equation*}
     \caption{MacLane-Pentagon}
   \end{figure}
 \end{bemerkung}
@@ -922,7 +928,7 @@ Letztere Aussage hat einen eigenen Namen und wird von uns im Folgenden als Axiom
     \mathrm{FunExt}_{f,g}:\left(\prod_{x:A}f(x)=g(x)\right)\to f=g
   \end{mathpar}
 \end{axiom}
-(Genauer wollen wir fordern, dass $\mathrm{FunExt}_{f,g}$ und $\mathrm{ap}((p:x=y)\mapsto x f\mapsto f(x)):(f=g)\to f\sim g$ invers zueinander sind, aber das brauchen wir nicht, bis wir $\mathrm{FunExt}$ sowieso nochmal auf eine andere Art einführen.)
+(Genauer fordern wir, dass $\mathrm{FunExt}_{f,g}$ und $(p : f = g) \mapsto ((x : A) \mapsto \mathrm{ap}(h \mapsto h(x), p)) : (f=g)\to f\sim g$ invers zueinander sind, aber das brauchen wir nicht, bis wir $\mathrm{FunExt}$ sowieso nochmal auf eine andere Art einführen.)
 Wir werden uns jeweils merken, für welche Aussagen wir dieses Axiom brauchen.
 
 \begin{bemerkung}
@@ -1097,7 +1103,7 @@ Um diese zu formulieren brauchen wir aber noch manche der folgenden, sowieso wic
   \begin{enumerate}
   \item Für $b:B$ ist die \begriff{Faser} von $f$ über $b$ gegeben durch:
     \begin{mathpar}
-      \mathrm{fib}_f^{-1}(b)\colonequiv f^{-1}(b)\colonequiv \sum_{x:A}f(x)=b
+      \mathrm{fib}_f(b)\colonequiv f^{-1}(b)\colonequiv \sum_{x:A}f(x)=b
     \end{mathpar}
   \item $f$ heißt \begriff{injektiv}, wenn
     \begin{mathpar}
@@ -1157,12 +1163,12 @@ Wir verwenden also in Zukunft ``$A:\mU_i$'' synonym mit ``$A$ ist ein Typ''.
   \end{mathpar}
   Insbesondere können wir nun abhängige Typen auch immer äquivalent als Funktionen in ein Universum ausdrücken:
   \begin{mathpar}
-    \inferrule*{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):U_i}{\Gamma\yields x\mapsto B(x):A\to \mU_i}
+    \oldinferrule{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):U_i}{\Gamma\yields x\mapsto B(x):A\to \mU_i}
   \end{mathpar}
   Grundsätzlich kann es vorkommen, dass wir auch mal Typen aus Bestandteilen konstruieren wollen, die in unterschiedlichen Universen liegen.
   Dazu können wir mit der folgenden Regel alles in ein passendes Universum schieben:
   \begin{mathpar}
-    \inferrule*{\Gamma\yields A:\mU_i}{\Gamma\yields A:\mU_{i+1}}
+    \oldinferrule{\Gamma\yields A:\mU_i}{\Gamma\yields A:\mU_{i+1}}
   \end{mathpar}
 \end{regeln}
 Den Rest dieses Abschnitts verbringen wir damit, Neuerungen zu erwähnen, die sich durch die Verwendung von Universen ergeben.
