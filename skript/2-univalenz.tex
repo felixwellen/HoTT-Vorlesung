@@ -601,7 +601,7 @@ Es ist also insbesondere $\zwei$ ein 0-Typ bzw. eine Menge.
 Wir wollen nun noch \cref{lem:faser-equiv} beweisen. Dazu brauchen wir das folgende alternative Induktionsprinzip für Gleichheit:
 
 \begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
-  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
+  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es, ein $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
 \end{lemma}
 \begin{beweis}
   Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
@@ -614,7 +614,7 @@ Wir wollen nun noch \cref{lem:faser-equiv} beweisen. Dazu brauchen wir das folge
   \end{mathpar}
   Also
   \begin{mathpar}
-    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
+    y\mapsto (p:x=y)\mapsto \transp(q_{y,p})(c):\prod_{y:A}\prod_{p:x=y}C(y,p)
   \end{mathpar}
 \end{beweis}
 
