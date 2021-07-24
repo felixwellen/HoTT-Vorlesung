@@ -689,8 +689,8 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
   kontrahierbar ist. Als Kontraktionszentrum wählen wir $(n,\ast)$.
   Nach Induktion über $n$,$l$ und Ausschluss aller Fälle mit leerer Domäne bleiben noch zu konstruieren:
   \begin{align*}
-    &\prod_{e:\Eq{\N}(0,0)}(0,e)=(0,\ast) \\
-    &\prod_{e:\Eq{\N}(\sucN(n),\sucN(l))}(\sucN(l),e)=(\sucN(n),\ast)
+    \prod_{e:\Eq{\N}(0,0)} & (0,e)=(0,\ast) \\
+    \prod_{e:\Eq{\N}(\sucN(n),\sucN(l))} & (\sucN(l),e)=(\sucN(n),\ast)
   \end{align*}
   Im ersten Fall lässt sich die Gleichheit stets durch die kontrahierbarkeit von $\eins$ konstruieren.
   Im zweiten Fall dürfen wir die Induktionshypothese verwenden:
@@ -699,7 +699,7 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
   \]
   Um etwas damit anfangen zu können, definieren wir uns folgenden Funktion:
   \begin{align*}
-    f&:\left(\sum_{n:\N}\Eq{\N}(n,l)\right)\to \left(\sum_{n:\N}\Eq{\N}(n,\sucN(l))\right) \\
+    f:\left(\sum_{n:\N}\Eq{\N}(n,l)\right)&\to \left(\sum_{n:\N}\Eq{\N}(n,\sucN(l))\right) \\
     f((n,e))&\colonequiv (n+1,e)
   \end{align*}
   Damit gilt dann für $e:\Eq{\N}(\sucN(n),\sucN(l))$:

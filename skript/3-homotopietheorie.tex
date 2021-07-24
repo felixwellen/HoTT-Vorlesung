@@ -60,8 +60,8 @@ sondern nur Gleichheit.
   Es gibt einen Typ $S^1:\mU$ den wir den (höheren induktiven) \begriff{Kreis}\index{Kreis}\index{$S^1$} nennen.
   $S^1$ ist der höhere induktive Typ mit den Konstruktoren:
   \begin{align*}
-    \ast:S^1 \\
-    l:\ast =_{S^1}\ast
+    \ast&:S^1 \\
+    l&:\ast =_{S^1}\ast
   \end{align*}
   Das heißt für jeden abhängigen Typ $B:S^1\to\mU$ reicht es $b:B(\ast)$ und $b_l:b =_l^B b$ vorzugeben,
   um eine abhängige Funktion $s:\prod_{x:S^1}B(x)$ zu definieren.
@@ -77,8 +77,8 @@ sondern nur Gleichheit.
   \end{align*}
   Wir werden abhängige Funktionen $s:\prod_{x:S^1}B(x)$ auch durch Fallunterscheidung wie folgt angeben:
   \begin{align*}
-    s(\ast)\colonequiv b \\
-    s(l):= b_l
+    s(\ast) &\colonequiv b \\
+    s(l) &\coloneqq b_l
   \end{align*}
 \end{regeln}
 
@@ -93,8 +93,8 @@ Wir wollen zunächst das Rekursionprinzip für den Kreis herleiten.
 \begin{bemerkung}
   Für $A:\mU$, $a:A$ und $a_l:a=_A a$ gibt es stets eine Funktion $\rec{S^1}(A,a,a_l):S^1\to A$ mit
   \begin{align*}
-    \rec{S^1}(A,a,a_l)(\ast)\equiv a \\
-    \rec{S^1}(A,a,a_l)(l)=a_l
+    \rec{S^1}(A,a,a_l)(\ast)&\equiv a \\
+    \rec{S^1}(A,a,a_l)(l)&=a_l
   \end{align*}
 \end{bemerkung}
 \begin{beweis}
@@ -124,9 +124,9 @@ Bevor wir den Kreis weiter kennenlernen, betrachten wir noch einen weiteren, seh
 \begin{regeln}
   Es gibt einen Typ $I:\mU$, das \begriff{Intervall} mit den folgenden Konstruktoren:
   \begin{align*}
-    0_I:I \\
-    1_I:I \\
-    s:0_I =_I 1_I
+    0_I&:I \\
+    1_I&:I \\
+    s&:0_I =_I 1_I
   \end{align*}
   Daraus ergibt sich das folgende Induktionsprinzip, die \begriff{Intervallinduktion}:
   \[
@@ -134,9 +134,9 @@ Bevor wir den Kreis weiter kennenlernen, betrachten wir noch einen weiteren, seh
   \]
   mit Berechnungsregeln:
   \begin{align*}
-    \ind{I}(B,b_0,b_1,b_s)(0_I)\equiv b_0 \\
-    \ind{I}(B,b_0,b_1,b_s)(1_I)\equiv b_1 \\
-    \mathrm{apd}(\ind{I}(B,b_0,b_1,b_s),s)\equiv\ind{I}(B,b_0,b_1,b_s)(s) = b_s \\
+    \ind{I}(B,b_0,b_1,b_s)(0_I) &\equiv b_0 \\
+    \ind{I}(B,b_0,b_1,b_s)(1_I) &\equiv b_1 \\
+    \mathrm{apd}(\ind{I}(B,b_0,b_1,b_s),s)\equiv\ind{I}(B,b_0,b_1,b_s)(s) &= b_s \\
   \end{align*}
 \end{regeln}
 
