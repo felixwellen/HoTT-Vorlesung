@@ -1,9 +1,9 @@
 \subsection{Abhängige Typen und Abhängige Produkte}
 
 Von einem \begriff{Abhängigen Typen} spricht man im Fall eine Urteils
-\begin{mathpar}
+\[
   \Gamma, x : A\yields B(x)\text{ Typ}
-\end{mathpar}
+\]
 Der Kontext besteht also aus mindestens einer Variablen $x$, die im abhängigen Typen $B(x)$ vorkommen darf.
 Wir verwenden die Schreibweise ``$B(x)$'' um die Abhängigkeit klar zu machen --  in der Typentheorie ist es eher üblich hier nur ``$B$'' zu schreiben.
 Ein Beispiel, das wir später mit unserer Typentheorie konstruieren könnten, ist der Typ der Listen der Länge $n$, wobei $n$ eine Variable des Typs $\mathbb N$ ist.
@@ -11,32 +11,32 @@ Ein Beispiel, das wir später mit unserer Typentheorie konstruieren könnten, is
 Eine wichtige Besonderheit der abhängigen Typentheorie ist es, dass der Typ der Werte einer Funktion variieren darf.
 Diese allgemeineren Funktionen sind in sogenannten \begriff{abhängigen Produkten}\index{$\prod$} oder \begriff{abhängigen Funktionstypen} enthalten.
 Die folgende Regel erlaubt es uns, diesen Typ zu formen:
-\begin{mathpar}
+\[
   \inferrule{\Gamma,x : A \yields B(x)\text{ Typ}}{\Gamma\yields\prod_{x:A}B(x)\text{ Typ}}{\PiForm}
-\end{mathpar}
+\]
 Abhängige Funktionen, die Elemente des abhängigen Produkts, können mit dieser Regel konstruiert werden:
-\begin{mathpar}
+\[
   \inferrule{\Gamma,x : A \yields t(x) : B(x)}{\Gamma\yields x\mapsto t(x) : \prod_{x:A} B(x)}{\PiIntro}
-\end{mathpar}
+\]
 Der Term ``$x\mapsto t(x)$'' wird in der Typentheorie und allgemeiner in der Informatik geschrieben als ``$\lambda x.t(x)$''.
 Wir schreiben auch manchmal $(x:A)\mapsto t(x)$, wenn der Typ der Variablen nicht klar ist.
 Auch bei abhängigen Termen ist es in der Typentheorie eigentlich üblich nur ``$t:B$'' zu schreiben.
 Das zusätzliche ``$(x)$'' steht hier nur zum besseren Verständnis durch Ähnlichkeit zu mathematischen Konventionen.
 Die nächste Regel erlaubt es uns, abhängige Funktionen anzuwenden:
-\begin{mathpar}
+\[
   \inferrule{\Gamma\yields f : \prod_{x:A}B(x) \and \Gamma\yields a : A}{\Gamma\yields f(a):B(a)}{\PiElim}
-\end{mathpar}
+\]
 Damit ist allerdings noch nicht gesagt, wie das Einsetzen eines Wertes in eine Funktion funktioniert.
 Dafür müssen alle Vorkommen einer Variablen in einem Funktionsterm durch den eingesetzten Term ersetzt werden.
 Diesen Vorgang nennt man Substitution und wir verwenden dafür die Notation $t(a)$ statt dem in der Informatik üblichen ``$t[a/x]$''.
 Die folgende Regel sagt uns, dass wir durch Einsetzen von $a:A$ den Wert der Funktion $(x:A)\mapsto t(x)$, berechnen dürfen:
-\begin{mathpar}
+\[
   \inferrule{\Gamma,x:A\yields t(x):B(x) \and \Gamma\yields a:A}{\Gamma\yields (x\mapsto t(x))(a)\equiv t(a) : B(a)}{\PiBeta}
-\end{mathpar}
+\]
 Eine Besonderheit der abhängigen Produkte ist es, dass man folgende Urteilsgleichheit noch zusätzlich fordert:
-\begin{mathpar}
+\[
   \inferrule{\Gamma\yields f :\prod_{x:A}B(x)}{\Gamma\yields f\equiv (x\mapsto f(x)) : \prod_{x:A}B(x)}{\PiEta}
-\end{mathpar}
+\]
 Für alle weitere Typen, die wir einführen werden, wird sich ein ähnliches Schema ergeben.
 Es gibt stets eine Regel, die es erlaubt den Typ zu formen, eine oder mehrere für die Konstruktion von Elementen und wieder eine oder mehrere, die festlegen, wie die Elemente des Typs verwendet werden dürfen.
 
@@ -48,7 +48,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
 \begin{definition}
   \begin{enumerate}
   \item Für Typen $A$ und $B$ gibt es stets den \begriff{Typ der Funktionen} $A\to B$, der mit der folgenden Herleitung geformt werden kann:
-    \begin{mathpar}
+    \[
       \inferrule{
         \inferrule{
           \Gamma\yields B\text{ Typ}\and \Gamma\yields A\text{ Typ}
@@ -62,10 +62,10 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
       }{
         \PiForm
       }
-    \end{mathpar}
+    \]
     Die Terme dieses Typs nennen wir \begriff{Funktionen}.
   \item Unter der \begriff{Identität} $\id_A$ auf einem Typ $A$ verstehen wir die folgende Konstruktion:
-    \begin{mathpar}
+    \[
       \inferrule{
         \inferrule{
           \inferrule{
@@ -91,7 +91,7 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
       }{
         \PiIntro
       }
-    \end{mathpar}
+    \]
     Zusammengefasst: $\id_A\colonequiv (x : A)\mapsto x$.
   \item Für Typen $A,B,C$ und Funktionen $f:A\to B$, $g:B\to C$ bezeichnen wir mit $g\circ f$ deren \begriff{Komposition}\index{$\circ$}.
     Ganz genau ist die Komposition der durch die folgende Herleitung gegebene Term:
@@ -153,11 +153,11 @@ Damit haben wir für beliebige Typen $A,B$ in einem Kontext $\Gamma$ den Typ der
 \subsection{Natürliche Zahlen}
 Im Gegensatz zum abhängigen Produkt ist der Typ der \begriff{Natürlichen Zahlen}\index{$\N$} nicht von anderen Typen abhängig.
 Dementsprechend ist die Formierungsregel etwas einfacher:
-\begin{mathpar}
+\[
   \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\N\text{ Typ}}{\N\mathrm{F}}
-\end{mathpar}
+\]
 Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Termen gibt:
-\begin{mathpar}
+\[
   \inferrule{
     \Gamma\text{ Kontext}
   }{
@@ -171,17 +171,17 @@ Eine Neuheit ist, dass es zwei Regeln für die Konstruktion von Termen gibt:
   }{
     \N\mathrm{I2}
   }
-\end{mathpar}
+\]
 Soweit heißt das nur, dass man stets die Natürlichen Zahlen verwenden darf, es ein Element $0_{\N}$ und zu jeder natürlichen Zahl einen Nachfolger gibt.
 Den Index ``$_{\N}$'' soll Verwechslungen verhindern und wird gelegentlich wegegelassen.
 \begin{definition}
   Wir verwenden die übliche Schreibweise für natürliche Zahlen:
-  \begin{mathpar}
+  \[
     0\colonequiv 0_{\N}, 1\colonequiv \mathrm{succ}_{\N}(0), 2\colonequiv \mathrm{succ}_{\N}(1),\dots
-  \end{mathpar}
+  \]
 \end{definition}
 Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natürlichen Zahlen zu zeigen, aber auch Funktionen auf den natürlichen Zahlen zu konstruieren:
-\begin{mathpar}
+\[
   \inferrule{
     \Gamma,n:\N \yields P(n)\text{ Typ}
     \and \Gamma\yields \mathrm{\textbf{IA}} : P(0)
@@ -191,7 +191,7 @@ Die nächste Regel wird es uns erlauben, per Induktion Aussagen über die natür
   }{
     \N\mathrm{E}
   }
-\end{mathpar}
+\]
 Um die Regel mit bekannten Vorstellungen von Induktion zusammenzubringen, stellt man sich $P(n)$ als Aussage über die Zahl $n$ vor.
 Wenn man es nun schafft, einen Term $p:P(n)$ zu konstruieren, bedeutet das, dass man die Aussage $P(n)$ bewiesen hat.
 In dieser Lesart ist das abhängige Produkt $\prod_{n:\N}P(n)$ nichts anderes als ``$\forall n\in \N$ gilt $P(n)$''.
@@ -200,9 +200,9 @@ Die zu diesen Einzelteilen passenden Terme sind in der Regel oben entsprechend b
 
 \begin{bemerkung}
   Wir werden später die Möglichkeit haben, mittels abhängigen Typen Aussagen über natürliche Zahlen zu konstruieren, wie z.B.
-  \begin{mathpar}
+  \[
     P(n)\colonequiv\text{ ``$n \cdot (n+1) = 2 \cdot (n + (n-1) + \dots + 1)$'' }
-  \end{mathpar}
+  \]
   Dazu fehlen uns momentan allerdings noch Typen für die zweite Art von Gleichheit ``$=$''.
   Bis wir diese einführen können, müssen wir uns noch mit konstanter Abhängigkeit begnügen.
 \end{bemerkung}
@@ -210,17 +210,17 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
 \begin{definition}
   \label{def:rekursion}
   Sei $A$ ein Typ. Dann ist für $f_0:A$ und $f_s:\N\to(A\to A)$ durch $\N\mathrm{E}$ eine Funktion
-  \begin{mathpar}
+  \[
     \rec{\N}(A,f_0,f_s)\colonequiv\ind{\N}(n:\N\yields A,f_0,f_s):\N\to A
-  \end{mathpar}
+  \]
   gegeben. Diese Art Funktionen (auf $\N$) zu definieren nennt man ($\N$-)\begriff{Rekursion}.
 \end{definition}
 \begin{beispiel}
   \label{bsp:verdopplung}
   Sei $d:\N\to\N$ gegeben durch
-  \begin{mathpar}
+  \[
     d\colonequiv \rec{\N}(\N, 0, n \mapsto (k \mapsto \sucN(\sucN(k))))
-  \end{mathpar}
+  \]
   das entspricht einer rekursiven Definition durch die Gleichungen
   \begin{align*}
     d(0)   &\colonequiv 0 \\
@@ -232,17 +232,17 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
 Noch haben wir keine Möglichkeit, eine durch Rekursion oder Induktion definierte Funktion für ein Argument auszuwerten.
 Dazu brauchen wir $\beta$-Regeln, die nichts anderes sagen, als dass eine durch Induktion definierte Funktion, die durch Induktionsanfang und Schritt gegebenen Werte auch annimmt.
 Es sollen also für mit $\N\mathrm{E}$ definierte Funktionen gelten:
-\begin{mathpar}
+\[
   \ind{\N}(P,\mathrm{IA},\mathrm{IS})(0_{\N})\equiv \mathrm{IA} \\
   \text{(Für $n:\N$) } \ind{\N}(P,\mathrm{IA},\mathrm{IS})(\sucN(n))\equiv \mathrm{IS}(n,\ind{\N}(P,\mathrm{IA},\mathrm{IS})(n))
-\end{mathpar}
+\]
 und damit für die Rekursion mit den Bezeichnern aus \cref{def:rekursion}:
-\begin{mathpar}
+\[
   \rec{\N}(A,f_0,f_s)(0)\equiv f_0 \\
   \rec{\N}(A,f_0,f_s)(\sucN(n))\equiv f_s(n, \rec{\N}(A,f_0,f_s)(n))
-\end{mathpar}
+\]
 Die vollständigen $\beta$-Regeln sind wie folgt:
-\begin{mathpar}
+\[
   \inferrule{
     \Gamma,n:\N \yields P(n)\text{ Typ}
     \and \Gamma\yields \mathrm{IA} : P(0)
@@ -262,7 +262,7 @@ Die vollständigen $\beta$-Regeln sind wie folgt:
   }{
     \N\beta_2
   } 
-\end{mathpar}
+\]
 Damit können wir Werte der Funktion aus Beispiel \labelcref{bsp:verdopplung} berechnen:
 \begin{beispiel}
   Für die Funktion $d:\N\to\N$ aus Beispiel \labelcref{bsp:verdopplung} ergibt sich mit den $\beta$-Regeln nun etwa:
@@ -279,14 +279,14 @@ Folgende Konvention werden wir ab jetzt verwenden:
 \begin{konvention}
   \begin{enumerate}[label=(\alph*)]
   \item Wir verwenden die folgenden Klammerungen:
-    \begin{mathpar}
+    \[
       \prod_{x:A}B\to C \colonequiv \prod_{x:A}(B\to C)
-    \end{mathpar}
+    \]
     und auch im Allgemeinen, dass $\prod$ als letzter Typ-Former ausgeführt wird.
   \item Weiter klammern wir iterierte Funktionen von rechts:
-    \begin{mathpar}
+    \[
       A_1\to A_2 \to \dots \to A_n \colonequiv A_1 \to (A_2 \to (\dots (A_{n-1} \to A_n)\dots)
-    \end{mathpar}
+    \]
   \item Wir erlauben uns etwas Freiheit beim Schreiben von Funktionsanwendungen, also etwa für $f:A\to B\to C$ auch mal $f(a,b)$ statt $f(a)(b)$ zu schreiben oder auch $a f b$, wenn $f$ ein Operator ist.
   \end{enumerate}
 \end{konvention}
@@ -299,18 +299,18 @@ Zum Abschluss unserer ersten Betrachtung der natürlichen Zahlen werden wir nun 
       \sucN(n) + k &\colonequiv \sucN(n + k)
     \end{align*}
     Formal ist $+$ gegeben durch:
-    \begin{mathpar}
+    \[
       +\colonequiv\rec{\N}(\N\to\N, k\mapsto k, n \mapsto f \mapsto (k \mapsto \sucN(f(k))))
-    \end{mathpar}
+    \]
   \item Die Multiplikation $\cdot:\N\to\N\to\N$\index{$\cdot$} ist gegeben durch:
     \begin{align*}
       0 \cdot k &\colonequiv 0  \\
       \sucN(n) \cdot k &\colonequiv (n \cdot k) + k
     \end{align*}
     Bzw.:
-    \begin{mathpar}
+    \[
       \cdot \colonequiv \rec{\N}(\N\to\N, k\mapsto 0, n \mapsto f\mapsto (k\mapsto f(k) + k))
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{definition}
 \begin{beispiel}
@@ -338,7 +338,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
 \begin{regeln}
   Der \begriff{Einheitstyp} $\einheit$\index{$\eins$} ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
   Dadurch ergibt sich der folgende Satz von Regeln:
-  \begin{mathpar}
+  \[
     \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit\text{ Typ}}{\einheit\mathrm{F}}
     \quad\quad
     \inferrule{
@@ -361,20 +361,20 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
     }{
       \einheit\beta
     }
-  \end{mathpar}
+  \]
 \end{regeln}
 \begin{beispiel}
   Wir können die beiden Funktionen
-  \begin{mathpar}
+  \[
     (x\mapsto 0) : \einheit\to \N\text{ und } \rec{\einheit}(\N, 0) : \einheit\to \N
-  \end{mathpar}
+  \]
   definieren. Es ist allerdings nicht möglich zu zeigen, dass $(x\mapsto 0)\equiv \rec{\einheit}(\N, 0)$ gilt.
   Später werden wir in der Lage sein (mittels Induktion) zu zeigen, dass  Objektgleichheit ``$=$'' zwischen diesen Funktionen gilt.
 \end{beispiel}
 \begin{regeln}
   Der \begriff{leere Typ} $\leer$\index{$\leer$} ist der Induktive Typ ohne Konstruktur.
   Dadurch ergibt sich der folgende Satz von Regeln:
-  \begin{mathpar}
+  \[
     \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\leer\text{ Typ}}{\leer\mathrm{F}}
     \quad\quad
     \inferrule{
@@ -384,14 +384,14 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
     }{
       \leer\mathrm{E}
     }
-  \end{mathpar}
+  \]
 \end{regeln}
 
 \begin{regeln}
   Der \begriff{zweielementige Typ} oder \begriff{Bool} $\zwei$\index{$\zwei$} ist ein Induktiver Typ mit den zwei Konstruktoren
-  \begin{mathpar}
+  \[
     0_{\zwei}:\zwei\quad\quad 1_{\zwei}:\zwei
-  \end{mathpar}
+  \]
   Wir verzichten diesmal auf Angabe der Regeln.
 \end{regeln}
 
@@ -399,9 +399,9 @@ Es ist auch möglich, einen Induktiven Typen zu definieren, der von einem oder m
 Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typentheoretische Version der disjunkten Vereinigung:
 \begin{regeln}
   Das \begriff{Koprodukt}\index{$\sqcup$} zweier Typen $A$ und $B$ ist der induktive Typ $A\sqcup B$ mit den Konstruktoren
-  \begin{mathpar}
+  \[
     \iota_1 : A \to A\sqcup B\quad\quad \iota_2 : B\to A\sqcup B
-  \end{mathpar}
+  \]
   Eine Funktion $f:A\sqcup B\to C$ in einen Typen $C$, kann also definiert werden durch Angabe zweier Funktionen $f_1:A\to C$ und $f_2:B\to C$.
 \end{regeln}
 \begin{beispiel}
@@ -413,9 +413,9 @@ Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typent
       f(1_{\zwei})&\colonequiv\iota_2(\ast)&g(\iota_2(\ast))\colonequiv 1_{\zwei}
     \end{align*}
   \item Für Typen $A$, $B$ gibt es stets die Abbildung
-    \begin{mathpar}
+    \[
       \ind{\sqcup}(\zwei,(a:A)\mapsto 0_{\zwei},(b:B)\mapsto 1_{\zwei}) : A\sqcup B\to \zwei.
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{beispiel}
 
@@ -423,9 +423,9 @@ Der folgende induktive Typ kann für je zwei Typen geformt werden und ist typent
 Da wir uns im Folgenden der Situation nähern die Typentheorie einsetzen zu können, um über mathematische Objekte zu reden,
 wollen wir auch weniger syntaktische Sprechweisen bevorzugen und etwa eher von \begriff{Elementen eines Typs} statt Termen sprechen.
 Außerdem wollen wir es uns nun erlauben, verschachtelte $\prod$-Ausdrücke über den gleichen Typen wie folgt abzukürzen:
-\begin{mathpar}
+\[
   \prod_{x:A}\prod_{y:A}\dots \colonequiv\prod_{x,y:A}\dots
-\end{mathpar}
+\]
 
 In diesem Abschnitt werden wir die \begriff{Gleichheit von Objekten} $x=y$ einführen.
 Diese wollen wir im Folgenden auch einfach nur \begriff{Gleichheit} nennen.
@@ -436,17 +436,17 @@ Dies kann man sich als die Neuheit vorstellen, dass Dinge auf mehrere Arten glei
 \begin{regeln}
   Für zwei Elemente $x,y$ eines Typs $A$ können wir den Typ $x=_A y$ der \begriff{Gleichheiten} zwischen $x$ und $y$ formen.
   Dieser wird auch \begriff{Identitätstyp}\index{$=$} genannt und ist als induktiver Typ durch den Konstruktor
-  \begin{mathpar}
+  \[
     \refl:\prod_{x:A}x=_A x
-  \end{mathpar}
+  \]
   festgelegt. 
   Wir nehmen von nun an die sich daraus ergebenden Regeln an, die wir im Folgenden diskutieren werden.
 \end{regeln}
 Als Formierungs und Einführungsregeln ergeben sich:
-\begin{mathpar}
+\[
   \inferrule{\Gamma\yields x:A\and \Gamma\yields y:A}{\Gamma\yields x=_A y\text{ Typ}}{=\mathrm{F}}\quad\quad
   \inferrule{\Gamma\yields x:A}{\Gamma\yields \refl_x: x=_A x}{=\mathrm{I}}
-\end{mathpar}
+\]
 Bevor wir weitere Regeln diskutieren, machen wir zunächst Beispiele:
 
 \begin{beispiel}
@@ -454,18 +454,18 @@ Bevor wir weitere Regeln diskutieren, machen wir zunächst Beispiele:
   \begin{enumerate}
   \item Für $x,y:\einheit$ können wir nun den Typ $x=_{\einheit} y$ formen.
     Weiter können wir mit $\ind{\einheit}$ auch recht deutlich beschreiben, wie dieser Typ aussieht:
-    \begin{mathpar}
+    \[
       \ind{\einheit}(x:\einheit\yields x=_{\einheit} \ast, \refl_{\ast}) : \prod_{x:\einheit}x=\ast
-    \end{mathpar}
+    \]
   \item Für den leeren Typ können wir zeigen, dass je zwei $x,y:\leer$ gleich sind:
-    \begin{mathpar}
+    \[
       \ind{\leer}(x:\leer\yields \prod_{y:\leer}x=y) : \prod_{x,y:\leer}x=y
-    \end{mathpar}
+    \]
   \item Wenig überraschend, ist jedes $x:\zwei$ entweder gleich $0_{\zwei}$ oder $1_{\zwei}$,
     was wir mit dem Koprodukt ausdrücken können:
-    \begin{mathpar}
+    \[
       \ind{\zwei}(x:\zwei\yields(x=0_{\zwei})\sqcup(x=1_{\zwei}), \iota_1(\refl_{0_{\zwei}}), \iota_2(\refl_{1_{\zwei}}) ) : \prod_{x:\zwei}(x=0_{\zwei})\sqcup(x=1_{\zwei})
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{beispiel}
 
@@ -474,9 +474,9 @@ bzw die \begriff{Induktion für Gleichheit}, die auch \begriff{Pfadinduktion} ge
 stellt sich als erstaunlich vielseitig heraus.
 Sie besagt, dass für einen abhängigen Typen über dem Gleichheitstyp,
 also etwa $x:A,y:A,p:x=_A y\yields B(p)$ und eine Vorgabe für $\refl_x$ also ein Element $b_r : \prod_{x:A} B(\refl_x)$ bereits eine abhängige Funktion wie folgt gegeben ist:
-\begin{mathpar}
+\[
   \ind{=}(B,b_r) : \prod_{x,y:A}\prod_{p:x=_A y}B(p)
-\end{mathpar}
+\]
 Eine wünschenswerte Eigenschaft für Gleichheitsbegriffe ist, dass es sich um Äquivalenzrelationen handelt.
 Da es sich bei unserem Gleichheitstyp im Allgemeinen um mehr als eine Relation handelt,
 haben statt den Eigenschaften Reflexivität, Symmetrie und Transitivität eine sogenannte \begriff{Gruppoidstruktur}\footnote{Die Gleichungen, die in einem Gruppoid gelten würden, gelten hier nicht strikt.}.
@@ -488,17 +488,17 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
   \begin{enumerate}
   \item Für $p:x=_A y$ bezeichnen wir mit $p^{-1}:y=_A x$ die \begriff{inverse Gleichheit}, also eine Funktion $\_^{-1}:x=_A y\to y=_A x$,
     welche wir durch Vorgabe für ``$\refl_x$'' definieren können:
-    \begin{mathpar}
+    \[
       (\refl_x)^{-1}\colonequiv \refl_x
-    \end{mathpar}
+    \]
     bzw durch die folgende Induktion:
-    \begin{mathpar}
+    \[
       \ind{=}(x,y:A,p:x=_A y\yields y=_A x; \refl_{x}) : \prod_{x,y:A}\prod_{p:x=_A y}y=_A x
-    \end{mathpar}
+    \]
   \item Seien $x,y,z:A$. Für zwei Gleichheiten $p:x=_A y$ und $q:y=_A z$ ist die \begriff{Konkatenation} $p\kon q$ gegeben durch:
-    \begin{mathpar}
+    \[
       \refl_x\kon q \colonequiv q
-    \end{mathpar}
+    \]
     Der Induktionsterm sieht für $z:A$ wie folgt aus:
     \begin{align*}
       &\ind{=}(x,y:A,p:x=_A y\yields y=_A z\to x=_A z; \id_{x=_A z}) \\
@@ -509,13 +509,13 @@ Transitivität wird zu einer Verkettungsoperation oder Konkatenation von Gleichh
 
 \begin{beispiel}
   Nach Beispiel \labelcref{bsp:einheit-kontrahierbar} gibt es einen Term
-  \begin{mathpar}
+  \[
     \prod_{x:\einheit} x=\ast
-  \end{mathpar}
+  \]
   Damit können wir nun auch zeigen, dass alles in $\einheit$ paarweise gleich ist:
-  \begin{mathpar}
+  \[
     (x,y:\einheit)\mapsto k(x)\kon k(y)^{-1}:\prod_{x,y:\einheit}x=y
-  \end{mathpar}
+  \]
 \end{beispiel}
 
 Nach diesen Konstruktionen wirkt die Induktionsregel für Gleichheit vielleicht etwas zu stark.
@@ -524,9 +524,9 @@ auf die wir die Induktionsregel anwenden.
 Dass es dabei etwas zu beachten gibt, sieht man an den Grenzen der Induktionsregel:
 \begin{bemerkung}
   Das folgende kann nicht mit Induktion (und auch sonst mit keiner Regel der Vorlesung) gezeigt werden\footnote{So etwas lässt sich nicht so einfach formal zeigen. }:
-  \begin{mathpar}
+  \[
     \prod_{x:A} \prod_{p:x=_A x} p=_{x=x}\refl_x
-  \end{mathpar}
+  \]
 \end{bemerkung}
 Das Problem dabei ist, dass wir keine Möglichkeit haben zu fordern, dass die Endpunkte $x$ und $y$ die gleiche Variable sind.
 Der abhängige Typ $x:A,p:x=_A x\yields p=\refl_x$ kann also nicht in die Form gebracht werden, die wir für die Induktionsregel brauchen.
@@ -547,13 +547,13 @@ Zunächst verhält sich $\refl_x$ ähnlich wie ein Neutralelement:
   \begin{enumerate}
   \item Diese Gleichung gilt bereits urteilsmäßig.
   \item Unser Ziel ist:
-    \begin{mathpar}
+    \[
       \prod_{x,y:A}\prod_{p:x=_A y} p\kon\refl_y=p
-    \end{mathpar}
+    \]
     Mit Induktion reicht es also zu zeigen
-    \begin{mathpar}
+    \[
       \prod_{x:A} \refl_x\kon\refl_x=\refl_x
-    \end{mathpar}
+    \]
     Der Term $\refl_x\kon\refl_x$ ist aber bereits nach Definition urteilsmäßig gleich $\refl_x$.
     Also ist $x\mapsto \refl_{\refl_x}$ ein passender Term.
   \end{enumerate}
@@ -567,26 +567,26 @@ Insgesamt lässt sich der Weg $p\kon p^{-1}$ in Richtung $x$ zusammenziehen zum 
 Formal können wir diese Tatsache mit einer Gleichheitsinduktion fassen:
 \begin{bemerkung}
   Für einen Typ $A$ und Elemente $x,y:A$ gilt für jedes $p:x=_A y$:
-  \begin{mathpar}
+  \[
     p\kon p^{-1} =_{x=_A x} \refl_x
-  \end{mathpar}
+  \]
 \end{bemerkung}
 \begin{beweis}
   Wir wollen also etwas in folgendem Typ konstruieren:
-  \begin{mathpar}
+  \[
     \prod_{x,y:A}\prod_{p:x=y}p\kon p^{-1}=\refl_x.
-  \end{mathpar}
+  \]
   Um das mit Induktion zu erledigen, müssen wir das für $p\equiv\refl_x$ zeigen, also einen Term von
-  \begin{mathpar}
+  \[
     \prod_{x:A} \refl_x \kon\refl_x^{-1}=\refl_x
-  \end{mathpar}
+  \]
   angeben. Nach Definition von $\_^{-1}$ gilt $\refl_x^{-1}\equiv \refl_x$,
   also müssen wir für $x:A$ eigentlich nur etwas in $\refl_x\kon\refl_x =\refl_x$ konstruieren.
   Nach Definition von $\_\kon\_$ ist das aber nur $\refl_x=\refl_x$.
   D.h. wir haben mit
-  \begin{mathpar}
+  \[
     (x:A)\mapsto \refl_{\refl_x}
-  \end{mathpar}
+  \]
   den gesuchten Term konstruiert.
 \end{beweis}
 
@@ -599,19 +599,19 @@ Als letzte elementare Gleichung für das Rechnen mit Gleichheiten, zeigen wir di
 \begin{bemerkung}
   \label{bem:assoc}
   Für einen Typ $A$ und $x,y,z,w:A$ gilt:
-  \begin{mathpar}
+  \[
     \prod_{p:x=y}\prod_{q:y=z}\prod_{r:z=w} (p\kon q)\kon r = p \kon (q\kon r)
-  \end{mathpar}
+  \]
 \end{bemerkung}
 \begin{beweis}
   Durch Umsortieren der Abhängigkeiten, was wir nach den Strukturregeln dürfen, können wir Induktion auf den folgenden abhängigen Typen anwenden:
-  \begin{mathpar}
+  \[
     x:A,y:A,p:x=_A y\yields \prod_{z,w:A}\prod_{q:y=z}\prod_{r:z=w}(p\kon q)\kon r = p \kon (q\kon r)
-  \end{mathpar}
+  \]
   Also müssen wir nur noch folgendes zeigen:
-  \begin{mathpar}
+  \[
     \prod_{x:A}\prod_{z,w:A}\prod_{q:x=z}\prod_{r:z=w}(\refl_x\kon q)\kon r = \refl_x \kon (q\kon r)
-  \end{mathpar}
+  \]
   Aber die Gleichung lässt sich nun mit per Definition gegebenen Urteilsgleichheiten zu $q\kon r=q\kon r$ reduzieren,
   was durch $\refl_{q\kon r}$ gegeben ist.
 \end{beweis}
@@ -668,9 +668,9 @@ Das ist mit der bekannten Vorgehensweise schnell erledigt:
   Seien $A,B$ Typen, $f:A\to B$ eine Funktion, $x,y:A$ und $p:x=_A y$.
   Es sei $f(p):f(x)=_B f(y)$ das \begriff{Bild der Gleichheit} $p$, das wir auch mit $\mathrm{ap}(f,p):f(x)=_B f(y)$ bezeichnen,
   gegeben durch
-  \begin{mathpar}
+  \[
     f(\refl_x)\colonequiv \refl_{f(x)}
-  \end{mathpar}
+  \]
 \end{definition}
 Auch hierfür wollen wir zumindest die grundlegenden Gleichungen erwähnen:
 \begin{bemerkung}
@@ -690,9 +690,9 @@ Dabei würde es wegen der Symmetrie auch schon reichen, zu verlangen, dass im Fa
 Für unsere Gleichheit bekommen wir für einen abhängigen Typen $B$ sogar eine Abbildung $B(x)\to B(y)$ statt einer Implikation:
 \begin{definition}
   Seien $A$ ein Typ und $x:A\yields B(x)$ ein abhängiger Typ über $A$. Dann sei für $x,y:A$ und $p:x=_A y$ die Abbildung
-  \begin{mathpar}
+  \[
     \mathrm{tr}_B(p):B(x)\to B(y)
-  \end{mathpar}
+  \]
   gegeben durch $\mathrm{tr}(\refl_x)\colonequiv \id_{B(x)}$.
   Die Abbildung $\mathrm{tr}_B(p)$ heißt \begriff{Transport} in $B$ entlang von $p$.
 \end{definition}
@@ -700,23 +700,23 @@ Transport kann man für spezielle Typen konkretisieren.
 \begin{lemma}
   \label{lem:transp-lpath}
   Seien $A$ ein Typ und $a:A$. Für den von $x:A$ abhängigen Typ $B(x)\colonequiv (x=a)$ kann der Transport für $x,x':A$ und $p:x=x'$ berechnet werden:
-  \begin{mathpar}
+  \[
     ((q:x=a)\mapsto p^{-1}\kon q) = \mathrm{tr}_B(p) : B(x) \to B(x')
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Die Behauptung folgt aus:
-  \begin{mathpar}
+  \[
     (q:x=a)\mapsto \refl_x^{-1}\kon q = \id_{x=a} 
-  \end{mathpar}
+  \]
 \end{beweis}
 
 Außerdem verträgt sich der Transport mit der Konkatenation:
 \begin{lemma}
   Seien $A$ ein Typ und $x:A\yields B(x)$. Für $x,y,z:A$ gilt:
-  \begin{mathpar}
+  \[
      \prod_{p:x=y}\prod_{q:y=z} \mathrm{tr}_B(q)\circ\mathrm{tr}_B(p)=\mathrm{tr}_B(p\kon q)
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Induktion über $p$.
@@ -738,13 +738,13 @@ verallgemeinert die abhängige Summe das kartesische Produkt $A\times B$, dadurc
     Die abhängige Summe wird auch \begriff{abhängiger Paartyp} oder \begriff{Sigmatyp} genannt und alternativ mit $(x:A)\times B(x)$ bezeichnet.
   \item Für $x:A$ und $b(x):B(x)$ gibt es ein \begriff{Paar}, also ein Element $(x,b(x)) : \sum_{x:A}B(x)$.
   \item Für einen abhängigen Typ $y:\sum_{x:A}B(x)\yields C(y)$ und einen abhängigen Term $x:A,b(x):B\yields c((x,b(x))) : C((x,b(x)))$ gibt es eine abhängige Funktion
-    \begin{mathpar}
+    \[
       \ind{\sum}(C, c):\prod_{y:\sum_{x:A}B(x)}C(y)
-    \end{mathpar}
+    \]
   \item Für auf diese Art definierte Funktionen gilt für $a:A, b:B(a)$ die Urteilsgleichheit
-    \begin{mathpar}
+    \[
       \ind{\sum}(C, c)((a,b))\equiv c((a,b)) : C((a,b))
-    \end{mathpar}
+    \]
   \end{itemize}
 \end{regeln}
 
@@ -752,22 +752,22 @@ Wenn keine Verwechslungsgefahr besteht, wollen wir etwa für ``$c((a,b))$'' auch
 Die Induktionsregel, also den dritten Punkt oben, hätten wir auch wie folgt formulieren können:
 Für $c:\prod_{x:A}\prod_{b:B(x)}C(a,b)$ gibt es $\ind{\sum}(C,c):\prod_{y:\sum_{x:A}B(x)}C(y)$.
 Und wir wollen auch hier wieder Funktionen durch ihre definierende Gleichung in folgender Form angeben:
-\begin{mathpar}
+\[
   g(a,b)\colonequiv c(a,b)
-\end{mathpar}
+\]
 Es gibt Projektionen auf die Faktoren einer abhängigen Summe:
 \begin{definition}
   Seien $A$ ein Typ und $x:A\yields B(x)$ abhängiger Typ über $A$.
   \begin{enumerate}
   \item Die Funktion $\pi_1:\left(\sum_{x:A}B(x)\right)\to A$\index{$\pi_1$} gegeben durch
-      \begin{mathpar}
+      \[
         \pi_1(a,b)\colonequiv a
-      \end{mathpar}
+      \]
       heißt \begriff{Projektion} auf die Basis oder Projektion auf den ersten Faktor.
     \item Die abhängige Funktion $\pi_2:\left(y:\sum_{x:A}B(x)\right)\to B(\pi_1(y))$\index{$\pi_2$} gegeben durch
-      \begin{mathpar}
+      \[
                 \pi_2(a,b)\colonequiv b
-      \end{mathpar}
+      \]
       heißt zweite \begriff{Projektion} oder Projektion auf den zweiten Faktor.
   \end{enumerate}
 \end{definition}
@@ -785,14 +785,14 @@ Ein Beispiel dafür ist die folgenden wichtigen Definitionen, die uns von nun an
   \begin{enumerate}
   \item Zwei Funktionen $f:A\to B$ und $g:B\to A$ sind \begriff{zueinander invers},
     wenn
-    \begin{mathpar}
+    \[
       \left(\prod_{x:A} g(f(x))=x\right)\times \left(\prod_{y:B}f(g(y))=y\right)
-    \end{mathpar}
+    \]
   \item Sei $f:A\to B$ eine Funktion. Wir sagen, dass $f$ eine \begriff{Quasi-Inverse} oder \begriff{Inverse} hat,
     wenn der Typ
-    \begin{mathpar}
+    \[
       \mathrm{qinv(f)}\colonequiv\sum_{g:B\to A}\left(\left(\prod_{x:A}g(f(x))=x\right) \times \left(\prod_{y:B}f(g(y))=y\right)\right)
-      \end{mathpar}
+      \]
       einen Term hat.
   \end{enumerate}
 \end{definition}
@@ -801,13 +801,13 @@ Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
 \begin{definition}
   \label{def:currying}
   Seien $A,B,C$ Typen. Die Abbildung
-  \begin{mathpar}
+  \[
     \mathrm{curry}: ((A\times B) \to C) \to (A\to (B\to C))
-  \end{mathpar}
+  \]
   ist gegeben durch:
-  \begin{mathpar}
+  \[
     \mathrm{curry}(f)\colonequiv (x\mapsto (y\mapsto f(x,y)))
-  \end{mathpar}
+  \]
   Analog lässt sich auch \begriff{Uncurrying} definieren:
   \begin{align*}
     &\mathrm{uncurry}: (A\to (B\to C)) \to ((A\times B) \to C) \\
@@ -823,9 +823,9 @@ Mit Produkten können wir nun sogenanntes \begriff{Currying} formal fassen:
 Mit abhängigen Summen haben wir die Möglichkeit, Existenzaussagen zu formulieren:
 \begin{definition}
   Seien $a,d:\N$. Die Phrase $d$ \begriff{teilt} $a$ steht für den folgenden Typen:
-  \begin{mathpar}
+  \[
     \sum_{c:\N} c\cdot d = a
-  \end{mathpar}
+  \]
 \end{definition}
 Gleichungen in den natürlichen Zahlen werden wir uns später noch zuwenden.
 Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen oder speziell Produkte der Gleichheitstyp verhält.
@@ -835,48 +835,48 @@ Zunächst wollen wir uns damit beschäftigen, wie sich für abhängige Summen od
   \begin{enumerate}
   \item Für $x:A\times B$ gilt $x=(\pi_1(x),\pi_2(x))$.
   \item Seien $(a,b),(a',b'):A\times B$, dann gibt es zueinander inverse Funktionen:
-    \begin{mathpar}
+    \[
       \pair_{=}: ((a=_A a')\times (b=_B b')) \to (a,b)=_{A\times B} (a',b')
-    \end{mathpar}
+    \]
     und
-    \begin{mathpar}
+    \[
       \pair_{=}^{-1}: (a,b)=_{A\times B} (a',b') \to ((a=_A a')\times (b=_B b'))
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{lemma}
 \begin{beweis}
   \begin{enumerate}
   \item Ziel ist es, einen Term in
-    \begin{mathpar}
+    \[
       \prod_{x:A\times B} x=(\pi_1(x),\pi_2(x))
-    \end{mathpar}
+    \]
     zu konstruieren. Mit $\sum$-Induktion folgt dieser aus:
-    \begin{mathpar}
+    \[
       a\mapsto b \mapsto \refl_{(a,b)}:\prod_{a : A}\prod_{b : B} (a,b)=(\pi_1(a,b),\pi_2(a,b))
-    \end{mathpar}
+    \]
     Zur Verwendung in Teil (b), geben wir den damit konstruierten Term den Namen $u$.
   \item Wir definieren $\mathrm{pair}_=$ durch doppelte Gleichheitsinduktion:
-    \begin{mathpar}
+    \[
       \pair_=(\refl_a,\refl_b)\colonequiv \refl_{(a,b)}
-    \end{mathpar}
+    \]
     und $\mathrm{pair}_=^{-1}$ definieren wir zunächst etwas zu allgemein durch Bilder einer Gleichheit $p:x=y$ unter den Projektionen:
-    \begin{mathpar}
+    \[
       \pair_=^{-1'}(p)\colonequiv (\pi_1(p),\pi_2(p))
-    \end{mathpar}
+    \]
     und setzen $\pair_=^{-1}(p:(a,a')=(b,b'))\colonequiv\pair_=^{-1'}(p)$.
     Damit können wir mit Gleichheitsinduktion zeigen, dass $\pair_=$ und $\pair_=^{-1}$ zueinander invers sind.
     Ein Teil ist sofort erledigt:
-    \begin{mathpar}
+    \[
       \refl_{(\refl_a,\refl_b)}:\pair_=^{-1}(\pair_=(\refl_a,\refl_b))=(\refl_a,\refl_b)
-    \end{mathpar}
+    \]
     Für den anderen bekommen konstruieren wir erstmal einen Term
-    \begin{mathpar}
+    \[
       t:\prod_{x,y:A\times B}\prod_{p:x=y}\pair_=(\pair_=^{-1'})(p)=u(\pi_1(x),\pi_2(x))^{-1}\kon p\kon u(\pi_1(y),\pi_2(y))
-    \end{mathpar}
+    \]
     durch Gleichheits- und $\sum$-Induktion -- wir dürfen also $\refl_{(a,b)}$ für $p$ einsetzen:
-    \begin{mathpar}
+    \[
       \pair_=(\pair_=^{-1'})(\refl_{(a,b)})=\refl_{(a,b)}^{-1}\kon \refl_{(a,b)}\kon \refl_{(a,b)}
-    \end{mathpar}
+    \]
     Linke und rechte Seite sind per Definition gleich $\refl_{(a,b)}$, also müssen wir nur noch den somit konstruierten Term $t$ entsprechend anpassen.
     Für $p:(a,b)=(a',b')$ lassen sich dazu folgende Gleichheiten konstruieren:
     \begin{align*}
@@ -896,15 +896,15 @@ Um $b_x$ mit $b_y$ zu vergleichen, können wir es entlang einer Gleichheit $p:x=
 \begin{lemma}
   Seien $A$ ein Typ und $x:A\yields B(x)$ abhängig über $A$.
   Für $x,y:A$ und $b_x:B(x)$, $b'_y:B(y)$ gibt es eine Funktion
-  \begin{mathpar}
+  \[
     \sum_=:\prod_{p:x=y} \mathrm{tr}_B(p)(b_x)=b'_y \to (x,b_x)=(y,b'_y)
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Mit Induktion über $p$ reicht es, eine Funktion folgenden Typs anzugeben:
-  \begin{mathpar}
+  \[
     b_x=b'_x \to (x,b_x)=(x,b'_x)
-  \end{mathpar}
+  \]
   Nun sind $b_x,b'_x:B(x)$ noch frei wählbar, also kann wieder Gleichheitsinduktion angewandt und der gesuchte Term auf $\refl_{(x,b_x)}$ festgelegt werden.
 \end{beweis}
 Für die Gleichheit in abhängigen Summen gibt es auch eine Aussage wie \cref{lem:produkt-gleich}, der wir uns jetzt aber erstmal nicht zuwenden.
@@ -914,9 +914,9 @@ Wir beschäftigen uns zunächst mit Gleichheit von Funktionen.
 In verschiedenen Zusammenhängen ist bereits die punkweise Gleichheit von Funktionen aufgetreten, der wir nun einen Namen geben wollen:
 \begin{definition}
   Seien $A,B$ Typen und $f,g:A\to B$ Funktionen. Wir nennen $f$ und $g$ \begriff{homotop} oder \begriff{punktweise gleich}, wenn der folgenden Typ einen Term hat
-  \begin{mathpar}
+  \[
     f \sim g \colonequiv \prod_{x:A} f(x)=g(x)
-  \end{mathpar}
+  \]
   Die Elemente von $f\sim g$ heißen \begriff{Homotopien} oder \begriff{punktweise Gleichheiten}.
 \end{definition}
 Wir werden später das sogenannte \begriff{Univalenzaxiom} und ein \begriff{Intervall} als höheren induktiven Typen einführen.
@@ -924,9 +924,9 @@ Aus beidem kann jeweils gefolgert werden, dass punktweise Gleichheiten bereits d
 Letztere Aussage hat einen eigenen Namen und wird von uns im Folgenden als Axiom verwendet:
 \begin{axiom}[Funktionsextensionalität]
   Unter \begriff{Funktionsextensionalität} versteht man einen Term, der für Typen $A,B$ und Funktionen $f,g:A\to B$ wie folgt gegeben ist:
-  \begin{mathpar}
+  \[
     \mathrm{FunExt}_{f,g}:\left(\prod_{x:A}f(x)=g(x)\right)\to f=g
-  \end{mathpar}
+  \]
 \end{axiom}
 (Genauer fordern wir, dass $\mathrm{FunExt}_{f,g}$ und $(p : f = g) \mapsto ((x : A) \mapsto \mathrm{ap}(h \mapsto h(x), p)) : (f=g)\to f\sim g$ invers zueinander sind, aber das brauchen wir nicht, bis wir $\mathrm{FunExt}$ sowieso nochmal auf eine andere Art einführen.)
 Wir werden uns jeweils merken, für welche Aussagen wir dieses Axiom brauchen.
@@ -940,17 +940,17 @@ Was wir bereits über Gleichheit wissen und mit Gleichheiten machen können, lä
   Seien $A,B$ Typen und $f,g:A\to B$ Funktionen.
   \begin{enumerate}
   \item Es gibt stets den folgenden Term:
-    \begin{mathpar}
+    \[
       (x:A)\mapsto \refl_{f(x)}: f\sim f
-    \end{mathpar}
+    \]
   \item Es gibt eine Operation
-    \begin{mathpar}
+    \[
       H\mapsto (x\mapsto H(x))^{-1}): f\sim g\to g\sim f
-    \end{mathpar}
+    \]
   \item Für eine weitere Funktion $h:A\to B$ gibt es eine Operation
-    \begin{mathpar}
+    \[
       H \mapsto H'\mapsto (x \mapsto H(x)\kon H'(x)) : f\sim g \to g\sim h \to f\sim h 
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{bemerkung}
 
@@ -964,18 +964,18 @@ Wir nennen diese einfachsten Typen kontrahierbar und wollen gleich die nächsten
   Sei $A$ ein Typ.
   \begin{enumerate}
   \item $A$ heißt \begriff{kontrahierbar} oder \begriff{$-2$-Typ}, wenn
-    \begin{mathpar}
+    \[
       \isContr(A)\colonequiv \sum_{c : A} \prod_{x : A} x=c
-    \end{mathpar}
+    \]
     (einen Term hat). 
   \item $A$ heißt \begriff{Aussage} oder \begriff{$-1$-Typ}, wenn
-    \begin{mathpar}
+    \[
       \isProp(A)\colonequiv \prod_{x,y : A}x=y
-    \end{mathpar}
+    \]
   \item $A$ heißt \begriff{$0$-Typ} oder \begriff{Menge}, wenn
-    \begin{mathpar}
+    \[
       \isSet(A)\colonequiv \prod_{x,y : A}\prod_{p,q : x=y}p=q
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{definition}
 
@@ -1000,13 +1000,13 @@ Für die kontrahierbaren Typen stellt sich zusätzlich zum bereits Gesagten hera
 \begin{beweis}
 (a), (b) In den Übungen. \\
 (c) Wir haben
-\begin{mathpar}
+\[
   k:\isContr(A)\equiv \sum_{c:A}\prod_{x:A}x=c
-\end{mathpar}
+\]
 und damit:
-\begin{mathpar}
+\[
   x \mapsto y \mapsto k_x\kon k_y^{-1}:\prod_{x,y:A}x=y
-\end{mathpar}
+\]
 \end{beweis}
 
 Mit der folgenden Bemerkung scheinen auch Aussagen wenig Vielfalt zuzulassen:
@@ -1015,38 +1015,38 @@ Mit der folgenden Bemerkung scheinen auch Aussagen wenig Vielfalt zuzulassen:
 \end{bemerkung}
 \begin{beweis}
   Es gibt
-  \begin{mathpar}
+  \[
     a:\prod_{x,y:P}x=y
-  \end{mathpar}
+  \]
   und damit
-  \begin{mathpar}
+  \[
     (t,x\mapsto a_{x,t}):\isContr(P)\equiv\sum_{c:P}\prod_{x:P}x=c
-  \end{mathpar}
+  \]
 \end{beweis}
 
 Es gibt einen überraschenderweise kontrahierbaren Typen, der uns noch begleiten wird.
 \begin{lemma}
   \label{lem:pfade-kontrahierbar}
   Seien $A$ ein Typ. Dann ist für $y:A$ der Typ
-  \begin{mathpar}
+  \[
     \sum_{x:A}x=y
-  \end{mathpar}
+  \]
   kontrahierbar.
 \end{lemma}
 \begin{beweis}
   Wegen $(y,\refl_y):\sum_{x:A}x=y$ reicht es zu zeigen, dass der Typ eine Aussage ist, also je zwei Elemente gleich sind.
   Durch $\sum$-Induktion, reicht es zu zeigen, dass je zwei Paare
-  \begin{mathpar}
+  \[
     (x,q),(x',q'):\sum_{x:A}x=y
-  \end{mathpar}
+  \]
   gleich sind. Es ist $q\kon q'^{-1}:x=x'$ und damit können wir $\sum_=$ verwenden:
-  \begin{mathpar}
+  \[
     \Sigma_=:\prod_{p:x=x'}\mathrm{tr}_{x:A\yields x=y}(p)(q)=q' \to (x,q)=(x',q')
-  \end{mathpar}
+  \]
   Den Transport haben wir in \cref{lem:transp-lpath} berechnet und können einsetzen:
-  \begin{mathpar}
+  \[
     (q\kon q'^{-1})^{-1} \kon q=q' \to (x,q)=(x',q')
-  \end{mathpar}
+  \]
   Mit Induktion kann berechnet werden: $(q\kon q'^{-1})^{-1}=q'\kon q^{-1}$ und damit mit den Rechengesetzen für Gleichheiten der Beweis beendet werden.
 \end{beweis}
 
@@ -1062,13 +1062,13 @@ Es gibt einige Konstruktionen, die die Eigenschaften ``Aussage''  erhalten (allg
 \begin{beweis}
   \begin{enumerate}
   \item Sei $t:\isProp(P)$, dann ist
-    \begin{mathpar}
+    \[
       \FunExt_{f,g}((x:A)\mapsto t_{(f(x),g(x))}):\isProp(A\to P)\equiv\prod_{f,g:A\to P}f=g
-    \end{mathpar}
+    \]
   \item Seien $t:\isProp(P)$ und $s:\isProp(Q)$. Per doppelter $\sum$-Induktion reicht es für $p,p':P$ und $q,q':Q$ zu zeigen:
-    \begin{mathpar}
+    \[
       (p,q)=(p',q')
-    \end{mathpar}
+    \]
     was durch $\pair_=(t_{p,p'},s_{q,q'})$ gegeben ist.
   \end{enumerate}
 \end{beweis}
@@ -1102,21 +1102,21 @@ Um diese zu formulieren brauchen wir aber noch manche der folgenden, sowieso wic
   Seien $A,B$ Typen und $f:A\to B$ eine Funktion.
   \begin{enumerate}
   \item Für $b:B$ ist die \begriff{Faser} von $f$ über $b$ gegeben durch:
-    \begin{mathpar}
+    \[
       \mathrm{fib}_f(b)\colonequiv f^{-1}(b)\colonequiv \sum_{x:A}f(x)=b
-    \end{mathpar}
+    \]
   \item $f$ heißt \begriff{injektiv}, wenn
-    \begin{mathpar}
+    \[
       \prod_{y:B}\isProp(f^{-1}(y))
-    \end{mathpar}
+    \]
   \item $f$ heißt \begriff{surjektiv}, wenn
-    \begin{mathpar}
+    \[
       \prod_{y:B}\|f^{-1}(y)\|
-    \end{mathpar}
+    \]
   \item $f$ heißt \begriff{Äquivalenz}, wenn
-    \begin{mathpar}
+    \[
       \isEquiv(f)\colonequiv\prod_{y:B}\isContr(f^{-1}(y))
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{definition}
 \begin{bemerkung}
@@ -1139,9 +1139,9 @@ Ein \begriff{Universum} kann man sich erstmal als Typ aller Typen vorstellen.
 Problematisch ist dabei, wie in der Mengenlehre, dass das zu Widersprüchen führt.
 Eine einfach Lösung, die wir hier verwenden werden ist die leichte Abwandlung zu sagen, dass jeder Typ in \emph{einem} Universum liegt und Universen unter möglichst vielen Konstruktionen abgeschlossen sind.
 Genauer fordern wir eine abzählbare Hierarchie von Universen:
-\begin{mathpar}
+\[
   \mU_0, \mU_1, \dots
-\end{mathpar}
+\]
 Dabei sind die Indizes allerdings nicht unsere natürlichen Zahlen, sondern sogenannte \emph{Universenlevel}.
 Dabei handelt es sich um eine Variante der natürlichen Zahlen, die implizit durch Regeln gegeben ist.
 Das verhindert zum Beispiel die Konstruktion von aufsteigenden Folgen von Universen.
@@ -1152,33 +1152,33 @@ Wir verwenden also in Zukunft ``$A:\mU_i$'' synonym mit ``$A$ ist ein Typ''.
 \begin{regeln}
   Wir können nun in allen Regeln Urteile der ``$A$ Typ'' ersetzen durch ``$A:\mU_i$''.
   Bei der Regel $\Pi\mathrm{F}$ bedeutet das etwa:
-  \begin{mathpar}
+  \[
     \inferrule{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):\mU_i}{\Gamma\yields \prod_{x:A}B(x):\mU_i}{\Pi\mathrm{F}}
-  \end{mathpar}
+  \]
   Dabei haben wir die Regel etwas ausgebaut, um fordern zu können, dass $A$ und die $B(x)$ im gleichen Universum liegen.
   Der Index $i$ ist dabei $0$ oder $j+1$ für einen erlaubten Index $j$.
   Die Universen gibt es jetzt auch einfach so als Typen:
-  \begin{mathpar}
+  \[
     \inferrule{\Gamma\text{ Kontext}}{\Gamma\yields\mU_i:\mU_{i+1}}{\mU\mathrm{F}}
-  \end{mathpar}
+  \]
   Insbesondere können wir nun abhängige Typen auch immer äquivalent als Funktionen in ein Universum ausdrücken:
-  \begin{mathpar}
+  \[
     \oldinferrule{\Gamma\yields A:\mU_i\and\Gamma,x:A\yields B(x):U_i}{\Gamma\yields x\mapsto B(x):A\to \mU_i}
-  \end{mathpar}
+  \]
   Grundsätzlich kann es vorkommen, dass wir auch mal Typen aus Bestandteilen konstruieren wollen, die in unterschiedlichen Universen liegen.
   Dazu können wir mit der folgenden Regel alles in ein passendes Universum schieben:
-  \begin{mathpar}
+  \[
     \oldinferrule{\Gamma\yields A:\mU_i}{\Gamma\yields A:\mU_{i+1}}
-  \end{mathpar}
+  \]
 \end{regeln}
 Den Rest dieses Abschnitts verbringen wir damit, Neuerungen zu erwähnen, die sich durch die Verwendung von Universen ergeben.
 Interessanterweise haben wir erst durch Universen die Möglichkeit, manche Gleichheitstypen zu charakterisieren,
 was wir aber erst im nächsten Abschnitt ausführlich angehen werden.
 \begin{bemerkung}
   Mit Universen können wir Induktion als abhängige Funktion umschreiben, etwa für $\N$:
-  \begin{mathpar}
+  \[
     \ind{\N}:\prod_{P:\N\to \mU_i}P(0_{\N})\to \Big(\prod_{n:\N}P(n)\to P\big( \sucN(n) \big)\Big)\to \Big(\prod_{n:\N}P(n)\Big)
-  \end{mathpar}
+  \]
 \end{bemerkung}
 \begin{konvention}
   Meistens werden wir den Index der Universen weglassen, also etwa nur $A:\mU$ schreiben.

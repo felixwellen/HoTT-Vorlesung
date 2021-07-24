@@ -63,17 +63,17 @@ Wegen der üblichen Notation und Sprechweise, wollen wir die Elemente von $\Path
 \begin{definition}
   \begin{enumerate}
   \item Für $a:A$ ist
-    \begin{mathpar}
+    \[
       \refl_a\colonequiv \mathrm{idp}\ a\colonequiv i\mapsto a: \Path\ A\ a\ a
-    \end{mathpar}
+    \]
   \item Für einen Pfad $p:\Path\ A\ t\ u$ gibt es einen \begriff{inversen Pfad}:
-    \begin{mathpar}
+    \[
        p^{-1}\colonequiv \mathrm{sym}\ p\colonequiv i\mapsto p(1-i) : \Path\ A\ u\ t
-    \end{mathpar}
+    \]
   \item Wenn $f:A\to B$ eine Funktion ist und $p:\Path\ A\ t\ u$ ein Pfad, dann ist
-    \begin{mathpar}
+    \[
       f(p)\colonequiv \mathrm{cong}\ f\ p\colonequiv i\mapsto f(p(i))
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{definition}
 
@@ -83,15 +83,15 @@ Terme und Typen die von $n$ Intervallvariablen abhängen, stellt man sich als au
 Komposition und andere Operationen erlauben es, aus Termen und Typen, die auf speziellen Teilen des Rands eines $n$-Würfels gegeben sind, Terme und Typen auf dem ganzen Würfel zu konstruieren.
 
 Um über Ränder von $n$-Würfeln zu reden, verwenden wir \begriff{Randformeln} oder einfach \begriff{Ränder}. Für eine Intervallvariable $i:\I$ gibt es die Ränder
-\begin{mathpar}
+\[
   (i=0)\quad\text{ und }\quad (i=1)
-\end{mathpar}
+\]
 Für Ränder gibt es wie für Intervallvariablen die Operationen $\vee$ und $\wedge$, die hier Vereinigung und Schnitt bedeuten. Weiter gibt es Konstanten $0_{\mathbf{F}}$ und $1_{\mathbf{F}}$. Das ``$\mathbf{F}$'' steht dabei für Face-Lattice. Es gelten naheliegende Gleichungen, wie zum Beispiel $(i=0)\wedge(i=1)=0_{\mathbf{F}}$.
 
 Damit können Unterpolyeder des Randes eines $n$-Würfels beschrieben werden, zum Beispiel
-\begin{mathpar}
+\[
   (i=0)\vee (i=1) \vee (j=0)
-\end{mathpar}
+\]
 Für den Rand eines Quadrats ohne ``Deckel'', also eines ``offenen Quadrats'':
 \begin{center}
   \begin{tikzcd}
@@ -125,9 +125,9 @@ Das bedeutet, dass wir einen Term auf dem offenen Quadrat von oben gefunden habe
   \end{tikzcd}
 \end{center}
 In CCHM bzw Agda gibt es in dieser Situation einen Term
-\begin{mathpar}
+\[
   i\mapsto \mathrm{hcomp}^j\ [(i=0)\mapsto t, (i=1)\mapsto q(j)]\ (p(i)) : \Path\ A\ t\ v
-\end{mathpar}
+\]
 
 Die hier vorgestellten Regeln sind bei weitem noch nicht alles, was eine kubische Typentheorie ausmacht.
 Um das Univalenzaxiom bzw Univalenztheorem beweisen zu können, reicht das bisherige nicht aus.
