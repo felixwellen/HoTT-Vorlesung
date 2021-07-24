@@ -174,7 +174,17 @@ Davor brauchen wir noch das Rekursionsprinzip.
 \begin{beweis}
   \begin{enumerate}
   \item Wie bei der Kreisrekursion.
-  \item Noch nicht entschieden, ob das eine Übungsaufgabe ist.
+  \item
+    Wegen Funktionsextensionalität genügt es, $\prod_{x : I} f(x) = \rec{I}(A, f(0_I), f(1_I), f(s))(x)$ zu zeigen.
+    Dazu verwenden wir $I$-Induktion:
+    \begin{itemize}
+      \item $\refl_{f(0_I)} : f(0_I) = \underbrace{\rec{I}(A, f(0_I), f(1_I), f(s))(0_I)}_{\overset{(a)}{\equiv} f(0_I)}$
+      \item $\refl_{f(1_I)} : f(1_I) = \underbrace{\rec{I}(A, f(1_I), f(1_I), f(s))(1_I)}_{\overset{(a)}{\equiv} f(1_I)}$
+      \item Es verbleibt also, $\refl_{f(0_I)} =_s^{f(\_) = r(\_)} \refl_{f(1_I)}$ zu zeigen.
+        Dabei ist
+        \[ ( \refl_{f(0)} =_s^{f(\_) = r(\_)} \refl_{f(1)} ) \overset{\text{ÜA}}\equiv (f(s)^{-1} \cdot \refl_{f(0)} \cdot \underbrace{\rec{I}(A, f(0), f(1), f(s))(s)}_{\overset{(a)}{=} f(s)} = \refl_{f(1)}). \]
+        Damit beweist $\refl_{\refl_{f(1)}}$ die Aussage.
+    \end{itemize}
   \end{enumerate}
 \end{beweis}
 
