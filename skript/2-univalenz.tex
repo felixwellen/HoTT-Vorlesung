@@ -687,12 +687,12 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
     \sum_{l:\N}\Eq{\N}(n,l)
   \]
   kontrahierbar ist. Als Kontraktionszentrum wählen wir $(n,\ast)$.
-  Nach Induktion über $n$,$l$ und Ausschluss aller Fälle mit leerer Domäne bleiben noch zu konstruieren:
+  Nach Induktion über $n, l$ und Ausschluss aller Fälle mit leerer Domäne bleiben noch zu konstruieren:
   \begin{align*}
     \prod_{e:\Eq{\N}(0,0)} & (0,e)=(0,\ast) \\
     \prod_{e:\Eq{\N}(\sucN(n),\sucN(l))} & (\sucN(l),e)=(\sucN(n),\ast)
   \end{align*}
-  Im ersten Fall lässt sich die Gleichheit stets durch die kontrahierbarkeit von $\eins$ konstruieren.
+  Im ersten Fall lässt sich die Gleichheit stets durch die Kontrahierbarkeit von $\eins$ konstruieren.
   Im zweiten Fall dürfen wir die Induktionshypothese verwenden:
   \[
     \mathrm{IH}:\prod_{e:\Eq{\N}(n,l)}(l,e)=(n,\ast)
@@ -712,9 +712,9 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
   $\N$ ist ein 0-Typ.
 \end{bemerkung}
 \begin{beweis}
-  Wir wissen dass die Typen $\leer$ und $\eins$ Aussagen sind durch \cref{bsp:leer-eins-hlevel} und \cref{bem:kontrahierbar-folgt-aussage}.
+  Wir wissen dass die Typen $\leer$ und $\eins$ Aussagen sind durch \Cref{bsp:leer-eins-hlevel} und \Cref{bem:kontrahierbar-folgt-aussage}.
   Mit $\N$-Induktion ist also $\Eq{\N}(n,k)$ für alle $n,k\in\N$ eine Aussage.
-  Nach Definition ist ein Typ ein 0-Typ oder eine Menge, wenn alle Gleichheitstypen Aussagen sind, also sind wir mit \cref{thm:gleichheit-nat} fertig.
+  Nach Definition ist ein Typ ein 0-Typ oder eine Menge, wenn alle Gleichheitstypen Aussagen sind, also sind wir mit \Cref{thm:gleichheit-nat} fertig.
 \end{beweis}
 
 \subsection{Gleichheit algebraischer Strukturen}
@@ -796,7 +796,7 @@ werden wir zunächst die Chrakterisierung von Gleichheitstypen in abhängigen Su
   \[
     \transp_{\mathrm{HalbGrp}}(p):\mathrm{HalbGrp}(A) \to \mathrm{HalbGrp}(B)
   \]
-  und wir können durch Raten und anschließendem bestätigen durch Gleichheitsinduktion berechnen, was dieser Transport macht.
+  und wir können durch Raten und anschließendem Bestätigen durch Gleichheitsinduktion berechnen, was dieser Transport macht.
   Sei $(\_\cdot\_, \cdot\mathrm{assoc}):\mathrm{HalbGrp}(A)$.
   Wir raten zunächst, dass die Multiplikation mit $e$ prä- und postkomponiert wird, die Multiplikation des Bildes also für $x,y:B$ gegeben ist durch:
   \[
