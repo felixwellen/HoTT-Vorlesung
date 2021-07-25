@@ -6,9 +6,9 @@ dass es sich um den selben Begriff handelt. Einen haben wir bereits eingeführt 
 Von einem Äquivalenzbegriff erwarten wir, dass es sich beim entsprechenden Typ $\isEquiv(f)$ um eine Aussage handelt.
 Das hat zur Folge, dass wir es als eine Eigenschaft von Funktionen anssehen können eine Äquivalenz zu sein.
 Damit ist dann auch der Typ der Äquivalenzen zwischen $A$ und $B$ eine Untertyp von $A\to B$, d.h. die Vergiß-Abbildung
-\begin{mathpar}
+\[
   \pi_1:\left(\sum_{f:A\to B}\isEquiv(f)\right)\to (A\to B)
-\end{mathpar}
+\]
 ist injektiv.
 
 Zur Vorbereitung beschäftigen wir uns noch etwas mit Homotopien.
@@ -17,9 +17,9 @@ Zur Vorbereitung beschäftigen wir uns noch etwas mit Homotopien.
   \begin{enumerate}
   \item Sei $H:f\sim g$. Für $\varphi:A'\to A$ gibt es eine Homotopie $H_{\varphi(\_)}:f\circ \varphi\sim g\circ \varphi$ und für $\psi:B\to B'$ gibt es eine Homotopie $\psi(H):\psi\circ f\sim \psi\circ g$. Diese Operationen nennt man \begriff{whiskering}.
   \item Sei $H:f\sim g$. Homotopien sind natürlich in folgendem Sinn: Für $p:x=_A y$ gilt:
-    \begin{mathpar}
+    \[
       H_x\kon g(p) = f(p)\kon H_{y}
-    \end{mathpar}
+    \]
   \item Für eine Homotopie $H:f\sim\id$ gilt $f(H_x)=H_{f(x)}$.
   \end{enumerate}
 \end{bemerkung}
@@ -33,14 +33,14 @@ Wir beginnen mit einer scheinbar unbedeutenden Variation des Begriffs Quasi-Inve
   \item $f$ hat eine \begriff{Linksinverse}, wenn es ein $g:B\to A$ gibt und $g\circ f\sim\id_A$.
   \item $f$ hat eine \begriff{Rechtsinverse} oder einen \begriff{Schnitt}, wenn es ein $h:B\to A$ gibt und $f\circ h\sim \id_B$.
   \item $f$ ist eine \begriff{Äquivalenz} oder eine Funktion mit \begriff{Links- und Rechtsinversen}, wenn
-    \begin{mathpar}
+    \[
       \isEquiv(f)\colonequiv\mathrm{LRInv}(f)\colonequiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
-    \end{mathpar}
+    \]
   \item Wenn es eine Äquivanz zwischen $A$ und $B$ gibt, dann sagen wir $A$ ist \begriff{äquivalent} zu $B$.
   \item Für den Typ der Äquivalenzen zwischen $A$ und $B$ schreiben wir:
-    \begin{mathpar}
+    \[
       A\simeq B\colonequiv\sum_{f:A\to B}\isEquiv(f)
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{definition}
 
@@ -63,18 +63,18 @@ wenn wir logische Äquivalenz gezeigt haben und dass es sich jeweils um Aussagen
 \end{bemerkung}
 \begin{beweis}
   Nehmen wir zünachst an, es gibt eine Quasi-Inverse $g:B\to A$ mit $H:g\circ f\sim\id_A$ und $K:f\circ g\sim\id_B$. Dann ist
-  \begin{mathpar}
+  \[
     ((g,H),(g,K)):\mathrm{LRInv}(f)
-  \end{mathpar}
+  \]
   Seien nun andererseits $g,h:B\to A$ links- und rechtsinvers zu $f$. Wir zeigen, dass $g$ und $h$ homotop sind. Damit können wir dann zeigen, dass $g$ auch rechtsinvers ist.
   Durch Whiskering erhalten wir:
-  \begin{mathpar}
+  \[
     g\sim g\circ (f\circ h) \sim (g\circ f)\circ h  \sim h
-  \end{mathpar}
+  \]
   Also ist $g$ rechtsinvers:
-  \begin{mathpar}
+  \[
     f\circ g\sim f\circ h\sim \id_B
-  \end{mathpar}
+  \]
 \end{beweis}
 
 Wenn wir also zu einer Funktion $f:A\to B$ eine beidseitige Inverse konstruieren, dann ist $f$ eine Äquivalenz (im Sinn einer Funktion mit Links- und Rechtsinversen).
@@ -109,18 +109,18 @@ Wir werden allerdings erstmal eine Implikation klären und für die zweite einen
 \begin{bemerkung}
   \label{bem:isContr-lrinv}
   Seien $A,B:\mU$ und $f:A\to B$. Wenn alle Fasern von $f$ kontrahierbar sind, dann hat $f$ Links- und Rechtsinverse, es gibt also eine Funktion:
-  \begin{mathpar}
+  \[
     \left(\prod_{y:B}\isContr(f^{-1}(y))\right) \to \mathrm{LRInv}(f)
-  \end{mathpar}
+  \]
 \end{bemerkung}
 
 \begin{beweis}
   Sei $k:\prod_{y:B}\isContr(f^{-1}(y))$.
   Wir konstruieren eine beidseitige Inverse $g:B\to A$ indem wir $y:B$ auf das Kontraktionszentrum der Faser $f^{-1}(y)$ abbilden:
   Für $\pi_1(k_y)$ ist ein Element von $f^{-1}(y)$, besteht also aus $x:A$ und $p:f(x)=y$, also können wir festlegen
-  \begin{mathpar}
+  \[
     g(y)\colonequiv x
-  \end{mathpar}
+  \]
   Dann ist $f(g(y))=f(x)=y$, also $g$ Rechtsinverse von $f$. Für $x:A$ sei $x'\colonequiv g(f(x))$.
   Es müssen $x:A$ und $x':A$ beide in $f^{-1}(f(x))$ liegen und da diese Faser kontrahierbar ist, gibt es eine Gleichheit $q:x=x'=g(f(x))$.
   Genauer haben wir durch die Kontrahierbarkeit eine Gleichheit $q':(x,\refl_{f(x)})=(x',p')$ in der Faser $f^{-1}(f(x))$.
@@ -134,9 +134,9 @@ Für eine Funktion $f:A\to B$ mit Inverser $g:B\to A$ besagt diese Kohärenz, da
 \begin{definition}
   Seien $A,B:\mU$ und $f:A\to B$.
   Eine Funktion $g:B\to A$ heißt \begriff{kohärente Inverse} von $f$, wenn es Homotopien $H:g\circ f\sim \id$ und $K:f\circ g \sim \id$ gibt und
-  \begin{mathpar}
+  \[
     \mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}
-  \end{mathpar}
+  \]
   Wir schreiben $\mathrm{CohInv}(f)$ für den Typ der \begriff{kohärenten Inversen} von $f$.
 \end{definition}
 
@@ -150,9 +150,9 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
 \begin{lemma}
   \label{lem:gleichheit-in-faser}
   Seien $A,B$ Typen, $f:A\to B$ und $y:B$. Für $(x,q),(x',q'):f^{-1}(y)$ gibt es eine Funktion:
-  \begin{mathpar}
+  \[
     \prod_{p:x=_A x'}f(p)^{-1}\kon q=q'\to (x,q)=(x',q')
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}[von \cref{lem:gleichheit-in-faser}]
   Induktion über $p$ und $\sum_=$.
@@ -162,17 +162,17 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
   Habe also $f:A\to B$ eine kohärente Inverse, gebe es also $g:B\to A$, $H:g\circ f\sim \id$, $K:f\circ g \sim \id$ und $\mathrm{koh} : \prod_{x:A}f(H_x)=K_{f(x)}$.
   Wir müssen nun für jede Faser von $f$ eine Kontraktion angeben.
   Als Kontraktionszentrum für die Faser über $y:B$ wählen wir
-  \begin{mathpar}
+  \[
     k_y\colonequiv (g(y), K_y) : f^{-1}(y)
-  \end{mathpar}
+  \]
   Seien nun also $(x,q),(x',q'):f^{-1}(y)$. Damit haben wir auch $q\kon q'^{-1}:f(x)=f(x')$ und damit:
-  \begin{mathpar}
+  \[
     H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x':x=x'
-  \end{mathpar}
+  \]
   Darauf wenden wir jetzt $f$ an:
-  \begin{mathpar}
+  \[
     f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x'):f(x)=f(x')
-  \end{mathpar}
+  \]
   und berechnen mit Natürlichkeit von Homotopien, der Kohärenz und den Gruppoidgesetzen:
   \begin{align*}
     f(H_x^{-1}\kon g(q\kon q'^{-1}) \kon H_x')&=f(H_x^{-1})\kon f(g(q\kon q'^{-1})) \kon f(H_x') \\
@@ -188,9 +188,9 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
 \end{bemerkung}
 \begin{beweis}
   Seien $g:B\to A$ und $H:g\circ f\sim\id$, $K:f\circ g\sim \id$. Setze für $y:B$:
-  \begin{mathpar}
+  \[
     K'(y) \colonequiv K_{f(g(y))}^{-1}\kon f(H_{g(y)})\kon K_{y}
-  \end{mathpar}
+  \]
   und rechne nach dass für $x:A$ gilt: $f(H_x)=K'_{f(x)}$.
 \end{beweis}
 
@@ -199,17 +199,17 @@ Vor dem Beweis noch ein Hilfslemma, das wir auch sonst noch wiederverwenden kön
   Seien $A,B:\mU$ und $f:A\to B$, dann sind die folgenden Äquivalenzbegriffe logisch äquivalent:
   \begin{enumerate}
   \item Alle Fasern von $f$ sind kontrahierbar:
-    \begin{mathpar}
+    \[
       \isEquiv(f)\colonequiv\prod_{y:B}\isContr(f^{-1}(y))
-    \end{mathpar}
+    \]
   \item $f$ hat eine Linksinverse und eine Rechtsinverse:
-    \begin{mathpar}
+    \[
       \isEquiv(f)\colonequiv\mathrm{LRInv}\equiv  \left(\sum_{g:B\to A}g\circ f\sim\id_A\right)\times\left(\sum_{h:B\to A}f\circ h\sim\id_B\right)
-    \end{mathpar}
+    \]
   \item $f$ hat eine kohärente Inverse:
-    \begin{mathpar}
+    \[
       \isEquiv(f)\colonequiv\mathrm{CohInv}(f)\colonequiv \sum_{g:B\to A} \sum_{H:g\circ f\sim\id}\sum_{K:f\circ g\sim\id} \prod_{x:A}f(H_x)=K_{f(x)}
-    \end{mathpar}
+    \]
   \end{enumerate}
   Wir schreiben für alle drei Begriffe $\isEquiv(f)$, weil sich noch rausstellen wird, dass alle diese Typen Aussagen sind und damit alle drei Typen äquivalent sind.
 \end{theorem}
@@ -228,9 +228,9 @@ Mit Universen sind wir in der Lage Ungleichheit von Elementen eines Typs zu bewe
 Diese definieren wir zunächst als Negation der Gleichheit:
 \begin{definition}
   Seien $A:\mU$ und $x,y:A$. Dann ist $x$ \begriff{ungleich} $y$, wenn
-  \begin{mathpar}
+  \[
     x\not= y\colonequiv (x=y\to \leer).
-  \end{mathpar}
+  \]
 \end{definition}
 Man beachte, dass es sich bei diesem Typ stets um eine Aussage handelt.
 Es sind also in $x\not= y$ keine so interessanten Dinge zu finden, wie im Gleichheitstyp und wir werden uns auch wenig mit Ungleichheiten beschäftigen.
@@ -246,9 +246,9 @@ Es sind also in $x\not= y$ keine so interessanten Dinge zu finden, wie im Gleich
   \end{align*}
   Um die Ungleichheit zu zeigen, dürfen wir $p:1_\zwei = 0_\zwei$ annehmen und müssen ein Element in $\leer$ konstruieren.
   Sei also $p:1_\zwei = 0_\zwei$. Damit haben wir auch eine Abbildung:
-  \begin{mathpar}
+  \[
     \transp_B(p):B(1_\zwei)\to B(0_\zwei)
-  \end{mathpar}
+  \]
   Und wegen $\ast:B(1_\zwei)\equiv \eins$ haben wir auch ein Element, das wir in diese Abbildung einsetzen können.
   Es ist also $\transp_B(p)(\ast):B(0_\zwei)\equiv \leer$.
 \end{beweis}
@@ -272,37 +272,37 @@ Das wird unser Ziel in \cref{sec:zahlen-gleichheit} sein.
 
 Ohne Weiteres können wir bereits für $A,B:\mU_i$ den Typ $A=_{\mU_i}B$ der Gleichheiten zwischen $A$ und $B$ formen.
 Dieser liegt allerdings im nächsthöheren Universum $\mU_{i+1}$, da wir in der Formierungsregel für Gleichheitstypen ``X ist ein Typ'' durch ``$X : \mU_i$'' ersetzen und dafür nur ``$\mU_i : \mU_{i+1}$'' in Frage kommt:
-\begin{mathpar}
+\[
   \inferrule{\Gamma\yields \mU_i:\mU_{i+1}\and \Gamma\yields A,B:\mU_i}{\Gamma\yields A=_{\mU_i}B:\mU_{i+1}}{=\mathrm{F}}
-\end{mathpar}
+\]
 
 Damit lässt sich zeigen, dass gleiche Typen äquivalent sind.
 \begin{bemerkung}
   Für $A,B:\mU$ gibt es eine Funktion
-  \begin{mathpar}
+  \[
     \transp_{\id_\mU}:A=_{\mU} B\to (A\simeq B)
-  \end{mathpar}
+  \]
   den \begriff{Universentransport}.
 \end{bemerkung}
 \begin{beweis}
   Seien $A,B:\mU_i$. Dann gibt es einen abhängigen Typ $X:\mU_i\to\mU_{i+1}$ und damit
-  \begin{mathpar}
+  \[
     \transp_{\id_\mU}\colonequiv\transp_{X}:A=_{\mU_i}B\to A\simeq B
-  \end{mathpar}
+  \]
   Nach Beispiel \labelcref{bsp:transp-aequiv} sind Transporte immer Äquivalenzen.
 \end{beweis}
 
 Es ist also möglich, aus einer Gleichheit von Typen eine Äquivalenz zu kontruieren.
 Die Umkehrung, aus einer Äquivalenz auch eine Gleichheit konstruieren zu können, nennt man das Univalenzaxiom.
 \begin{axiom}[Univalenzaxiom]
-  Wir nehmen von nun an an, dass das \begriff{Univalenzaxiom} gilt: Für $A,B:\mU$ ist die Funktion
-  \begin{mathpar}
+  Von nun an nehmen wir an, dass das \begriff{Univalenzaxiom} gilt: Für $A,B:\mU$ ist die Funktion
+  \[
     \transp_{\id_\mU}:A=_{\mU}B\to A\simeq B
-  \end{mathpar}
+  \]
   eine Äquivalenz ist. Die Inverse von $\transp_{\id_\mU}$ bezeichnen wir mit $\ua$\index{$\ua$}:
-  \begin{mathpar}
+  \[
     \ua:A\simeq B\to A=_{\mU}B
-  \end{mathpar}
+  \]
   Wir nehmen an, dass das Univalenzaxiom für jedes Universum gilt.
 \end{axiom}
 
@@ -331,21 +331,21 @@ Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivale
   \end{align*}
   Es gilt per $\ind{\zwei}$ durch die Urteilsgleichheiten $\psi\varphi(0_\zwei)\equiv 0_\zwei$ und $\psi\varphi(1_\zwei)\equiv 1_\zwei$ bereits $\psi\circ\varphi\sim \id$.
   Also ist noch zu zeigen:
-  \begin{mathpar}
+  \[
     \prod_{f:\zwei\simeq \zwei} \varphi(\psi(f))=f
-  \end{mathpar}
+  \]
   Oder nach auswerten von $\psi$ und mit Funktionsextensionalität:
-  \begin{mathpar}
+  \[
     \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
-  \end{mathpar}
+  \]
   Aus Beispiel \labelcref{bsp:einheit-kontrahierbar} wissen wir, dass:
-  \begin{mathpar}
+  \[
     t:\prod_{x:\zwei}(x=0_\zwei)\sqcup(x=1_\zwei)
-  \end{mathpar}
+  \]
   womit wir die Fallunterscheidung ``$f(0)$ ist $1_\zwei$ oder $0_\zwei$'' umsetzen können:
-  \begin{mathpar}
+  \[
     f\mapsto x\mapsto t_{f(0_\zwei)} : \prod_{f:\zwei\simeq\zwei}\prod_{x:\zwei}(f(0_\zwei)=0_\zwei)\sqcup(f(0_\zwei)=1_\zwei)
-  \end{mathpar}
+  \]
   Die beiden Fälle können wir abarbeiten, indem wir Funktionen auf den einzelnen Faktoren, in unseren Zieltyp angeben, wobei wir gleichzeitig mit $\ind{\zwei}$ eine Fallunterscheidung über $x$ machen.
   Insgesamt müssen wir also noch konstruieren:
   \begin{align*}
@@ -355,19 +355,19 @@ Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivale
     F_{11}& : f(0_\zwei)=1_\zwei \to  \varphi(f(0_\zwei))(1_\zwei)=f(1_\zwei)
   \end{align*}
   Denn damit haben wir dann:
-  \begin{mathpar}
+  \[
     f\mapsto \ind{\zwei}(\dots,\ind{\sqcup}(\dots,F_{00},F_{10})(t_{f(0_\zwei)}),\ind{\sqcup}(\dots,F_{01},F_{11})(t_{f(0_\zwei)})): \prod_{f:\zwei\simeq \zwei}\prod_{x:\zwei} \varphi(f(0_\zwei))(x)=f(x)
-  \end{mathpar}
+  \]
   Die Funktionen $F_{00}$ und $F_{10}$ können mit Gruppoidgestzen konstruiert werden.
   Für die übrigen müssen wir verwenden, dass $0_\zwei\not=1_\zwei$.
   Etwa für $F_{01}$ nehmen wir also $p:f(0_\zwei)=0_\zwei$ an und verwenden wieder die Fallunterscheidung für die Gleichheit in $\zwei$:
-  \begin{mathpar}
+  \[
     (f(1_\zwei)=0_\zwei)\sqcup(f(1_\zwei)=1_\zwei)
-  \end{mathpar}
+  \]
   Es geht also wieder darum, zwei Funktionen zu konstruieren. Für $f(1_\zwei)=1_\zwei)$ geht das wieder mit den üblichen Methoden, für die andere Gleichheit, können wir zusammen mit $p$ zeigen:
-  \begin{mathpar}
+  \[
     f(1_\zwei)=f(0_\zwei)
-  \end{mathpar}
+  \]
   und darauf die Inverse von $f$ anwenden um $1_\zwei=0_\zwei$ zu erhalten. Nun ist $0_\zwei\not=1_\zwei$ eine Abbildung von $1_\zwei=0_\zwei$ nach $\emptyset$.
   Da es von $\emptyset$ eine Abbildung in jeden beliebigen Typ gibt, haben wir insgesamt auch eine Abbildung von $1_\zwei=0_\zwei$ in die zu zeigende Behauptung.
   Das beweist den Fall $F_{01}$ und $F_{11}$ lässt sich analog zeigen.
@@ -375,9 +375,9 @@ Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivale
 
 \begin{beispiel}
   Mit $\zwei\simeq(\zwei\simeq\zwei)$ und per Univalenz gilt:
-  \begin{mathpar}
+  \[
     f:\zwei\simeq (\zwei=_{\mU}\zwei)
-  \end{mathpar}
+  \]
   Also: $f(0_\zwei)\not=f(1_\zwei)$.
 \end{beispiel}
 
@@ -393,28 +393,28 @@ Um dafür ein Beispiel zu bekommen, wollen wir zunächst einen Typ von Äquivale
   \begin{enumerate}
   \item Es gilt $\transp_{\id_\mU}(\refl_A)=\id_A$ und damit $\ua(\id_A)=\ua(\transp_{\id_\mU}(\refl_A))=\refl_A$.
   \item Seien $p\colonequiv\ua(f)$ und $q\colonequiv\ua(g)$. Dann gilt $\transp_{\id_\mU}(p)=f$ und $\transp_{\id_\mU}(q)=g$ und damit:
-    \begin{mathpar}
+    \[
       \ua(f\circ g)=\ua(\transp_{\id_\mU}(p)\circ \transp_{\id_\mU}(q))=\ua(\transp_{\id_\mU}(p\kon q))=p\kon q=\ua(f)\kon\ua(g)
-    \end{mathpar}
+    \]
   \item Sei $p\colonequiv\ua(f)$, dann gilt:
-    \begin{mathpar}
+    \[
       \ua(f^{-1})=\ua(\transp_{\id_\mU}(p)^{-1})=\ua(\transp_{\id_\mU}(p^{-1}))=p^{-1}=\ua(f)^{-1}
-    \end{mathpar}
+    \]
   \end{enumerate}
 \end{beweis}
 
 Da wir nun wissen, dass Gleichheiten und Äquivalenzen dasselbe sind, können wir auch die Gleichheitsinduktion auf Äquivalenzen übertragen:
 \begin{lemma}[Äquivalenzinduktion]
   Für $C:\prod_{A,B:\mU}A\simeq B\to \mU$ gibt es:
-  \begin{mathpar}
+  \[
     \ind{\simeq}:\left(\prod_{A:\mU}C(A,A,\id_A)\right)\to \prod_{A,B:\mU}\prod_{f:A\simeq B}C(A,B,f)
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Durch Gleichheitsinduktion ergibt sich:
-  \begin{mathpar}
+  \[
     \ind{=}:\left(\prod_{A:\mU}C(A,A,\transp_{\id_\mU}(\refl_A))\right)\to\prod_{A,B:\mU}\prod_{p:A=_{\mU}B}C(A,B,\transp_{\id_\mU}(p))
-  \end{mathpar}
+  \]
 \end{beweis}
 
 Wir importieren die folgende Aussage (findet man im HoTT-Book am Ende von Kapitel 4): 
@@ -429,44 +429,44 @@ Zunächst halten wir fest, dass abhängige Summen und abhängige Produkte mit ä
 \begin{bemerkung}
   \label{bem:ap-univalenz-sigma-prod}
   Seien $A:\mU$ und $B,B':A\to\mU$. Wenn $B$ und $B'$ punktweise äquivalent sind, also gilt $\prod_{x:A}B(x)\simeq B'(x)$, dann gilt auch:
-  \begin{mathpar}
+  \[
     \left(\sum_{x:A}B(x)\right)\simeq \left(\sum_{x:A}B'(x)\right)\text{ und }\left(\prod_{x:A}B(x)\right)\simeq \left(\prod_{x:A}B'(x)\right)
-  \end{mathpar}
+  \]
 \end{bemerkung}
 \begin{beweis}
   Aus der punktweisen Äquivalenz $\prod_{x:A}B(x)\simeq B'(x)$ machen wir durch punktweises Anwenden von $\ua$ eine punktweise Gleichheit $\prod_{x:A}B(x)=B'(x)$ und daraus mit Funktionsextensionalität eine Gleichheit $p:B=B'$.
   Dann ist aber auch
-  \begin{mathpar}
+  \[
     \mathrm{ap}(\prod,p):\left(\prod_{x:A}B(x)\right)=\left(\prod_{x:A}B'(x)\right)
-  \end{mathpar}
+  \]
   und damit $\simeq_=(\mathrm{ap}(\prod,p)):\left(\prod_{x:A}B(x)\right)\simeq\left(\prod_{x:A}B'(x)\right)$.
   Mit dem gleichen Argument können wir die entsprechende Aussage für abhängige Summen zeigen.
 \end{beweis}
 Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisieren:
 \begin{bemerkung}
   Für $A:\mU$ und $B,B':A\to \mU$ gibt es eine Äquivalenz:
-  \begin{mathpar}
+  \[
     (B=B') \simeq \left(\prod_{x:A}B(x)\simeq B'(x)\right)
-  \end{mathpar}
+  \]
 \end{bemerkung}
 \begin{beweis}
   Mit Univalenz, Bemerkung \labelcref{bem:ap-univalenz-sigma-prod} und Funktionsextensionalität:
-  \begin{mathpar}
+  \[
     \left(\prod_{x:A}B(x)\simeq B'(x)\right)\simeq \left(\prod_{x:A}B(x)= B'(x)\right)\simeq (B=B')
-  \end{mathpar}
+  \]
 \end{beweis}
 
 \begin{definition}
   Sei $A:\mU$ und $B,B':A\to\mU$ zwei abhängige Typen.
   \begin{enumerate}
   \item Eine \begriff{faserweise Abbildung} ist ein Term
-    \begin{mathpar}
+    \[
       f:\prod_{x:A}\left(B(x)\to B'(x)\right)
-    \end{mathpar}
+    \]
   \item Für eine faserweise Abbildung gibt es eine induzierte Abbildung
-    \begin{mathpar}
+    \[
       \sum f:\left(\sum_{x:A}B(x)\right)\to \left(\sum_{x:A} B'(x)\right)
-    \end{mathpar}
+    \]
     gegeben durch $\sum f(x,b_x)\colonequiv (x,f_x(b_x))$.
   \end{enumerate}
 \end{definition}
@@ -474,9 +474,9 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
 \begin{lemma}
   \label{lem:faser-equiv}
   Seien $A:\mU$ und $B:A\to\mU$. Dann gilt
-  \begin{mathpar}
+  \[
      \prod_{x:A} \pi_1^{-1}(x)\simeq B(x)
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Später.
@@ -485,27 +485,27 @@ Mit Univalenz lässt sich auch die Gleichheit von abhängigen Typen konkretisier
 Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen auf $A$ dasselbe sind, wie Funktionen nach $A$.
 \begin{theorem}[Objektklassifikation]
   \label{lem:objektklassifizierer}
-  Sei $B:\mU$. Dann gilt:
-  \begin{mathpar}
+  Sei $A:\mU$. Dann gilt:
+  \[
     \left(\sum_{B:\mU}(B\to A)\right)\simeq (A\to \mU)
-  \end{mathpar}
+  \]
 \end{theorem}
 
 \begin{beweis}
   Einen abhängigen Typ $B:A\to\mU$ bilden wir auf die Funktion
-  \begin{mathpar}
+  \[
     \pi_1:\left(\sum_{x:A}B(x)\right)\to A
-  \end{mathpar}
+  \]
   ab. Und eine Funktion $f:B\to A$ bilden wir auf den abhängigen Typ ihrer Fasern ab:
-  \begin{mathpar}
+  \[
     \mathrm{fib}_f\equiv \left((x:A)\mapsto f^{-1}(x)\right):A\to \mU
-  \end{mathpar}
+  \]
   Nach \cref{lem:faser-equiv} ist also bereits diese Konstruktion linksinvers zur vorangegangenen.
-  Es ist also noch zu zeigen, dass die Fasern einer Abbildung sich zur Domäne aufsummieren, bzw. dass für alle
+  Es ist also noch zu zeigen, dass sich die Fasern einer Abbildung zur Domäne aufsummieren, bzw. dass für alle
   $f:A\to B$ gilt:
-  \begin{mathpar}
+  \[
     e:\left(\sum_{y:B}(f^{-1}(y))\right) \simeq A
-  \end{mathpar}
+  \]
   und $f\circ e=\pi_1$ gilt. Wir können mit \cref{lem:pfade-kontrahierbar} berechnen:
   \begin{align*}
     \left(\sum_{y:B}(f^{-1}(y))\right) &\simeq \sum_{y:B}\sum_{x:A}f(x)=y \\
@@ -519,25 +519,25 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
 \begin{lemma}
   \label{lem:faser-summe}
   Seien $A:\mU$, $B,B':A\to\mU$ und $f:\prod_{x:A}B(x)\to B'(x)$. Für alle $y:\sum_{x:A}B'(x)$ gilt:
-  \begin{mathpar}
+  \[
     \left((\sum f)^{-1}(y)\right)\simeq f_{\pi_1(y)}^{-1}(\pi_2(y))
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Unser erstes Ziel ist es, Abbildungen in beide Richtungen durch Gleichheitsinduktion zu definieren.
   Sei dazu zunächst:
-  \begin{mathpar}
+  \[
     X:\prod_{z:\sum_{x:A}B(x)}\prod_{y:\sum_{x:A}B'(x)}\prod_{p:(\sum f) (z) = y} f_{\pi_1(y)}^{-1}(\pi_2(y))
-  \end{mathpar}
+  \]
   gegeben durch $X(z,(\sum f) (z), \refl_{(\sum f) (z)})\colonequiv(\pi_1(z),\refl_{f_{\pi_1(z)}(\pi_2(z))})$. Damit ist
   \begin{align*}
     &\varphi:\prod_{y:\sum_{x:A}B'(x)}\left((\sum f)^{-1}(y)\right)\to f_{\pi_1(y)}^{-1}(\pi_2(y)) \\
     &\varphi(y,(z,p))\colonequiv X(z,y,p)
   \end{align*}
   und mit der gleichen Vorgehensweise lässt sich
-  \begin{mathpar}
+  \[
     \psi:\prod_{y:\sum_{x:A}B'(x)}f_{\pi_1(y)}^{-1}(\pi_2(y)) \to \left((\sum f)^{-1}(y)\right)
-  \end{mathpar}
+  \]
   definieren und Homotopien, die zeigen dass $\varphi$ und $\psi$ zueinander invers sind.
 \end{beweis}
 
@@ -550,21 +550,21 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
 
 \begin{theorem}[Fundamentaler Gleichheitssatz]\index{Fundamentaler Gleichheitssatz}
   \label{thm:fundamental-gleichheit}
-  Seien $A:\mU$ und $a:A$. Für $B:A\to \mU$ und eine faserweise Abbildung $f:\prod_{x:A}(a=x)\to B(x)$, dann ist $f$ genau dann eine faserweise Äquivalenz, wenn
-  \begin{mathpar}
+  Seien $A:\mU$ und $a:A$. Für $B:A\to \mU$ und eine faserweise Abbildung $f:\prod_{x:A}(a=x)\to B(x)$ ist $f$ genau dann eine faserweise Äquivalenz, wenn
+  \[
     \sum_{x:A}B(x)
-  \end{mathpar}
+  \]
   kontrahierbar ist.
 \end{theorem}
 \begin{beweis}
   Mit dem vorangegangenen Lemma wissen wir, dass $f$ genau dann eine faserweise Äquivalenz ist, wenn
-  \begin{mathpar}
+  \[
     \sum f:\left(\sum_{x:A}a=x\right)\to \left(\sum_{x:A}B(x)\right)
-  \end{mathpar}
+  \]
   eine Äquivalenz ist. In \cref{lem:pfade-kontrahierbar} haben wir gesehen, dass der linke Typ kontrahierbar ist, also gilt:
-  \begin{mathpar}
+  \[
     \left(\sum_{x:A}a=x\right)\simeq \eins
-  \end{mathpar}
+  \]
   Wenn nun auch $\eins\simeq \sum_{x:A}B(x)$ gilt, dann ist die Abbildung $\sum f$ bereits eine Äquivalenz, also auch $f$ eine faserweise Äquivalenz.
 \end{beweis}
 
@@ -577,19 +577,19 @@ Mit Univalenz können wir folgern, dass für jeden Typ $A$ die abhängigen Typen
     \Eq{\zwei}(1_\zwei,1_\zwei)&\colonequiv\eins 
   \end{align*}
   Mit \cref{thm:fundamental-gleichheit} können wir zeigen, dass
-  \begin{mathpar}
+  \[
     \prod_{x,y:\zwei}(x=_\zwei y)\simeq \Eq{\zwei}(x,y)
-  \end{mathpar}
+  \]
   indem wir für jedes $x:\zwei$ zeigen, dass $\sum_{y:\zwei}\Eq{\zwei}(x,y)$ kontrahierbar ist.
   Per $\zwei$-Induktion reicht es das für $x\equiv 0_\zwei,1_\zwei$ zu zeigen.
   Für
-  \begin{mathpar}
+  \[
     \sum_{y:\zwei}\Eq{\zwei}(0_\zwei,y)
-  \end{mathpar}
+  \]
   wählen wir als Kontraktionszentrum $(0_\zwei,\ast)$. Nun müssen wir zeigen, dass jeder andere Punkt gleich diesem Kontraktionszentrum ist, also mit $\sum$-Induktion:
-  \begin{mathpar}
+  \[
     \prod_{y:\zwei}\prod_{e:\Eq{\zwei}(0_\zwei,y)}(0_\zwei,\ast)=(y,e)
-  \end{mathpar}
+  \]
   Mit Anwenden von $\zwei$-Induktion auf $y$ reicht es also, die beiden Fälle $\prod_{e:\Eq{\zwei}(0_\zwei,0_\zwei)}(0_\zwei,\ast)=(0_\zwei,e)$ und $\prod_{e:\Eq{\zwei}(0_\zwei,1_\zwei)}(0_\zwei,\ast)=(1_\zwei,e)$ abzuhandeln.
   Im ersten Fall kann $\eins$-Induktion angewandt werden und $\refl_{(0_\zwei,\ast)}$ ist eine Lösung. Im zweiten Fall ist $\leer$-Induktion eine Lösung. \\
   Analog lässt sich zeigen, dass $\sum_{y:\zwei}\Eq{\zwei}(1_\zwei,y)$, was den Beweis beendet.
@@ -601,36 +601,36 @@ Es ist also insbesondere $\zwei$ ein 0-Typ bzw. eine Menge.
 Wir wollen nun noch \cref{lem:faser-equiv} beweisen. Dazu brauchen wir das folgende alternative Induktionsprinzip für Gleichheit:
 
 \begin{lemma}[Pfadinduktion mit Basispunkt]\index{Gleichheitsinduktion mit Basispunkt}\index{Pfadinduktion mit Basispunkt}
-  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es dann $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
+  Seien $A:\mU$ und $x:A$ fest gewählt. Für einen abhängigen Typen $C:\prod_{y:A}x=y \to\mU$ reicht es, ein $c:C(x,\refl_x)$ zu konstruieren, um eine abhängige Funktion $\prod_{y:A}\prod_{p:x=y}C(y,p)$ zu erhalten.
 \end{lemma}
 \begin{beweis}
   Sei $c:C(x,\refl_x)$. Dann gibt es den abhängigen Typen
-  \begin{mathpar}
+  \[
     C'\colonequiv(z:\sum_{y:A}x=y)\mapsto C(\pi_1(z),\pi_2(z))
-  \end{mathpar}
+  \]
   Wir wissen, dass die Basis $\sum_{y:A}x=y$ kontrahierbar ist, also gibt es Gleichheiten $q_{y,p}:(x,\refl_x)=(y,p)$, für alle $y:A$ und $p:x=y$ und damit
-  \begin{mathpar}
-    \transp(q_{y,p}):C(x,\refl_x)\to C(y,p)
-  \end{mathpar}
+  \[
+    \transp_C(q_{y,p}):C(x,\refl_x)\to C(y,p)
+  \]
   Also
-  \begin{mathpar}
-    y\mapsto (p:x=y)\mapsto \transp(q_{y,p}):\prod_{y:A}\prod_{p:x=y}C(y,p)
-  \end{mathpar}
+  \[
+    y\mapsto (p:x=y)\mapsto \transp_C(q_{y,p})(c):\prod_{y:A}\prod_{p:x=y}C(y,p)
+  \]
 \end{beweis}
 
 Damit können wir zeigen:
 
 \begin{lemma}
   Seien $A:\mU$ und $B:A\to\mU$. Für $C:\left(\sum_{x:A}B(x)\right)\to\mU$ gilt:
-  \begin{mathpar}
+  \[
     \left(\sum_{y:\sum_{x:A}B(x)}C(y)\right)\simeq \sum_{x:A}\sum_{b:B(x)}C((x,b))
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Aus Übungsaufgabe 1 von Blatt 6 wissen wir, dass es einen Term gibt (mit $p_{(x,b)}\equiv\refl_{(x,b)}$):
-  \begin{mathpar}
+  \[
     p:\prod_{z:\sum_{x:A}B(x)}z=(\pi_1(z),\pi_2(z))
-  \end{mathpar}
+  \]
   Es gibt die beiden folgenden Kandidaten für zueinander inversen Abbildungen:
   \begin{align*}
     \varphi&:\left(\sum_{y:\sum_{x:A}B(x)}C(y)\right)\to \sum_{x:A}\sum_{b:B(x)}C((x,b))\\
@@ -676,45 +676,45 @@ Damit können wir nun \cref{lem:faser-equiv} beweisen:
 \begin{theorem}[Gleichheit natürlicher Zahlen]
   \label{thm:gleichheit-nat}
   Die faserweise Abbildung
-  \begin{mathpar}
+  \[
     \prod_{n,l:\N}n=l\to \Eq{\N}(n,l)
-  \end{mathpar}
+  \]
   gegeben durch $\refl_n\mapsto \ast$ ist eine faserweise Äquivalenz.
 \end{theorem}
 \begin{beweis}
   Nach \cref{thm:fundamental-gleichheit} reicht es zu zeigen, dass für jedes $n:\N$ der Typ
-  \begin{mathpar}
+  \[
     \sum_{l:\N}\Eq{\N}(n,l)
-  \end{mathpar}
+  \]
   kontrahierbar ist. Als Kontraktionszentrum wählen wir $(n,\ast)$.
-  Nach Induktion über $n$,$l$ und Ausschluss aller Fälle mit leerer Domäne bleiben noch zu konstruieren:
+  Nach Induktion über $n, l$ und Ausschluss aller Fälle mit leerer Domäne bleiben noch zu konstruieren:
   \begin{align*}
-    &\prod_{e:\Eq{\N}(0,0)}(0,e)=(0,\ast) \\
-    &\prod_{e:\Eq{\N}(\sucN(n),\sucN(l))}(\sucN(l),e)=(\sucN(n),\ast)
+    \prod_{e:\Eq{\N}(0,0)} & (0,e)=(0,\ast) \\
+    \prod_{e:\Eq{\N}(\sucN(n),\sucN(l))} & (\sucN(l),e)=(\sucN(n),\ast)
   \end{align*}
-  Im ersten Fall lässt sich die Gleichheit stets durch die kontrahierbarkeit von $\eins$ konstruieren.
+  Im ersten Fall lässt sich die Gleichheit stets durch die Kontrahierbarkeit von $\eins$ konstruieren.
   Im zweiten Fall dürfen wir die Induktionshypothese verwenden:
-  \begin{mathpar}
+  \[
     \mathrm{IH}:\prod_{e:\Eq{\N}(n,l)}(l,e)=(n,\ast)
-  \end{mathpar}
+  \]
   Um etwas damit anfangen zu können, definieren wir uns folgenden Funktion:
   \begin{align*}
-    f&:\left(\sum_{n:\N}\Eq{\N}(n,l)\right)\to \left(\sum_{n:\N}\Eq{\N}(n,\sucN(l))\right) \\
+    f:\left(\sum_{n:\N}\Eq{\N}(n,l)\right)&\to \left(\sum_{n:\N}\Eq{\N}(n,\sucN(l))\right) \\
     f((n,e))&\colonequiv (n+1,e)
   \end{align*}
   Damit gilt dann für $e:\Eq{\N}(\sucN(n),\sucN(l))$:
-  \begin{mathpar}
+  \[
     f(\mathrm{IH}_e):\left(f((l,e))=f((n,\ast))\right)\equiv \left((\sucN(l),e)=(\sucN(n),\ast)\right)
-  \end{mathpar}
+  \]
 \end{beweis}
 
 \begin{bemerkung}
   $\N$ ist ein 0-Typ.
 \end{bemerkung}
 \begin{beweis}
-  Wir wissen dass die Typen $\leer$ und $\eins$ Aussagen sind durch \cref{bsp:leer-eins-hlevel} und \cref{bem:kontrahierbar-folgt-aussage}.
+  Wir wissen dass die Typen $\leer$ und $\eins$ Aussagen sind durch \Cref{bsp:leer-eins-hlevel} und \Cref{bem:kontrahierbar-folgt-aussage}.
   Mit $\N$-Induktion ist also $\Eq{\N}(n,k)$ für alle $n,k\in\N$ eine Aussage.
-  Nach Definition ist ein Typ ein 0-Typ oder eine Menge, wenn alle Gleichheitstypen Aussagen sind, also sind wir mit \cref{thm:gleichheit-nat} fertig.
+  Nach Definition ist ein Typ ein 0-Typ oder eine Menge, wenn alle Gleichheitstypen Aussagen sind, also sind wir mit \Cref{thm:gleichheit-nat} fertig.
 \end{beweis}
 
 \subsection{Gleichheit algebraischer Strukturen}
@@ -726,9 +726,9 @@ werden wir zunächst die Chrakterisierung von Gleichheitstypen in abhängigen Su
 \begin{lemma}[Gleichheit in abhängigen Summen]
   \label{lem:gleichheit-summe}
   Seien $A:\mU$ und $B:A\to \mU$. Für $a,a':A$ und $b:B(a), b':B(a')$ gilt:
-  \begin{mathpar}
+  \[
     \left((a,b)=(a',b')\right)\simeq \sum_{p:a=a'}\transp_B(p)(b)=b'
-  \end{mathpar}
+  \]
 \end{lemma}
 \begin{beweis}
   Wir verwenden den Gleichheitssatz, \cref{thm:fundamental-gleichheit}.
@@ -737,17 +737,17 @@ werden wir zunächst die Chrakterisierung von Gleichheitstypen in abhängigen Su
     \Eq{\sum}((a,b),(a',b'))\colonequiv \sum_{p:a=a'}\transp_B(p)(b)=b'
   \end{align*}
   und weiter $r:\prod_{x:\sum_{a:A}B(a)}\Eq{\sum}(x,x)$ gegeben durch:
-  \begin{mathpar}
+  \[
     r((a,b))\colonequiv (\refl_a, \refl_b)
-  \end{mathpar}
+  \]
   Damit gibt es eine durch Gleichheitsinduktion definierte Funktion
-  \begin{mathpar}
+  \[
     f:\prod_{x,y:\sum_{a:A}B(a)}x=y\to \Eq{\sum}(x,y)
-  \end{mathpar}
+  \]
   Nach dem Gleichheitssatz reicht es nun also zu zeigen, dass für $x:\sum_{a:A}B(a)$ der Typ
-  \begin{mathpar}
+  \[
     \sum_{y:\sum_{a:A}B(a)}\Eq{\sum}(x,y)
-  \end{mathpar}
+  \]
   kontrahierbar ist. Es gilt für $x\equiv(a,b)$:
   \begin{align*}
     \sum_{y:\sum_{a:A}B(a)}\Eq{\sum}((a,b),y)&\simeq \sum_{a':A}\sum_{b':B(a')}\Eq{\sum}((a,b),(a',b')) \\
@@ -764,44 +764,44 @@ werden wir zunächst die Chrakterisierung von Gleichheitstypen in abhängigen Su
 
 \begin{definition}
   Sei $A:\mU$. Der Typ der \begriff{Halbgruppenstrukturen} auf $A$ ist gegeben durch:
-  \begin{mathpar}
+  \[
     \mathrm{HalbGrp}(A)\colonequiv \sum_{\_\cdot\_:A\to A\to A}\prod_{x,y,z:A} (x \cdot y) \cdot z = x \cdot (y \cdot z)
-  \end{mathpar}
+  \]
   Die Elemente $H:\sum_{A:\mathrm{Set}}\mathrm{HalbGrp}(A)$, heißen \begriff{Halbgruppen}.
 \end{definition}
 
 \begin{definition}
   Ein \begriff{Isomorphismus} von Halbgruppen $(H, \mathrm{str}) \to (H',\mathrm{str}')$ ist eine Äquivalenz $f:H\to H'$, sodass für alle $x,y:H$ gilt:
-  \begin{mathpar}
+  \[
     f(x \cdot y) = f(x) \cdot' f(y)
-  \end{mathpar}
+  \]
   wobei $\cdot$ die Multiplikation auf $H$ und $\cdot'$ die auf $H'$ ist.
   Wir bezeichnen mit $\mathrm{Isom}((H, \mathrm{str}), (H',\mathrm{str}'))$ den Typ der Isomorphismen zwischen zwei Halbgruppen.
 \end{definition}
 
 \begin{theorem}[Gleichheit von Halbgruppen]
   Seien $(H,\mathrm{str}),(H',\mathrm{str}):\sum_{A:\mU}\mathrm{HalbGrp}(A)$. Es gilt:
-  \begin{mathpar}
+  \[
     \left((H,\mathrm{str})=(H',\mathrm{str})\right)\simeq\mathrm{Isom}((H, \mathrm{str}), (H',\mathrm{str}'))
-  \end{mathpar}
+  \]
 \end{theorem}
 \begin{beweis}
   Mit \cref{lem:gleichheit-summe} folgt:
-  \begin{mathpar}
+  \[
     \left((H,\mathrm{str})=(H',\mathrm{str}')\right)\simeq \sum_{p:H=H'}\transp_{\mathrm{HalbGrp}}(p)(\mathrm{str})=\mathrm{str}'
-  \end{mathpar}
+  \]
   Das heißt, wir müssen nur noch klären, dass diese Summe äquivalent zum Typ der Isomorphismen ist.
   Dazu berechnen wir den Transport in $\mathrm{HalbGrp}$.
   Sei also $e:A\simeq B$ und $p\colonequiv\ua(e)$, dann erhalten wir eine Äquivalenz
-  \begin{mathpar}
+  \[
     \transp_{\mathrm{HalbGrp}}(p):\mathrm{HalbGrp}(A) \to \mathrm{HalbGrp}(B)
-  \end{mathpar}
-  und wir können durch Raten und anschließendem bestätigen durch Gleichheitsinduktion berechnen, was dieser Transport macht.
+  \]
+  und wir können durch Raten und anschließendem Bestätigen durch Gleichheitsinduktion berechnen, was dieser Transport macht.
   Sei $(\_\cdot\_, \cdot\mathrm{assoc}):\mathrm{HalbGrp}(A)$.
   Wir raten zunächst, dass die Multiplikation mit $e$ prä- und postkomponiert wird, die Multiplikation des Bildes also für $x,y:B$ gegeben ist durch:
-  \begin{mathpar}
+  \[
     x \cdot' y \colonequiv e(e^{-1}(x) \cdot e^{-1}(y))
-  \end{mathpar}
+  \]
   Als Assoziativitätszeugen $\cdot'\mathrm{assoc}$ nehmen wir die Ergebnisgleichheit der folgenden Rechnung:
   \begin{align*}
     (x \cdot' y) \cdot' z & = e(e^{-1}e(e^{-1}(x)\cdot e^{-1}(y)) \cdot e^{-1}(z)) \\
@@ -812,7 +812,7 @@ werden wir zunächst die Chrakterisierung von Gleichheitstypen in abhängigen Su
   \end{align*}
   Die Abbildung $e$ ist damit ein Isomorphismus.
   Nun können wir für diese Konstruktion sehen:
-  \begin{mathpar}
+  \[
     \transp_{\mathrm{HalbGrp}}(\ua(\id))((\_\cdot\_,\cdot\mathrm{assoc}))=(\_\cdot'\_,\cdot'\mathrm{assoc})
-  \end{mathpar}
+  \]
 \end{beweis}
