@@ -1225,11 +1225,11 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   \begin{enumerate}
   \item Das \begriff{Bild} von $f$ ist der folgende Typ:
     \[
-      \mathrm{im}(f)\colonequiv \sum_{b:B}\|\sum_{x:A}f(x)=b\|
+      \mathrm{im}(f)\colonequiv \sum_{b:B}\|\mathrm{fib}_f(b)\|
     \]
   \item Der \begriff{Kern} von $f$ ist der folgende Typ:
     \[
-      \mathrm{Kern}(f)\colonequiv \sum_{x:A}f(x)=\ast
+      \mathrm{Kern}(f)\colonequiv \mathrm{fib}_f(\ast)
     \]
   \end{enumerate}
 \end{definition}
