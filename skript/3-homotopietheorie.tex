@@ -1012,8 +1012,8 @@ Dabei sollte man bedenken, dass es sich hierbei nur um die Homotopietypen von Ü
   Die $n$-Abschneidung eines Typen $A$ ist ein höherer induktiver Typ $\|A\|_n:\mU$ gegeben durch die folgenden Konstruktoren:
   \begin{align*}
     |\_|_n&:A\to \|A\|_n \\
-    \mathrm{Narbe}&:(S^{n+1}\to \|A\|_n)\to \|A\|_n \\
-    \mathrm{Speiche}&:\prod_ {s:S^{n+1}\to \|A\|_n}\prod_{x:S^{n+1}} \mathrm{Narbe}(s)=s(x)
+    \mathrm{Nabe}&:(S^{n+1}\to \|A\|_n)\to \|A\|_n \\
+    \mathrm{Speiche}&:\prod_ {s:S^{n+1}\to \|A\|_n}\prod_{x:S^{n+1}} \mathrm{Nabe}(s)=s(x)
   \end{align*}
 \end{regeln}
 
@@ -1162,11 +1162,11 @@ Das funktioniert in eine Richtung sogar für iterierte Schleifenräume:
   \item Zunächst betrachten wir das Induktionsprinzip für $ \|A\|_n$. Sei also $B:\|A\|_n\to \mU$. Um $s:\prod_{x:\|A\|_n}B(x)$ induktiv zu konstruieren, brauchen wir folgende Daten:
     \begin{itemize}
     \item $s_0:\prod_{a:A}B(|a|_n)$ 
-    \item Für alle $r:S^{n+1}\to \|A\|_n$ und $r':\prod_{x:S^{n+1}}B(r(x))$ ein $N_{r,r'}:B(\mathrm{Narbe(r)})$.
+    \item Für alle $r:S^{n+1}\to \|A\|_n$ und $r':\prod_{x:S^{n+1}}B(r(x))$ ein $N_{r,r'}:B(\mathrm{Nabe(r)})$.
     \item Für alle $r:S^{n+1}\to \|A\|_n$, $r':\prod_{x:S^{n+1}}B(r(x))$ und jedes $x:S^{n+1}$ eine abhängige Gleichheit $r(x)=_{\mathrm{Speiche}(x)}^B N_{r,r'}$.
     \end{itemize}
-    Die Daten für Narben und Speichen müssen wir also aus der $n$-Abgeschnittenheit von $B$ herleiten, um das gewünschte Induktionprinzip zu erhalten.
-    Narbe und Speichen in $B(x)$  erhalten wir aber genau aus der $n$-Abgeschnittenheit der $B(x)$ und \cref{kor:n-abgeschnitten-kontrahierbarkeit}.
+    Die Daten für Naben und Speichen müssen wir also aus der $n$-Abgeschnittenheit von $B$ herleiten, um das gewünschte Induktionprinzip zu erhalten.
+    Nabe und Speichen in $B(x)$  erhalten wir aber genau aus der $n$-Abgeschnittenheit der $B(x)$ und \cref{kor:n-abgeschnitten-kontrahierbarkeit}.
     
   \end{enumerate}
 \end{beweis}
