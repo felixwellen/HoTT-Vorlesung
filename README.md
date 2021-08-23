@@ -1,5 +1,6 @@
 # HoTT-Vorlesung
 Materialien zur Vorlesung Homotopietypentheorie, Sommersemester 2021, Universität Augsburg
+Das Vorlesungsskript gibt es [hier](https://felix-cherubini.de/hott-skript.pdf) als pdf
 
 # Mitmachen
 Wer Fehler findet kann gerne einen Pullrequest stellen.
