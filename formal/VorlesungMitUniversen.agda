@@ -1,4 +1,4 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --without-K --rewriting #-}
 {-
   Hier kann man ganz unverfänglich Agda im Browser ausprobieren:
 
@@ -167,7 +167,7 @@ infixl 4 _≡_
 data _≡_ {A : 𝒰 ℓ} : A → A → 𝒰 ℓ where
   refl : (x : A) → x ≡ x
 
-
+{-# BUILTIN REWRITE _≡_ #-}
 
 {-
   Beispiel 1.4.2
@@ -182,14 +182,14 @@ bsp1-4-2 ∗ = refl ∗
   mit der 'infixl' zeile legen wir fest, dass ⁻¹ links assoziativ ist und eine höhere Priorität als default (=20) hat
 -}
 infixl 21 _⁻¹
-_⁻¹ : {A : 𝒰₀} {x y : A} → (x ≡ y) → (y ≡ x)
+_⁻¹ : {A : 𝒰 ℓ} {x y : A} → (x ≡ y) → (y ≡ x)
 (refl x) ⁻¹ = refl x
 
 {-
   ∙ \.
 -}
 
-_∙_ : {A : 𝒰₀} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
+_∙_ : {A : 𝒰 ℓ} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
 (refl x) ∙ p = p
 
 infixr 20 _∙_
@@ -201,7 +201,7 @@ infixr 20 _∙_
 infixr 4 _≡⟨_⟩_
 infixr 5 _≡∎
 
-_≡⟨_⟩_ : {A : 𝒰₀} {y z : A} (x : A) (p : x ≡ y) (q : y ≡ z) → x ≡ z
+_≡⟨_⟩_ : {A : 𝒰 ℓ} {y z : A} (x : A) (p : x ≡ y) (q : y ≡ z) → x ≡ z
 x ≡⟨ p ⟩ q = p ∙ q
 
 _≡∎ : {A : 𝒰₀} (x : A) → x ≡ x
@@ -246,11 +246,13 @@ module _ {A : 𝒰₀} where
                 → (p ∙ q) ∙ r ≡ p ∙ (q ∙ r)
   ∙Assoziativ (refl x) q r = refl (q ∙ r)
 
+{-# REWRITE ∙Assoziativ reflRNeutral #-}
+
 {-
   1.4.11
 -}
 
-ap : {A B : 𝒰₀} {x y : A}
+ap : {A B : 𝒰 ℓ} {x y : A}
      → (f : A → B)
      → (p : x ≡ y)
      → f x ≡ f y
@@ -328,7 +330,7 @@ tr-concat : {A : 𝒰₀} {B : A → 𝒰₀} {x y z : A} → ∏[ p ∈ x ≡ y
 tr-concat {_} {B} (refl w) q = refl (tr B q)
 
 -- Lemma 1.5.9
-∑= : ∀ {A : 𝒰₀} {x y : A} {B : A → 𝒰₀} {bx : B(x)} {by' : B(y)}
+∑= : ∀ {A : 𝒰 ℓ} {x y : A} {B : A → 𝒰 ℓ′} {bx : B(x)} {by' : B(y)}
   → ∏[ p ∈ x ≡ y ] (  ( tr B (p)(bx) ≡ by' ) → ( (x , bx) ≡ (y , by') )  )
 ∑= (refl z) (refl w) = refl (z , w)
 
@@ -392,7 +394,7 @@ module lemma1-5-8 {A B : 𝒰₀} where
     pair=⁻¹ : (a , b) ≡ (a' , b') → ((a ≡ a') × (b ≡ b'))
     pair=⁻¹ p = pair=⁻¹' p
 
-  lemma1-5-8-b :  {a a' : A} {b b' : B}
+  lemma1-5-8-b : {a a' : A} {b b' : B}
                   → pair= inversZu pair=⁻¹
   lemma1-5-8-b {a} {a'} {b} {b'} = teil1 , teil2
                where teil1 : ∏[ q ∈ _ ] pair=⁻¹ (pair= q) ≡ q
@@ -414,10 +416,10 @@ _∼_ {ℓ} {A} f g = ∏[ x ∈ A ] f(x) ≡ g(x)
 
 infix 18 _∼_
 
-∼sym : {A B : 𝒰₀} {f g : A → B} (H : f ∼ g) → (g ∼ f)
+∼sym : {A B : 𝒰 ℓ} {f g : A → B} (H : f ∼ g) → (g ∼ f)
 ∼sym H = λ x → (H x)⁻¹
 
-∼trans : {A B : 𝒰₀} {f g h : A → B} (H : f ∼ g) (G : g ∼ h) → f ∼ h
+∼trans : {A B : 𝒰 ℓ} {f g h : A → B} (H : f ∼ g) (G : g ∼ h) → f ∼ h
 ∼trans H G = λ x → (H x) ∙ (G x)
 
 {-
@@ -438,7 +440,7 @@ f ∼∎ = λ x → refl (f x)
 -}
 
 postulate
-  FunExt : {A B : 𝒰₀} (f g : A → B) → (∏[ x ∈ A ] f(x) ≡ g(x)) → f ≡ g
+  FunExt : {A B : 𝒰 ℓ} (f g : A → B) → (∏[ x ∈ A ] f(x) ≡ g(x)) → f ≡ g
 
 {-
   1.6.5
@@ -487,10 +489,10 @@ AisContr→AisProp c = λ x y → ((π₂ c) x) ∙ ((π₂ c) y) ⁻¹
 {-
   2.1.1
 -}
-pre-whisker : ∀ {A B A' : 𝒰₀} {f g : A → B} (φ : A' → A) (H : f ∼ g) → f ∘ φ ∼ g ∘ φ
+pre-whisker : ∀ {A B A' : 𝒰 ℓ} {f g : A → B} (φ : A' → A) (H : f ∼ g) → f ∘ φ ∼ g ∘ φ
 pre-whisker φ H = λ x → H (φ x)
 
-post-whisker : ∀ {A B B' : 𝒰₀} {f g : A → B} (ψ : B → B') (H : f ∼ g) → ψ ∘ f ∼ ψ ∘ g
+post-whisker : ∀ {A B B' : 𝒰 ℓ} {f g : A → B} (ψ : B → B') (H : f ∼ g) → ψ ∘ f ∼ ψ ∘ g
 post-whisker ψ H = λ x → ap ψ (H x)
 
 {-
@@ -499,23 +501,23 @@ post-whisker ψ H = λ x → ap ψ (H x)
 id : (A : 𝒰 ℓ) → A → A
 id A = λ a → a
 
-LInv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
-LInv {ℓ} {A} {B} f = ∑[ g ∈ (B → A) ] g ∘ f ∼ (id A)
+LInv : {A : 𝒰 ℓ} {B : 𝒰 ℓ′} (f : A → B) → 𝒰 (ℓ-max ℓ ℓ′)
+LInv {ℓ} {ℓ′} {A} {B} f = ∑[ g ∈ (B → A) ] g ∘ f ∼ (id A)
 
-RInv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
-RInv {ℓ} {A} {B} f = ∑[ h ∈ (B → A) ] f ∘ h ∼ (id B)
+RInv : {A : 𝒰 ℓ} {B : 𝒰 ℓ′} (f : A → B) → 𝒰 (ℓ-max ℓ ℓ′)
+RInv {ℓ} {ℓ′} {A} {B} f = ∑[ h ∈ (B → A) ] f ∘ h ∼ (id B)
 
-LRInv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
+LRInv : {A : 𝒰 ℓ} {B : 𝒰 ℓ′} (f : A → B) → 𝒰 (ℓ-max ℓ ℓ′)
 LRInv f = (LInv f) × (RInv f)
 
-isEquiv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
+isEquiv : {A : 𝒰 ℓ} {B : 𝒰 ℓ′} (f : A → B) → 𝒰 (ℓ-max ℓ ℓ′)
 isEquiv f = LRInv f
 
 _equivalentTo_ : (A B : 𝒰 ℓ) → 𝒰 ℓ
 A equivalentTo B = ∑[ f ∈ (A → B) ] isEquiv f
 
 -- Typ der Äquivalenzen (≃ – \simeq)
-_≃_ : (A B : 𝒰 ℓ) → 𝒰 ℓ
+_≃_ : (A : 𝒰 ℓ) → (B : 𝒰 ℓ′) → 𝒰 (ℓ-max ℓ ℓ′)
 A ≃ B = ∑[ f ∈ (A → B) ] isEquiv f
 
 {-
@@ -566,6 +568,15 @@ bem-2-1-4 : {A B : 𝒰₀} (f : A → B) → ( (LRInv f) ↔ (qinv f) )
         K : f ∘ g ∼ (id B)
         K = π₁ (π₂ qinv)
 
+{- Definition 2.1.8: Kohärente Inverse -}
+_koh_ : {A B : 𝒰 ℓ} (g : B → A) (f : A → B) → 𝒰 ℓ
+_koh_ {_} {A} g f = ∑[ H ∈ (g ∘ f ∼ id _) ] ∑[ K ∈ (f ∘ g ∼ id _) ] ∏[ x ∈ A ] ap f (H x) ≡ K (f x)
+
+CohInv : {A B : 𝒰 ℓ} (f : A → B) → 𝒰 ℓ
+CohInv {ℓ} {A} {B} f = ∑[ g ∈ (B → A) ] g koh f
+
+{- Theorem 2.1.12 -}
+
 {- Definition 1.6.13: Fasern, Injektivität, Surjektivität, Äquivalenz -}
 fib : {A B : 𝒰₀} (f : A → B) (b : B) → 𝒰₀
 fib {A} f b = ∑[ x ∈ A ] f(x) ≡ b
@@ -585,3 +596,28 @@ isEquiv' {_} {B} f = ∏[ y ∈ B ] isContr(fib f y)
   → (∏[ x ∈ A ] (B(x) → B'(x)))
   → ((∑[ x ∈ A ] B(x)) → (∑[ x ∈ A ] B'(x)))
 ∑→ f (x , bₓ) = x , f(x)(bₓ)
+
+module _ {A : 𝒰 ℓ} {B : A → 𝒰 ℓ′} {x y : A} where
+  _≣⟨_⟩_ : (b : B(x)) (p : x ≡ y) (b′ : B(y)) → 𝒰 ℓ′
+  _≣⟨_⟩_ b p b′ = ((tr B p) b) ≡ b′
+
+  apd : (s : ∏[ x ∈ A ] B(x)) → ∏[ p ∈ (x ≡ y) ] (s(x) ≣⟨ p ⟩ s(y))
+  apd s (refl .x) = refl _
+
+tconst_,_ : {A B : 𝒰 ℓ} {x y : A} (p : x ≡ y) (b : B)
+  → tr (λ _ → B) p b ≡ b
+tconst refl _ , b = refl b
+
+{- Bemerkung 3.1.2 (b) -}
+apd-fn-eq : {A B : 𝒰 ℓ} {x y : A} (f : A → B) (p : x ≡ y)
+  → apd f p ≡ (tconst p , f x) ∙ (ap f p)
+apd-fn-eq f (refl _) = refl _
+
+{- Definition 3.1.9: Abhängige Homotopie -}
+module _ {A : 𝒰 ℓ} {B : A → 𝒰 ℓ} where
+  _∼ₐ_ : (f g : ∏[ x ∈ A ] B(x)) → 𝒰 ℓ
+  _∼ₐ_ f g = ∏[ x ∈ A ] f(x) ≡ g(x)
+
+  hap : {f g : ∏[ x ∈ A ] B(x)} (p : f ≡ g) → f ∼ₐ g
+  hap p x = ap (λ f → f x) p
+
