@@ -232,17 +232,17 @@ Der wichtige Spezialfall der Regel $\N\mathrm{E}$ für (nicht-abhängige) Funkti
 Noch haben wir keine Möglichkeit, eine durch Rekursion oder Induktion definierte Funktion für ein Argument auszuwerten.
 Dazu brauchen wir $\beta$-Regeln, die nichts anderes sagen, als dass eine durch Induktion definierte Funktion, die durch Induktionsanfang und Schritt gegebenen Werte auch annimmt.
 Es sollen also für mit $\N\mathrm{E}$ definierte Funktionen gelten:
-\[
-  \ind{\N}(P,\mathrm{IA},\mathrm{IS})(0_{\N})\equiv \mathrm{IA} \\
-  \text{(Für $n:\N$) } \ind{\N}(P,\mathrm{IA},\mathrm{IS})(\sucN(n))\equiv \mathrm{IS}(n,\ind{\N}(P,\mathrm{IA},\mathrm{IS})(n))
-\]
+\begin{align*}
+  \ind{\N}(P,\mathrm{IA},\mathrm{IS})(0_{\N}) &\equiv \mathrm{IA} \\
+  \text{(Für $n:\N$) } \ind{\N}(P,\mathrm{IA},\mathrm{IS})(\sucN(n)) &\equiv \mathrm{IS}(n,\ind{\N}(P,\mathrm{IA},\mathrm{IS})(n))
+\end{align*}
 und damit für die Rekursion mit den Bezeichnern aus \cref{def:rekursion}:
-\[
-  \rec{\N}(A,f_0,f_s)(0)\equiv f_0 \\
-  \rec{\N}(A,f_0,f_s)(\sucN(n))\equiv f_s(n, \rec{\N}(A,f_0,f_s)(n))
-\]
+\begin{align*}
+  \rec{\N}(A,f_0,f_s)(0) &\equiv f_0 \\
+  \rec{\N}(A,f_0,f_s)(\sucN(n)) &\equiv f_s(n, \rec{\N}(A,f_0,f_s)(n))
+\end{align*}
 Die vollständigen $\beta$-Regeln sind wie folgt:
-\[
+\begin{mathpar}
   \inferrule{
     \Gamma,n:\N \yields P(n)\text{ Typ}
     \and \Gamma\yields \mathrm{IA} : P(0)
@@ -262,7 +262,7 @@ Die vollständigen $\beta$-Regeln sind wie folgt:
   }{
     \N\beta_2
   } 
-\]
+\end{mathpar}
 Damit können wir Werte der Funktion aus Beispiel \labelcref{bsp:verdopplung} berechnen:
 \begin{beispiel}
   Für die Funktion $d:\N\to\N$ aus Beispiel \labelcref{bsp:verdopplung} ergibt sich mit den $\beta$-Regeln nun etwa:
@@ -338,7 +338,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
 \begin{regeln}
   Der \begriff{Einheitstyp} $\einheit$\index{$\eins$} ist der Induktive Typ mit Konstruktur $\ast:\einheit$.
   Dadurch ergibt sich der folgende Satz von Regeln:
-  \[
+  \begin{mathpar}
     \inferrule{\Gamma\text{ Kontext} }{\Gamma\yields\einheit\text{ Typ}}{\einheit\mathrm{F}}
     \quad\quad
     \inferrule{
@@ -361,7 +361,7 @@ Wir beginnen mit einem Typen, der in noch zu klärendem Sinn genau einen Term ha
     }{
       \einheit\beta
     }
-  \]
+  \end{mathpar}
 \end{regeln}
 \begin{beispiel}
   Wir können die beiden Funktionen
